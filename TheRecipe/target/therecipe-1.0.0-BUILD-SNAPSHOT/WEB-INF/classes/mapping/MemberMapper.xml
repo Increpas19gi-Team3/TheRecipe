@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="member_ns">
+	<!--  속성명과 컬럼명 일치하는 경우 컬럼명 생략 가능
+	        순서를 컬럼순서대로 함 O(자바객체)R(결과집합의 행)매핑 -->
+	        
+	<resultMap id="MemberResult" type="Member"> 
+		<result property="m_userid" column="m_userid" />
+		<result property="m_pw" column="m_pw" />
+		<result property="m_name" column="m_name" />
+		<result property="m_email" column="m_email" />
+		<result property="m_post" column="m_post" />
+		<result property="m_addr" column="m_addr" />
+		<result property="m_phone" column="m_phone" />
+		<result property="m_level" column="m_level" />
+	</resultMap>
+	
+	
+	<!-- 전체 글 조회  참조번호 1차 내림정렬 , 순번 2차 오름정렬 (최신의 글이 상위에 노출)-->
+	<select id="selectAllMembers" resultMap="BoardResult">
+		select * from TR_MEMBER
+	</select>
+	
+	
+	
+</mapper>

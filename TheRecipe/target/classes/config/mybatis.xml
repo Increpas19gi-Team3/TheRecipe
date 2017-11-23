@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<typeAliases>
+		<typeAlias alias="Member" type="com.increpas.therecipe.vo.MemberVO" />
+		<typeAlias alias="Basket" type="com.increpas.therecipe.vo.BasketVO" />
+		<typeAlias alias="Dvycode" type="com.increpas.therecipe.vo.DvycodeVO" />
+		<typeAlias alias="Event" type="com.increpas.therecipe.vo.EventVO" />
+		<typeAlias alias="Foodcode" type="com.increpas.therecipe.vo.FoodcodeVO" />
+		<typeAlias alias="Food" type="com.increpas.therecipe.vo.FoodVO" />
+		<typeAlias alias="Member" type="com.increpas.therecipe.vo.MemberVO" />
+		<typeAlias alias="Order" type="com.increpas.therecipe.vo.OrderVO" />
+		<typeAlias alias="Review" type="com.increpas.therecipe.vo.ReviewVO" />
+		
+		
+	</typeAliases>
+	
+	
+	
+</configuration>
