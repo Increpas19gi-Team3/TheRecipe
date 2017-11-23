@@ -31,8 +31,10 @@ INSERT INTO tr_dvycode VALUES('3','배송중');
 INSERT INTO tr_dvycode VALUES('4','배송완료');
 
 
-/* 주문테이블 */
-INSERT INTO tr_order VALUES(sysdate_01,'0','han','3','5000','1',sysdate,'한범석','12345','서울시 강남구');
+/* 주문테이블 
+	TO_CHAR(SYSTIMESTAMP, 'YYYYMMDDHH24MISSFF3') : 20171124024614598 = 2017-11-24 02:46:14.598
+*/
+INSERT INTO tr_order VALUES(TO_CHAR(SYSTIMESTAMP, 'YYYYMMDDHH24MISSFF3'),'0','han','3','5000','1',sysdate,'한범석','12345','서울시 강남구');
 
 /* 이벤트 */
 INSERT INTO tr_event VALUES(tr_event_seq.nextval, '탕수육 세일', '1', sysdate, '탕수육 세일', null, 10, sysdate, '2017/12/4');
