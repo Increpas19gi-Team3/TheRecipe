@@ -15,7 +15,7 @@ import com.increpas.therecipe.service.LoginService;
  *
  */
 @Controller
- public class LoginController {
+public class LoginController {
 
 	// slf4j 방식 로그
 	Logger logger = LoggerFactory.getLogger(getClass());
