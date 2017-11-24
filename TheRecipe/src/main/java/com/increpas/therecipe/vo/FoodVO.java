@@ -6,15 +6,19 @@ package com.increpas.therecipe.vo;
  *
  */
 public class FoodVO {
+	
 	private String f_fdcode;	/* 상품코드	 	VARCHAR2(20) NOT NULL*/
 	private String e_evtcode;	/* 이벤트코드	VARCHAR2(20) */
 	private String f_foodname;	/* 상품명		VARCHAR2(100) NOT NULL */
-	private int fc_1st;			/* 대분류		NUMBER NOT NULL */
-	private int fc_2nd;			/* 중분류		NUMBER NOT NULL */
+	private int fc_1st;			/* 지역:1 / TV:2	NUMBER NOT NULL */
+	private int fc_2nd; 		/* 지역				NUMBER NOT NULL */
+	private int fc_3rd; 		/* 구성			NUMBER NOT NULL */
 	private int f_price;		/* 가격			NUMBER NOT NULL */
 	private String f_explan;	/* 상세설명		VARCHAR2(1000) */
 	private String f_imgname;	/* 이미지명		VARCHAR2(2000) */
 	private String f_thumname;	/* 썸네일명		VARCHAR2(2000) */
+	
+	
 	public String getF_fdcode() {
 		return f_fdcode;
 	}
@@ -45,6 +49,12 @@ public class FoodVO {
 	public void setFc_2nd(int fc_2nd) {
 		this.fc_2nd = fc_2nd;
 	}
+	public int getFc_3rd() {
+		return fc_3rd;
+	}
+	public void setFc_3rd(int fc_3rd) {
+		this.fc_3rd = fc_3rd;
+	}
 	public int getF_price() {
 		return f_price;
 	}
@@ -74,10 +84,8 @@ public class FoodVO {
 	@Override
 	public String toString() {
 		return "FoodVO [f_fdcode=" + f_fdcode + ", e_evtcode=" + e_evtcode + ", f_foodname=" + f_foodname + ", fc_1st="
-				+ fc_1st + ", fc_2nd=" + fc_2nd + ", f_price=" + f_price + ", f_explan=" + f_explan + ", f_imgname="
-				+ f_imgname + ", f_thumname=" + f_thumname + "]";
+				+ fc_1st + ", fc_2nd=" + fc_2nd + ", fc_3rd=" + fc_3rd + ", f_price=" + f_price + ", f_explan="
+				+ f_explan + ", f_imgname=" + f_imgname + ", f_thumname=" + f_thumname + "]";
 	}
-	
-	
 	
 }
