@@ -8,9 +8,25 @@
 </head>
 <body>
 <h1>
-	
+	관리자 화면
 </h1>
 
-<P>  <a href="loginTest.do">Member DB 테스트</a> </P>
+	손가연 개발부분:
+	<ul>
+		<li><a href="loginTest.do">Member DB 테스트</a></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+
+	손대성 개발부분:
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+
+
 </body>
 </html>
