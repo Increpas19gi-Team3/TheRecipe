@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="adminCategory_ns">
+	<!--  속성명과 컬럼명 일치하는 경우 컬럼명 생략 가능
+	        순서를 컬럼순서대로 함 O(자바객체)R(결과집합의 행)매핑 -->
+	        
+	<resultMap id="FoodCategorysult" type="Foodcode"> 
+		<result property="fc_1st" column="fc_1st" />
+		<result property="fc_2nd" column="fc_2nd" />
+		<result property="fc_3rd" column="fc_3rd" />
+		<result property="fc_ctgname" column="fc_ctgname" />
+	</resultMap>
+	
+	
+	<select id="select" resultMap="FoodCategorysult"></select>
+	
+	<!-- 테스트용 회원테이블 정보 가져오기-->
+	<!-- <select id="selectAllMembers" resultMap="MemberResult">
+		select * from TR_MEMBER
+	</select>
+	 -->
+	
+	
+	
+</mapper>
