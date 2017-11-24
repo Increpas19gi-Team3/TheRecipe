@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="local_ns">
+
+	
+	<resultMap id="LocalfoodResult" type="Food"> 
+		<result property="f_fdcode" column="f_fdcode" />
+		<result property="e_evtcode" column="e_evtcode" />
+		<result property="f_foodname" column="f_foodname" />
+		<result property="fc_1st" column="fc_1st" />
+		<result property="fc_2nd" column="fc_2nd" />
+		<result property="fc_3rd" column="fc_3rd" />
+		<result property="f_price" column="f_price" />
+		<result property="f_explan" column="f_explan" />
+		<result property="f_imgname" column="f_imgname" />
+		<result property="f_thumname" column="f_thumname" />
+
+	</resultMap>
+	
+	
+	<!-- 테스트용 회원테이블 정보 가져오기-->
+	<select id="selectAllList" resultMap="LocalfoodResult">
+		select * from tr_food
+	</select>
+	
+	
+	
+	
+</mapper>
