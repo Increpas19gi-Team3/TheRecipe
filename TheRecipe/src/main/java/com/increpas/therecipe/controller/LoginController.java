@@ -13,6 +13,10 @@ import com.increpas.therecipe.service.LoginService;
  * 
  * @author 한범석, 박호진
  *
+ * 로그인 컨트롤러
+ * 
+ * 
+ * 
  */
 @Controller
  public class LoginController {
