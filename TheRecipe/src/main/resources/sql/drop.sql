@@ -1,5 +1,6 @@
 drop SEQUENCE tr_review_seq;
 drop SEQUENCE tr_food_seq;
+drop SEQUENCE tr_event_seq;
 drop table tr_foodcode;
 drop table tr_order;
 drop table tr_dvycode;

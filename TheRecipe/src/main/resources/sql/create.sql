@@ -47,6 +47,7 @@ CREATE TABLE tr_food (
 	f_foodname VARCHAR2(100) NOT NULL, /* 상품명 */
 	fc_1st NUMBER NOT NULL, /* 대분류 */
 	fc_2nd NUMBER NOT NULL, /* 중분류 */
+	fc_3rd NUMBER NOT NULL, /* 소분류 */
 	f_price NUMBER NOT NULL, /* 가격 */
 	f_explan VARCHAR2(1000), /* 상세설명 */
 	f_imgname VARCHAR2(2000), /* 이미지명 */
@@ -61,9 +62,11 @@ COMMENT ON COLUMN tr_food.e_evtcode IS '이벤트코드';
 
 COMMENT ON COLUMN tr_food.f_foodname IS '상품명';
 
-COMMENT ON COLUMN tr_food.fc_1st IS '대분류';
+COMMENT ON COLUMN tr_food.fc_1st IS '지역:1/TV:2';
 
-COMMENT ON COLUMN tr_food.fc_2nd IS '중분류';
+COMMENT ON COLUMN tr_food.fc_2nd IS '지역';
+
+COMMENT ON COLUMN tr_food.fc_3rd IS '구성';
 
 COMMENT ON COLUMN tr_food.f_price IS '기본금';
 
@@ -92,14 +95,17 @@ CREATE SEQUENCE tr_food_seq
 CREATE TABLE tr_foodcode (
 	fc_1st NUMBER NOT NULL, /* 대분류 */
 	fc_2nd NUMBER NOT NULL, /* 중분류 */
+	fc_3rd NUMBER NOT NULL, /* 소분류 */
 	fc_ctgname VARCHAR2(20) NOT NULL /* 카테고리명 */
 );
 
 COMMENT ON TABLE tr_foodcode IS '분류코드';
 
-COMMENT ON COLUMN tr_foodcode.fc_1st IS '대분류';
+COMMENT ON COLUMN tr_foodcode.fc_1st IS '지역:1/TV:2';
 
-COMMENT ON COLUMN tr_foodcode.fc_2nd IS '중분류';
+COMMENT ON COLUMN tr_foodcode.fc_2nd IS '지역';
+
+COMMENT ON COLUMN tr_foodcode.fc_3rd IS '구성';
 
 COMMENT ON COLUMN tr_foodcode.fc_ctgname IS '카테고리명';
 
