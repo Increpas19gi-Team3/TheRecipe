@@ -13,7 +13,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	
+	resources 폴더 내의 이미지 호출 : <img alt="이미지" src='<c:url value="/resources/img/notice.png" />'> <br/>
+	
+	c:images 이미지 호출: <img alt="이미지3" src="/images/notice.png"> <br/>
+	
+	
 	<table border="1">
 		<tr>
 			<th>아이디</th>
