@@ -150,6 +150,13 @@
 		</dependency>
 				
 		
+		<!-- JSTL 사용을 위한 standard 설정 -->
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		
 	
 		<!-- Spring -->
 		<dependency>
