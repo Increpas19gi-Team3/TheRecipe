@@ -88,8 +88,11 @@ ALTER TABLE tr_food
 			f_fdcode
 		);
 
-CREATE SEQUENCE tr_food_seq 
-	INCREMENT BY 1 MAXVALUE 10000;
+CREATE SEQUENCE tr_food_seq
+	INCREMENT BY 1 
+	START WITH 0 
+	Minvalue 0
+	MAXVALUE 10000;
 
 /* 분류코드 */
 CREATE TABLE tr_foodcode (
@@ -270,7 +273,10 @@ ALTER TABLE tr_review
 		);
 
 CREATE SEQUENCE tr_review_seq 
-	INCREMENT BY 1 MAXVALUE 10000;
+	INCREMENT BY 1
+	START WITH 0 
+	Minvalue 0 
+	MAXVALUE 10000;
 
 
 /* 이벤트 */
@@ -312,7 +318,10 @@ CREATE UNIQUE INDEX PK_tr_event
 	);
 
 CREATE SEQUENCE tr_event_seq 
-	INCREMENT BY 1 MAXVALUE 10000;
+	INCREMENT BY 1
+	START WITH 0 
+	Minvalue 0 
+	MAXVALUE 10000;
 
 ALTER TABLE tr_event
 	ADD
