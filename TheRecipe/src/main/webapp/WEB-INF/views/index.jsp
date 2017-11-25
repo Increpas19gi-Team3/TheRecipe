@@ -19,7 +19,7 @@
 	
 	유저용 index
 	<ul>
-		<li><a href="">테스트용 유저index 경로 설정</a></li>
+		<li><a href="userIndex.do">테스트용 유저index 경로 설정</a></li>
 	</ul>
 	
 	관리자 index
