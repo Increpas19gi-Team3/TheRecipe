@@ -1,13 +1,24 @@
 package com.increpas.therecipe.dao;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.increpas.therecipe.vo.FoodVO;
+
+
+
+/**
+ * 
+ * 지역 관련 DAO
+ * @author 김지현
+ *
+ */
+
 
 @Repository
 public class LocalDAO {
@@ -18,7 +29,30 @@ public class LocalDAO {
 	
 	public List<FoodVO> selectList(){
 		
-		return sqlSessionTemplate.selectList("local_ns.selectAllList"); 
+		return sqlSessionTemplate.selectList("local_ns.selectLocalList"); 
+		
+	}
+	
+	public List<FoodVO> selectLocalKindList(int kind, int local){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("kind", kind);
+		map.put("local", local);
+		
+		
+		return sqlSessionTemplate.selectList("local_ns.selectLocalKindList", map); 
+		
+	}
+	
+	//
+	public List<FoodVO> selectTitleList(int kind, String title){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("kind", kind);
+		map.put("title", title);
+		
+		
+		return sqlSessionTemplate.selectList("local_ns.searchTitleList", map); 
 		
 	}
 }

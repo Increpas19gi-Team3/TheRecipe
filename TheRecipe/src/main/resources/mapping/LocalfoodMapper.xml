@@ -5,28 +5,52 @@
 
 <mapper namespace="local_ns">
 
-	
-	<resultMap id="LocalfoodResult" type="Food"> 
-		<result property="f_fdcode" column="f_fdcode" />
-		<result property="e_evtcode" column="e_evtcode" />
-		<result property="f_foodname" column="f_foodname" />
-		<result property="fc_1st" column="fc_1st" />
-		<result property="fc_2nd" column="fc_2nd" />
-		<result property="fc_3rd" column="fc_3rd" />
-		<result property="f_price" column="f_price" />
-		<result property="f_explan" column="f_explan" />
-		<result property="f_imgname" column="f_imgname" />
-		<result property="f_thumname" column="f_thumname" />
+
+	<resultMap id="LocalfoodResult" type="Food">
+		<result property="f_fdcode" column="F_FDCODE" />
+		<result property="e_evtcode" column="E_EVTCODE" />
+		<result property="f_foodname" column="F_FOODNAME" />
+		<result property="fc_1st" column="FC_1ST" />
+		<result property="fc_2nd" column="FC_2ND" />
+		<result property="fc_3rd" column="FC_3RD" />
+		<result property="f_price" column="F_PRICE" />
+		<result property="f_explan" column="F_EXPLAN" />
+		<result property="f_imgname" column="F_IMGNAME" />
+		<result property="f_thumname" column="F_THUMNAME" />
 
 	</resultMap>
-	
-	
-	<!-- 테스트용 회원테이블 정보 가져오기-->
-	<select id="selectAllList" resultMap="LocalfoodResult">
+
+
+	<!-- 지역 음식 리스트 -->
+	<select id="selectLocalList" resultMap="LocalfoodResult">
 		select * from tr_food
+		where fc_1st=1
 	</select>
-	
-	
-	
-	
+
+	<!-- 지역별 음식 리스트 -->
+	<select id="selectLocalKindList" parameterType="map" resultMap="LocalfoodResult">
+		select * from tr_food
+		<where>
+			<if test="kind != null">
+				fc_1st=#{kind}
+			</if>
+			<if test="local != 0">
+				AND fc_2nd=#{local}
+			</if>
+		</where>
+	</select>
+
+	<!-- 음식명으로 찾기 리스트 -->
+	<select id="searchTitleList" parameterType="map" resultMap="LocalfoodResult">
+		select * from tr_food
+		<where>
+			<if test="kind != null">
+				fc_1st=#{kind}
+			</if>
+			<if test="title != null">
+				AND f_foodname like '%'||#{title}||'%' 
+			</if>
+		</where>
+	</select>
+
 </mapper>
