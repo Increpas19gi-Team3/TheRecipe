@@ -12,11 +12,12 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class MemberDAO {
-	
-		@Autowired
-		private SqlSessionTemplate sqlSessionTemplate;
-		
-		
-	
+
+	@Autowired
+	private SqlSessionTemplate sqlSessionTemplate;
+
+	public int insertMember() {
+		return sqlSessionTemplate.insert("member_ns.insertMembers");
+	}
 
 }

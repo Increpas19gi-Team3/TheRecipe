@@ -7,7 +7,7 @@ import com.increpas.therecipe.dao.MemberDAO;
 
 /**
  * 
- * @author 한범석, 박호진
+ * @author 박호진
  *
  */
 
@@ -17,7 +17,9 @@ public class MemberService {
 	@Autowired
 	MemberDAO memberDAO;
 	
-	 
+	 public int insertMember() {
+		 return memberDAO.insertMember();
+		 }
 	
 	
 	

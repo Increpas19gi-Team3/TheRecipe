@@ -26,10 +26,10 @@
 	</select>
 	
 	<!-- 회원가입 -->
-	<!--  <insert id="insertMembers" resultMap="MemberResult">
+	<insert id="insertMembers" parameterMap="MemberResult">
         insert into TR_MEMBER values(
         #{m_userid}, #{m_pw}, #{m_name}, #{m_email}, #{m_post},#{m_addr},#{m_phone},#{m_level})
-    </insert> -->
+    </insert>
 
 
 
