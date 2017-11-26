@@ -4,11 +4,11 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="adminCategory_ns">
+<mapper namespace="foodcode_ns">
 	<!--  속성명과 컬럼명 일치하는 경우 컬럼명 생략 가능
 	        순서를 컬럼순서대로 함 O(자바객체)R(결과집합의 행)매핑 -->
 	        
-	<resultMap id="FoodCategorysult" type="Foodcode"> 
+	<resultMap id="FoodcodeResult" type="Foodcode"> 
 		<result property="fc_1st" column="fc_1st" />
 		<result property="fc_2nd" column="fc_2nd" />
 		<result property="fc_3rd" column="fc_3rd" />
@@ -16,13 +16,42 @@
 	</resultMap>
 	
 	
-	<select id="select" resultMap="FoodCategorysult"></select>
-	
-	<!-- 테스트용 회원테이블 정보 가져오기-->
-	<!-- <select id="selectAllMembers" resultMap="MemberResult">
-		select * from TR_MEMBER
+	<!-- 전체 가져오기 -->
+	<select id="selectAllFoodcode" resultMap="FoodcodeResult">
+		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME  
+		FROM TR_FOODCODE 
+		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
 	</select>
-	 -->
+	
+	
+	<!-- 대분류(1st)만 가져오기 -->
+	<select id="select1stFoodcode" resultMap="FoodcodeResult">
+		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME  
+		FROM TR_FOODCODE 
+		WHERE FC_2ND = '0' AND FC_3RD = '0'
+		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
+	</select>
+	
+	<!-- 지역 > 중분류 (2nd)만 가져오기 -->
+	<select id="select2ndFoodcode" resultMap="FoodcodeResult">
+		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME  
+		FROM TR_FOODCODE 
+		WHERE FC_2ND != '0' AND FC_3RD = '0'
+		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
+	</select>
+	
+
+	<!-- 지역 > 중분류 > 소분류(3rd)만 가져오기 -->
+	<select id="select3rdFoodcode" resultMap="FoodcodeResult">
+		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME  
+		FROM TR_FOODCODE 
+		WHERE FC_2ND != '0' AND FC_3RD != '0'
+		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
+	</select>
+	
+	
+	 
+	 
 	
 	
 	

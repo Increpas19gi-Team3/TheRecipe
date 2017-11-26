@@ -14,13 +14,12 @@
 	손가연 개발부분:
 	<ul>
 		<li><a href="loginTest.do"> test 페이지 </a></li>
-		<li><a href="adminCategoryMgr.do"> 카테고리 관리(전체) </a></li>
-		<li>카테고리 관리(지역) <a href=""></a></li>
-		<li>카테고리 관리(TV) <a href=""></a></li>
+		<li><a href="regCategory.do"> 카테고리 관리(등록) </a></li>
+		<li><a href="modifyCategory.do"> 카테고리 관리(수정,삭제) </a></li>
 		<li><a href="adminFoodMgr.do"> 음식 정보 관리(전체) </a></li>
-		<li>음식 정보 관리(지역) <a href=""></a></li>
 		<li>음식 정보 관리(TV) <a href=""></a></li>
 		<li><a href="adminEventMgr.do"> 이벤트 설정 </a></li>
+		<li><a href="testJQuery.do"> 이벤트 설정 </a></li>
 	</ul>
 
 	손대성 개발부분:
