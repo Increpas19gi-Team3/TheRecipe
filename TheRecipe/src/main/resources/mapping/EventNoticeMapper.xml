@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="event_ns">
+	<!-- 속성명과 컬럼명 일치하는 경우 컬럼명 생략 가능 순서를 컬럼순서대로 함 O(자바객체)R(결과집합의 행)매핑 -->
+
+	<resultMap id="eventResult" type="eventcode">
+		<result property="e_evtcode" column="e_evtcode" /><!-- 이벤트코드 -->
+		<result property="e_nttilte" column="e_nttilte" /><!-- 제목 -->
+		<result property="e_gubun" column="e_gubun" /><!-- 구분(이벤트인지? 공지사항인지?) -->
+		<result property="e_ntdate" column="e_ntdate" /><!-- 작성날짜 -->
+		<result property="e_ntcontens" column="e_ntcontens" /><!-- 내용 -->
+		<result property="e_ntimgname" column="e_ntimgname" /><!-- 이미지 -->
+		<result property="e_discount" column="e_discount" /><!-- 할인율 -->
+		<result property="e_startdate" column="e_startdate" /><!-- 시작날짜 -->
+		<result property="e_enddate" column="e_enddate" /><!-- 종료날짜 -->
+	</resultMap>
+
+	<!-- 이벤트 리스트만 불러옴 -->
+	<select id="eventSelectList" resultMap="eventResult">
+		SELECT *
+		FROM tr_event
+		WHERE e_gubun = '1'
+		ORDER BY e_ntdate DESC, e_evtcode DESC
+	</select>
+	
+	<!-- 공지사항 이벤트만 불러옴 -->
+	<select id="noticeSelectList" resultMap="eventResult">
+		SELECT *
+		FROM tr_event
+		WHERE e_gubun = '0'
+		ORDER BY e_ntdate DESC, e_evtcode DESC
+	</select>
+
+<!-- ================================================================================== -->
+
+	<select id="selectSetList" parameterType="com.increpas.therecipe.dto.EventListDTO"
+		resultMap="eventResult">
+
+		SELECT *
+		FROM (
+
+		SELECT e_evtcode, e_nttilte, e_gubun, e_ntdate, e_ntcontens, e_ntimgname,
+		e_discount, e_startdate, e_enddate, rownum rn
+		FROM (
+
+		SELECT e_evtcode, e_nttilte, e_gubun, e_ntdate, e_ntcontens, e_ntimgname,
+		e_discount, e_startdate, e_enddate
+		FROM tr_event
+
+		<!-- WHERE -->
+		<where>		
+
+			<if test="e_gubun.equals('0')"> <!-- 공지사항 -->
+				e_gubun = '0';
+			</if>
+			
+			<if test="e_gubun.equals('1')"> <!-- 이벤트 -->
+				e_gubun = '1';
+			</if>			
+
+			<!-- 이벤트에 대한 제목만 검색 -->
+			<if test="whereColumn.equals('e_nttilte')">
+				AND e_nttilte LIKE '%' || #{word} || '%'
+			</if>
+			
+		</where>
+
+
+		<!-- ORDER BY -->
+		<choose>
+			<when test="sortColumn.equals('e_nttilte')">
+				<if test="orderby.equals('ASC')">ORDER BY e_gubun DESC, e_nttilte ASC</if>
+				<if test="orderby.equals('DESC')">ORDER BY e_gubun DESC, e_nttilte DESC</if>
+			</when>
+			<when test="sortColumn.equals('e_ntdate')">
+				<if test="orderby.equals('ASC')">ORDER BY e_gubun DESC, e_ntdate ASC</if>
+				<if test="orderby.equals('DESC')">ORDER BY e_gubun DESC, e_ntdate DESC</if>
+			</when>
+			<otherwise>
+				ORDER BY e_gubun DESC, e_evtcode DESC
+			</otherwise>
+		</choose>
+		)
+		)
+		<where>
+			rn between #{startRow} and #{endRow}
+		</where>
+
+
+	</select>
+
+
+
+	<!-- 전체 글갯수 리턴 -->
+	<select id="selectCount" parameterType="com.increpas.therecipe.dto.EventListDTO"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM tr_event
+		<!-- WHERE -->
+		<where>
+			BSTEP = 0 <!-- 댓글은 출력하지 않음 -->
+
+			<if test="!isBlock.equals('') and !isBlock.equals('ALL')"> <!-- //전체글 보기가 아닐때 -->
+				AND ISBLOCK = #{isBlock}
+			</if>
+
+
+			<if test="whereColumn.equals('TITLE')">
+				AND TITLE LIKE '%' || #{word } || '%'
+			</if>
+
+			<if test="whereColumn.equals('WRITER')">
+				AND WRITER LIKE '%' || #{word } || '%'
+			</if>
+		</where>
+
+	</select>
+</mapper>
