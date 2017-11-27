@@ -177,10 +177,13 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 				
-		<!-- AspectJ -->
+		<!-- AspectJ
+			출처: http://suyou.tistory.com/70 [수유산장]
+		 -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
+			<!-- <artifactId>aspectjrt</artifactId> -->
+			<artifactId>aspectjweaver</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>	
 		
