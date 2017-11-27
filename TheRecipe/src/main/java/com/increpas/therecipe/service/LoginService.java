@@ -20,7 +20,12 @@ public class LoginService {
 	@Autowired
 	LoginDAO loginDAO; 
 	
-	public List<MemberVO> selectAllMember(){
-		return loginDAO.selectAllMember();
+	public MemberVO selectLogin(String m_userid, String m_pw){
+		return loginDAO.selectLogin(m_userid, m_pw);
 	}
+	
+	
+	
+	
+	
 }

@@ -19,17 +19,65 @@
 		<result property="m_level" column="m_level" />
 	</resultMap>
 	
-	
-	<!-- 테스트용 회원테이블 정보 가져오기-->
+<!--  로그인 -->
+	<select id ="selectLogin" parameterType="Map" resultMap="MemberResult">
+	select * from TR_MEMBER
+	where m_userid = #{m_userid}
+	AND m_pw #{m_pw}
+	</select>
+
+	<!--회원 가입
+	<insert id="insertMember" parameterType="Member">
+		insert into TR_MEMBER values(
+		#{m_userid}, #{m_pw}, #{m_name},
+		#{m_email}, #{m_post}, #{m_addr},
+		#{m_phone}, #{m_level})
+	</insert>
+
+	아이디 찾기(이름, 이메일로 찾기)
+	<select id="selectId" parameterType="Map" resultMap="MemberResult">
+		select * from TR_MEMBER
+		 where m_name = #{m_name}
+		 AND m_email = #{m_email}
+	</select>
+
+	비밀번호 찾기(아이디, 이름, 이메일로 찾기)
+	<select id="selectPw" parameterType="Map" resultMap="MemberResult">
+		select * from TR_MEMBER
+		where m_userid = #{m_userid}
+		AND m_name = #{m_name}
+		AND m_email = #{m_email}
+	</select>
+
+	회원 아이디 중복 체크
+	<select id="checkId" parameterType="Map" resultType="MemberResult">
+		select * from TR_MEMBER
+		where m_userid = #{m_userid}
+	</select>
+
+	내 정보 수정 (수정 하려면 아이디, 이름, 핸드폰번호 필요)
+	<update id="updateMember" parameterType="Member">
+		update TR_MEMBER set
+		m_pw = #{m_pw} , m_email = #{m_email},
+		m_post = #{m_post}, m_addr = #{m_addr},
+		m_phone = #{m_phone}
+		where m_userid = #{m_userid}
+		
+	</update>
+
+	회원 탈퇴
+	<delete id="deleteMember" parameterType="Map">
+		delete from TR_MEMBER
+		where m_userid = #{m_userid}
+	</delete> -->
+
+<!-- 추가 할 수도 있음. -->
+<!--  회원 정보 상세 보기
 	<select id="selectAllMembers" resultMap="MemberResult">
 		select * from TR_MEMBER
-	</select>
+	</select> -->
 	
-	<!-- 회원가입 -->
-	<!-- <insert id="insertMembers" parameterMap="MemberResult">
-        insert into TR_MEMBER values(
-        #{m_userid}, #{m_pw}, #{m_name}, #{m_email}, #{m_post},#{m_addr},#{m_phone},#{m_level})
-    </insert> -->
+
 
 
 

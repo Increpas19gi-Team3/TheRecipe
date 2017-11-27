@@ -1,5 +1,7 @@
 package com.increpas.therecipe.vo;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  * 회원테이블(tr_Member)
  * @author 손가연
@@ -8,7 +10,9 @@ package com.increpas.therecipe.vo;
 
 
 public class MemberVO {
+	@NotBlank(message="아이디를 입력해주세요")
 	private String m_userid;/* 아이디	VARCHAR2(20) NOT NULL */
+	
 	private String m_pw ; 	/* 패스워드	VARCHAR2(20) NOT NULL */
 	private String m_name ; /* 이름		VARCHAR2(20) NOT NULL */
 	private String m_email;	/* 이메일	VARCHAR2(50) NOT NULL */
