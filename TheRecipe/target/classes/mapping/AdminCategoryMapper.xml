@@ -49,9 +49,50 @@
 		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
 	</select>
 	
+	<!-- 2nd 최대값 -->
+	<select id="select2ndMax" resultType="int" parameterType="string">
+		SELECT MAX(FC_2ND) 
+		FROM TR_FOODCODE 
+		WHERE FC_1ST = #{fc_1st}
+	</select>
 	
-	 
-	 
+	<!-- 3rd 최대값 -->
+	<select id="select3rdMax" resultType="int" parameterType="map">
+		SELECT MAX(FC_3RD) 
+		FROM TR_FOODCODE 
+		WHERE FC_1ST = #{fc_1st} AND FC_2ND=#{fc_2nd}
+	</select>
+	
+	
+	
+	 <!-- 중분류 등록 -->
+	<insert id="reg2ndFoodcode" parameterType="map">
+		INSERT INTO TR_FOODCODE 
+		VALUES(
+			#{fc_1st},
+    		(
+	    		SELECT MAX(FC_2ND)+1 
+	    		FROM TR_FOODCODE 
+	    		WHERE FC_1ST = #{fc_1st}
+    		)
+    		,0, #{fc_ctgname}
+    	)	
+	</insert>
+	
+	<!-- 소분류 등록 -->
+	<insert id="reg3rdFoodcode" parameterType="map">
+		INSERT INTO TR_FOODCODE 
+		VALUES(
+			#{fc_1st}, #{fc_2nd}, 
+    		(
+    			SELECT MAX(FC_3RD)+1 
+    			FROM TR_FOODCODE 
+    			WHERE FC_1ST = #{fc_1st} AND FC_2ND = #{fc_2nd}
+    		),
+    		#{fc_ctgname}
+    	)	
+	</insert>
+
 	
 	
 	

@@ -49,6 +49,15 @@
 			document.getElementById("codeName").value = text;
 			//document.getElementById("sel3rd").checked="checked";
 		}
+		
+		function check() {//등록값 체크			
+			  if(document.getElementById("fc_ctgname").value == "") {
+			    alert("값을 입력해 주세요.");
+			    document.getElementById("fc_ctgname").focus();
+			    return false;
+			  }
+			  else return true;
+		}
 	</script>
 </head>
 <body>
@@ -132,7 +141,7 @@
 	
 	
     <p/><p/>
-    <form:form	commandName="regFoodCode" action="regCategory.do" method="post">
+    <form:form	commandName="regFoodCode" action="regCategory.do" method="post" onsubmit="return check();">
     	<input type="hidden" name="sel1st" value="">
     	<label> 신규 카테고리 구분</label> : 
     	<!-- <input type="radio" name="regFoodcode" value="2nd" id="sel2nd" onclick="setTextClear();"/> <label for="sel2nd">중분류</label>
@@ -157,10 +166,7 @@
 		<strong> > </strong>
 		
 		<select id="fc_3rd" name="fc_3rd" onclick="getSel3rd();">
-			<option value="">-- 소분류 --</option>
-			<c:forEach var="foodcode3rd" items="${foodcode3rdList }">
-				<option class='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }' value='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }_${foodcode3rd.fc_3rd }'>${foodcode3rd.fc_ctgname }</option>
-			</c:forEach>
+			<option value="0">-- 소분류 --</option>
 		</select>
 
 		<br />
@@ -208,7 +214,7 @@
 	<script src='//rawgit.com/tuupola/jquery_chained/master/jquery.chained.min.js'></script>
 	<script>
 		$("#fc_2nd").chained("#fc_1st");
-		$("#fc_3rd").chained("#fc_2nd");
+		//$("#fc_3rd").chained("#fc_2nd");
 	</script>
 </body>
 </html>

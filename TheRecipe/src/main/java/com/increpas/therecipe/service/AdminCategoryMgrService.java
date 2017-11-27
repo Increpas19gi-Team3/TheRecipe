@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.increpas.therecipe.dao.AdminCategoryMgrDAO;
 import com.increpas.therecipe.vo.FoodcodeVO;
@@ -50,5 +51,28 @@ public class AdminCategoryMgrService {
 	 */
 	public List<FoodcodeVO> selec3rdFoodcode(){
 		return adminCategoryMgrDAO.select3rdFoodcode();
+	}
+	
+	
+	/**
+	 * 음식코드 파라미터 파싱, dao에 쿼리 요청
+	 * @param newCategory
+	 */
+	@Transactional
+	public void addFoodcode(String newCategory, String fc_ctgname){
+				
+		String[] CategoryArr = newCategory.split("_");//_ 로 파싱
+		/*
+		System.out.println(CategoryArr.toString());
+		for(int i=0; i<CategoryArr.length; i++){
+			System.out.println(">>>> CategoryArr["+i+"]="+CategoryArr[i]);
+		}
+		*/
+		
+		if(CategoryArr.length == 1){
+			adminCategoryMgrDAO.insertFoodcode(CategoryArr[0], "", fc_ctgname);
+		}else{
+			adminCategoryMgrDAO.insertFoodcode(CategoryArr[0], CategoryArr[1], fc_ctgname);
+		}
 	}
 }

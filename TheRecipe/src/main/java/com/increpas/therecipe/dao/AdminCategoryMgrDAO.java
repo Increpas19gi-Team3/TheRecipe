@@ -1,11 +1,16 @@
 package com.increpas.therecipe.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.increpas.therecipe.service.AdminCategoryMgrService;
 import com.increpas.therecipe.vo.FoodcodeVO;
 
 /**
@@ -15,6 +20,11 @@ import com.increpas.therecipe.vo.FoodcodeVO;
  */
 @Repository
 public class AdminCategoryMgrDAO {
+	
+	// slf4j 방식 로그
+	Logger logger = LoggerFactory.getLogger(getClass());
+		
+		
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
@@ -50,4 +60,55 @@ public class AdminCategoryMgrDAO {
 	public List<FoodcodeVO> select3rdFoodcode(){
 		return sqlSessionTemplate.selectList("foodcode_ns.select3rdFoodcode"); 
 	} 
+	
+	/**
+	 * 2nd Foodcode의 최고값 리턴
+	 * @param Foodcode1st
+	 * @return
+	 */
+	public int getMax2ndFoodcode(String foodcode1st){
+		return sqlSessionTemplate.selectOne("foodcode_ns.select2ndMax", foodcode1st);
+	}
+	
+	/**
+	 * 3rd Foodcode의 최고값 리턴
+	 * @param Foodcode2st
+	 * @return
+	 */
+	public int getMax3rdFoodcode(String foodcode1st, String foodcode2st){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("fc_1st", foodcode1st);
+		map.put("fc_2nd", foodcode2st);
+		
+		return sqlSessionTemplate.selectOne("foodcode_ns.select3rdMax", map);
+	}
+	
+	
+	public void insertFoodcode(String foodcode1st, String foodcode2st, String fc_ctgname){
+		
+		// 개발용 Log
+		String logMsg_01 = "AdminCategoryMgrDAO";
+		String logMsg_02 = "insertFoodcode()";
+		logger.info("▶▶▶▶▶ DAO Log : {}, {}", logMsg_01, logMsg_02);
+				
+				
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("fc_1st", foodcode1st);
+		map.put("fc_2nd", foodcode2st);
+		map.put("fc_ctgname", fc_ctgname);
+		
+		//System.out.println(">>>>>>>> foodcode1st="+foodcode1st+", foodcode2st="+foodcode2st+", fc_ctgname="+fc_ctgname);
+		
+		
+		if(foodcode2st.length() > 0){//3rd 등록
+			sqlSessionTemplate.selectOne("foodcode_ns.reg3rdFoodcode", map);
+		}else{
+			sqlSessionTemplate.selectOne("foodcode_ns.reg2ndFoodcode", map);
+		}
+		
+		
+		
+	}
+	
+	
 }
