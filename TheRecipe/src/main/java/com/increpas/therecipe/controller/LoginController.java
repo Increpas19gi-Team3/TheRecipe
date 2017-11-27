@@ -34,13 +34,22 @@ public class LoginController {
 
 	@Autowired
 	LoginService loginService;
+	
+	//메인페이지로 이동
+		@RequestMapping(value = "/home.do", method = RequestMethod.GET)
+		public String homeForm() {
 
-	@RequestMapping(value = "/loginView.do", method = RequestMethod.GET)
+			return "home";
+		}
+	//로그인 뷰이동
+	
+		@RequestMapping(value = "/loginView.do", method = RequestMethod.GET)
 	public String loginForm() {
 
 		return "loginView";
 	}
-
+	
+	//로그인 기능
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String loginSubmit(@Valid @ModelAttribute("member") MemberVO vo, Errors errors, HttpSession session,
 			Model model) {
@@ -60,12 +69,26 @@ public class LoginController {
 		if (vo == null) {
 			model.addAttribute("m_userid", m_userid);
 			model.addAttribute("message", "존재하지 않는 아이디 입니다.");
+			return "loginView";
 
 		} else{
 			session.setAttribute("m_userid", m_userid);
 			session.setAttribute("m_level", m_level);
 		}
-		return "redirect:home";
+		return "home";
 	}
+	
+	
+		//로그아웃
+		@RequestMapping(value = "/logout.do", method = RequestMethod.GET )
+		 public String logout(HttpSession session ) {
+	        session.setAttribute("m_userid", null);
+	        return "redirect:home.do";
+	    }
+		
+		
+	}
+	
 
-}
+
+

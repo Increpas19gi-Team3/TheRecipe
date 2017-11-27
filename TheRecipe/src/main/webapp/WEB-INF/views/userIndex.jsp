@@ -23,9 +23,9 @@
 
 	한범석 개발부분:
 	<ul>
-		<li><a href="loginView.do">회원가입 </a></li>
+		<li><a href="">회원가입 </a></li>
 		<li><a href="">회원탈퇴</a></li>
-		<li><a href="">로그인 </a></li>
+		<li><a href="loginView.do">로그인 </a></li>
 		<li><a href="">로그아웃</a></li>
 		<li><a href="">아이디찾기 </a></li>
 	</ul>

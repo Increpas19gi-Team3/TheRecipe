@@ -95,7 +95,7 @@
 		</nav>
 	</div>
 	<div class="container">
-		<form:form class="loginandjoin" commandName="member">
+		<form:form class="loginandjoin" action="login.do" commandName="member" method="post">
 			<h2>로그인</h2>
 			<div class="form-group">
 				<label for="m_userid">아이디</label>

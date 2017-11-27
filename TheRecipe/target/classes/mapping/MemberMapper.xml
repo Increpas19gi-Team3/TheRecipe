@@ -22,8 +22,7 @@
 <!--  로그인 -->
 	<select id ="selectLogin" parameterType="Map" resultMap="MemberResult">
 	select * from TR_MEMBER
-	where m_userid = #{m_userid}
-	AND m_pw #{m_pw}
+	where m_userid = #{m_userid} AND m_pw = #{m_pw}
 	</select>
 
 	<!--회원 가입

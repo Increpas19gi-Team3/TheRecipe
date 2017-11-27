@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -66,12 +68,26 @@
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<c:choose>
+					<c:when test="${not empty sessionScope.m_userid}">
+					
+					<h2>${sessionScope.m_userid}</h2>
 					<li class="nav-item">
-						<a class="nav-link" href="login.html">로그인</a>
+						<a class="nav-link" href="logout.do">로그아웃</a>
+					</li>
+					 </c:when>
+					 
+					 <c:otherwise>
+   					<li class="nav-item">
+						<a class="nav-link" href="loginView.do">로그인</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="join.html">회원가입</a>
 					</li>
+   
+    				</c:otherwise>
+					
+					</c:choose>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							마이페이지
