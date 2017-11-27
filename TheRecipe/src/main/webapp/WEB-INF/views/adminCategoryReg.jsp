@@ -23,6 +23,7 @@
 	
 	
 	<script type="text/javascript">
+		/*
 		function setAllClear() {
 			document.getElementById("codeName").value = "";
 			document.getElementById("sel2nd").checked="";
@@ -37,7 +38,7 @@
 			var text = $("#fc_2nd option:selected").text();
 			//alert(value + " :: " + text);
 			
-			document.getElementById("codeName").value = text;
+			//document.getElementById("fc_ctgname").value = text;
 			//document.getElementById("sel2nd").checked="checked";
 		}
 		
@@ -46,9 +47,9 @@
 			var text = $("#fc_3rd option:selected").text();
 			//alert(value + " :: " + text);
 			
-			document.getElementById("codeName").value = text;
+			//document.getElementById("fc_ctgname").value = text;
 			//document.getElementById("sel3rd").checked="checked";
-		}
+		}*/
 		
 		function check() {//등록값 체크			
 			  if(document.getElementById("fc_ctgname").value == "") {
@@ -86,6 +87,7 @@
 	<%-- resources 폴더 내의 이미지 호출 : <img alt="이미지" src='<c:url value="/resources/img/notice.png" />'> <br/>
 	c:images 이미지 호출: <img alt="이미지3" src="/images/notice.png"> <br/> --%>
 	
+	<%-- 카테고리 Tree 구조 표시 --%>
 	<div id="category">
 	    <div class="gExplorerCtrl">
 	    	등록되어 있는 음식 카테고리 &nbsp;
@@ -141,14 +143,14 @@
 	
 	
     <p/><p/>
-    <form:form	commandName="regFoodCode" action="regCategory.do" method="post" onsubmit="return check();">
-    	<input type="hidden" name="sel1st" value="">
+    <form action="regCategory.do" method="post" onsubmit="return check();">
+    	
     	<label> 신규 카테고리 구분</label> : 
     	<!-- <input type="radio" name="regFoodcode" value="2nd" id="sel2nd" onclick="setTextClear();"/> <label for="sel2nd">중분류</label>
     	<input type="radio" name="regFoodcode" value="3rd" id="sel3rd" onclick="setTextClear();" /> <label for="sel3rd">소분류</label>
     	<br /> -->
     	
-    	<select id="fc_1st" name="fc_1st" onclick="setAllClear();">
+    	<select id="fc_1st" name="fc_1st" ><!-- onclick="setAllClear();" -->
 			<c:forEach var="foodcode1st" items="${foodcode1stList }">
 				<option value= "${foodcode1st.fc_1st }">${foodcode1st.fc_ctgname } 요리</option>
 			</c:forEach>
@@ -156,7 +158,7 @@
 		
 		<strong> > </strong>
 	
-		<select id="fc_2nd" name="fc_2nd" onclick="getSel2nd();">
+		<select id="fc_2nd" name="fc_2nd" ><!-- onclick="getSel2nd();" -->
 			<option value="">-- 중분류 --</option>
 		  	<c:forEach var="foodcode2nd" items="${foodcode2ndList }">
 				<option class="${foodcode2nd.fc_1st }" value="${foodcode2nd.fc_1st }_${foodcode2nd.fc_2nd }">${foodcode2nd.fc_ctgname }</option>
@@ -165,7 +167,7 @@
 		
 		<strong> > </strong>
 		
-		<select id="fc_3rd" name="fc_3rd" onclick="getSel3rd();">
+		<select id="fc_3rd" name="fc_3rd" ><!-- onclick="getSel3rd();" -->
 			<option value="0">-- 소분류 --</option>
 		</select>
 
@@ -174,7 +176,7 @@
     	<br />
     	<input type="submit" value="등록">
     	<input type="reset" value="취소">
-    </form:form>
+    </form>
         
 
         

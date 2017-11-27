@@ -125,4 +125,83 @@ public class AdminCategoryMgrController {
 	//<li><a href="regCategory.do"> 카테고리 관리(등록) </a></li>
 	//<li><a href="modifyCategory.do"> 카테고리 관리(수정,삭제) </a></li>
 	//return "redirect:index.jsp";
+	
+	
+	
+	/**
+	 * 음식 코드 수정 / 삭제 폼
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="modifyCategory.do", method = RequestMethod.GET)
+	public String modifyCategory_Form(Model model, HttpServletRequest request){
+
+		// 개발용 Log
+		String logMsg_01 = "modifyCategory.do";
+		String logMsg_02 = "modifyCategory_Form()";
+		logger.info("▶▶▶ Log : {}, {}", logMsg_01, logMsg_02);
+		
+		model = getFoodcodeAll(model);//Foodcode 가져오는 메소드
+		
+		return "adminCategoryModify";
+	}
+	
+	
+	/**
+	 * 음식 코드 수정 proc
+	 * @return
+	 */
+	@RequestMapping(value="modifyCategory.do", method = RequestMethod.POST)
+	//public String regCategory_Do(@Valid @ModelAttribute("regFoodCode") FoodcodeVO fcVO, Errors errors, Model model, HttpServletRequest request){
+	public String modifyCategory_Do(Model model, HttpServletRequest request){
+	
+		// 개발용 Log
+		String logMsg_01 = "/modifyCategory.do";
+		String logMsg_02 = "modifyCategory_Do()";
+		logger.info("▶▶▶▶▶▶ Log : {}, {}", logMsg_01, logMsg_02);
+
+		
+		String fc_ctgname = NullToBlank.doChange(request.getParameter("fc_ctgname"));
+		String[] fc_1stArr = request.getParameterValues("fc_1st");
+		System.out.println("fc_1st="+fc_1stArr[0]);
+		
+		String[] fc_2ndArr = request.getParameterValues("fc_2nd");
+		System.out.println("fc_2nd="+fc_2ndArr[0]);
+		
+		String[] fc_3rdArr = request.getParameterValues("fc_3rd");
+		System.out.println("fc_3rd="+fc_3rdArr[0]);
+		
+		
+		//생성 구분자 - category2, category3 
+		String newCategory = "";
+//		if(fc_2ndArr[0].equals("") && fc_3rdArr[0].equals("")) newCategory = fc_1stArr[0]; // 중분류 일때 : 대
+//		else if()
+//			newCategory = fc_2ndArr[0]; // 소분류 일때 : 대_중
+		
+		logger.debug("▶▶▶▶ Log : {}, newCategory={}", fc_ctgname, newCategory);
+
+		//Error 처리
+		if(fc_ctgname.length() == 0){
+			model = getFoodcodeAll(model);
+			return "adminCategoryReg";
+		}
+		
+//		System.out.println("errors.hasErrors() = "+ errors.hasErrors());
+//		if (errors.hasErrors()) {
+//			model = getFoodcodeAll(model);
+//			return "adminCategoryReg";
+//		}
+		
+		// Foodcode 추가
+		//adminCategoryMgrService.addFoodcode(newCategory, fc_ctgname);
+		
+		// Foodcode 추가
+		// 삭제
+		
+		
+		model = getFoodcodeAll(model);//Foodcode 가져오는 메소드
+		return "adminCategoryReg";
+	}
+	
 }
