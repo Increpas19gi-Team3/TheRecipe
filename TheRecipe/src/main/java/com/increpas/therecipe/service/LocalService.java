@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.increpas.therecipe.dao.LocalDAO;
 import com.increpas.therecipe.vo.FoodVO;
+import com.increpas.therecipe.vo.ReviewVO;
 
 /**
  * 
@@ -34,4 +35,20 @@ public class LocalService {
 		
 		return lDao.selectTitleList(kind, title);
 	}
+	
+	public FoodVO selectFood(int kind, String code){
+		
+		return lDao.selectFood(kind, code);
+	}
+	
+	public List<ReviewVO> selectReview(String code){
+		
+		return lDao.selectReview(code);
+	}
+	
+/*	
+	public int insertBasket(String userID, String fdcode, int buyPrice, int amount){
+		
+		return lDao.insertBasket(userID, fdcode, buyPrice, amount);
+	}*/
 }

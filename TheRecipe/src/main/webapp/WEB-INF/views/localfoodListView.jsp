@@ -28,8 +28,9 @@
 		<c:forEach var="food" items="${foodList }">
 			<table border="1">
 				<tr>
-					<th colspan="2"><img src="/images/${food.f_imgname}"
-						width="200" height="200"></th>
+					<th colspan="2">
+						<a href="foodDetailView.do?fcode=${food.f_fdcode }"><img src="/images/${food.f_imgname}" width="200" height="200"></a>
+					</th>
 				</tr>
 				<tr>
 					<%-- 	
@@ -41,8 +42,8 @@
 				<td>${food.f_explan }</td>
 				<td>${food.f_imgname }</td>
 				--%>
-					<td>${food.f_foodname }</td>
-					<td>${food.f_price }</td>
+					<td><a href="foodDetailView.do?fcode=${food.f_fdcode }">${food.f_foodname }</a></td>
+					<td><a href="foodDetailView.do?fcode=${food.f_fdcode }">${food.f_price }</a></td>
 				</tr>
 
 			</table>

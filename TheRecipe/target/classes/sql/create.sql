@@ -206,20 +206,6 @@ COMMENT ON COLUMN tr_basket.b_buyprice IS '할인적용된구입가';
 
 COMMENT ON COLUMN tr_basket.b_amount IS '구매수량';
 
-CREATE UNIQUE INDEX PK_tr_basket
-	ON tr_basket (
-		m_userid ASC,
-		f_fdcode ASC
-	);
-
-ALTER TABLE tr_basket
-	ADD
-		CONSTRAINT PK_tr_basket
-		PRIMARY KEY (
-			m_userid,
-			f_fdcode
-		);
-
 /* 후기테이블 */
 CREATE TABLE tr_review (
 	r_rvcode VARCHAR2(20) NOT NULL, /* 후기코드 */
@@ -278,7 +264,6 @@ CREATE SEQUENCE tr_review_seq
 	Minvalue 0 
 	MAXVALUE 10000;
 
-
 /* 이벤트 */
 CREATE TABLE tr_event (
 	e_evtcode VARCHAR2(20) NOT NULL, /* 이벤트코드 */
@@ -306,22 +291,22 @@ COMMENT ON COLUMN tr_event.e_ntcontens IS '내용';
 
 COMMENT ON COLUMN tr_event.e_ntimgname IS '이미지';
 
-COMMENT ON COLUMN tr_event.e_discount IS '10,20.30';
+COMMENT ON COLUMN tr_event.e_discount IS '10,20,30';
 
 COMMENT ON COLUMN tr_event.e_startdate IS '시작날짜';
 
 COMMENT ON COLUMN tr_event.e_enddate IS '종료날짜';
-
-CREATE UNIQUE INDEX PK_tr_event
-	ON tr_event (
-		e_evtcode ASC
-	);
 
 CREATE SEQUENCE tr_event_seq 
 	INCREMENT BY 1
 	START WITH 0 
 	Minvalue 0 
 	MAXVALUE 10000;
+
+CREATE UNIQUE INDEX PK_tr_event
+	ON tr_event (
+		e_evtcode ASC
+	);
 
 ALTER TABLE tr_event
 	ADD
@@ -348,18 +333,6 @@ ALTER TABLE tr_order
 		)
 		REFERENCES tr_dvycode (
 			d_status
-		);
-
-ALTER TABLE tr_order
-	ADD
-		CONSTRAINT FK_tr_basket_TO_tr_order
-		FOREIGN KEY (
-			m_userid,
-			f_fdcode
-		)
-		REFERENCES tr_basket (
-			m_userid,
-			f_fdcode
 		);
 
 ALTER TABLE tr_basket
@@ -401,5 +374,3 @@ ALTER TABLE tr_review
 		REFERENCES tr_food (
 			f_fdcode
 		);
-
-commit;

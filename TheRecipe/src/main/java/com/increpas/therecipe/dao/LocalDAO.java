@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.increpas.therecipe.vo.FoodVO;
+import com.increpas.therecipe.vo.ReviewVO;
 
 
 
@@ -39,7 +40,6 @@ public class LocalDAO {
 		map.put("kind", kind);
 		map.put("local", local);
 		
-		
 		return sqlSessionTemplate.selectList("local_ns.selectLocalKindList", map); 
 		
 	}
@@ -50,9 +50,40 @@ public class LocalDAO {
 		
 		map.put("kind", kind);
 		map.put("title", title);
-		
-		
+				
 		return sqlSessionTemplate.selectList("local_ns.searchTitleList", map); 
 		
 	}
+	
+	public FoodVO selectFood(int kind, String code){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("kind", kind);
+		map.put("code", code);
+
+		return sqlSessionTemplate.selectOne("local_ns.selectFoodCode", map); 
+		
+	}
+	
+	public List<ReviewVO> selectReview(String code){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("code", code);
+		
+		return sqlSessionTemplate.selectList("local_ns.selectReview", map); 
+		
+	}
+	
+/*	public int insertBasket(String userID, String fdcode, int buyPrice, int amount){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userID", userID);
+		map.put("fdcode", fdcode);
+		map.put("buyPrice", buyPrice);
+		map.put("amount", amount);
+		
+		return sqlSessionTemplate.insert("local_ns.insertBasket", map); 
+		
+	}*/
+	
 }
