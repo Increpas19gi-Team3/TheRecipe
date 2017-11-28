@@ -23,34 +23,6 @@
 	
 	
 	<script type="text/javascript">
-		/*
-		function setAllClear() {
-			document.getElementById("codeName").value = "";
-			document.getElementById("sel2nd").checked="";
-			document.getElementById("sel3rd").checked="";
-		}
-		function setTextClear() {
-			document.getElementById("codeName").value = "";
-		}
-		
-		function getSel2nd(){
-			var value = $("#fc_2nd option:selected").val();
-			var text = $("#fc_2nd option:selected").text();
-			//alert(value + " :: " + text);
-			
-			//document.getElementById("fc_ctgname").value = text;
-			//document.getElementById("sel2nd").checked="checked";
-		}
-		
-		function getSel3rd() {
-			var value = $("#fc_3rd option:selected").val();
-			var text = $("#fc_3rd option:selected").text();
-			//alert(value + " :: " + text);
-			
-			//document.getElementById("fc_ctgname").value = text;
-			//document.getElementById("sel3rd").checked="checked";
-		}*/
-		
 		function check() {//등록값 체크			
 			  if(document.getElementById("fc_ctgname").value == "") {
 			    alert("값을 입력해 주세요.");

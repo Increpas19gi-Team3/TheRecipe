@@ -96,10 +96,32 @@ public class AdminCategoryMgrDAO {
 				
 		
 		if(fcVO.getFc_2nd() == 0){//2nd 등록
-			sqlSessionTemplate.selectOne("foodcode_ns.reg2ndFoodcode", fcVO);
+			sqlSessionTemplate.insert("foodcode_ns.reg2ndFoodcode", fcVO);
 		}else{//3rd 등록
-			sqlSessionTemplate.selectOne("foodcode_ns.reg3rdFoodcode", fcVO);
+			sqlSessionTemplate.insert("foodcode_ns.reg3rdFoodcode", fcVO);
 		}
+	}
+	
+	
+	/**
+	 * 음식 코드 이름 수정
+	 * @param fcVO
+	 */
+	public void updateFoodcode(FoodcodeVO fcVO){
+		
+		// 개발용 Log
+		String logMsg_01 = "AdminCategoryMgrDAO";
+		String logMsg_02 = "updateFoodcode()";
+		logger.info("▶▶▶▶▶ DAO Log : {}, {}", logMsg_01, logMsg_02 +" " +fcVO.toString());
+				
+		
+		sqlSessionTemplate.update("foodcode_ns.modifyFc_ctgnameFoodcode", fcVO);
+	}
+	
+	
+	public int checkBeforDelete(FoodcodeVO fcVO){
+		
+		return 0;
 	}
 	
 	

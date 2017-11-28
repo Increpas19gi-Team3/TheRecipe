@@ -50,34 +50,59 @@
 			//document.getElementById("sel3rd").checked="checked";
 		}
 		
-		function check() {//등록값 체크			
-			  if(document.getElementById("fc_ctgname").value == "") {
-			    alert("값을 입력해 주세요.");
-			    document.getElementById("fc_ctgname").focus();
+		function check() {//등록값 체크
+			var fc_2nd = document.getElementById("fc_2nd");
+			var fc_ctgname = document.getElementById("fc_ctgname");
+			
+			
+			if(fc_2nd.value == "" || fc_ctgname.value == "" ) {
+				  					
+				if(fc_2nd.value == ""){
+					alert("분류를 선택해주세요.");
+					fc_2nd.focus();	
+				}
+					
+				if(fc_ctgname.value == ""){
+					alert("값을 입력해 주세요.");
+					fc_ctgname.focus();	
+				}
+				
 			    return false;
+			    
 			  }
-			  else return true;
+			else return true;
 		}
 		
-		// 수정 버튼
-		function goUpdate() {
-			if(document.getElementById("fc_ctgname").value == "") {
-			    alert("값을 입력해 주세요.");
-			    document.getElementById("fc_ctgname").focus();
+		// 삭제 버튼
+		function goDelete() {
+			alert("goDelete call!!");
+			//location.href='deleteCategory.do?fc_1st=${foodcode1st.fc_1st }&fc_2nd=${foodcode2nd.fc_2nd }&fc_3rd=${foodcode3rd.fc_3rd }'
+			
+			var fc_1st = document.getElementById("fc_1st");
+			var fc_2nd = document.getElementById("fc_2nd");
+			var fc_3rd = document.getElementById("fc_3rd");
+			var fc_ctgname = document.getElementById("fc_ctgname");
+			
+			if(fc_2nd.value == "") {
+				  					
+				if(fc_2nd.value == ""){
+					alert("중분류를 선택해주세요.");
+					fc_2nd.focus();	
+				}
+				
 			    return false;
+			    
+			}else{ 
+			
+				location.href='deleteCategory.do?fc_1st='+fc_1st.value+'&fc_2nd='+fc_2nd.value+'&fc_3rd='+fc_3rd.value;
+				return true;
 			}
-			//else return true;
 			
-			var fc_1st = document.getElementById("fc_1st").value;
-			var fc_2nd = document.getElementById("fc_2nd").value;
-			var fc_3rd = document.getElementById("fc_3rd").value;
-			var fc_ctgname = document.getElementById("fc_ctgname").value;
 			
-			 
-			document.form.action= "modifyCategory.do"; 
-			document.form.submit(); 
 
-			/* 출처: http://develop88.tistory.com/entry/자바스크립트로-각종-값넘기는방법 [왕 Blog] */
+			/*
+			return true;
+			출처: http:/develop88.tistory.com/entry/자바스크립트로-각종-값넘기는방법 [왕 Blog] */
 			//location.href='list.do?sortColumn='+sortColumn+'&orderby='+orderby+'&whereColumn='+whereColumn+'&word='+word+'&isBlock='+isBlock+'&pageCutCount='+pageCutCount;
 		}
 	</script>
@@ -159,8 +184,10 @@
 	</div>
 	
 	
-	<p/><p/>
-	<form action="modifyCategory.do" method="post" onsubmit="return check();">
+	<input type="button" value="test" onclick="check();">
+	
+	<p/><p/><!-- modifyCategory.do -->
+	<form action="" method="post" onsubmit="return check();">
 		<label> 수정 카테고리 선택</label> :
 		<select id="fc_1st" name="fc_1st" onclick="setAllClear();">
 			<c:forEach var="foodcode1st" items="${foodcode1stList }">
@@ -198,8 +225,7 @@
     
     	<label>수정 카테고리 이름</label> : <input type="text" name="fc_ctgname" id="fc_ctgname">
     	<input type="submit" value="수정" >
-    	<input type="button" value="삭제" onclick="location.href='deleteCategory.do?fc_1st=${foodcode1st.fc_1st }&fc_2nd=${foodcode2nd.fc_2nd }&fc_3rd=${foodcode3rd.fc_3rd }'">
-    	<%-- <input type="button" value="삭제" onclick="location.href='delete.do?NUM=${number}&BLEV=${BLEVEL}'"> --%>
+    	<input type="button" value="삭제" onclick="goDelete();">
     	<input type="reset" >
     </form>
         
