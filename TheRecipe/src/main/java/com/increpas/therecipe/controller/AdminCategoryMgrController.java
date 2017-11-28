@@ -114,7 +114,7 @@ public class AdminCategoryMgrController {
 //		}
 		
 		// Foodcode 추가
-		adminCategoryMgrService.addFoodcode(newCategory, fc_ctgname);
+		adminCategoryMgrService.insertFoodcode(newCategory, fc_ctgname);
 		
 		
 		model = getFoodcodeAll(model);//Foodcode 가져오는 메소드
@@ -175,6 +175,8 @@ public class AdminCategoryMgrController {
 		
 		//생성 구분자 - category2, category3 
 		String newCategory = "";
+//		if()
+//		
 //		if(fc_2ndArr[0].equals("") && fc_3rdArr[0].equals("")) newCategory = fc_1stArr[0]; // 중분류 일때 : 대
 //		else if()
 //			newCategory = fc_2ndArr[0]; // 소분류 일때 : 대_중
@@ -184,8 +186,70 @@ public class AdminCategoryMgrController {
 		//Error 처리
 		if(fc_ctgname.length() == 0){
 			model = getFoodcodeAll(model);
-			return "adminCategoryReg";
+			return "adminCategoryModify";
 		}
+		
+//		System.out.println("errors.hasErrors() = "+ errors.hasErrors());
+//		if (errors.hasErrors()) {
+//			model = getFoodcodeAll(model);
+//			return "adminCategoryReg";
+//		}
+		
+		
+		// Foodcode 수정
+		// adminCategoryMgrService.updateFoodcode(newCategory, fc_ctgname);
+		
+		
+		model = getFoodcodeAll(model);//Foodcode 가져오는 메소드
+		return "adminCategoryModify";
+	}
+	
+	
+	/**
+	 * 음식 코드 삭제 proc
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="deleteCategory.do")
+	public String deleteCategory_Do(Model model, HttpServletRequest request){
+	
+		// 개발용 Log
+		String logMsg_01 = "/deleteCategory.do";
+		String logMsg_02 = "deleteCategory_Do()";
+		logger.info("▶▶▶▶▶▶ Log : {}, {}", logMsg_01, logMsg_02);
+
+		
+		String fc_ctgname = NullToBlank.doChange(request.getParameter("fc_ctgname"));
+		String[] fc_1stArr = request.getParameterValues("fc_1st");
+		System.out.println("fc_1st="+fc_1stArr[0]);
+		
+		String[] fc_2ndArr = request.getParameterValues("fc_2nd");
+		System.out.println("fc_2nd="+fc_2ndArr[0]);
+		
+		String[] fc_3rdArr = request.getParameterValues("fc_3rd");
+		System.out.println("fc_3rd="+fc_3rdArr[0]);
+		
+		
+		//생성 구분자 - category2, category3 
+		String newCategory = "";
+//		if(fc_2ndArr[0].equals("") && fc_3rdArr[0].equals("")) newCategory = fc_1stArr[0]; // 중분류 일때 : 대
+//		else if()
+//			newCategory = fc_2ndArr[0]; // 소분류 일때 : 대_중
+		
+		logger.debug("▶▶▶▶ Log : {}, newCategory={}", fc_ctgname, newCategory);
+
+		
+		/*
+		 * 1. 음식 DB 에서 해당 코드를 사용하는 음식이 있는지 검색
+		 * 2. 	있으면 : 에러 메시지 띄운다
+		 * 		없으면 : foodcode에서 해당 코드 삭제 
+		 * */
+//		//Error 처리 - 여기서 음식코드 사용중인지 확인 필요
+//		if(fc_ctgname.length() == 0){
+//			model = getFoodcodeAll(model);
+//			return "adminCategoryReg";
+//		}
 		
 //		System.out.println("errors.hasErrors() = "+ errors.hasErrors());
 //		if (errors.hasErrors()) {
@@ -201,7 +265,6 @@ public class AdminCategoryMgrController {
 		
 		
 		model = getFoodcodeAll(model);//Foodcode 가져오는 메소드
-		return "adminCategoryReg";
+		return "adminCategoryModify";
 	}
-	
 }

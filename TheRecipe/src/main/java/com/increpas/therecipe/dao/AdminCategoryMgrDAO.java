@@ -83,31 +83,23 @@ public class AdminCategoryMgrDAO {
 		return sqlSessionTemplate.selectOne("foodcode_ns.select3rdMax", map);
 	}
 	
-	
-	public void insertFoodcode(String foodcode1st, String foodcode2st, String fc_ctgname){
+	/**
+	 * 음식 코드 등록
+	 * @param fcVO
+	 */
+	public void insertFoodcode(FoodcodeVO fcVO){
 		
 		// 개발용 Log
 		String logMsg_01 = "AdminCategoryMgrDAO";
 		String logMsg_02 = "insertFoodcode()";
-		logger.info("▶▶▶▶▶ DAO Log : {}, {}", logMsg_01, logMsg_02);
+		logger.info("▶▶▶▶▶ DAO Log : {}, {}", logMsg_01, logMsg_02 +" " +fcVO.toString());
 				
-				
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("fc_1st", foodcode1st);
-		map.put("fc_2nd", foodcode2st);
-		map.put("fc_ctgname", fc_ctgname);
 		
-		//System.out.println(">>>>>>>> foodcode1st="+foodcode1st+", foodcode2st="+foodcode2st+", fc_ctgname="+fc_ctgname);
-		
-		
-		if(foodcode2st.length() > 0){//3rd 등록
-			sqlSessionTemplate.selectOne("foodcode_ns.reg3rdFoodcode", map);
-		}else{
-			sqlSessionTemplate.selectOne("foodcode_ns.reg2ndFoodcode", map);
+		if(fcVO.getFc_2nd() == 0){//2nd 등록
+			sqlSessionTemplate.selectOne("foodcode_ns.reg2ndFoodcode", fcVO);
+		}else{//3rd 등록
+			sqlSessionTemplate.selectOne("foodcode_ns.reg3rdFoodcode", fcVO);
 		}
-		
-		
-		
 	}
 	
 	

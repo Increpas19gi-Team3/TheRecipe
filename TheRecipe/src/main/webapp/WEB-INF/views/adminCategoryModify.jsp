@@ -197,8 +197,9 @@
     	<br />
     
     	<label>수정 카테고리 이름</label> : <input type="text" name="fc_ctgname" id="fc_ctgname">
-    	<input type="button" value="수정" onclick="goUpdate();">
-    	<input type="button" value="삭제" onclick="">
+    	<input type="submit" value="수정" >
+    	<input type="button" value="삭제" onclick="location.href='deleteCategory.do?fc_1st=${foodcode1st.fc_1st }&fc_2nd=${foodcode2nd.fc_2nd }&fc_3rd=${foodcode3rd.fc_3rd }'">
+    	<%-- <input type="button" value="삭제" onclick="location.href='delete.do?NUM=${number}&BLEV=${BLEVEL}'"> --%>
     	<input type="reset" >
     </form>
         

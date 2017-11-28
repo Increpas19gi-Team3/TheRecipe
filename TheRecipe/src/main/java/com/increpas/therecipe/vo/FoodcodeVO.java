@@ -17,6 +17,19 @@ public class FoodcodeVO {
 	private String fc_ctgname;	/* 카테고리명	VARCHAR2(20) NOT NULL */
 	
 	
+	public FoodcodeVO() {
+		this(0, 0, 0, "");
+	}
+
+	public FoodcodeVO(int fc_1st, int fc_2nd, int fc_3rd, String fc_ctgname) {
+		super();
+		this.fc_1st = fc_1st;
+		this.fc_2nd = fc_2nd;
+		this.fc_3rd = fc_3rd;
+		this.fc_ctgname = fc_ctgname;
+	}
+	
+	
 	public int getFc_1st() {
 		return fc_1st;
 	}

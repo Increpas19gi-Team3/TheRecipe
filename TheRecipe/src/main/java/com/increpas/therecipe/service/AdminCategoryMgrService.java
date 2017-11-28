@@ -58,21 +58,21 @@ public class AdminCategoryMgrService {
 	 * 음식코드 파라미터 파싱, dao에 쿼리 요청
 	 * @param newCategory
 	 */
-	@Transactional
-	public void addFoodcode(String newCategory, String fc_ctgname){
-				
-		String[] CategoryArr = newCategory.split("_");//_ 로 파싱
-		/*
-		System.out.println(CategoryArr.toString());
-		for(int i=0; i<CategoryArr.length; i++){
-			System.out.println(">>>> CategoryArr["+i+"]="+CategoryArr[i]);
-		}
-		*/
+	//@Transactional
+	public void insertFoodcode(String newCategory, String fc_ctgname){
 		
-		if(CategoryArr.length == 1){
-			adminCategoryMgrDAO.insertFoodcode(CategoryArr[0], "", fc_ctgname);
-		}else{
-			adminCategoryMgrDAO.insertFoodcode(CategoryArr[0], CategoryArr[1], fc_ctgname);
+		String[] categoryArr = newCategory.split("_");//_ 로 파싱
+		
+		//FoodcodeVO 설정 세팅
+		FoodcodeVO fcVO = new FoodcodeVO();
+		if(categoryArr.length == 2){
+			fcVO.setFc_2nd(Integer.parseInt(categoryArr[1]));
 		}
+		fcVO.setFc_1st(Integer.parseInt(categoryArr[0]));
+		fcVO.setFc_ctgname(fc_ctgname);
+		System.out.println("fcVO.toString()="+fcVO.toString());
+		
+		
+		adminCategoryMgrDAO.insertFoodcode(fcVO);
 	}
 }
