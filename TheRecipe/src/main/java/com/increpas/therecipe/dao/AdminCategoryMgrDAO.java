@@ -107,6 +107,7 @@ public class AdminCategoryMgrDAO {
 		return sqlSessionTemplate.selectOne("foodcode_ns.select2ndMax", foodcode1st);
 	}
 	
+	
 	/**
 	 * 3rd Foodcode의 최고값 리턴
 	 * @param Foodcode2st
@@ -119,6 +120,7 @@ public class AdminCategoryMgrDAO {
 		
 		return sqlSessionTemplate.selectOne("foodcode_ns.select3rdMax", map);
 	}
+	
 	
 	/**
 	 * 음식 코드 등록
@@ -155,11 +157,6 @@ public class AdminCategoryMgrDAO {
 		sqlSessionTemplate.update("foodcode_ns.modifyFc_ctgnameFoodcode", fcVO);
 	}
 	
-	
-	public int checkBeforDelete(FoodcodeVO fcVO){
-		
-		return 0;
-	}
 	
 	
 }

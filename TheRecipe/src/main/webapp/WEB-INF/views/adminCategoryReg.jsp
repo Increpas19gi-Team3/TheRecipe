@@ -35,27 +35,7 @@
 </head>
 <body>
 	<h1> 음식 코드 등록</h1>
-	
-	<!-- 
-	<table border="1">
-		<tr>
-			<th>카테고리 구분</th>
-			<th>메뉴 구분</th>
-			<th>구성 구분</th>
-			<th>설명</th>
-		</tr>
-	<c:forEach var="foodcode" items="${foodcodeAllList }">
-		<tr>
-			<td>${foodcode.fc_1st }</td>
-			<td>${foodcode.fc_2nd }</td>
-			<td>${foodcode.fc_3rd }</td>
-			<td>${foodcode.fc_ctgname }</td>
-		</tr>		
-	</c:forEach>
-	</table>
-	-->
-
-	
+		
 	<%-- resources 폴더 내의 이미지 호출 : <img alt="이미지" src='<c:url value="/resources/img/notice.png" />'> <br/>
 	c:images 이미지 호출: <img alt="이미지3" src="/images/notice.png"> <br/> --%>
 	
@@ -82,8 +62,12 @@
 					<li>
 						<!-- 대분류 메뉴 출력 (블록일때 / 블록이 아닐때) -->
 						<c:choose>
-						<c:when test="${foodcode1st.fc_isblock eq '1'}"><a href="#" style="text-decoration:line-through; color: gray;">${foodcode1st.fc_ctgname } (${foodcode1st.regfoodcnt })</a></c:when>
-						<c:otherwise><a href="#" >${foodcode1st.fc_ctgname } (${foodcode1st.regfoodcnt })</a></c:otherwise>
+						
+						<c:when test="${foodcode1st.fc_isblock eq '1'}"><div style="text-decoration:line-through; color: gray; display: inline;">&nbsp;&nbsp;&nbsp;${foodcode1st.fc_ctgname } (${foodcode1st.regfoodcnt })</div></c:when>
+						<c:otherwise><div style="display: inline;">&nbsp;&nbsp;&nbsp;${foodcode1st.fc_ctgname } (${foodcode1st.regfoodcnt })</div></c:otherwise>
+						
+						<%-- <c:when test="${foodcode1st.fc_isblock eq '1'}"><a href="#" style="text-decoration:line-through; color: gray;">${foodcode1st.fc_ctgname } (${foodcode1st.regfoodcnt })</a></c:when>
+						<c:otherwise><a href="#" >${foodcode1st.fc_ctgname } (${foodcode1st.regfoodcnt })</a></c:otherwise> --%>
 						</c:choose>
 					
 						<!-- 중분류 -->
@@ -95,8 +79,12 @@
 								<li>
 									<!-- 중분류 메뉴 출력 (블록일때 / 블록이 아닐때) -->
 									<c:choose>
-									<c:when test="${foodcode2nd.fc_isblock eq '1'}"><a href="#" style="text-decoration:line-through; color: gray;">${foodcode2nd.fc_ctgname } (${foodcode2nd.regfoodcnt }) </a></c:when>
-									<c:otherwise><a href="#" >${foodcode2nd.fc_ctgname } (${foodcode2nd.regfoodcnt }) </a></c:otherwise>
+									
+									<c:when test="${foodcode2nd.fc_isblock eq '1'}"><div style="text-decoration:line-through; color: gray; display: inline;">&nbsp;&nbsp;&nbsp;${foodcode2nd.fc_ctgname } (${foodcode2nd.regfoodcnt }) </div></c:when>
+									<c:otherwise><div style="display: inline;">&nbsp;&nbsp;&nbsp;${foodcode2nd.fc_ctgname } (${foodcode2nd.regfoodcnt }) </div></c:otherwise>
+									
+									<%-- <c:when test="${foodcode2nd.fc_isblock eq '1'}"><a href="#" style="text-decoration:line-through; color: gray;">${foodcode2nd.fc_ctgname } (${foodcode2nd.regfoodcnt }) </a></c:when>
+									<c:otherwise><a href="#" >${foodcode2nd.fc_ctgname } (${foodcode2nd.regfoodcnt }) </a></c:otherwise> --%>
 									</c:choose>
 										
 										
@@ -108,8 +96,12 @@
 												<li>
 													<!-- 소분류 메뉴 출력 (블록일때 / 블록이 아닐때) -->
 													<c:choose>
-													<c:when test="${foodcode3rd.fc_isblock eq '1'}"><a href="#" style="text-decoration:line-through; color: gray;">${foodcode3rd.fc_ctgname } (${foodcode3rd.regfoodcnt }) </a></c:when>
-													<c:otherwise><a href="#">${foodcode3rd.fc_ctgname } (${foodcode3rd.regfoodcnt }) </a></c:otherwise>
+													
+													<c:when test="${foodcode3rd.fc_isblock eq '1'}"><div style="text-decoration:line-through; color: gray; display: inline;">&nbsp;&nbsp;&nbsp;${foodcode3rd.fc_ctgname } (${foodcode3rd.regfoodcnt }) </div></c:when>
+													<c:otherwise><div style="display: inline;">&nbsp;&nbsp;&nbsp;${foodcode3rd.fc_ctgname } (${foodcode3rd.regfoodcnt }) </div></c:otherwise>
+													
+													<%-- <c:when test="${foodcode3rd.fc_isblock eq '1'}"><a href="#" style="text-decoration:line-through; color: gray;">${foodcode3rd.fc_ctgname } (${foodcode3rd.regfoodcnt }) </a></c:when>
+													<c:otherwise><a href="#">${foodcode3rd.fc_ctgname } (${foodcode3rd.regfoodcnt }) </a></c:otherwise> --%>
 													</c:choose>
 									
 												</li>
@@ -135,12 +127,8 @@
     <h3>신규 카테고리</h3>
     <form action="regCategory.do" method="post" onsubmit="return check();">
     
-    	<label>분류</label> : 
-    	<!-- <input type="radio" name="regFoodcode" value="2nd" id="sel2nd" onclick="setTextClear();"/> <label for="sel2nd">중분류</label>
-    	<input type="radio" name="regFoodcode" value="3rd" id="sel3rd" onclick="setTextClear();" /> <label for="sel3rd">소분류</label>
-    	<br /> -->
-    	
-    	<select id="fc_1st" name="fc_1st" ><!-- onclick="setAllClear();" -->
+    	<label>분류</label> :     	
+    	<select id="fc_1st" name="fc_1st" >
 			<c:forEach var="foodcode1st" items="${foodcode1stList }">
 				<option value= "${foodcode1st.fc_1st }">${foodcode1st.fc_ctgname } 요리</option>
 			</c:forEach>
@@ -148,7 +136,7 @@
 		
 		<strong> > </strong>
 	
-		<select id="fc_2nd" name="fc_2nd" ><!-- onclick="getSel2nd();" -->
+		<select id="fc_2nd" name="fc_2nd" >
 			<option value="">-- 중분류 --</option>
 		  	<c:forEach var="foodcode2nd" items="${foodcode2ndList }">
 				<option class="${foodcode2nd.fc_1st }" value="${foodcode2nd.fc_1st }_${foodcode2nd.fc_2nd }">${foodcode2nd.fc_ctgname }</option>
@@ -157,7 +145,7 @@
 		
 		<strong> > </strong>
 		
-		<select id="fc_3rd" name="fc_3rd" ><!-- onclick="getSel3rd();" -->
+		<select id="fc_3rd" name="fc_3rd" >
 			<option value="0">-- 소분류 --</option>
 		</select>
 

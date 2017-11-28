@@ -113,10 +113,10 @@ public class AdminCategoryMgrService {
 		FoodcodeVO fcVO = new FoodcodeVO();
 		fcVO.setFc_1st(Integer.parseInt(fc_1st));
 		
-		String[] fc_2ndArr = fc_2nd.split("_");
+		String[] fc_2ndArr = fc_2nd.split("_");// 데이터가 1st_2nd 형태(구분자 '_')로 들어옴 예) 1_2
 		fcVO.setFc_2nd(Integer.parseInt(fc_2ndArr[fc_2ndArr.length-1]));
 		
-		String[] fc_3rdArr = fc_3rd.split("_");
+		String[] fc_3rdArr = fc_3rd.split("_");// 데이터가 1st_2nd_3rd 형태(구분자 '_')로 들어옴 예) 1_2_3
 		fcVO.setFc_3rd(Integer.parseInt(fc_3rdArr[fc_3rdArr.length-1]));
 		
 		fcVO.setFc_ctgname(fc_ctgname);
@@ -129,10 +129,10 @@ public class AdminCategoryMgrService {
 	
 	
 	/**
-	 * 음식코드 파라미터 파싱, dao에 쿼리 요청
+	 * 음식코드 등록, dao에 쿼리 요청
 	 * @param newCategory
 	 */
-	//@Transactional
+	@Transactional
 	public void insertFoodcode(String fc_1st, String fc_2nd, String fc_3rd, String fc_ctgname, String fc_isblock){
 		
 		adminCategoryMgrDAO.insertFoodcode(setFoodcodeVO(fc_1st, fc_2nd, fc_3rd, fc_ctgname, fc_isblock));
@@ -143,8 +143,9 @@ public class AdminCategoryMgrService {
 	 * 음식 코드 수정
 	 * @param newCategory
 	 * @param fc_ctgname
+	 * ★★★★★★ 2nd code 가 블록일때 하부 3rd도 블록으로 변경해야 하는지 회의 필요함.
 	 */
-	//@Transactional
+	@Transactional
 	public void updateFoodcode(String fc_1st, String fc_2nd, String fc_3rd, String fc_ctgname, String fc_isblock){
 		
 		adminCategoryMgrDAO.updateFoodcode(setFoodcodeVO(fc_1st, fc_2nd, fc_3rd, fc_ctgname, fc_isblock));
@@ -152,14 +153,6 @@ public class AdminCategoryMgrService {
 	
 	public FoodcodeVO setFoodCodeVO(){
 		return new FoodcodeVO();
-	}
-	
-	
-	public int checkBeforDelete(FoodcodeVO fcVO){
-		
-		//adminCategoryMgrDAO.
-		
-		return 0;
 	}
 	
 }

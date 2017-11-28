@@ -18,7 +18,7 @@ public class FoodcodeWithFoodCntVO {
 	
 	private String fc_isblock;	/* 블록여부: 0정상/1:블락 NOT NULL CHAR(1) */
 	
-	private int regfoodcnt; // subQuery 로 FoodCode에 해당하는 Food의 갯수 
+	private int regfoodcnt; // subQuery 데이터 : FoodCode 별 등록되어 있는 Food 데이터의 갯수 
 
 	public FoodcodeWithFoodCntVO() {
 		this(0, 0, 0, "", "", 0);
