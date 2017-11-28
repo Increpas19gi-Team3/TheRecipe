@@ -3,12 +3,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<!-- @author 한범석, 박호진 MemberMapper 설정 -->
+
 
 <mapper namespace="member_ns">
-	<!--  속성명과 컬럼명 일치하는 경우 컬럼명 생략 가능
-	        순서를 컬럼순서대로 함 O(자바객체)R(결과집합의 행)매핑 -->
-	        
-	<resultMap id="MemberResult" type="Member"> 
+	<!-- 속성명과 컬럼명 일치하는 경우 컬럼명 생략 가능 순서를 컬럼순서대로 함 O(자바객체)R(결과집합의 행)매핑 -->
+
+	<resultMap id="MemberResult" type="Member">
 		<result property="m_userid" column="m_userid" />
 		<result property="m_pw" column="m_pw" />
 		<result property="m_name" column="m_name" />
@@ -18,70 +19,61 @@
 		<result property="m_phone" column="m_phone" />
 		<result property="m_level" column="m_level" />
 	</resultMap>
-	
-<!--  로그인 -->
+
+	<!-- 로그인 -->
 	<select id ="selectLogin" parameterType="Map" resultMap="MemberResult">
 	select * from TR_MEMBER
-	where m_userid = #{m_userid} AND m_pw = #{m_pw}
+	where m_userid = #{m_userid}
+	AND m_pw = #{m_pw}
 	</select>
 
-	<!--회원 가입
-	<insert id="insertMember" parameterType="Member">
+	<!-- 회원 가입 -->
+<!-- 	<insert id="insertMember" parameterType="Member">
 		insert into TR_MEMBER values(
 		#{m_userid}, #{m_pw}, #{m_name},
 		#{m_email}, #{m_post}, #{m_addr},
 		#{m_phone}, #{m_level})
-	</insert>
+	</insert> -->
 
-	아이디 찾기(이름, 이메일로 찾기)
+	<!-- 아이디 찾기(이메일로 찾기) -->
 	<select id="selectId" parameterType="Map" resultMap="MemberResult">
 		select * from TR_MEMBER
-		 where m_name = #{m_name}
-		 AND m_email = #{m_email}
+		 where m_email = #{m_email}
 	</select>
 
-	비밀번호 찾기(아이디, 이름, 이메일로 찾기)
+	<!-- 비밀번호 찾기(아이디로 찾기) -->
 	<select id="selectPw" parameterType="Map" resultMap="MemberResult">
 		select * from TR_MEMBER
 		where m_userid = #{m_userid}
-		AND m_name = #{m_name}
-		AND m_email = #{m_email}
 	</select>
 
-	회원 아이디 중복 체크
-	<select id="checkId" parameterType="Map" resultType="MemberResult">
+	<!-- 회원 아이디 중복 체크 -->
+<!-- 	<select id="checkId" parameterType="Map" resultType="MemberResult">
 		select * from TR_MEMBER
 		where m_userid = #{m_userid}
-	</select>
+	</select> -->
 
-	내 정보 수정 (수정 하려면 아이디, 이름, 핸드폰번호 필요)
-	<update id="updateMember" parameterType="Member">
+	<!-- 내 정보 수정 (수정 하려면 아이디, 이름, 핸드폰번호 필요) -->
+<!-- 	<update id="updateMember" parameterType="Member">
 		update TR_MEMBER set
 		m_pw = #{m_pw} , m_email = #{m_email},
 		m_post = #{m_post}, m_addr = #{m_addr},
-		m_phone = #{m_phone}
+		m_level = #{m_level}
 		where m_userid = #{m_userid}
-		
-	</update>
+		And m_name = #{m_name}
+		And m_phone = #{m_phone}
+	</update> -->
 
-	회원 탈퇴
-	<delete id="deleteMember" parameterType="Map">
+	<!-- 회원 탈퇴 -->
+<!--  	<delete id="deleteMember" parameterType="Map">
 		delete from TR_MEMBER
 		where m_userid = #{m_userid}
 	</delete> -->
-
+	
 <!-- 추가 할 수도 있음. -->
-<!--  회원 정보 상세 보기
-	<select id="selectAllMembers" resultMap="MemberResult">
+ <!-- mypage -->
+<!-- 	<select id="selectAllMembers" resultMap="MemberResult" parameterType="Map">
 		select * from TR_MEMBER
 	</select> -->
-	
 
-
-
-
-	
-	
-	
-	
 </mapper>

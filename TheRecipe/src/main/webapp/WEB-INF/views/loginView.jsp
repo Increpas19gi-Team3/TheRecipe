@@ -108,8 +108,8 @@
 			</div>
 			<button type="submit" class="btn btn-info">로그인</button>
 			<div class="form-group idpassjoinBox">
-				<a href="">아이디 찾기</a>
-				<a href="">비밀번호 찾기</a>
+				<a href="forgetId.do">아이디 찾기</a>
+				<a href="forgetPw.do">비밀번호 찾기</a>
 				<a href="">회원가입</a>
 			</div>
 		</form:form>

@@ -27,7 +27,9 @@
 		<li><a href="">회원탈퇴</a></li>
 		<li><a href="loginView.do">로그인 </a></li>
 		<li><a href="">로그아웃</a></li>
-		<li><a href="">아이디찾기 </a></li>
+		<li><a href="forgetId.do">아이디찾기 </a></li>
+		<li><a href="forgetPw.do">비밀번호찾기 </a></li>
+		
 	</ul>
 	
 	박호진 개발부분:

@@ -25,6 +25,7 @@ public class LoginDAO {
 		return sqlSessionTemplate.selectList("member_ns.selectAllMembers"); 
 	} 
 	
+	//로그인
 	public  MemberVO selectLogin(String m_userid, String m_pw) {
 		
 		Map<String, String> map = new HashMap<String, String>();
@@ -32,4 +33,19 @@ public class LoginDAO {
 		map.put("m_pw", m_pw);
 		return sqlSessionTemplate.selectOne("member_ns.selectLogin", map);
 	}
+	//아이디 찾기
+	public MemberVO selectFindId(String m_email) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("m_email", m_email);
+		return sqlSessionTemplate.selectOne("member_ns.selectId", map);
+	}
+	//비밀번호 찾기
+	public MemberVO selectFindPw(String m_userid) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("m_userid", m_userid);
+		return sqlSessionTemplate.selectOne("member_ns.selectPw", map);
+	}
+
 }
