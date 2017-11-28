@@ -2,21 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>The Recipe</title>
-	<link rel="stylesheet" href="/therecipe/resources/css/style.css">
-</head>
-<body>
-	<header>
-		<nav>
-			<jsp:include page="header.jsp" />
-		</nav>
-	</header>
+
+
+	<jsp:include page="header.jsp" />
+
 	
 	<div class="container home">
 		<div class="con_inner bg_eee">
@@ -126,5 +115,5 @@
 			<a href="" class="btn_all">전체 보기</a>
 		</div>
 	</div>
-</body>
-</html>
+	
+	<jsp:include page="footer.jsp" />

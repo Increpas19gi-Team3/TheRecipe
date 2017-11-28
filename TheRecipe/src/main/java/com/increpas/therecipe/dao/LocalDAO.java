@@ -7,6 +7,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.increpas.therecipe.vo.FoodVO;
 import com.increpas.therecipe.vo.ReviewVO;
@@ -74,6 +75,7 @@ public class LocalDAO {
 		
 	}
 	
+	@Transactional
 	public int insertBasket(String userID, String fdcode, int buyPrice, int amount){
 		Map<String, Object> map = new HashMap<String, Object>();
 		

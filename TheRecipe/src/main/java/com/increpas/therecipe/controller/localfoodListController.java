@@ -112,14 +112,18 @@ public class localfoodListController {
 		
 		@RequestMapping(value = "/shoppingBasket.do", method = RequestMethod.POST)
 		public String ShoppingBasket(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
+			int kind = 1;
 			String userID = request.getParameter("userID");
 			String fdcode = request.getParameter("fdcode");
 			int buyPrice = Integer.parseInt(request.getParameter("buyPrice"));
-			int amount = Integer.parseInt(request.getParameter("NumberBox"));
-			System.out.println("KJH TEST >>>>>>>>>>> " + userID + ","+ fdcode + ","+buyPrice+ ","+amount);
+			int amount = Integer.parseInt(request.getParameter("amount"));
+			
 			int result =  localService.insertBasket(userID, fdcode, buyPrice, amount);
+			FoodVO foodvo =  localService.selectFood(kind, fdcode);
 			
 			model.addAttribute("result", result);
+			model.addAttribute("foodList", foodvo);
+			model.addAttribute("imgname", splitImgname(foodvo.getF_imgname()));
 			
 			return "foodDetailView";
 		}
