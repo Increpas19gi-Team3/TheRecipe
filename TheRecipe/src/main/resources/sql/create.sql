@@ -51,7 +51,8 @@ CREATE TABLE tr_food (
 	f_price NUMBER NOT NULL, /* 가격 */
 	f_explan VARCHAR2(1000), /* 상세설명 */
 	f_imgname VARCHAR2(2000), /* 이미지명 */
-	f_thumname VARCHAR2(2000) /* 썸네일명 */
+	f_thumname VARCHAR2(2000), /* 썸네일명 */
+	f_isblock CHAR(1) NOT NULL /* 블락여부 */
 );
 
 COMMENT ON TABLE tr_food IS '상품테이블';
@@ -76,6 +77,8 @@ COMMENT ON COLUMN tr_food.f_imgname IS '이미지명';
 
 COMMENT ON COLUMN tr_food.f_thumname IS '썸네일명';
 
+COMMENT ON COLUMN tr_food.f_isblock IS '0:정상, 1:블락';
+
 CREATE UNIQUE INDEX PK_tr_food
 	ON tr_food (
 		f_fdcode ASC
@@ -88,18 +91,13 @@ ALTER TABLE tr_food
 			f_fdcode
 		);
 
-CREATE SEQUENCE tr_food_seq
-	INCREMENT BY 1 
-	START WITH 0 
-	Minvalue 0
-	MAXVALUE 10000;
-
 /* 분류코드 */
 CREATE TABLE tr_foodcode (
 	fc_1st NUMBER NOT NULL, /* 대분류 */
 	fc_2nd NUMBER NOT NULL, /* 중분류 */
 	fc_3rd NUMBER NOT NULL, /* 소분류 */
-	fc_ctgname VARCHAR2(20) NOT NULL /* 카테고리명 */
+	fc_ctgname VARCHAR2(20) NOT NULL, /* 카테고리명 */
+	fc_isblock CHAR(1) NOT NULL /* 블락여부 */
 );
 
 COMMENT ON TABLE tr_foodcode IS '분류코드';
@@ -111,6 +109,8 @@ COMMENT ON COLUMN tr_foodcode.fc_2nd IS '지역';
 COMMENT ON COLUMN tr_foodcode.fc_3rd IS '구성';
 
 COMMENT ON COLUMN tr_foodcode.fc_ctgname IS '카테고리명';
+
+COMMENT ON COLUMN tr_foodcode.fc_isblock IS '0:정상, 1:블락';
 
 /* 주문테이블 */
 CREATE TABLE tr_order (
@@ -258,12 +258,6 @@ ALTER TABLE tr_review
 			f_fdcode
 		);
 
-CREATE SEQUENCE tr_review_seq 
-	INCREMENT BY 1
-	START WITH 0 
-	Minvalue 0 
-	MAXVALUE 10000;
-
 /* 이벤트 */
 CREATE TABLE tr_event (
 	e_evtcode VARCHAR2(20) NOT NULL, /* 이벤트코드 */
@@ -296,12 +290,6 @@ COMMENT ON COLUMN tr_event.e_discount IS '10,20,30';
 COMMENT ON COLUMN tr_event.e_startdate IS '시작날짜';
 
 COMMENT ON COLUMN tr_event.e_enddate IS '종료날짜';
-
-CREATE SEQUENCE tr_event_seq 
-	INCREMENT BY 1
-	START WITH 0 
-	Minvalue 0 
-	MAXVALUE 10000;
 
 CREATE UNIQUE INDEX PK_tr_event
 	ON tr_event (

@@ -6,6 +6,7 @@
 	<jsp:include page="header.jsp" />
 
 
+
 	<div class="container home">
 		<div class="con_inner">
 			<div class="page_locationBox2">
@@ -15,8 +16,8 @@
 				<span> &gt; </span>
 				<a href="#" class="active">한식</a>
 				<div class="search_box">
-					<form action="">
-						<input type="text" required="">
+					<form action="localTitleList.do" method="post">
+						<input type="text" name="foodname" required="">
 						<button type="submit"></button>
 					</form>
 				</div>
@@ -38,8 +39,14 @@
 							<div class="desc">
 								<h3>${food.f_foodname }</h3>
 								<!-- <p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p> -->
-								<span>
-									<b>${food.f_price }</b>${food.f_price }<small>원</small></span>
+								<c:choose>
+									<c:when test="${not empty food.e_evtcode}">	
+										<span><b>${food.f_price }</b>${food.f_price }<small>원</small></span>
+									</c:when>
+									<c:otherwise>
+										<span>${food.f_price }<small>원</small></span>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</a>
 					</li>

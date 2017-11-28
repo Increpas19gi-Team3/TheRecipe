@@ -4,23 +4,23 @@ INSERT INTO TR_MEMBER VALUES('han','1234','한범석','han@naver.com','12345','�
 INSERT INTO TR_MEMBER VALUES('son','1234','손가연','son@naver.com','12345','서울시 강동구','010-1234-5678',0);
 
 /* 분류코드 등록*/
-INSERT INTO tr_foodcode VALUES(1,0,0,'지역');
-INSERT INTO tr_foodcode VALUES(1,1,0,'한식');
-INSERT INTO tr_foodcode VALUES(1,1,1,'찌개');
-INSERT INTO tr_foodcode VALUES(1,1,2,'해물');
-INSERT INTO tr_foodcode VALUES(1,2,0,'중식');
-INSERT INTO tr_foodcode VALUES(1,2,1,'단품');
-INSERT INTO tr_foodcode VALUES(1,2,2,'요리');
-INSERT INTO tr_foodcode VALUES(2,0,0,'TV');
-INSERT INTO tr_foodcode VALUES(2,1,0,'냉.부');
-INSERT INTO tr_foodcode VALUES(2,1,1,'메인');
+INSERT INTO tr_foodcode VALUES(1,0,0,'지역','0');
+INSERT INTO tr_foodcode VALUES(1,1,0,'한식','0');
+INSERT INTO tr_foodcode VALUES(1,1,1,'찌개','0');
+INSERT INTO tr_foodcode VALUES(1,1,2,'해물','0');
+INSERT INTO tr_foodcode VALUES(1,2,0,'중식','0');
+INSERT INTO tr_foodcode VALUES(1,2,1,'단품','0');
+INSERT INTO tr_foodcode VALUES(1,2,2,'요리','0');
+INSERT INTO tr_foodcode VALUES(2,0,0,'TV','0');
+INSERT INTO tr_foodcode VALUES(2,1,0,'냉.부','0');
+INSERT INTO tr_foodcode VALUES(2,1,1,'메인','0');
 
 
 /* 상품 등록 */
-INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '김치찌개',1,1,1,5000,'김치찌개',null,null);
-INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '된장찌개',1,1,1,5000,'된장찌개',null,null);
-INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '짜장면',1,2,1,5000,'짜장면',null,null);
-INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '탕수육',1,2,2,5000,'탕수육',null,null);
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '김치찌개',1,1,1,5000,'김치찌개',null,null,'0');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '된장찌개',1,1,1,5000,'된장찌개',null,null,'0');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '짜장면',1,2,1,5000,'짜장면',null,null,'0');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '탕수육',1,2,2,5000,'탕수육',null,null,'0');
 
 
 /* 장바구니 */
