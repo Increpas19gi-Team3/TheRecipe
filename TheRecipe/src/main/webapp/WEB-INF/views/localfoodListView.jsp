@@ -5,67 +5,49 @@
 
 	<jsp:include page="header.jsp" />
 
-	<div class="container">
-		<nav aria-label="breadcrumb" role="navigation">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="home.jsp">홈</a></li>
-				<li class="breadcrumb-item active" aria-current="page">한식</li>
-			</ol>
-		</nav>
-		<ul class="nav bd-info">
-			<li class="nav-item">
-				<a class="nav-link active" href="localKindList.do?local=0">전체보기</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="localKindList.do?local=1">한식</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="localKindList.do?local=2">중식</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="localKindList.do?local=3">일식</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="localKindList.do?local=4">양식</a>
-			</li>
-		</ul>
-		<div class="row text-center">
-			<c:forEach var="food" items="${foodList }">
-			<div class="col-lg-3">
-				<div class="card">
-					<a href="foodDetailView.do?fcode=${food.f_fdcode }">
-						<img src="/images/${food.f_imgname}" ></a>
-					<div class="card-body">
-						<h6 class="card-title text-truncate">${food.f_foodname }</h6>
-						<p class="card-text text-right">
-							<s class="text-muted"><small></small></s>
-							<b>${food.f_price }</b>원
-						</p>
-						<a class="btn btn-info" href="foodDetailView.do?fcode=${food.f_fdcode }">상품보기</a>
-						<a class="btn btn-info" href="#">장바구니</a>
-					</div>
+
+	<div class="container home">
+		<div class="con_inner">
+			<div class="page_locationBox2">
+				<a href="home.html">홈</a>
+				<span> &gt; </span>
+				<a href="#">분류</a>
+				<span> &gt; </span>
+				<a href="#" class="active">한식</a>
+				<div class="search_box">
+					<form action="">
+						<input type="text" required="">
+						<button type="submit"></button>
+					</form>
 				</div>
 			</div>
-			</c:forEach>
-		</div>
-		<nav aria-label="Page navigation">
-			<ul class="pagination justify-content-center">
-				<li class="page-item disabled">
-					<span class="page-link">Previous</span>
-				</li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item active">
-					<span class="page-link">
-						2
-						<span class="sr-only">(current)</span>
-					</span>
-				</li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item">
-					<a class="page-link" href="#">Next</a>
-				</li>
+			<div class="con_tabBox">
+				<a href="" class="active">전체보기</a>
+				<a href="">찌개</a>
+				<a href="">고기</a>
+				<a href="">해물</a>
+				<a href="">김치</a>
+				<a href="">반찬</a>
+			</div>
+			<div class="con_card4 con_card_list con_card">
+			<ul>
+				<c:forEach var="food" items="${foodList }">
+					<li>
+						<a href="foodDetailView.do?fcode=${food.f_fdcode }">
+							<img src="/images/${food.f_imgname}" >
+							<div class="desc">
+								<h3>${food.f_foodname }</h3>
+								<!-- <p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p> -->
+								<span>
+									<b>${food.f_price }</b>${food.f_price }<small>원</small></span>
+							</div>
+						</a>
+					</li>
+				</c:forEach>
 			</ul>
-		</nav>
+		</div>
+		</div>
 	</div>
+	
 
 	<jsp:include page="footer.jsp" />

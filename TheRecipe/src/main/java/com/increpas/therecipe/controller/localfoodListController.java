@@ -105,6 +105,7 @@ public class localfoodListController {
 			
 			model.addAttribute("foodList", foodvo);
 			model.addAttribute("imgname", splitImgname(foodvo.getF_imgname()));
+			model.addAttribute("thumname", splitImgname(foodvo.getF_thumname()));
 			model.addAttribute("reviewList", reviewvo);
 			
 			return "foodDetailView";

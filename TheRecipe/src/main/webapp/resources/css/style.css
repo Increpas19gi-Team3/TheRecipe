@@ -31,6 +31,85 @@ hr{
 	background: #999;
 }
 
+.con_tabBox{
+	width: 980px;
+	margin: 20px auto 40px;
+	padding: 10px;
+	border: 1px solid #ddd;
+	overflow: hidden;
+}
+.con_tabBox a{
+	margin: 0 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	float: left;
+	font-size: 16px;
+	color: #999;
+}
+.con_tabBox a.active{
+	color: #333;
+	border-bottom: 2px solid #333;
+}
+.con_tabBox a:hover{
+	color: #333;
+	border-bottom: 2px solid #333;
+}
+.page_locationBox2{
+	width: 980px;
+	margin: 0 auto;
+	padding: 14px 0;
+	overflow: hidden;
+	position: relative;
+}
+.page_locationBox2 a{
+	float: left;
+	color: #999;
+}
+.page_locationBox2 a.active{
+	color: #333;
+}
+.page_locationBox2 span{
+	float: left;
+	color: #ccc;
+	margin: 0 10px;
+}
+.page_locationBox2 .search_box{
+	height: 38px;
+	position: absolute;
+	top: 50%;
+	right: 0;
+	-webkit-transform: translate(0,-50%);
+	-ms-transform: translate(0,-50%);
+	-o-transform: translate(0,-50%);
+	transform: translate(0,-50%);
+}
+.page_locationBox2 .search_box:focus{
+	background: #000;
+}
+.page_locationBox2 .search_box form{
+	overflow: hidden;
+	border: 1px solid #ccc;
+}
+.page_locationBox2 .search_box form input{
+	height: 38px;
+	padding-left: 15px;
+	float: left;
+	border: none;
+	outline: none;
+	background: none;
+}
+.page_locationBox2 .search_box form button{
+	width: 38px;
+	height: 38px;
+	border: none;
+	background: url(../images/ic_search.png) center 0 no-repeat;
+}
+.page_locationBox2 .search_box form button:hover{
+	background: url(../images/ic_search.png) center -38px no-repeat;
+}
+
+
+
 
 .pagination_wrap{
 	position: relative;
@@ -208,6 +287,12 @@ hr{
 	border-radius: 50%;
 }
 
+.con_card_list ul li{
+	margin-bottom: 40px;
+}
+.con_card_list ul li:nth-child(4n){
+	margin-right: 0;
+}
 
 
 
@@ -352,6 +437,9 @@ hr{
 }
 .header .nav_wrap .dropdown_wrap:hover .dropdown_itemWrap{
 	display: block;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 }
 .header .nav_wrap .dropdown_wrap .dropdown_itemWrap li{
 	display: block;
@@ -541,17 +629,17 @@ hr{
 	border-bottom: 3px solid #333;
 	position: relative;
 }
-.join .join_wrap h3 .page_locationBOx{
+.join .join_wrap h3 .page_locationBox{
 	font-size: 14px;
 	position: absolute;
 	bottom: 0;
 	right: 0;
 }
-.join .join_wrap h3 .page_locationBOx a{
+.join .join_wrap h3 .page_locationBox a{
 	color: #999;
 	display: inline-block;
 }
-.join .join_wrap h3 .page_locationBOx a.active{
+.join .join_wrap h3 .page_locationBox a.active{
 	color: #000;
 }
 .join .join_wrap form{
@@ -656,17 +744,17 @@ hr{
 	position: relative;
 	border-bottom: 1px solid #ccc;
 }
-.board .row .right_contnet h3 .page_locationBOx{
+.board .row .right_contnet h3 .page_locationBox{
 	position: absolute;
 	bottom: 10px;
 	right: 0;
 	font-size: 14px;
 }
-.board .row .right_contnet h3 .page_locationBOx a{
+.board .row .right_contnet h3 .page_locationBox a{
 	color: #999;
 	display: inline-block;
 }
-.board .row .right_contnet h3 .page_locationBOx a.active{
+.board .row .right_contnet h3 .page_locationBox a.active{
 	color: #000;
 }
 .board .row .right_contnet table{
