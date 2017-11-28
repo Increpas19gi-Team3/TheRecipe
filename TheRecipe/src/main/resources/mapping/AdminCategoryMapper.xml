@@ -13,6 +13,7 @@
 		<result property="fc_2nd" column="fc_2nd" />
 		<result property="fc_3rd" column="fc_3rd" />
 		<result property="fc_ctgname" column="fc_ctgname" />
+		<result property="fc_isblock" column="fc_isblock" />
 	</resultMap>
 	
 	
@@ -65,7 +66,7 @@
 	
 	
 	
-	 <!-- 중분류 등록 -->
+	 <!-- 등록: 중분류  -->
 	<insert id="reg2ndFoodcode" parameterType="Foodcode">
 		INSERT INTO TR_FOODCODE 
 		VALUES(
@@ -79,7 +80,7 @@
     	)	
 	</insert>
 	
-	<!-- 소분류 등록 -->
+	<!-- 등록: 소분류  -->
 	<insert id="reg3rdFoodcode" parameterType="Foodcode">
 		INSERT INTO TR_FOODCODE 
 		VALUES(
@@ -93,7 +94,34 @@
     	)	
 	</insert>
 
+
+	<!-- 수정: 코드 이름  -->
+	<update id="modifyFc_ctgnameFoodcode" parameterType="Foodcode">
+		UPDATE TR_FOODCODE 
+		SET FC_CTGNAME = #{fc_ctgname} 
+		WHERE FC_1ST = #{fc_1st} AND FC_2ND = #{fc_2nd} AND FC_3RD = #{fc_3rd}
+	</update>
 	
 	
+	
+	<!-- 삭제: 삭제 전 TR_FOOD 테이블에서 사용중인지 확인 -->
+	<select id="checkBeforDelete" parameterType="Foodcode">
+		SELECT COUNT(F_FDCODE) 
+		FROM TR_FOOD
+		WHERE FC_1ST=#{fc_1st} AND FC_2ND=#{fc_2nd} AND FC_3RD=#{fc_3rd}
+	</select>
+	
+	<!-- 음식코드, 등록된 음식갯수
+		SELECT TR_FOODCODE.FC_1ST, TR_FOODCODE.FC_2ND, TR_FOODCODE.FC_3RD, TR_FOODCODE.FC_CTGNAME,
+		    (
+		        SELECT COUNT(*) FROM TR_FOOD 
+		        WHERE TR_FOODCODE.FC_1ST = TR_FOOD.FC_1ST 
+		            AND TR_FOODCODE.FC_2ND = TR_FOOD.FC_2ND 
+		            AND TR_FOODCODE.FC_3RD = TR_FOOD.FC_3RD
+		        ) AS REGFOODCNT 
+		FROM TR_FOODCODE 
+		ORDER BY TR_FOODCODE.FC_1ST ASC, TR_FOODCODE.FC_2ND ASC, TR_FOODCODE.FC_3RD ASC;
+		
+	 -->
 	
 </mapper>

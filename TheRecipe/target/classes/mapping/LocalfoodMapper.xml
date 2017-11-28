@@ -17,6 +17,7 @@
 		<result property="f_explan" column="F_EXPLAN" />
 		<result property="f_imgname" column="F_IMGNAME" />
 		<result property="f_thumname" column="F_THUMNAME" />
+		<result property="f_isblock" column="F_ISBLOCK" />
 	</resultMap>
 	
 	<resultMap id="ReviewResult" type="Review">

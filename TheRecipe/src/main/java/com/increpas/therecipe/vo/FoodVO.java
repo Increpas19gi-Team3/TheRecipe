@@ -17,6 +17,7 @@ public class FoodVO {
 	private String f_explan;	/* 상세설명		VARCHAR2(1000) */
 	private String f_imgname;	/* 이미지명		VARCHAR2(2000) */
 	private String f_thumname;	/* 썸네일명		VARCHAR2(2000) */
+	private String f_isblock;	/* 블록 여부:0정상/블록:2  NOT NULL CHAR(1) */
 	
 	
 	public String getF_fdcode() {
@@ -79,13 +80,19 @@ public class FoodVO {
 	public void setF_thumname(String f_thumname) {
 		this.f_thumname = f_thumname;
 	}
-	
+	public String getF_isblock() {
+		return f_isblock;
+	}
+	public void setF_isblock(String f_isblock) {
+		this.f_isblock = f_isblock;
+	}
 	
 	@Override
 	public String toString() {
 		return "FoodVO [f_fdcode=" + f_fdcode + ", e_evtcode=" + e_evtcode + ", f_foodname=" + f_foodname + ", fc_1st="
 				+ fc_1st + ", fc_2nd=" + fc_2nd + ", fc_3rd=" + fc_3rd + ", f_price=" + f_price + ", f_explan="
-				+ f_explan + ", f_imgname=" + f_imgname + ", f_thumname=" + f_thumname + "]";
+				+ f_explan + ", f_imgname=" + f_imgname + ", f_thumname=" + f_thumname + ", f_isblock=" + f_isblock
+				+ "]";
 	}
 	
 }
