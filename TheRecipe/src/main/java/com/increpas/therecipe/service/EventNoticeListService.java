@@ -16,24 +16,14 @@ import com.increpas.therecipe.vo.EventVO;
  *
  */
 @Service
-public class NoticeListService {
+public class EventNoticeListService {
 
 	@Autowired
 	EventNoticeDAO eventNoticeDAO;
 
 	@Autowired
 	EventListDTO eventListDTO;
-
-	/**
-	 * 전체 게시글 목록 가져오기 DAO 활용
-	 * 
-	 * @return
-	 */
-	public List<EventVO> getNoticeListAll() {
-		System.err.println("▶▶▶▶▶▶▶ ListService : getNoticeListAll >> 전체 검색 들어옴");
-		return eventNoticeDAO.noticeSelectList();
-	}
-
+	
 	/**
 	 * 조건 별로 게시글 목록 가져오기
 	 * 
@@ -41,13 +31,13 @@ public class NoticeListService {
 	 * @param word
 	 * @param sortColumn
 	 * @param orderby
-	 * @param isBlock
+	 * @param GUBUN
 	 * @return
 	 */
 	public List<EventVO> getSetList(String whereColumn, String word, String sortColumn, String orderby,
 			String GUBUN) {
 
-		System.err.println("▶▶▶▶ ListService : getSetList >> 조건 검색 들어옴");
+		System.err.println("4. ▶▶▶▶ EventNoticeListService : getSetList >> 조건 검색 들어옴");
 
 		eventListDTO.setWhereColumn(whereColumn);
 		eventListDTO.setWord(word);
@@ -61,7 +51,7 @@ public class NoticeListService {
 	public EventListDTO getBoardVOList(int pageCutCount, int requestPageNumber, String whereColumn, String word,
 			String sortColumn, String orderby, String GUBUN) {
 
-		System.err.println("▶▶▶▶ ListService : getBoardVOList >> 조건 검색 들어옴");
+		System.err.println("3. ▶▶▶▶ EventNoticeListService : getBoardVOList >> 조건 검색 들어옴");
 
 		eventListDTO.setWhereColumn(whereColumn);
 		eventListDTO.setWord(word);
@@ -99,6 +89,7 @@ public class NoticeListService {
 		eventListDTO.setStartRow(firstRow);
 		eventListDTO.setEndRow(endRow);
 
+		System.out.println("6. before ▶▶▶▶ List<EventVO> boardDTOList = eventNoticeDAO.selectSetList(eventListDTO);");
 		// 'DAO'에게 "DB Select" 요청
 		List<EventVO> boardDTOList = eventNoticeDAO.selectSetList(eventListDTO);
 

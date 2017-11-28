@@ -19,23 +19,28 @@
 		<result property="e_enddate" column="e_enddate" /><!-- 종료날짜 -->
 	</resultMap>
 
-	<!-- 이벤트 리스트만 불러옴 -->
-	<select id="eventSelectList" resultMap="eventResult">
+	<!-- 공지사항 or 이벤트 리스트만 불러옴 -->
+	<select id="SelectList" resultMap="eventResult">
 		SELECT *
 		FROM tr_event
-		WHERE e_gubun = '1'
-		ORDER BY e_ntdate DESC, e_evtcode DESC
-	</select>
-	
-	<!-- 공지사항 이벤트만 불러옴 -->
-	<select id="noticeSelectList" resultMap="eventResult">
-		SELECT *
-		FROM tr_event
-		WHERE e_gubun = '0'
-		ORDER BY e_ntdate DESC, e_evtcode DESC
+		<where>
+			<if test="GUBUN.equals('')">				
+				ORDER BY e_ntdate DESC, e_evtcode DESC
+			</if>
+			<!-- 공지사항 -->
+			<if test="GUBUN.equals('0')">
+				e_gubun = '0'
+				and ORDER BY e_ntdate DESC, e_evtcode DESC
+			</if>
+			<!-- 이벤트 -->
+			<if test="GUBUN.equals('1')">
+				e_gubun = '1'
+				and ORDER BY e_ntdate DESC, e_evtcode DESC
+			</if>
+		</where>		
 	</select>
 
-<!-- ================================================================================== -->
+	<!-- ================================================================================== -->
 
 	<select id="selectSetList" parameterType="com.increpas.therecipe.dto.EventListDTO"
 		resultMap="eventResult">
@@ -43,32 +48,31 @@
 		SELECT *
 		FROM (
 
-		SELECT e_evtcode, e_nttilte, e_gubun, e_ntdate, e_ntcontens, e_ntimgname,
+		SELECT e_evtcode, e_nttilte, e_gubun, e_ntdate,
+		e_ntcontens, e_ntimgname,
 		e_discount, e_startdate, e_enddate, rownum rn
 		FROM (
 
-		SELECT e_evtcode, e_nttilte, e_gubun, e_ntdate, e_ntcontens, e_ntimgname,
+		SELECT e_evtcode, e_nttilte, e_gubun, e_ntdate, e_ntcontens,
+		e_ntimgname,
 		e_discount, e_startdate, e_enddate
 		FROM tr_event
 
 		<!-- WHERE -->
-		<where>		
-
+		<where>
 			<if test="e_gubun.equals('0')"> <!-- 공지사항 -->
 				e_gubun = '0';
 			</if>
-			
+
 			<if test="e_gubun.equals('1')"> <!-- 이벤트 -->
 				e_gubun = '1';
-			</if>			
+			</if>
 
 			<!-- 이벤트에 대한 제목만 검색 -->
 			<if test="whereColumn.equals('e_nttilte')">
 				AND e_nttilte LIKE '%' || #{word} || '%'
 			</if>
-			
 		</where>
-
 
 		<!-- ORDER BY -->
 		<choose>
@@ -89,8 +93,6 @@
 		<where>
 			rn between #{startRow} and #{endRow}
 		</where>
-
-
 	</select>
 
 
@@ -99,23 +101,17 @@
 	<select id="selectCount" parameterType="com.increpas.therecipe.dto.EventListDTO"
 		resultType="int">
 		SELECT COUNT(*)
-		FROM tr_event
-		<!-- WHERE -->
-		<where>
-			BSTEP = 0 <!-- 댓글은 출력하지 않음 -->
+		FROM tr_event		
+		<where>			
 
-			<if test="!isBlock.equals('') and !isBlock.equals('ALL')"> <!-- //전체글 보기가 아닐때 -->
-				AND ISBLOCK = #{isBlock}
+			<if test="!GUBUN.equals('') and !GUBUN.equals('ALL')"> <!-- //전체글 보기가 아닐때 -->
+				AND e_gubun = #{e_gubun}
 			</if>
-
 
 			<if test="whereColumn.equals('TITLE')">
-				AND TITLE LIKE '%' || #{word } || '%'
+				AND e_nttilte LIKE '%' || #{word } || '%'
 			</if>
-
-			<if test="whereColumn.equals('WRITER')">
-				AND WRITER LIKE '%' || #{word } || '%'
-			</if>
+			
 		</where>
 
 	</select>

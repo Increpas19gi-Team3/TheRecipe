@@ -24,6 +24,7 @@
 
 	손대성 개발부분:
 	<ul>
+		<li><a href="NoticeList.do">list</a></li>
 		<li><a href=""> </a></li>
 		<li><a href=""> </a></li>
 		<li><a href=""> </a></li>

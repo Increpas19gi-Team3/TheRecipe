@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.increpas.therecipe.dto.EventListDTO;
-import com.increpas.therecipe.service.NoticeListService;
+import com.increpas.therecipe.service.EventNoticeListService;
 import com.increpas.therecipe.util.NullToBlank;
 
 /**
@@ -23,16 +23,16 @@ import com.increpas.therecipe.util.NullToBlank;
  */
 
 @Controller
-public class NoticeListController {
+public class EventNoticeListController {
 
 	@Autowired
-	NoticeListService noticeListService;
+	EventNoticeListService noticeListService;
 
 	@RequestMapping(value = "/NoticeList.do")
 	public String getList(Model model, HttpServletRequest req, HttpServletResponse resp) {
 
 		// 공지사항에 대한 검색, 정렬, 페이징 정보도 받아와야 함.
-		System.out.println("▶▶▶▶▶▶  NoticeList.do");
+		System.out.println("▶▶▶▶▶▶  1. NoticeList.do");
 
 		// 정렬
 		String sortColumn = NullToBlank.doChange(req.getParameter("sortColumn"));
@@ -69,18 +69,20 @@ public class NoticeListController {
 
 		model.addAttribute("pageCutCount", pageCutCount);
 		model.addAttribute("pn", requestPageNumber);
-
-		System.out.println("▶▶▶▶▶▶  getSetList ");
-
+		
+		System.out.println("2.before ▶▶▶▶ EventListDTO noticeList = noticeListService.getBoardVOList()");
+		
 		// 명칭은 'EventListDTO'이지만, 공지사항도 처리함
 		EventListDTO noticeList = noticeListService.getBoardVOList(pageCutCount, requestPageNumber, whereColumn, word, sortColumn, orderby, GUBUN);
 		model.addAttribute("noticeList", noticeList);
+		
 
 		// 페이지 네비게이션바 설정
 		if (noticeList.getTotalPageCount() > 0) {
 
 			// 리스트 화면의 페이지의 시작번호
 			int beginPageNumber = (noticeList.getRequestPage() - 1) / 10 * 10 + 1;
+			
 			// 리스트 화면의 페이지의 마지막번호
 			int endPageNumber = beginPageNumber + 9;
 			if (endPageNumber > noticeList.getTotalPageCount()) {

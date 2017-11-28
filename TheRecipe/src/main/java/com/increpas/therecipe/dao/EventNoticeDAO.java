@@ -23,24 +23,14 @@ public class EventNoticeDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	/**
-	 * 이벤트 글 전체 검색
+	 * 공지사항 or 이벤트 글 전체 검색
 	 * 
 	 * @return
 	 */
 	@Transactional
-	public List<EventVO> eventSelectList() {
-		return sqlSessionTemplate.selectList("event_ns.eventSelectList");		
-	}
-	
-	/**
-	 * 공지사항 글 전체 검색
-	 * 
-	 * @return
-	 */
-	@Transactional
-	public List<EventVO> noticeSelectList() {
-		return sqlSessionTemplate.selectList("event_ns.noticeSelectList");		
-	}
+	public List<EventVO> SelectList() {
+		return sqlSessionTemplate.selectList("event_ns.SelectList");		
+	}	
 
 	/**
 	 * 조건 검색
@@ -58,7 +48,7 @@ public class EventNoticeDAO {
 	 * @return - List<BoardDTO>
 	 */
 	public List<EventVO> selectSetList(EventListDTO eventListDTO) {
-		System.out.println("▶▶▶▶ eventListDTO=" + eventListDTO.toString());
+		System.out.println("▶▶▶▶ EventNoticeDAO=" + eventListDTO.toString());
 		return sqlSessionTemplate.selectList("event_ns.", eventListDTO);
 	}
 
@@ -68,7 +58,7 @@ public class EventNoticeDAO {
 	 * @return
 	 */
 	public int selectCount(EventListDTO eventListDTO) {
-		System.out.println("▶▶▶▶ eventListDTO : selectCount");
-		return sqlSessionTemplate.selectOne("event_ns.", eventListDTO);
+		System.out.println("5. ▶▶▶ EventNoticeDAO : selectCount");
+		return sqlSessionTemplate.selectOne("event_ns.selectCount", eventListDTO);
 	}
 }
