@@ -70,10 +70,11 @@
 		where m_userid = #{m_userid}
 	</delete> -->
 	
-<!-- 추가 할 수도 있음. -->
+
  <!-- mypage -->
-<!-- 	<select id="selectAllMembers" resultMap="MemberResult" parameterType="Map">
+	<select id="selectMyInfo" resultMap="MemberResult" parameterType="string">
 		select * from TR_MEMBER
-	</select> -->
+		 where m_userid = #{m_userid}
+	</select>
 
 </mapper>

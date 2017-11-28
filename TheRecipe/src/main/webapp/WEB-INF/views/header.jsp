@@ -69,7 +69,7 @@
 								<li><a href="">1:1 문의</a></li>
 								<li><a href="">교환/반품</a></li>
 								<li><a href="">쿠폰함</a></li>
-								<li><a href="mypage.html">내정보관리</a></li>
+								<li><a href="mypageInfo.do">내정보관리</a></li>
 							</ul>
 						</li>
 						<li><a href="">장바구니</a></li>
