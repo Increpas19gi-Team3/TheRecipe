@@ -12,72 +12,12 @@
 	<link rel="stylesheet" href="/therecipe/resources/css/style.css">
 </head>
 <body>
-	<div class="header">
-		<div class="logo">The Recipe</div>
-		<div class="nav_wrap">
-			<div class="nav_inner">
-				<div class="nav_left">
-					<ul>
-						<li class="dropdown_wrap">
-							<a href="localFoodList.do" class="dropdown_select">분류</a>
-							<ul class="dropdown_itemWrap">
-								<li><a href="localKindList.do?local=1">한식</a></li>
-								<li><a href="localKindList.do?local=2">중식</a></li>
-								<li><a href="localKindList.do?local=3">일식</a></li>
-								<li><a href="localKindList.do?local=4">양식</a></li>
-							</ul>
-						</li>
-						<li class="dropdown_wrap">
-							<a href="" class="dropdown_select">유명 TV 레시피</a>
-							<ul class="dropdown_itemWrap">
-								<li><a href="">올리브TV</a></li>
-								<li><a href="">집밥백선생</a></li>
-								<li><a href="">냉장고를 부탁해</a></li>
-								<li><a href="">최고의 요리</a></li>
-								<li><a href="">오늘 뭐먹지</a></li>
-							</ul>
-						</li>
-						<li class="dropdown_wrap">
-							<a href="" class="dropdown_select">커뮤니티</a>
-							<ul class="dropdown_itemWrap">
-								<li><a href="boardNotice.html">공지사항</a></li>
-								<li><a href="boardReview.html">후기 게시판</a></li>
-								<li><a href="boardRecommend.html">추천 레시피</a></li>
-								<li><a href="boardEvent.html">이벤트</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-				<div class="nav_right">
-					<ul>
-						<c:choose>
-							<c:when test="${not empty sessionScope.m_userid}">			
-								<h2>${sessionScope.m_userid}</h2>
-								<li class="nav-item">
-									<a class="nav-link" href="logout.do">로그아웃</a>
-								</li>
-							</c:when>
-							<c:otherwise>
-								<li class="dropdown_wrap"><a href="loginView.do">로그인</a></li>
-								<li><a href="join.html">회원가입</a></li>
-							</c:otherwise>
-						</c:choose>
-						<li class="dropdown_wrap">
-							<a href="" class="dropdown_select">마이페이지</a>
-							<ul class="dropdown_itemWrap">
-								<li><a href="">주문현황</a></li>
-								<li><a href="">1:1 문의</a></li>
-								<li><a href="">교환/반품</a></li>
-								<li><a href="">쿠폰함</a></li>
-								<li><a href="mypage.html">내정보관리</a></li>
-							</ul>
-						</li>
-						<li><a href="">장바구니</a></li>
-					</ul>
-				</div>	
-			</div>
-		</div>
-	</div>
+	<header>
+		<nav>
+			<jsp:include page="header.jsp" />
+		</nav>
+	</header>
+	
 	<div class="container home">
 		<div class="con_inner bg_eee">
 			<h3>베스트셀러</h3>
