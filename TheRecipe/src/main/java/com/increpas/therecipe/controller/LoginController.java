@@ -128,6 +128,7 @@ public class LoginController {
 	public String findPwSubmit(@Valid @ModelAttribute("pw_find") MemberVO vo, Errors errors, Model model) {
 		if (errors.hasErrors()) {
 			logger.info("비밀번호 유효성체크 오류발생");
+			return "forgetPw";
 		}
 		String m_userid = vo.getM_userid();
 		vo = loginService.selectFindPw(m_userid);
