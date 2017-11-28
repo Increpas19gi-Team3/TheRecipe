@@ -7,7 +7,7 @@
 <mapper namespace="event_ns">
 	<!-- 속성명과 컬럼명 일치하는 경우 컬럼명 생략 가능 순서를 컬럼순서대로 함 O(자바객체)R(결과집합의 행)매핑 -->
 
-	<resultMap id="eventResult" type="eventcode">
+	<resultMap id="eventResult" type="Event">
 		<result property="e_evtcode" column="e_evtcode" /><!-- 이벤트코드 -->
 		<result property="e_nttilte" column="e_nttilte" /><!-- 제목 -->
 		<result property="e_gubun" column="e_gubun" /><!-- 구분(이벤트인지? 공지사항인지?) -->
