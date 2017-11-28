@@ -21,7 +21,7 @@ private List<EventVO> listVO;	// 게시글의 목록
 	private String word;		// 검색어
 	private String sortColumn;	// 정렬 컬럼
 	private String orderby;		// 정렬방식 ASC, DESC
-	private String isBlock;		// 전체글 검색, 블록글 검색
+	private String GUBUN;		// 전체글 검색, 블록글 검색
 	
 
 	private int pageCutCount;	// 게시글 보기 수 - 디폴트 10
@@ -37,7 +37,7 @@ private List<EventVO> listVO;	// 게시글의 목록
 	}
 	
 	public EventListDTO(List<EventVO> listVO, String whereColumn, String word, String sortColumn,
-			String orderby, String isBlock, int pageCutCount, int requestPage, int totalPageCount, int startRow,
+			String orderby, String GUBUN, int pageCutCount, int requestPage, int totalPageCount, int startRow,
 			int endRow) {
 		super();
 		this.listVO = listVO;
@@ -45,7 +45,7 @@ private List<EventVO> listVO;	// 게시글의 목록
 		this.word = word;
 		this.sortColumn = sortColumn;
 		this.orderby = orderby;
-		this.isBlock = isBlock;
+		this.GUBUN = GUBUN;
 		this.pageCutCount = pageCutCount;
 		this.requestPage = requestPage;
 		this.totalPageCount = totalPageCount;
@@ -108,12 +108,12 @@ private List<EventVO> listVO;	// 게시글의 목록
 		this.orderby = orderby;
 	}
 
-	public String getIsBlock() {
-		return isBlock;
+	public String getGUBUN() {
+		return GUBUN;
 	}
 
-	public void setIsBlock(String isBlock) {
-		this.isBlock = isBlock;
+	public void setGUBUN(String GUBUN) {
+		this.GUBUN = GUBUN;
 	}
 
 	public int getPageCutCount() {
@@ -160,7 +160,7 @@ private List<EventVO> listVO;	// 게시글의 목록
 	@Override
 	public String toString() {
 		return "EventListDTO [listVO=" + listVO + ", whereColumn=" + whereColumn + ", word=" + word + ", sortColumn="
-				+ sortColumn + ", orderby=" + orderby + ", isBlock=" + isBlock + ", pageCutCount=" + pageCutCount
+				+ sortColumn + ", orderby=" + orderby + ", GUBUN=" + GUBUN + ", pageCutCount=" + pageCutCount
 				+ ", requestPage=" + requestPage + ", totalPageCount=" + totalPageCount + ", startRow=" + startRow
 				+ ", endRow=" + endRow + "]";
 	}

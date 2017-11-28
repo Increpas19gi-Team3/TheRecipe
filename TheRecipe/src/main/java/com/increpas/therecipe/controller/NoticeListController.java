@@ -49,9 +49,9 @@ public class NoticeListController {
 		model.addAttribute("word", word);
 
 		// 'isBlock'이 공지사항의 글인지 이벤트 글인지를 확인하는 값
-		String isBlock = NullToBlank.doChange(req.getParameter("isBlock"));
-		System.out.println("isBlock = " + isBlock);
-		model.addAttribute("isBlock", isBlock);
+		String GUBUN = NullToBlank.doChange(req.getParameter("GUBUN"));
+		System.out.println("GUBUN = " + GUBUN);
+		model.addAttribute("GUBUN", GUBUN);
 
 		// 페이징 처리
 		String cutCount = NullToBlank.doChange(req.getParameter("pageCutCount"));
@@ -73,7 +73,7 @@ public class NoticeListController {
 		System.out.println("▶▶▶▶▶▶  getSetList ");
 
 		// 명칭은 'EventListDTO'이지만, 공지사항도 처리함
-		EventListDTO noticeList = noticeListService.getBoardVOList(pageCutCount, requestPageNumber, whereColumn, word, sortColumn, orderby, isBlock);
+		EventListDTO noticeList = noticeListService.getBoardVOList(pageCutCount, requestPageNumber, whereColumn, word, sortColumn, orderby, GUBUN);
 		model.addAttribute("noticeList", noticeList);
 
 		// 페이지 네비게이션바 설정

@@ -45,7 +45,7 @@ public class NoticeListService {
 	 * @return
 	 */
 	public List<EventVO> getSetList(String whereColumn, String word, String sortColumn, String orderby,
-			String isBlock) {
+			String GUBUN) {
 
 		System.err.println("▶▶▶▶ ListService : getSetList >> 조건 검색 들어옴");
 
@@ -53,13 +53,13 @@ public class NoticeListService {
 		eventListDTO.setWord(word);
 		eventListDTO.setSortColumn(sortColumn);
 		eventListDTO.setOrderby(orderby);
-		eventListDTO.setIsBlock(isBlock);
+		eventListDTO.setGUBUN(GUBUN);
 
 		return eventNoticeDAO.selectSetList(eventListDTO);
 	}
 	
 	public EventListDTO getBoardVOList(int pageCutCount, int requestPageNumber, String whereColumn, String word,
-			String sortColumn, String orderby, String isBlock) {
+			String sortColumn, String orderby, String GUBUN) {
 
 		System.err.println("▶▶▶▶ ListService : getBoardVOList >> 조건 검색 들어옴");
 
@@ -67,7 +67,7 @@ public class NoticeListService {
 		eventListDTO.setWord(word);
 		eventListDTO.setSortColumn(sortColumn);
 		eventListDTO.setOrderby(orderby);
-		eventListDTO.setIsBlock(isBlock);
+		eventListDTO.setGUBUN(GUBUN);
 
 		// 페이징 처리
 		if (requestPageNumber < 0) {
@@ -103,7 +103,7 @@ public class NoticeListService {
 		List<EventVO> boardDTOList = eventNoticeDAO.selectSetList(eventListDTO);
 
 		// BoardVOListModel 결과 모델을 생성
-		EventListDTO boardVOListView = new EventListDTO(boardDTOList, whereColumn, word, sortColumn, orderby, isBlock,
+		EventListDTO boardVOListView = new EventListDTO(boardDTOList, whereColumn, word, sortColumn, orderby, GUBUN,
 				pageCutCount, requestPageNumber, totalPageCount, firstRow, endRow);
 
 		// boardVOList,requestPageNumber, totalPageCount, firstRow, endRow);
