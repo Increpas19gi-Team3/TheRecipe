@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.increpas.therecipe.service.AdminCategoryMgrService;
 import com.increpas.therecipe.vo.FoodcodeVO;
+import com.increpas.therecipe.util.BlankChange;
+import com.increpas.therecipe.util.NullChange;
 import com.increpas.therecipe.util.NullToBlank;
 
 /**
@@ -35,11 +37,11 @@ public class AdminCategoryMgrController {
 	
 	
 	/**
-	 * 음식 코드 가져오는 메소드
+	 * 음식 코드(tr_foodcode) 가져오는 메소드
 	 * @param model
 	 * @return
 	 */
-	public Model getFoodcodeAll(Model model){
+	public Model getFoodcodeOnlyAll(Model model){
 		// 개발용 Log
 		String logMsg_01 = "getFoodcodeAll()";
 		String logMsg_02 = "";
@@ -50,6 +52,26 @@ public class AdminCategoryMgrController {
 		model.addAttribute("foodcode1stList", adminCategoryMgrService.select1stFoodcode());
 		model.addAttribute("foodcode2ndList", adminCategoryMgrService.selec2ndFoodcode());
 		model.addAttribute("foodcode3rdList", adminCategoryMgrService.selec3rdFoodcode());
+		
+		return model;
+	}
+	
+	/**
+	 * 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오는 메소드
+	 * @param model
+	 * @return
+	 */
+	public Model getFoodcodeWithFoodCntAll(Model model){
+		// 개발용 Log
+		String logMsg_01 = "getFoodcodeAll()";
+		String logMsg_02 = "";
+		logger.info("▶▶▶ Log : {}, {}", logMsg_01, logMsg_02);
+		
+		//model.addAttribute("foodcodeAllList", adminCategoryMgrService.selectAllFoodcodeWithFoodCnt());
+		
+		model.addAttribute("foodcode1stList", adminCategoryMgrService.select1stFoodcodeWithFoodCnt());
+		model.addAttribute("foodcode2ndList", adminCategoryMgrService.selec2ndFoodcodeWithFoodCnt());
+		model.addAttribute("foodcode3rdList", adminCategoryMgrService.selec3rdFoodcodeWithFoodCnt());
 		
 		return model;
 	}
@@ -67,7 +89,7 @@ public class AdminCategoryMgrController {
 		String logMsg_02 = "regCategory_Form()";
 		logger.info("▶▶▶ Log : {}, {}", logMsg_01, logMsg_02);
 		
-		model = getFoodcodeAll(model);//Foodcode 가져오는 메소드
+		model = getFoodcodeWithFoodCntAll(model);//Foodcode 가져오는 메소드
 		
 		return "adminCategoryReg";
 	}
@@ -83,40 +105,27 @@ public class AdminCategoryMgrController {
 		String logMsg_01 = "/regCategory.do";
 		String logMsg_02 = "regCategory_Do()";
 		logger.info("▶▶▶ Log : {}, {}", logMsg_01, logMsg_02);
+		
+		
+		String fc_ctgname = NullChange.doBlank(request.getParameter("fc_ctgname")); 
+		String fc_1st = BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_1st")));//null→ "" → "0" 
+		String fc_2nd = BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_2nd")));
+		String fc_3rd = BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_3rd")));
+		String fc_isblock = NullChange.doBlank(request.getParameter("fc_isblock"));	
+		logger.debug("▶▶▶▶ Log : {} {}", "param", "fc_1st="+fc_1st+", fc_2nd="+fc_2nd+", fc_3rd="+fc_3rd+", fc_isblock="+fc_isblock+", fc_ctgname="+fc_ctgname);
 
 		
-		String fc_ctgname = NullToBlank.doChange(request.getParameter("fc_ctgname"));
-		String[] fc_1stArr = request.getParameterValues("fc_1st");
-		System.out.println("fc_1st="+fc_1stArr[0]);
-		
-		String[] fc_2ndArr = request.getParameterValues("fc_2nd");
-		System.out.println("fc_2nd="+fc_2ndArr[0]);
-		
-		
-		//생성 구분자 - category2, category3 
-		String newCategory = "";
-		if(fc_2ndArr[0].equals("")) newCategory = fc_1stArr[0]; // 중분류 일때 : 대
-		else newCategory = fc_2ndArr[0]; // 소분류 일때 : 대_중
-		
-		logger.debug("▶▶▶▶ Log : {}, newCategory={}", fc_ctgname, newCategory);
-
 		//Error 처리
 		if(fc_ctgname.length() == 0){
-			model = getFoodcodeAll(model);
+			model = getFoodcodeWithFoodCntAll(model);
 			return "adminCategoryReg";
 		}
 		
-//		System.out.println("errors.hasErrors() = "+ errors.hasErrors());
-//		if (errors.hasErrors()) {
-//			model = getFoodcodeAll(model);
-//			return "adminCategoryReg";
-//		}
-		
 		// Foodcode 추가
-		adminCategoryMgrService.insertFoodcode(newCategory, fc_ctgname);
+		adminCategoryMgrService.insertFoodcode(fc_1st, fc_2nd, fc_3rd, fc_ctgname, fc_isblock);
 		
 		
-		model = getFoodcodeAll(model);//Foodcode 가져오는 메소드
+		model = getFoodcodeWithFoodCntAll(model);//Foodcode 가져오는 메소드
 		return "adminCategoryReg";
 	}
 	
@@ -142,7 +151,7 @@ public class AdminCategoryMgrController {
 		logger.info("▶▶▶ Log : {}, {}", logMsg_01, logMsg_02);
 		
 		
-		model = getFoodcodeAll(model);//Foodcode 가져오는 메소드		
+		model = getFoodcodeWithFoodCntAll(model);//Foodcode 가져오는 메소드		
 		return "adminCategoryModify";
 	}
 	
@@ -160,38 +169,27 @@ public class AdminCategoryMgrController {
 		logger.info("▶▶▶▶▶▶ Log : {}, {}", logMsg_01, logMsg_02);
 
 		
-		String fc_ctgname = NullToBlank.doChange(request.getParameter("fc_ctgname"));
-		String[] fc_1stArr = request.getParameterValues("fc_1st");
-		System.out.println("fc_1st="+fc_1stArr[0]);
 		
-		String[] fc_2ndArr = request.getParameterValues("fc_2nd");
-		System.out.println("fc_2nd="+fc_2ndArr[0]);
+		String fc_ctgname = NullChange.doBlank(request.getParameter("fc_ctgname")); 
+		String fc_1st = BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_1st")));//null→ "" → "0" 
+		String fc_2nd = BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_2nd")));
+		String fc_3rd = BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_3rd")));
+		String fc_isblock = NullChange.doBlank(request.getParameter("fc_isblock"));	
+		logger.debug("▶▶▶▶ Log : {} {}", "param", "fc_1st="+fc_1st+", fc_2nd="+fc_2nd+", fc_3rd="+fc_3rd+", fc_isblock="+fc_isblock+", fc_ctgname="+fc_ctgname);
 		
-		String[] fc_3rdArr = request.getParameterValues("fc_3rd");
-		System.out.println("fc_3rd="+fc_3rdArr[0]);
-		
-		
-		//생성 구분자 - category2, category3 
-		String modifyCategory = "";
-		if(fc_3rdArr.length > 0 && fc_2ndArr.length > 0){
-			if(fc_3rdArr[0].equals("")) modifyCategory = fc_2ndArr[0];
-			else modifyCategory = fc_3rdArr[0];
-		}
-				
-		logger.debug("▶▶▶▶ Log : {}, modifyCategory={}", fc_ctgname, modifyCategory);
 
 		//Error 처리
 		if(fc_ctgname.length() == 0){
-			model = getFoodcodeAll(model);
+			model = getFoodcodeWithFoodCntAll(model);
 			return "adminCategoryModify";
 		}
 		
 		
 		// Foodcode 수정
-		adminCategoryMgrService.updateFoodcode(modifyCategory, fc_ctgname);
+		adminCategoryMgrService.updateFoodcode(fc_1st, fc_2nd, fc_3rd, fc_ctgname, fc_isblock);
 		
 		
-		model = getFoodcodeAll(model);//Foodcode 가져오는 메소드
+		model = getFoodcodeWithFoodCntAll(model);//Foodcode 가져오는 메소드
 		return "adminCategoryModify";
 	}
 	
@@ -268,7 +266,10 @@ public class AdminCategoryMgrController {
 		// 삭제
 		
 		
-		model = getFoodcodeAll(model);//Foodcode 가져오는 메소드
+		model = getFoodcodeWithFoodCntAll(model);//Foodcode 가져오는 메소드
 		return "adminCategoryModify";
 	}
+	
+	
+	
 }

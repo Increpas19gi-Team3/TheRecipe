@@ -17,9 +17,78 @@
 	</resultMap>
 	
 	
-	<!-- 전체 가져오기 -->
+	<resultMap id="FoodcodeWithFoodCntResult" type="FoodcodeWithFoodCnt"> 
+		<result property="fc_1st" column="fc_1st" />
+		<result property="fc_2nd" column="fc_2nd" />
+		<result property="fc_3rd" column="fc_3rd" />
+		<result property="fc_ctgname" column="fc_ctgname" />
+		<result property="fc_isblock" column="fc_isblock" />
+		<result property="regfoodcnt" column="regfoodcnt" />
+	</resultMap>
+	
+	
+	<!-- 전체 음식코드 + subQuery Food Count() -->
+	<select id="selectAllFoodcodeWithFoodCnt" resultMap="FoodcodeWithFoodCntResult"> 
+		SELECT TR_FOODCODE.FC_1ST, TR_FOODCODE.FC_2ND, TR_FOODCODE.FC_3RD, TR_FOODCODE.FC_CTGNAME,
+		    (
+		        SELECT COUNT(*) FROM TR_FOOD 
+		        WHERE TR_FOODCODE.FC_1ST = TR_FOOD.FC_1ST 
+		            AND TR_FOODCODE.FC_2ND = TR_FOOD.FC_2ND 
+		            AND TR_FOODCODE.FC_3RD = TR_FOOD.FC_3RD
+		        ) AS REGFOODCNT, FC_ISBLOCK		        
+		FROM TR_FOODCODE 
+		ORDER BY TR_FOODCODE.FC_1ST ASC, TR_FOODCODE.FC_2ND ASC, TR_FOODCODE.FC_3RD ASC
+	</select>
+	
+	
+	<!-- 대분류(1st)  + subQuery Food Count() 만 가져오기 -->
+	<select id="select1stFoodcodeWithFoodCnt" resultMap="FoodcodeWithFoodCntResult">
+		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME, 
+			(
+		        SELECT COUNT(*) FROM TR_FOOD 
+		        WHERE TR_FOODCODE.FC_1ST = TR_FOOD.FC_1ST 
+		    ) AS REGFOODCNT, FC_ISBLOCK 
+		FROM TR_FOODCODE 
+		WHERE FC_2ND = '0' AND FC_3RD = '0'
+		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
+	</select>
+	
+	<!-- 지역 > 중분류 (2nd)  + subQuery Food Count() 만 가져오기 -->
+	<select id="select2ndFoodcodeWithFoodCnt" resultMap="FoodcodeWithFoodCntResult">
+		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME, 
+			(
+		        SELECT COUNT(*) FROM TR_FOOD 
+		        WHERE TR_FOODCODE.FC_1ST = TR_FOOD.FC_1ST 
+		            AND TR_FOODCODE.FC_2ND = TR_FOOD.FC_2ND 
+		        ) AS REGFOODCNT, FC_ISBLOCK   
+		FROM TR_FOODCODE 
+		WHERE FC_2ND != '0' AND FC_3RD = '0'
+		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
+	</select>
+	
+
+	<!-- 지역 > 중분류 > 소분류(3rd)  + subQuery Food Count() 만 가져오기 -->
+	<select id="select3rdFoodcodeWithFoodCnt" resultMap="FoodcodeWithFoodCntResult">
+		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME, (
+		        SELECT COUNT(*) FROM TR_FOOD 
+		        WHERE TR_FOODCODE.FC_1ST = TR_FOOD.FC_1ST 
+		            AND TR_FOODCODE.FC_2ND = TR_FOOD.FC_2ND 
+		            AND TR_FOODCODE.FC_3RD = TR_FOOD.FC_3RD
+		        ) AS REGFOODCNT, FC_ISBLOCK   
+		FROM TR_FOODCODE 
+		WHERE FC_2ND != '0' AND FC_3RD != '0'
+		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
+	</select>
+	
+	
+	
+	
+	
+	<!-- FoodCode Only -->
+	
+	<!-- 전체 음식코드 가져오기 -->
 	<select id="selectAllFoodcode" resultMap="FoodcodeResult">
-		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME  
+		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME, FC_ISBLOCK 		
 		FROM TR_FOODCODE 
 		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
 	</select>
@@ -27,7 +96,7 @@
 	
 	<!-- 대분류(1st)만 가져오기 -->
 	<select id="select1stFoodcode" resultMap="FoodcodeResult">
-		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME  
+		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME, FC_ISBLOCK 
 		FROM TR_FOODCODE 
 		WHERE FC_2ND = '0' AND FC_3RD = '0'
 		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
@@ -35,7 +104,7 @@
 	
 	<!-- 지역 > 중분류 (2nd)만 가져오기 -->
 	<select id="select2ndFoodcode" resultMap="FoodcodeResult">
-		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME  
+		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME, FC_ISBLOCK   
 		FROM TR_FOODCODE 
 		WHERE FC_2ND != '0' AND FC_3RD = '0'
 		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
@@ -44,11 +113,12 @@
 
 	<!-- 지역 > 중분류 > 소분류(3rd)만 가져오기 -->
 	<select id="select3rdFoodcode" resultMap="FoodcodeResult">
-		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME  
+		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME, FC_ISBLOCK   
 		FROM TR_FOODCODE 
 		WHERE FC_2ND != '0' AND FC_3RD != '0'
 		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
 	</select>
+	
 	
 	<!-- 2nd 최대값 -->
 	<select id="select2ndMax" resultType="int" parameterType="string">
@@ -76,7 +146,7 @@
 	    		FROM TR_FOODCODE 
 	    		WHERE FC_1ST = #{fc_1st}
     		)
-    		,0, #{fc_ctgname}
+    		,0, #{fc_ctgname}, #{fc_isblock}
     	)	
 	</insert>
 	
@@ -90,7 +160,7 @@
     			FROM TR_FOODCODE 
     			WHERE FC_1ST = #{fc_1st} AND FC_2ND = #{fc_2nd}
     		),
-    		#{fc_ctgname}
+    		#{fc_ctgname}, #{fc_isblock}
     	)	
 	</insert>
 
@@ -98,7 +168,7 @@
 	<!-- 수정: 코드 이름  -->
 	<update id="modifyFc_ctgnameFoodcode" parameterType="Foodcode">
 		UPDATE TR_FOODCODE 
-		SET FC_CTGNAME = #{fc_ctgname} 
+		SET FC_CTGNAME = #{fc_ctgname}, FC_ISBLOCK = ${fc_isblock}
 		WHERE FC_1ST = #{fc_1st} AND FC_2ND = #{fc_2nd} AND FC_3RD = #{fc_3rd}
 	</update>
 	
@@ -111,17 +181,6 @@
 		WHERE FC_1ST=#{fc_1st} AND FC_2ND=#{fc_2nd} AND FC_3RD=#{fc_3rd}
 	</select>
 	
-	<!-- 음식코드, 등록된 음식갯수
-		SELECT TR_FOODCODE.FC_1ST, TR_FOODCODE.FC_2ND, TR_FOODCODE.FC_3RD, TR_FOODCODE.FC_CTGNAME,
-		    (
-		        SELECT COUNT(*) FROM TR_FOOD 
-		        WHERE TR_FOODCODE.FC_1ST = TR_FOOD.FC_1ST 
-		            AND TR_FOODCODE.FC_2ND = TR_FOOD.FC_2ND 
-		            AND TR_FOODCODE.FC_3RD = TR_FOOD.FC_3RD
-		        ) AS REGFOODCNT 
-		FROM TR_FOODCODE 
-		ORDER BY TR_FOODCODE.FC_1ST ASC, TR_FOODCODE.FC_2ND ASC, TR_FOODCODE.FC_3RD ASC;
-		
-	 -->
+	
 	
 </mapper>

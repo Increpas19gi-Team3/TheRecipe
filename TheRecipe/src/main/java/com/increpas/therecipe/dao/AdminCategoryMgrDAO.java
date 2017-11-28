@@ -29,6 +29,41 @@ public class AdminCategoryMgrDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	
+	/**
+	 * 전체 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오기
+	 * @return
+	 */
+	public List<FoodcodeVO> selectAllFoodcodeWithFoodCnt(){
+		return sqlSessionTemplate.selectList("foodcode_ns.selectAllFoodcodeWithFoodCnt"); 
+	}
+	
+	/**
+	 * 1st 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오기
+	 * @return
+	 */
+	public List<FoodcodeVO> select1stFoodcodeWithFoodCnt(){
+		return sqlSessionTemplate.selectList("foodcode_ns.select1stFoodcodeWithFoodCnt"); 
+	}
+	
+	/**
+	 * 2nd 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오기
+	 * @return
+	 */
+	public List<FoodcodeVO> select2ndFoodcodeWithFoodCnt(){
+		return sqlSessionTemplate.selectList("foodcode_ns.select2ndFoodcodeWithFoodCnt"); 
+	} 
+	
+	/**
+	 * 3rd 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오기
+	 * @return
+	 */
+	public List<FoodcodeVO> select3rdFoodcodeWithFoodCnt(){
+		return sqlSessionTemplate.selectList("foodcode_ns.select3rdFoodcodeWithFoodCnt"); 
+	}
+	
+	
+	
 	/**
 	 * 전체 음식 코드 가져오기
 	 * @return
@@ -60,6 +95,8 @@ public class AdminCategoryMgrDAO {
 	public List<FoodcodeVO> select3rdFoodcode(){
 		return sqlSessionTemplate.selectList("foodcode_ns.select3rdFoodcode"); 
 	} 
+	
+	
 	
 	/**
 	 * 2nd Foodcode의 최고값 리턴

@@ -79,7 +79,12 @@
 			
 				<!-- 대분류 -->
 				<c:forEach var="foodcode1st" items="${foodcode1stList }">
-					<li><a href="#">${foodcode1st.fc_ctgname }</a>
+					<li>
+						<!-- 대분류 메뉴 출력 (블록일때 / 블록이 아닐때) -->
+						<c:choose>
+						<c:when test="${foodcode1st.fc_isblock eq '1'}"><a href="#" style="text-decoration:line-through; color: gray;">${foodcode1st.fc_ctgname } (${foodcode1st.regfoodcnt })</a></c:when>
+						<c:otherwise><a href="#" >${foodcode1st.fc_ctgname } (${foodcode1st.regfoodcnt })</a></c:otherwise>
+						</c:choose>
 					
 						<!-- 중분류 -->
 						<ul>
@@ -87,7 +92,12 @@
 										
 							
 							<c:if test="${foodcode1st.fc_1st eq foodcode2nd.fc_1st }">
-								<li><a href="#">${foodcode2nd.fc_ctgname }</a>
+								<li>
+									<!-- 중분류 메뉴 출력 (블록일때 / 블록이 아닐때) -->
+									<c:choose>
+									<c:when test="${foodcode2nd.fc_isblock eq '1'}"><a href="#" style="text-decoration:line-through; color: gray;">${foodcode2nd.fc_ctgname } (${foodcode2nd.regfoodcnt }) </a></c:when>
+									<c:otherwise><a href="#" >${foodcode2nd.fc_ctgname } (${foodcode2nd.regfoodcnt }) </a></c:otherwise>
+									</c:choose>
 										
 										
 										<!-- 소분류 -->
@@ -95,7 +105,14 @@
 										<c:forEach var="foodcode3rd" items="${foodcode3rdList }">
 											<c:if test="${foodcode1st.fc_1st eq foodcode3rd.fc_1st 
 														and foodcode2nd.fc_2nd eq foodcode3rd.fc_2nd}">
-												<li><a href="#">${foodcode3rd.fc_ctgname }</a></li>
+												<li>
+													<!-- 소분류 메뉴 출력 (블록일때 / 블록이 아닐때) -->
+													<c:choose>
+													<c:when test="${foodcode3rd.fc_isblock eq '1'}"><a href="#" style="text-decoration:line-through; color: gray;">${foodcode3rd.fc_ctgname } (${foodcode3rd.regfoodcnt }) </a></c:when>
+													<c:otherwise><a href="#">${foodcode3rd.fc_ctgname } (${foodcode3rd.regfoodcnt }) </a></c:otherwise>
+													</c:choose>
+									
+												</li>
 											</c:if>
 										</c:forEach>
 										</ul>
@@ -115,9 +132,10 @@
 	
 	
     <p/><p/>
+    <h3>신규 카테고리</h3>
     <form action="regCategory.do" method="post" onsubmit="return check();">
-    	
-    	<label> 신규 카테고리 구분</label> : 
+    
+    	<label>분류</label> : 
     	<!-- <input type="radio" name="regFoodcode" value="2nd" id="sel2nd" onclick="setTextClear();"/> <label for="sel2nd">중분류</label>
     	<input type="radio" name="regFoodcode" value="3rd" id="sel3rd" onclick="setTextClear();" /> <label for="sel3rd">소분류</label>
     	<br /> -->
@@ -144,8 +162,13 @@
 		</select>
 
 		<br />
-    	<label> 신규 카테고리 이름</label> : <input type="text" name="fc_ctgname" id="fc_ctgname">
-    	<br />
+		
+    	<label>이름</label> : <input type="text" name="fc_ctgname" id="fc_ctgname"><br />
+    	<label>사용</label> : <input type="radio" name="fc_isblock" id="fc_isblock_0" value="0" checked="checked"><label for="fc_isblock_0">사용</label> &nbsp;
+    							<input type="radio" name="fc_isblock" id="fc_isblock_1" value="1"> <label for="fc_isblock_1">미사용</label>
+    	
+		<br />
+    	
     	<input type="submit" value="등록">
     	<input type="reset" value="취소">
     </form>

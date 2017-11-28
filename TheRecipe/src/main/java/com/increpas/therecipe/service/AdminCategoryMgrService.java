@@ -3,6 +3,8 @@ package com.increpas.therecipe.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,8 +20,51 @@ import com.increpas.therecipe.vo.FoodcodeVO;
 @Service
 public class AdminCategoryMgrService {
 
+	// slf4j 방식 로그
+	Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@Autowired
 	AdminCategoryMgrDAO adminCategoryMgrDAO;
+	
+	
+	
+	/**
+	 * 전체 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오기
+	 * @return
+	 */
+	public List<FoodcodeVO> selectAllFoodcodeWithFoodCnt(){
+		return adminCategoryMgrDAO.selectAllFoodcodeWithFoodCnt();
+	}
+	
+	/**
+	 * 1st 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오기
+	 * @return
+	 */
+	public List<FoodcodeVO> select1stFoodcodeWithFoodCnt(){
+		return adminCategoryMgrDAO.select1stFoodcodeWithFoodCnt();
+	}
+	
+	/**
+	 * 2nd 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오기
+	 * @return
+	 */
+	public List<FoodcodeVO> selec2ndFoodcodeWithFoodCnt(){
+		return adminCategoryMgrDAO.select2ndFoodcodeWithFoodCnt();
+	}
+	
+	/**
+	 * 3rd 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오기
+	 * @return
+	 */
+	public List<FoodcodeVO> selec3rdFoodcodeWithFoodCnt(){
+		return adminCategoryMgrDAO.select3rdFoodcodeWithFoodCnt();
+	}
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * 전체 음식 코드 가져오기
@@ -55,25 +100,42 @@ public class AdminCategoryMgrService {
 	
 	
 	/**
+	 * 입력받은 변수들 FoodCode에 맞게 값 설정 하는 메소드
+	 * @param fc_1st
+	 * @param fc_2nd
+	 * @param fc_3rd
+	 * @param fc_ctgname
+	 * @param fc_isblock
+	 * @return
+	 */
+	public FoodcodeVO setFoodcodeVO(String fc_1st, String fc_2nd, String fc_3rd, String fc_ctgname, String fc_isblock){
+		
+		FoodcodeVO fcVO = new FoodcodeVO();
+		fcVO.setFc_1st(Integer.parseInt(fc_1st));
+		
+		String[] fc_2ndArr = fc_2nd.split("_");
+		fcVO.setFc_2nd(Integer.parseInt(fc_2ndArr[fc_2ndArr.length-1]));
+		
+		String[] fc_3rdArr = fc_3rd.split("_");
+		fcVO.setFc_3rd(Integer.parseInt(fc_3rdArr[fc_3rdArr.length-1]));
+		
+		fcVO.setFc_ctgname(fc_ctgname);
+		fcVO.setFc_isblock(fc_isblock);
+		
+		logger.debug("▶▶▶▶ Log : {}, {}", "AdminCategoryMgrService.setFoodcodeVO()", fcVO.toString());
+		
+		return fcVO;
+	}
+	
+	
+	/**
 	 * 음식코드 파라미터 파싱, dao에 쿼리 요청
 	 * @param newCategory
 	 */
-	@Transactional
-	public void insertFoodcode(String newCategory, String fc_ctgname){
+	//@Transactional
+	public void insertFoodcode(String fc_1st, String fc_2nd, String fc_3rd, String fc_ctgname, String fc_isblock){
 		
-		String[] categoryArr = newCategory.split("_");//_ 로 파싱
-		
-		//FoodcodeVO 설정 세팅
-		FoodcodeVO fcVO = new FoodcodeVO();
-		if(categoryArr.length == 2){
-			fcVO.setFc_2nd(Integer.parseInt(categoryArr[1]));
-		}
-		fcVO.setFc_1st(Integer.parseInt(categoryArr[0]));
-		fcVO.setFc_ctgname(fc_ctgname);
-		System.out.println("fcVO.toString()="+fcVO.toString());
-		
-		
-		adminCategoryMgrDAO.insertFoodcode(fcVO);
+		adminCategoryMgrDAO.insertFoodcode(setFoodcodeVO(fc_1st, fc_2nd, fc_3rd, fc_ctgname, fc_isblock));
 	}
 	
 	
@@ -82,26 +144,14 @@ public class AdminCategoryMgrService {
 	 * @param newCategory
 	 * @param fc_ctgname
 	 */
-	@Transactional
-	public void updateFoodcode(String modifyCategory, String fc_ctgname){
+	//@Transactional
+	public void updateFoodcode(String fc_1st, String fc_2nd, String fc_3rd, String fc_ctgname, String fc_isblock){
 		
-		System.out.println(">>>> modifyCategory="+modifyCategory);
-		
-		String[] categoryArr = modifyCategory.split("_");//_ 로 파싱
-		System.out.println(">>>> categoryArr.length="+categoryArr.length);
-		
-		//FoodcodeVO 설정 세팅
-		FoodcodeVO fcVO = new FoodcodeVO();
-		if(categoryArr.length == 3){
-			fcVO.setFc_3rd(Integer.parseInt(categoryArr[2]));
-		}
-		fcVO.setFc_1st(Integer.parseInt(categoryArr[0]));
-		fcVO.setFc_2nd(Integer.parseInt(categoryArr[1]));
-		fcVO.setFc_ctgname(fc_ctgname);
-		System.out.println("updateFoodcode() :: fcVO.toString()="+fcVO.toString());
-		
-		
-		adminCategoryMgrDAO.updateFoodcode(fcVO);
+		adminCategoryMgrDAO.updateFoodcode(setFoodcodeVO(fc_1st, fc_2nd, fc_3rd, fc_ctgname, fc_isblock));
+	}
+	
+	public FoodcodeVO setFoodCodeVO(){
+		return new FoodcodeVO();
 	}
 	
 	
