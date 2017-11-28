@@ -8,181 +8,183 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>BRAND</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/style.css">
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+	<title>The Recipe</title>
+	<link rel="stylesheet" href="/therecipe/resources/css/style.css">
 </head>
 <body>
 	<div class="header">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="#">BRAND</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							분류
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="productList.html">한식</a>
-							<a class="dropdown-item" href="#">중식</a>
-							<a class="dropdown-item" href="#">양식</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">간식</a>
-							<a class="dropdown-item" href="#">야식</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							유명 TV 레시피
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">올리브TV</a>
-							<a class="dropdown-item" href="#">집밥 백선생</a>
-							<a class="dropdown-item" href="#">냉장고를 부탁해</a>
-							<a class="dropdown-item" href="#">최고의 요리</a>
-							<a class="dropdown-item" href="#">오늘 뭐먹지</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">집들이요리/파티요리</a>
-							<a class="dropdown-item" href="#">일요리/캠핑요리</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							커뮤니티
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">공지사항</a>
-							<a class="dropdown-item" href="#">후기게시판</a>
-							<a class="dropdown-item" href="#">추천 레시피</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">이벤트</a>
-						</div>
-					</li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<c:choose>
-					<c:when test="${not empty sessionScope.m_userid}">
-					
-					<h2>${sessionScope.m_userid}</h2>
-					<li class="nav-item">
-						<a class="nav-link" href="logout.do">로그아웃</a>
-					</li>
-					 </c:when>
-					 
-					 <c:otherwise>
-   					<li class="nav-item">
-						<a class="nav-link" href="loginView.do">로그인</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="join.html">회원가입</a>
-					</li>
-   
-    				</c:otherwise>
-					
-					</c:choose>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							마이페이지
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">주문현황</a>
-							<a class="dropdown-item" href="#">1:1 문의</a>
-							<a class="dropdown-item" href="#">교환/반품</a>
-							<a class="dropdown-item" href="#">등급별혜택/쿠폰함</a>
-							<a class="dropdown-item" href="#">적립금내역</a>
-							<a class="dropdown-item" href="#">내정보관리</a>
-						</div>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">장바구니</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
-	</div>
-	<div class="container-fulid con1">
-		<div class="container">
-			<div class="title text-center">
-				<p>베스트셀러</p>
-				<h3>후기가 증명하는 베스트 반찬</h3>
-			</div>
-			<ul class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
-				<li class="nav-item">
-					<a class="nav-link active" id="pills-1-tab" data-toggle="pill" href="#pills-1" role="tab" aria-controls="pills-1" aria-selected="true">중국 푸드트립</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">풍성한 고기반찬</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="pills-3-tab" data-toggle="pill" href="#pills-3" role="tab" aria-controls="pills-3" aria-selected="false">바다향가득 반찬</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="pills-4-tab" data-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">바다향가득 반찬</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="pills-5-tab" data-toggle="pill" href="#pills-5" role="tab" aria-controls="pills-5" aria-selected="false">바다향가득 반찬</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="pills-6-tab" data-toggle="pill" href="#pills-6" role="tab" aria-controls="pills-6" aria-selected="false">바다향가득 반찬</a>
-				</li>
-			</ul>
-			<div class="tab-content" id="pills-tabContent">
-				<div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-home-tab">
-					<div class="row text-center">
-						<div class="col-lg-4">
-							<img  src="images/con2_1.jpg" alt="">
-							<div class="textBox">
-								<h5 class="text-truncate">[집밥의완성] 천하진미세트</h5>
-								<p class="text-truncate">집으로 찾아오는 대륙의 진미</p>
-								<p><a class="btn btn-info" href="#" role="button">상품보기</a></p>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<img  src="images/con2_2.jpg" alt="">
-							<div class="textBox">
-								<h5 class="text-truncate">[소중한식사] 치파오또우푸 300g</h5>
-								<p class="text-truncate">부들부들 담백한 중국식 두부 요리</p>
-								<p><a class="btn btn-info" href="#" role="button">상품보기</a></p>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<img  src="images/con2_3.jpg" alt="">
-							<div class="textBox">
-								<h5 class="text-truncate">[소중한식탁] 상하이고추잡채와 꽃빵 (2인분)</h5>
-								<p class="text-truncate">볶으면 끝! 고급스런 중화요리도 간단하게</p>
-								<p><a class="btn btn-info" href="#" role="button">상품보기</a></p>
-							</div>
-						</div>
-					</div>
+		<div class="logo">The Recipe</div>
+		<div class="nav_wrap">
+			<div class="nav_inner">
+				<div class="nav_left">
+					<ul>
+						<li class="dropdown_wrap">
+							<a href="localFoodList.do" class="dropdown_select">분류</a>
+							<ul class="dropdown_itemWrap">
+								<li><a href="localKindList.do?local=1">한식</a></li>
+								<li><a href="localKindList.do?local=2">중식</a></li>
+								<li><a href="localKindList.do?local=3">일식</a></li>
+								<li><a href="localKindList.do?local=4">양식</a></li>
+							</ul>
+						</li>
+						<li class="dropdown_wrap">
+							<a href="" class="dropdown_select">유명 TV 레시피</a>
+							<ul class="dropdown_itemWrap">
+								<li><a href="">올리브TV</a></li>
+								<li><a href="">집밥백선생</a></li>
+								<li><a href="">냉장고를 부탁해</a></li>
+								<li><a href="">최고의 요리</a></li>
+								<li><a href="">오늘 뭐먹지</a></li>
+							</ul>
+						</li>
+						<li class="dropdown_wrap">
+							<a href="" class="dropdown_select">커뮤니티</a>
+							<ul class="dropdown_itemWrap">
+								<li><a href="boardNotice.html">공지사항</a></li>
+								<li><a href="boardReview.html">후기 게시판</a></li>
+								<li><a href="boardRecommend.html">추천 레시피</a></li>
+								<li><a href="boardEvent.html">이벤트</a></li>
+							</ul>
+						</li>
+					</ul>
 				</div>
-				<div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-profile-tab">
-
-				</div>
-				<div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-contact-tab">
-
-				</div>
-				<div class="tab-pane fade" id="pills-4" role="tabpanel" aria-labelledby="pills-contact-tab">
-
-				</div>
-				<div class="tab-pane fade" id="pills-5" role="tabpanel" aria-labelledby="pills-contact-tab">
-
-				</div>
-				<div class="tab-pane fade" id="pills-6" role="tabpanel" aria-labelledby="pills-contact-tab">
-
-				</div>
+				<div class="nav_right">
+					<ul>
+						<c:choose>
+							<c:when test="${not empty sessionScope.m_userid}">			
+								<h2>${sessionScope.m_userid}</h2>
+								<li class="nav-item">
+									<a class="nav-link" href="logout.do">로그아웃</a>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li class="dropdown_wrap"><a href="loginView.do">로그인</a></li>
+								<li><a href="join.html">회원가입</a></li>
+							</c:otherwise>
+						</c:choose>
+						<li class="dropdown_wrap">
+							<a href="" class="dropdown_select">마이페이지</a>
+							<ul class="dropdown_itemWrap">
+								<li><a href="">주문현황</a></li>
+								<li><a href="">1:1 문의</a></li>
+								<li><a href="">교환/반품</a></li>
+								<li><a href="">쿠폰함</a></li>
+								<li><a href="mypage.html">내정보관리</a></li>
+							</ul>
+						</li>
+						<li><a href="">장바구니</a></li>
+					</ul>
+				</div>	
 			</div>
 		</div>
 	</div>
-	<div class="footer">
-		footer
+	<div class="container home">
+		<div class="con_inner bg_eee">
+			<h3>베스트셀러</h3>
+			<h2><b>후기가 증명하는 베스트 반찬</b></h2>
+			<div class="tab_wrap">
+				<input id="tab-1" type="radio" name="tab-group" checked="checked" />
+				<label for="tab-1">중국 푸드트립</label>
+				<input id="tab-2" type="radio" name="tab-group" />
+				<label for="tab-2">풍성한 고기반찬</label>
+				<input id="tab-3" type="radio" name="tab-group" />
+				<label for="tab-3">바다향가득 반찬</label>
+				<input id="tab-4" type="radio" name="tab-group" />
+				<label for="tab-4">간편한 덮밥요리</label>
+				<input id="tab-5" type="radio" name="tab-group" />
+				<label for="tab-5">할인특가 세트상품</label>
+				<input id="tab-6" type="radio" name="tab-group" />
+				<label for="tab-6">맛있는 간식타임</label>
+				<div id="content">
+					<div id="content-1">
+						<div class="con_card3 con_card">
+							<ul>
+								<li>
+									<img src="images/con2_1.jpg" alt="">
+									<div class="desc">
+										<h3>[집밥의완성] 스팸김치볶음 220g</h3>
+										<p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p>
+										<span><b>3,600원</b>3,400<small>원</small></span>
+									</div>
+								</li>
+								<li>
+									<img src="images/con2_2.jpg" alt="">
+									<div class="desc">
+										<h3>[집밥의완성] 스팸김치볶음 220g</h3>
+										<p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p>
+										<span><b>3,600원</b>3,400<small>원</small></span>
+									</div>
+								</li>
+								<li>
+									<img src="images/con2_3.jpg" alt="">
+									<div class="desc">
+										<h3>[집밥의완성] 스팸김치볶음 220g</h3>
+										<p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p>
+										<span><b>3,600원</b>3,400<small>원</small></span>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div id="content-2">
+						b
+					</div>
+					<div id="content-3">
+						c
+					</div>
+					<div id="content-4">
+						a
+					</div>
+					<div id="content-5">
+						b
+					</div>
+					<div id="content-6">
+						c
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="con_inner">
+			<h3>반찬세트</h3>
+			<h2>고민없이 한 번에 <b>반찬세트</b></h2>
+			<div class="con_card4 con_card">
+				<ul>
+					<li>
+						<img src="images/con1_1.jpg" alt="">
+						<div class="desc">
+							<h3>[집밥의완성] 스팸김치볶음 220g</h3>
+							<p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p>
+							<span><b>3,600원</b>3,400<small>원</small></span>
+						</div>
+					</li>
+					<li>
+						<img src="images/con1_2.jpg" alt="">
+						<div class="desc">
+							<h3>[집밥의완성] 스팸김치볶음 220g</h3>
+							<p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p>
+							<span><b>3,600원</b>3,400<small>원</small></span>
+						</div>
+					</li>
+					<li>
+						<img src="images/con1_3.jpg" alt="">
+						<div class="desc">
+							<h3>[집밥의완성] 스팸김치볶음 220g</h3>
+							<p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p>
+							<span><b>3,600원</b>3,400<small>원</small></span>
+						</div>
+					</li>
+					<li>
+						<img src="images/con1_4.jpg" alt="">
+						<div class="desc">
+							<h3>[집밥의완성] 스팸김치볶음 220g</h3>
+							<p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p>
+							<span><b>3,600원</b>3,400<small>원</small></span>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<a href="" class="btn_all">전체 보기</a>
+		</div>
 	</div>
 </body>
 </html>

@@ -89,10 +89,8 @@
 	</select>
 
 	<!-- 장바구니에 추가 -->
-	<!-- <insert id="insertBasket" parameterType="map">
+	<insert id="insertBasket" parameterType="map">
 		insert into tr_basket values(#{userID}, #{fdcode}, #{buyPrice}, #{amount})
-		insert into tr_basket values((select M_USERID from tr_member where M_USERID =#{userID}), 
-		(select F_FDCODE from tr_food where F_FDCODE = #{fdcode}), #{buyPrice}, #{amount});
-	</insert> -->
+	</insert>
 	
 </mapper>

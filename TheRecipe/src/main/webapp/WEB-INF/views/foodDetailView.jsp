@@ -8,10 +8,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/therecipe/resources/css/style.css">
 
 </head>
 <body>
 
+	<header>
+		<nav>
+			<jsp:include page="header.jsp" />
+		</nav>
+	</header>
+	
 	<form action="shoppingBasket.do" method="post" >
 	 <input type="hidden" name="userID" value="han">
 			<input type="hidden" name="fdcode" value="${foodList.f_fdcode }">

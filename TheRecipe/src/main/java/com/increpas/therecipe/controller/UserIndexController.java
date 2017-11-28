@@ -21,6 +21,6 @@ public class UserIndexController {
 		logger.info("▶▶▶ Log : {}, {}", logMsg_01, logMsg_02);
 		
 		
-		return "userIndex";
+		return "home";
 	}
 }

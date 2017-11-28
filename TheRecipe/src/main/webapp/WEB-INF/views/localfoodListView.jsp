@@ -8,8 +8,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/therecipe/resources/css/style.css">
 </head>
 <body>
+
+	<header>
+		<nav>
+			<jsp:include page="header.jsp" />
+		</nav>
+	</header>
 
 	<form action="localTitleList.do" method="post">
 		<br> 

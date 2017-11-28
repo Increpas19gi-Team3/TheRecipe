@@ -74,7 +74,7 @@ public class LocalDAO {
 		
 	}
 	
-/*	public int insertBasket(String userID, String fdcode, int buyPrice, int amount){
+	public int insertBasket(String userID, String fdcode, int buyPrice, int amount){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("userID", userID);
@@ -84,6 +84,6 @@ public class LocalDAO {
 		
 		return sqlSessionTemplate.insert("local_ns.insertBasket", map); 
 		
-	}*/
+	}
 	
 }

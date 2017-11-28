@@ -110,7 +110,7 @@ public class localfoodListController {
 			return "foodDetailView";
 		}
 		
-	/*	@RequestMapping(value = "/shoppingBasket.do", method = RequestMethod.POST)
+		@RequestMapping(value = "/shoppingBasket.do", method = RequestMethod.POST)
 		public String ShoppingBasket(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
 			String userID = request.getParameter("userID");
 			String fdcode = request.getParameter("fdcode");
@@ -122,7 +122,7 @@ public class localfoodListController {
 			model.addAttribute("result", result);
 			
 			return "foodDetailView";
-		}*/
+		}
 		
 		
 		

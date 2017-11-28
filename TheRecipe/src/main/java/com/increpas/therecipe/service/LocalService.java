@@ -46,9 +46,9 @@ public class LocalService {
 		return lDao.selectReview(code);
 	}
 	
-/*	
+
 	public int insertBasket(String userID, String fdcode, int buyPrice, int amount){
 		
 		return lDao.insertBasket(userID, fdcode, buyPrice, amount);
-	}*/
+	}
 }
