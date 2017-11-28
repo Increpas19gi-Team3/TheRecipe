@@ -2,11 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-
-
 	<jsp:include page="header.jsp" />
 
-	
 	<div class="container home">
 		<div class="con_inner bg_eee">
 			<h3>베스트셀러</h3>
@@ -29,7 +26,7 @@
 						<div class="con_card3 con_card">
 							<ul>
 								<li>
-									<img src="images/con2_1.jpg" alt="">
+									<img src="/therecipe/resources/images/con2_1.jpg" alt="">
 									<div class="desc">
 										<h3>[집밥의완성] 스팸김치볶음 220g</h3>
 										<p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p>
@@ -37,7 +34,7 @@
 									</div>
 								</li>
 								<li>
-									<img src="images/con2_2.jpg" alt="">
+									<img src="/therecipe/resources/images/con2_2.jpg" alt="">
 									<div class="desc">
 										<h3>[집밥의완성] 스팸김치볶음 220g</h3>
 										<p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p>
@@ -45,7 +42,7 @@
 									</div>
 								</li>
 								<li>
-									<img src="images/con2_3.jpg" alt="">
+									<img src="/therecipe/resources/images/con2_3.jpg" alt="">
 									<div class="desc">
 										<h3>[집밥의완성] 스팸김치볶음 220g</h3>
 										<p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p>
@@ -79,7 +76,7 @@
 			<div class="con_card4 con_card">
 				<ul>
 					<li>
-						<img src="images/con1_1.jpg" alt="">
+						<img src="/therecipe/resources/images/con1_1.jpg" alt="">
 						<div class="desc">
 							<h3>[집밥의완성] 스팸김치볶음 220g</h3>
 							<p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p>
@@ -87,7 +84,7 @@
 						</div>
 					</li>
 					<li>
-						<img src="images/con1_2.jpg" alt="">
+						<img src="/therecipe/resources/images/con1_2.jpg" alt="">
 						<div class="desc">
 							<h3>[집밥의완성] 스팸김치볶음 220g</h3>
 							<p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p>
@@ -95,7 +92,7 @@
 						</div>
 					</li>
 					<li>
-						<img src="images/con1_3.jpg" alt="">
+						<img src="/therecipe/resources/images/con1_3.jpg" alt="">
 						<div class="desc">
 							<h3>[집밥의완성] 스팸김치볶음 220g</h3>
 							<p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p>
@@ -103,7 +100,7 @@
 						</div>
 					</li>
 					<li>
-						<img src="images/con1_4.jpg" alt="">
+						<img src="/therecipe/resources/images/con1_4.jpg" alt="">
 						<div class="desc">
 							<h3>[집밥의완성] 스팸김치볶음 220g</h3>
 							<p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p>
