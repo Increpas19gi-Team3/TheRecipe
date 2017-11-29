@@ -1,12 +1,16 @@
 package com.increpas.therecipe.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -15,6 +19,7 @@ import com.increpas.therecipe.vo.MemberVO;
 
 /**
  * 회원등록 회원탈퇴 회원정보 조회,수정 관련 컨트롤러
+ * 
  * @author 박호진
  *
  */
@@ -28,62 +33,116 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 
-	/*
-	 * @RequestMapping(value="/reg.do") public String
-	 * regMember(@Valid @ModelAttribute("member") MemberVO mVo, Errors errors) {
+	/**
+	 * 회원가입페이지로 이동
 	 * 
-	 * // 개발용 Log String logMsg_01 = "/reg.do"; String logMsg_02 =
-	 * "regMember()"; logger.info("▶▶▶ Log : {}, {}", logMsg_01, logMsg_02);
-	 * 
-	 * if (errors.hasErrors()) { return "regform"; }
-	 * 
-	 * int rownum = memberService.insertMember();
-	 * 
-	 * 
-	 * // model.addAttribute(, memberService.insertMember());
-	 * 
-	 * return "loginTestRS";
-	 * 
-	 * }
+	 * @return 회원가입페이지
 	 */
+	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
+	public String joinForm() {
+
+		return "join";
+	}
+
+	/**
+	 * 회원가입
+	 * 
+	 * @param mVo
+	 *            MemberVO
+	 * @param request
+	 *            HttpServletRequest
+	 * @return 로그인뷰로 이동
+	 */
+	@RequestMapping(value = "/joinReg.do", method = RequestMethod.POST)
+	public String jonReg(@ModelAttribute("memberjoin") MemberVO mVo, HttpServletRequest request) {
+
+		String repw = request.getParameter("m_repw");
+		String m_pw = request.getParameter("m_pw");
+
+		if (!repw.equals(m_pw)) {
+
+			return "join";
+		}
+
+		else {
+			System.err.println(mVo.toString());
+			memberService.insertMember(mVo);
+
+			return "loginView";
+		}
+
+	}
 
 	/**
 	 * 마이페이지로 이동
-	 * @param model model
-	 * @param session 세션사용
+	 * 
+	 * @param model
+	 *            model
+	 * @param session
+	 *            세션사용
 	 * @return 마이페이지로 이동
 	 */
-	@RequestMapping(value = "/mypageInfo.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/mypageInfo.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String mypageInfo(Model model, HttpSession session) {
 
 		String m_userid = (String) session.getAttribute("m_userid");
-		
+
 		MemberVO mVo = memberService.selectMyInfo(m_userid);
-		System.out.println(">>>>  mVo="+mVo.toString());
+		System.out.println(">>>>  mVo=" + mVo.toString());
 		model.addAttribute("mVo", mVo);
-		
 
 		// 성공하면 보여줄 결과창
 		return "myPage";
 	}
 
-	/*
-	 * // 회원탈퇴 뷰
+	/**
+	 * 내정보 수정
 	 * 
-	 * @RequestMapping(value = "/id_Delete.do", method = RequestMethod.GET)
-	 * public String id_DeleteGet() {
-	 * 
-	 * return "id_Delete"; }
-	 * 
-	 * //회원탈퇴
-	 * 
-	 * @RequestMapping(value = "/delete_Id.do", method = RequestMethod.POST)
-	 * public String deleteIdViewGet(@Valid @ModelAttribute("id_delete")
-	 * MemberVO vo, Errors errors, HttpSession session, Model model){ if
-	 * (errors.hasErrors()){ logger.info("회원탈퇴 유효성체크 오류발생"); } String m_userid =
-	 * vo.getM_userid(); vo = loginService.deleteId(m_userid);
-	 * 
-	 * return "forgetDelete"; }
+	 * @param mVo
+	 *            MemberVO
+	 * @param model
+	 *            Model
+	 * @return 내 정보 보기페이지로 이동
 	 */
+	@RequestMapping(value = "/mypageupdate.do", method = RequestMethod.POST)
+	public String mypageupdate(@ModelAttribute("memberup") MemberVO mVo, HttpServletRequest request) {
+		logger.info(mVo.toString());
+
+		String repw = request.getParameter("m_repw");
+		String m_pw = request.getParameter("m_pw");
+
+		if (!repw.equals(m_pw)) {
+
+			return "home";
+		}
+
+		else {
+			memberService.updateMyInfo(mVo);
+
+			return "redirect:mypageInfo.do";
+		}
+
+	}
+
+	// 회원탈퇴
+
+	@RequestMapping(value = "/delete_Id.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String deleteIdViewGet(@Valid MemberVO vo, Errors errors, HttpServletRequest request, HttpSession session) {
+		if (errors.hasErrors()) {
+			logger.info("회원탈퇴 유효성체크 오류발생");
+		}
+		
+		
+		String m_userid = request.getParameter(">>>>>>>>>>>>>>>>"+"vo.M_userid");
+		System.out.println(m_userid);
+		memberService.deleteId(m_userid);
+		
+		session.invalidate();
+
+
+		
+		return "home";
+
+	}
 
 }

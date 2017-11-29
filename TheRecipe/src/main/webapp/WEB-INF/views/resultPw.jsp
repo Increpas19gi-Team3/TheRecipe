@@ -1,19 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="header.jsp" />
 	<div class="container login">
 		<div class="login_wrap">
-			<h3>��й�ȣ ã��</h3>
+			<h3>비밀번호 찾기</h3>
 			<form method="post" action="login.do">
 				<fieldset>
 					<table class="">
 						<tr>
-							<td colspan="2" align="center">${vo.m_userid}���� ��й�ȣ�� ${vo.m_pw} �Դϴ�.</td>
+							<td colspan="2" align="center">${vo.m_userid}님의 비밀번호는 ${vo.m_pw} 입니다.</td>
 						</tr>
 					</table>
 								
-					<input type="submit" value="�α��� ȭ������" class="btn_submit" >
+					<input type="submit" value="로그인 화면으로" class="btn_submit" >
 				
 					
 				</fieldset>

@@ -28,12 +28,12 @@
 	</select>
 
 	<!-- 회원 가입 -->
-<!-- 	<insert id="insertMember" parameterType="Member">
+ 	<insert id="insertMember" parameterType="Member">
 		insert into TR_MEMBER values(
 		#{m_userid}, #{m_pw}, #{m_name},
 		#{m_email}, #{m_post}, #{m_addr},
-		#{m_phone}, #{m_level})
-	</insert> -->
+		#{m_phone}, 1)
+	</insert> 
 
 	<!-- 아이디 찾기(이메일로 찾기) -->
 	<select id="selectId" parameterType="Map" resultMap="MemberResult">
@@ -48,30 +48,30 @@
 	</select>
 
 	<!-- 회원 아이디 중복 체크 -->
-<!-- 	<select id="checkId" parameterType="Map" resultType="MemberResult">
+<!--  	<select id="checkId" parameterType="Map" resultType="MemberResult">
 		select * from TR_MEMBER
 		where m_userid = #{m_userid}
 	</select> -->
 
-	<!-- 내 정보 수정 (수정 하려면 아이디, 이름, 핸드폰번호 필요) -->
-<!-- 	<update id="updateMember" parameterType="Member">
-		update TR_MEMBER set
-		m_pw = #{m_pw} , m_email = #{m_email},
-		m_post = #{m_post}, m_addr = #{m_addr},
-		m_level = #{m_level}
+	<!-- mypage 수정 -->
+	<update id="updateMyInfo" parameterType="Map" >
+		update TR_MEMBER
+		set
+		m_pw = #{m_pw} ,
+		m_email = #{m_email}, m_post = #{m_post},
+		m_addr = #{m_addr}, m_phone = #{m_phone}
 		where m_userid = #{m_userid}
-		And m_name = #{m_name}
-		And m_phone = #{m_phone}
-	</update> -->
+		
+	</update>
 
 	<!-- 회원 탈퇴 -->
-<!--  	<delete id="deleteMember" parameterType="Map">
+ 	<delete id="deleteMember" parameterType="Member">
 		delete from TR_MEMBER
 		where m_userid = #{m_userid}
-	</delete> -->
+	</delete>
 	
 
- <!-- mypage -->
+ <!-- mypage 조회 -->
 	<select id="selectMyInfo" resultMap="MemberResult" parameterType="string">
 		select * from TR_MEMBER
 		 where m_userid = #{m_userid}

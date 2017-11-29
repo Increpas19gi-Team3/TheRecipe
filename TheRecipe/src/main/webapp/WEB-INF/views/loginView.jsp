@@ -24,7 +24,7 @@
 			<div class="bottom_box">
 				<a href="forgetId.do">아이디 찾기</a>
 				<a href="forgetPw.do">비밀번호 찾기</a>
-				<a href="join.html">회원가입</a>
+				<a href="join.do">회원가입</a>
 			</div>
 		</div>
 	</div>

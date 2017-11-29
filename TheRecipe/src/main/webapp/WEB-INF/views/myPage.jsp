@@ -1,79 +1,81 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <jsp:include page="header.jsp" />
 
 <div class="container myPage board">
 		<div class="row">
 			<div class="left_tab">
-				<h2>°í°´¼¾ÅÍ</h2>
+				<h2>ê³ ê°ì„¼í„°</h2>
 				<ul>
-					<li class="active"><a href="myPage.html">³»Á¤º¸°ü¸®</a></li>
-					<li><a href="myorder.html">ÁÖ¹® Á¶È¸</a></li>
-					<li><a href="myWrite.html">³»°¡ ¾´ ±Û</a></li>
+					<li class="active"><a href="myPage.html">ë‚´ì •ë³´ê´€ë¦¬</a></li>
+					<li><a href="myorder.html">ì£¼ë¬¸ ì¡°íšŒ</a></li>
+					<li><a href="myWrite.html">ë‚´ê°€ ì“´ ê¸€</a></li>
 				</ul>
 				<div class="service_info">
-					<h4>¹è¹ÎÂù °í°´¼¾ÅÍ</h4>
+					<h4>ë°°ë¯¼ì°¬ ê³ ê°ì„¼í„°</h4>
 					<h3>1899-2468</h3>
 					<hr>
-					<p>ÆòÀÏ 06:30 ~ 18:00</p>
-					<p>ÁÖ¸» 06:30 ~ 15:00</p>
-					<p>°øÈÞÀÏ ÈÞ¹«</p>
+					<p>í‰ì¼ 06:30 ~ 18:00</p>
+					<p>ì£¼ë§ 06:30 ~ 15:00</p>
+					<p>ê³µíœ´ì¼ íœ´ë¬´</p>
 				</div>
 			</div>
 			<div class="right_contnet">
 				<h3>
-					³»Á¤º¸°ü¸®
+					ë‚´ì •ë³´ê´€ë¦¬
 					<div class="page_locationBox">
-						<a href="home.html">È¨</a>
+						<a href="home.html">í™ˆ</a>
 						<span> > </span>
-						<a href="join.html">¸¶ÀÌÆäÀÌÁö</a>
+						<a href="join.html">ë§ˆì´íŽ˜ì´ì§€</a>
 						<span> > </span>
-						<a href="join.html" class="active">³»Á¤º¸°ü¸®</a>
+						<a href="join.html" class="active">ë‚´ì •ë³´ê´€ë¦¬</a>
 					</div>
 				</h3>
-				<form action="">
+				<form:form action="mypageupdate.do" method="post" commandName="memberup" >
+				
 					<fieldset>
-						<label for="">¾ÆÀÌµð</label>
-						<input type="text" placeholder="¾ÆÀÌµð" value="${mVo.m_userid}" required="" disabled="disabled">
+						<label for="">ì•„ì´ë””</label>
+						<input type="text" placeholder="ì•„ì´ë””" id="m_userid" name="m_userid" value="${mVo.m_userid}" required="" readonly>
 					</fieldset>
 					<fieldset>
-						<label for="">ºñ¹Ð¹øÈ£</label>
-						<input type="password" placeholder="ºñ¹Ð¹øÈ£" required="">
+						<label for="">ë¹„ë°€ë²ˆí˜¸</label>
+						<input type="password" placeholder="ë¹„ë°€ë²ˆí˜¸" id="m_pw" name="m_pw" required="">
 					</fieldset>
 					<fieldset>
-						<label for="">ºñ¹Ð¹øÈ£ È®ÀÎ</label>
-						<input type="password" placeholder="ºñ¹Ð¹øÈ£ È®ÀÎ" required="">
+						<label for="">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</label>
+						<input type="password" placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸" name="m_repw" required="">
 					</fieldset>
 					<fieldset>
-						<label for="">ÀÌ¸ÞÀÏ</label>
-						<input type="email" value="${mVo.m_email}" placeholder="ÀÌ¸ÞÀÏ" required="">
+						<label for="">ì´ë©”ì¼</label>
+						<input type="email" value="${mVo.m_email}" id="m_email" name="m_email" placeholder="ì´ë©”ì¼" required="">
 					</fieldset>
 					<fieldset>
-						<label for="">ÀÌ¸§</label>
-						<input type="text" value="${mVo.m_name}" placeholder="ÀÌ¸§" required="">
+						<label for="">ì´ë¦„</label>
+						<input type="text" value="${mVo.m_name}" id="m_name" name="m_name" placeholder="ì´ë¦„" required="" readonly>
 					</fieldset>
 					<fieldset>
-						<label for="">¿ìÆí¹øÈ£</label>
-						<input type="text" value="${mVo.m_post}"placeholder="¿ìÆí¹øÈ£" required="">
+						<label for="">ìš°íŽ¸ë²ˆí˜¸</label>
+						<input type="text" value="${mVo.m_post}" id="m_post" name="m_post" placeholder="ìš°íŽ¸ë²ˆí˜¸" required="">
 					</fieldset>
 					<fieldset>
-						<label for="">ÁÖ¼Ò</label>
-						<input type="text" value="${mVo.m_addr}" placeholder="ÁÖ¼Ò" required="" class="address_input">
+						<label for="">ì£¼ì†Œ</label>
+						<input type="text" value="${mVo.m_addr}" id="m_addr" name="m_addr" placeholder="ì£¼ì†Œ" required="" class="address_input">
 					</fieldset>
 					<fieldset>
-						<label for="">ÀüÈ­¹øÈ£</label>
-						<input type="text" value="${mVo.m_phone}" placeholder="ÀüÈ­¹øÈ£" required="">
+						<label for="">ì „í™”ë²ˆí˜¸</label>
+						<input type="text" value="${mVo.m_phone}" id="m_phone" name="m_phone"  placeholder="ì „í™”ë²ˆí˜¸" required="">
 					</fieldset>
 					<hr>
 					<fieldset class="btn_submitWrap">
-						<input type="submit" value="ÀúÀå" class="btn_submit">
-						<a href="#" onClick="history.back(); return false;" class="btn_back">Ãë¼Ò</a>
+						<input type="submit" value="ì €ìž¥" class="btn_submit">
+						<a href="#" onClick="history.back(); return false;" class="btn_back">ì·¨ì†Œ</a>
 					</fieldset>
-				</form>
+					
+				</form:form>
 				<div class="bottom_box">
-					<p>Å»Åð¸¦ ¿øÇÏ½Ã¸é È¸¿øÅ»Åð ¹öÆ°À» ´­·¯ÁÖ¼¼¿ä.</p>
-					<a href="">È¸¿øÅ»Åð</a>
+					<p>íƒˆí‡´ë¥¼ ì›í•˜ì‹œë©´ íšŒì›íƒˆí‡´ ë²„íŠ¼ì„ ëˆŒëŸ¬ì£¼ì„¸ìš”.</p>
+					<a href="delete_Id.do">íšŒì›íƒˆí‡´</a>
 				</div>
 			</div>
 		</div>

@@ -1,22 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <jsp:include page="header.jsp" />
 
 <div class="container login">
 		<div class="login_wrap">
-			<h3>¾ÆÀÌµð Ã£±â</h3>
-			<p>¾Æ·¡ Á¤º¸¸¦ ÀÔ·Â ÇØ ÁÖ¼¼¿ä.</p>
+			<h3>ì•„ì´ë”” ì°¾ê¸°</h3>
+			<p>ì•„ëž˜ ì •ë³´ë¥¼ ìž…ë ¥ í•´ ì£¼ì„¸ìš”.</p>
 			<form:form commandName="id_find" method="post" action="fine_Id.do">
 			
 				<fieldset>
-					<label for="">ÀÌ¸ÞÀÏ</label>
-					<input type="email" id="m_email" name="m_email" placeholder="ÀÌ¸ÞÀÏ" required="">
+					<label for="">ì´ë©”ì¼</label>
+					<input type="email" id="m_email" name="m_email" placeholder="ì´ë©”ì¼" required="">
 					<form:errors path="m_email"></form:errors>
 				</fieldset>
 				
 				<fieldset>
-					<input type="submit" value="¾ÆÀÌµð Ã£±â" class="btn_submit">
+					<input type="submit" value="ì•„ì´ë”” ì°¾ê¸°" class="btn_submit">
 				</fieldset>
 			</form:form>
 		</div>
