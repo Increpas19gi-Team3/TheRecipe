@@ -52,7 +52,9 @@
 					<ul>
 						<c:choose>
 							<c:when test="${not empty sessionScope.m_userid}">			
-								<h2>${sessionScope.m_userid}</h2>
+								<li>
+									<a class="nav-link" href="mypageInfo.do">${sessionScope.m_userid} 님</a>
+								</li>
 								<li class="nav-item">
 									<a class="nav-link" href="logout.do">로그아웃</a>
 								</li>
