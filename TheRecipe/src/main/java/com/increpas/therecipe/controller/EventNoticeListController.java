@@ -17,17 +17,24 @@ import com.increpas.therecipe.util.NullToBlank;
  * 검색(제목), 페이징, 정렬(기간) 
  * 1. 단순 리스트 출력 
  * 2. 상세보기로 들어가기 위한 연결 링크
- * 
- * @author 손대성
+ * @author 손대성 * 
+ * @param model
+ * @return 
  *
  */
-
 @Controller
 public class EventNoticeListController {
 
 	@Autowired
 	EventNoticeListService noticeListService;
 
+	/**
+	 * "NoticeList.do"로 요청 받음
+	 * @param model
+	 * @param req 요청
+	 * @param resp 응답
+	 * @return noticeList.jsp : 공지사항 페이지로 이동
+	 */	
 	@RequestMapping(value = "/NoticeList.do")
 	public String getNoticeList(Model model, HttpServletRequest req, HttpServletResponse resp) {
 

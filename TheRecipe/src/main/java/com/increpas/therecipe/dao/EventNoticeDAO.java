@@ -24,9 +24,9 @@ public class EventNoticeDAO {
 
 	/**
 	 * 전체 공지사항 글 갯수 리턴
-	 * 
-	 * @return
-	 */
+	 * @param eventListDTO
+	 * @return sqlSessionTemplate.selectOne("event_ns.selectNoticeCount", eventListDTO);
+	 */	
 	@Transactional
 	public int selectNoticeCount(EventListDTO eventListDTO) {
 		System.err.println("4. ▶▶▶ EventNoticeDAO : selectNoticeCount");
@@ -42,7 +42,7 @@ public class EventNoticeDAO {
 	 * @param sortColumn : 정렬 컬럼
 	 * @param orderby : 정렬방식 ASC, DESC
 	 * @param isBlock : 전체 or 제목 글 검색
-	 * @return - List<BoardDTO>
+	 * @return sqlSessionTemplate.selectList("event_ns.selectEventSetList", eventListDTO);
 	 */
 	@Transactional
 	public List<EventVO> selectNoticeSetList(EventListDTO eventListDTO) {
@@ -51,14 +51,13 @@ public class EventNoticeDAO {
 	}	
 	
 	/**
-	 * 공지사항 or 이벤트 글 전체 검색
 	 * 
-	 * @return
+	 * @return sqlSessionTemplate.selectList("event_ns.SelectList");
 	 */
-	@Transactional
-	public List<EventVO> SelectList() {
-		return sqlSessionTemplate.selectList("event_ns.SelectList");		
-	}	
+//	@Transactional
+//	public List<EventVO> SelectList() {
+//		return sqlSessionTemplate.selectList("event_ns.SelectList");		
+//	}	
 
 	
 
