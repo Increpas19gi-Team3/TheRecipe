@@ -82,7 +82,7 @@
 			<div class="con_card4 con_card">
 				<ul>
 					<li>
-						<a href="">
+						<a href="#">
 							<img src="/therecipe/resources/images/con1_1.jpg" alt="">
 							<div class="desc">
 								<h3>[집밥의완성] 스팸김치볶음 220g</h3>
@@ -92,7 +92,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="">
+						<a href="#">
 							<img src="/therecipe/resources/images/con1_1.jpg" alt="">
 							<div class="desc">
 								<h3>[집밥의완성] 스팸김치볶음 220g</h3>
@@ -102,7 +102,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="">
+						<a href="#">
 							<img src="/therecipe/resources/images/con1_1.jpg" alt="">
 							<div class="desc">
 								<h3>[집밥의완성] 스팸김치볶음 220g</h3>
@@ -112,7 +112,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="">
+						<a href="#">
 							<img src="/therecipe/resources/images/con1_1.jpg" alt="">
 							<div class="desc">
 								<h3>[집밥의완성] 스팸김치볶음 220g</h3>
