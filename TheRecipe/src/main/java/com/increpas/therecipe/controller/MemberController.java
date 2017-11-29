@@ -1,14 +1,12 @@
 package com.increpas.therecipe.controller;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,11 +14,9 @@ import com.increpas.therecipe.service.MemberService;
 import com.increpas.therecipe.vo.MemberVO;
 
 /**
- * 
+ * 회원등록 회원탈퇴 회원정보 조회,수정 관련 컨트롤러
  * @author 박호진
  *
- *         회원가입 회원탈퇴 정보수정
- * 
  */
 
 @Controller
@@ -51,7 +47,12 @@ public class MemberController {
 	 * }
 	 */
 
-	// mypage 정보 전송
+	/**
+	 * 마이페이지로 이동
+	 * @param model model
+	 * @param session 세션사용
+	 * @return 마이페이지로 이동
+	 */
 	@RequestMapping(value = "/mypageInfo.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String mypageInfo(Model model, HttpSession session) {
 
