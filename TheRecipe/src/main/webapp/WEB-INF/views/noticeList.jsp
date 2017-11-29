@@ -140,7 +140,8 @@
 					</c:choose>					
 				</th>				
 				
-				<th>구분</th>				
+				<th>구분</th>	
+							
 				<th>
 					<c:choose>
 						<c:when test="${sortColumn eq 'e_ntdate'}"><!-- 작성일 일때 -->
@@ -233,7 +234,7 @@
 							<option value="ALL" selected="selected">전체검색</option>
 							<option value="TITLE" >제목</option>							
 						</c:when>
-						<c:when test="${whereColumn eq 'e_nttilte'}">
+						<c:when test="${whereColumn eq 'TITLE'}">
 							<option value="ALL">전체검색</option>
 							<option value="TITLE" selected="selected">제목</option>							
 						</c:when>						

@@ -89,7 +89,7 @@ public class EventNoticeListService {
 		eventListDTO.setStartRow(firstRow);
 		eventListDTO.setEndRow(endRow);
 
-		System.out.println("5. before ▶▶▶▶ List<EventVO> boardDTOList = eventNoticeDAO.selectSetList(eventListDTO);");
+		System.err.println("5. before ▶▶▶▶ List<EventVO> boardDTOList = eventNoticeDAO.selectSetList(eventListDTO);");
 		// 'DAO'에게 "DB Select" 요청
 		// 6..
 		List<EventVO> boardDTOList = eventNoticeDAO.selectNoticeSetList(eventListDTO);
