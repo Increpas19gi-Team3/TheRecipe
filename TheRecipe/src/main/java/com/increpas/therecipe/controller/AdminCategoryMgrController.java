@@ -24,6 +24,8 @@ import com.increpas.therecipe.util.NullToBlank;
  * @author 손가연
  * 
  * 
+ * 차후 작업이 필요한 내용
+ * - 2nd : 미사용등록 → 3rd 등록시, 사용으로 등록해도 미사용으로 자동변경 하도록 해야 함. : sql에서  처리
  */
 @Controller
 public class AdminCategoryMgrController {
