@@ -65,6 +65,7 @@ public class EventNoticeListService {
 		}
 
 		// DAO에게 DB의 전체 글 개수조회 요청
+		// 4....
 		int totalBoardVOCount = eventNoticeDAO.selectNoticeCount(eventListDTO);
 
 		if (totalBoardVOCount == 0) { // 글의 개수가 '0'이면			
@@ -78,10 +79,9 @@ public class EventNoticeListService {
 		int firstRow = (requestPageNumber - 1) * pageCutCount + 1;
 		// 예) 1 + 10 - 1 = 10
 		int endRow = firstRow + pageCutCount - 1;
-
+		
 		// 예) 10 > 2
 		if (endRow > totalBoardVOCount) {
-
 			// 예) 전체글번호 = 2
 			endRow = totalBoardVOCount;
 		}
@@ -91,6 +91,7 @@ public class EventNoticeListService {
 
 		System.out.println("5. before ▶▶▶▶ List<EventVO> boardDTOList = eventNoticeDAO.selectSetList(eventListDTO);");
 		// 'DAO'에게 "DB Select" 요청
+		// 6..
 		List<EventVO> boardDTOList = eventNoticeDAO.selectNoticeSetList(eventListDTO);
 
 		// BoardVOListModel 결과 모델을 생성

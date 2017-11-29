@@ -20,17 +20,16 @@
 	</resultMap>
 
 	<!-- 전체 공지사항 글갯수 리턴 -->
-	<select id="selectNoticeSetList" parameterType="com.increpas.therecipe.dto.EventListDTO"
+	<select id="selectNoticeCount" parameterType="com.increpas.therecipe.dto.EventListDTO"
 		resultType="int">
 		SELECT COUNT(*)
 		FROM tr_event
-		<where>			
-
+		<where>
 			<if test="!GUBUN.equals('') and !GUBUN.equals('ALL')"> <!-- //전체글 보기가 아닐때 -->
 				e_gubun = '0'
 			</if>
 
-			<if test="whereColumn.equals('TITLE')">
+			<if test="whereColumn.equals('e_nttilte')">
 				e_gubun = '0' AND e_nttilte LIKE '%' || #{word } || '%'
 			</if>
 		</where>
@@ -41,7 +40,7 @@
 	<!-- <select id="selectNoticeCount" parameterType="com.increpas.therecipe.dto.EventListDTO" 
 		resultType="int"> SELECT COUNT(*) FROM tr_event <where> e_gubun = '1' <if 
 		test="!GUBUN.equals('') and !GUBUN.equals('ALL')"> //전체글 보기가 아닐때 AND e_gubun 
-		= #{e_gubun} </if> <if test="whereColumn.equals('TITLE')"> AND e_nttilte 
+		= #{e_gubun} </if> <if test="whereColumn.equals('e_nttilte')"> AND e_nttilte 
 		LIKE '%' || #{word } || '%' </if> </where> </select> -->
 
 

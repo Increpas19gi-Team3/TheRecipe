@@ -44,7 +44,7 @@ public class EventNoticeDAO {
 	 * @param orderby
 	 *            : 정렬방식 ASC, DESC
 	 * @param isBlock
-	 *            : 전체글 검색, 블록글 검색
+	 *            : 전체 or 제목 글 검색
 	 * @return - List<BoardDTO>
 	 */
 	public List<EventVO> selectNoticeSetList(EventListDTO eventListDTO) {
@@ -59,6 +59,7 @@ public class EventNoticeDAO {
 	 */
 	public int selectNoticeCount(EventListDTO eventListDTO) {
 		System.out.println("4. ▶▶▶ EventNoticeDAO : selectNoticeCount");
+		// 게시된 글 갯수를 리턴하기 때문에 'selectOne'임
 		return sqlSessionTemplate.selectOne("event_ns.selectNoticeSetList", eventListDTO);
 	}
 }

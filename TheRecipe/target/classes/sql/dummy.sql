@@ -43,36 +43,34 @@ INSERT INTO tr_order VALUES(TO_CHAR(SYSTIMESTAMP, 'YYYYMMDDHH24MISSFF3'),'0','ha
 
 /* 이벤트 */
 INSERT INTO tr_event VALUES(tr_event_seq.nextval, '탕수육 세일', '1', sysdate, '탕수육 세일', null, 10, sysdate, '2017/12/4');
-
-/*INSERT INTO tr_event VALUES(1, '짬뽕 세일', '1', sysdate, '뻥이야', null, 20, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(3, '짜장면 세일', '1', sysdate, '뻥이야', null, 30, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(5, '황제 짬뽕 세일', '1', sysdate, '뻥이야', null, 10, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(7, '볶음밥 세일', '1', sysdate, '뻥이야', null, 20, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(9, '깐쇼새우 세일', '1', sysdate, '뻥이야', null, 30, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(11, '유산슬 세일', '1', sysdate, '뻥이야', null, 10, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(13, '팔보채 세일', '1', sysdate, '뻥이야', null, 20, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(15, '양장피 세일', '1', sysdate, '뻥이야', null, 30, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(17, '고추잡채 세일', '1', sysdate, '뻥이야', null, 10, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(19, '팔보채 세일', '1', sysdate, '뻥이야', null, 20, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(21, '쟁반짜장 세일', '1', sysdate, '뻥이야', null, 30, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(23, '볶음짬뽕 세일', '1', sysdate, '뻥이야', null, 10, sysdate, '2017/12/4');*/
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '짬뽕 세일', '1', sysdate, '뻥이야', null, 20, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '짜장면 세일', '1', sysdate, '뻥이야', null, 30, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '황제 짬뽕 세일', '1', sysdate, '뻥이야', null, 10, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '볶음밥 세일', '1', sysdate, '뻥이야', null, 20, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '깐쇼새우 세일', '1', sysdate, '뻥이야', null, 30, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '유산슬 세일', '1', sysdate, '뻥이야', null, 10, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '팔보채 세일', '1', sysdate, '뻥이야', null, 20, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '양장피 세일', '1', sysdate, '뻥이야', null, 30, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '고추잡채 세일', '1', sysdate, '뻥이야', null, 10, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '팔보채 세일', '1', sysdate, '뻥이야', null, 20, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '쟁반짜장 세일', '1', sysdate, '뻥이야', null, 30, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '볶음짬뽕 세일', '1', sysdate, '뻥이야', null, 10, sysdate, '2017/12/4');
 
 
 /* 공지사항 */
 INSERT INTO tr_event VALUES(tr_event_seq.nextval, '11/22 공지사항입니다.', '0', sysdate, '탕수육 세일', null, null, sysdate, '2017/12/4');
-
-/*INSERT INTO tr_event VALUES(2, '11/23 공지사항입니다.', '0', sysdate, '짬뽕 세일', null, null, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(4, '11/24 공지사항입니다.', '0', sysdate, '짜장면 세일', null, null, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(6, '11/25 공지사항입니다.', '0', sysdate, '황제 짬뽕 세일', null, null, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(8, '11/26 공지사항입니다.', '0', sysdate, '볶음밥 세일', null, null, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(10, '11/27 공지사항입니다.', '0', sysdate, '깐쇼새우 세일', null, null, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(12, '11/28 공지사항입니다.', '0', sysdate, '유산슬 세일', null, null, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(14, '11/29 공지사항입니다.', '0', sysdate, '팔보채 세일', null, null, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(16, '11/30 공지사항입니다.', '0', sysdate, '양장피 세일', null, null, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(18, '12/01 공지사항입니다.', '0', sysdate, '고추잡채 세일', null, null, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(20, '12/02 공지사항입니다.', '0', sysdate, '팔보채 세일', null, null, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(22, '12/03 공지사항입니다.', '0', sysdate, '쟁반짜장 세일', null, null, sysdate, '2017/12/4');
-INSERT INTO tr_event VALUES(24, '12/04 공지사항입니다.', '0', sysdate, '볶음짬뽕 세일', null, null, sysdate, '2017/12/4');*/
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '11/23 공지사항입니다.', '0', sysdate, '짬뽕 세일', null, null, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '11/24 공지사항입니다.', '0', sysdate, '짜장면 세일', null, null, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '11/25 공지사항입니다.', '0', sysdate, '황제 짬뽕 세일', null, null, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '11/26 공지사항입니다.', '0', sysdate, '볶음밥 세일', null, null, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '11/27 공지사항입니다.', '0', sysdate, '깐쇼새우 세일', null, null, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '11/28 공지사항입니다.', '0', sysdate, '유산슬 세일', null, null, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '11/29 공지사항입니다.', '0', sysdate, '팔보채 세일', null, null, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '11/30 공지사항입니다.', '0', sysdate, '양장피 세일', null, null, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '12/01 공지사항입니다.', '0', sysdate, '고추잡채 세일', null, null, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '12/02 공지사항입니다.', '0', sysdate, '팔보채 세일', null, null, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '12/03 공지사항입니다.', '0', sysdate, '쟁반짜장 세일', null, null, sysdate, '2017/12/4');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '12/04 공지사항입니다.', '0', sysdate, '볶음짬뽕 세일', null, null, sysdate, '2017/12/4');
 
 
 

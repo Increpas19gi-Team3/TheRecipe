@@ -184,10 +184,7 @@
 			<tr style="border: none;">
 				<td style="text-align: left; border: none;">
 					<input type="button" value="글 쓰기" onclick="location.href='#'" />
-				</td>
-				<td style="text-align: right; border: none;">
-					<input type="button" value="글 쓰기" onclick="location.href='#'" />	
-				</td>
+				</td>				
 			</tr>
 		</table>
 	
@@ -236,7 +233,7 @@
 							<option value="ALL" selected="selected">전체검색</option>
 							<option value="TITLE" >제목</option>							
 						</c:when>
-						<c:when test="${whereColumn eq 'TITLE'}">
+						<c:when test="${whereColumn eq 'e_nttilte'}">
 							<option value="ALL">전체검색</option>
 							<option value="TITLE" selected="selected">제목</option>							
 						</c:when>						
