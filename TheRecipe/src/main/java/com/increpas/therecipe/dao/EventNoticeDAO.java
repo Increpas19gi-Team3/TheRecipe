@@ -35,19 +35,19 @@ public class EventNoticeDAO {
 	}
 	
 	/**
-	 * 조건 검색
+	 * 공지사항에 대한 조건 검색
 	 * 
 	 * @param whereColumn : 검색 컬럼명
 	 * @param word : 검색어
 	 * @param sortColumn : 정렬 컬럼
 	 * @param orderby : 정렬방식 ASC, DESC
 	 * @param isBlock : 전체 or 제목 글 검색
-	 * @return sqlSessionTemplate.selectList("event_ns.selectEventSetList", eventListDTO);
+	 * @return sqlSessionTemplate.selectList("event_ns.selectNoticeSetList", eventListDTO);
 	 */
 	@Transactional
 	public List<EventVO> selectNoticeSetList(EventListDTO eventListDTO) {
 		System.err.println("6. ▶▶▶▶ EventNoticeDAO=" + eventListDTO.toString());
-		return sqlSessionTemplate.selectList("event_ns.selectEventSetList", eventListDTO);
+		return sqlSessionTemplate.selectList("event_ns.selectNoticeSetList", eventListDTO);
 	}	
 	
 	/**
