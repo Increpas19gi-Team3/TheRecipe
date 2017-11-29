@@ -30,7 +30,7 @@ public class AdminCategoryMgrService {
 	
 	/**
 	 * 전체 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오기
-	 * @return
+	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selectAllFoodcodeWithFoodCnt(){
 		return adminCategoryMgrDAO.selectAllFoodcodeWithFoodCnt();
@@ -38,7 +38,7 @@ public class AdminCategoryMgrService {
 	
 	/**
 	 * 1st 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오기
-	 * @return
+	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> select1stFoodcodeWithFoodCnt(){
 		return adminCategoryMgrDAO.select1stFoodcodeWithFoodCnt();
@@ -46,7 +46,7 @@ public class AdminCategoryMgrService {
 	
 	/**
 	 * 2nd 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오기
-	 * @return
+	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selec2ndFoodcodeWithFoodCnt(){
 		return adminCategoryMgrDAO.select2ndFoodcodeWithFoodCnt();
@@ -54,7 +54,7 @@ public class AdminCategoryMgrService {
 	
 	/**
 	 * 3rd 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오기
-	 * @return
+	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selec3rdFoodcodeWithFoodCnt(){
 		return adminCategoryMgrDAO.select3rdFoodcodeWithFoodCnt();
@@ -68,7 +68,7 @@ public class AdminCategoryMgrService {
 	
 	/**
 	 * 전체 음식 코드 가져오기
-	 * @return
+	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selectAllFoodcode(){
 		return adminCategoryMgrDAO.selectAllFoodcode();
@@ -76,7 +76,7 @@ public class AdminCategoryMgrService {
 	
 	/**
 	 * 1st 음식 코드 가져오기
-	 * @return
+	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> select1stFoodcode(){
 		return adminCategoryMgrDAO.select1stFoodcode();
@@ -84,7 +84,7 @@ public class AdminCategoryMgrService {
 	
 	/**
 	 * 2nd 음식 코드 가져오기
-	 * @return
+	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selec2ndFoodcode(){
 		return adminCategoryMgrDAO.select2ndFoodcode();
@@ -92,7 +92,7 @@ public class AdminCategoryMgrService {
 	
 	/**
 	 * 3rd 음식 코드 가져오기
-	 * @return
+	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selec3rdFoodcode(){
 		return adminCategoryMgrDAO.select3rdFoodcode();
@@ -101,12 +101,12 @@ public class AdminCategoryMgrService {
 	
 	/**
 	 * 입력받은 변수들 FoodCode에 맞게 값 설정 하는 메소드
-	 * @param fc_1st
-	 * @param fc_2nd
-	 * @param fc_3rd
-	 * @param fc_ctgname
-	 * @param fc_isblock
-	 * @return
+	 * @param String fc_1st : 대분류코드값
+	 * @param String fc_2nd : 중분류코드값
+	 * @param String fc_3rd : 소분류코드값
+	 * @param String fc_ctgname : 분류 코드 이름
+	 * @param String fc_isblock : 분류 코드 사용 여부(0:정상/블록:1)
+	 * @return : FoodcodeVO
 	 */
 	public FoodcodeVO setFoodcodeVO(String fc_1st, String fc_2nd, String fc_3rd, String fc_ctgname, String fc_isblock){
 		
@@ -130,7 +130,11 @@ public class AdminCategoryMgrService {
 	
 	/**
 	 * 음식코드 등록, dao에 쿼리 요청
-	 * @param newCategory
+	 * @param String fc_1st : 대분류코드값
+	 * @param String fc_2nd : 중분류코드값
+	 * @param String fc_3rd : 소분류코드값
+	 * @param String fc_ctgname : 분류 코드 이름
+	 * @param String fc_isblock : 분류 코드 사용 여부(0:정상/블록:1)
 	 */
 	@Transactional
 	public void insertFoodcode(String fc_1st, String fc_2nd, String fc_3rd, String fc_ctgname, String fc_isblock){
@@ -141,18 +145,16 @@ public class AdminCategoryMgrService {
 	
 	/**
 	 * 음식 코드 수정
-	 * @param newCategory
-	 * @param fc_ctgname
-	 * ★★★★★★ 2nd code 가 블록일때 하부 3rd도 블록으로 변경해야 하는지 회의 필요함.
+	 * @param String fc_1st : 대분류코드값
+	 * @param String fc_2nd : 중분류코드값
+	 * @param String fc_3rd : 소분류코드값
+	 * @param String fc_ctgname : 분류 코드 이름
+	 * @param String fc_isblock : 분류 코드 사용 여부(0:정상/블록:1)
 	 */
 	@Transactional
 	public void updateFoodcode(String fc_1st, String fc_2nd, String fc_3rd, String fc_ctgname, String fc_isblock){
 		
 		adminCategoryMgrDAO.updateFoodcode(setFoodcodeVO(fc_1st, fc_2nd, fc_3rd, fc_ctgname, fc_isblock));
 	}
-	
-	public FoodcodeVO setFoodCodeVO(){
-		return new FoodcodeVO();
-	}
-	
+		
 }

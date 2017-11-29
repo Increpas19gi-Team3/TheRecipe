@@ -17,7 +17,14 @@
 			<div class="detail_top">
 				<div class="detail_imageWrap">
 					<div class="image_top">
-						<img src="/images/${imgname[0]}" class="top_detail_image">
+						<c:choose>
+							<c:when test="${not empty imgname[0]}">
+								<img src="/images/${imgname[0]}" class="top_detail_image">
+							</c:when>
+							<c:otherwise>
+								<img src="/therecipe/resources/images/noimg.JPG" >
+							</c:otherwise>
+						</c:choose>
 						<i class="brd_box"></i>
 					</div>
 					<div class="image_thumb">

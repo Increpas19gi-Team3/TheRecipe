@@ -13,7 +13,7 @@ import com.increpas.therecipe.service.AdminCategoryMgrService;
  * 관리자) 지역음식, TV 레시피 음식 등록 관리 컨트롤러
  * @author 손가연
  * 
- * Ajax 테스트용 파일
+ * 
  */
 @Controller
 public class AdminFoodMgrController {

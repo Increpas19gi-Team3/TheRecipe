@@ -32,6 +32,15 @@
 		<result property="r_admincmt" column="r_admincmt" />
 		<result property="r_admindate" column="r_admindate" />
 	</resultMap>
+	
+	
+	<resultMap id="Foodcode" type="Foodcode">
+		<result property="fc_1st" column="fc_1st" />
+		<result property="fc_2nd" column="fc_2nd" />
+		<result property="fc_3rd" column="fc_3rd" />
+		<result property="fc_ctgname" column="fc_ctgname" />
+		<result property="fc_isblock" column="fc_isblock" />
+	</resultMap>
 
 	<!-- 지역 음식 리스트 -->
 	<select id="selectLocalList" resultMap="LocalfoodResult">
@@ -93,5 +102,34 @@
 	<insert id="insertBasket" parameterType="map">
 		insert into tr_basket values(#{userID}, #{fdcode}, #{buyPrice}, #{amount})
 	</insert>
+	
+	<!-- 분류코드 가져오기 -->
+	<select id="searchFoodCode" parameterType="map" resultMap="Foodcode">
+		select * from tr_foodcode where
+			<choose>
+				<when test="fstcode != null">
+					FC_1ST=#{fstcode}
+				</when>
+				<otherwise>
+					FC_1ST!='0'
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="sndcode != null">
+					and FC_2ND=#{sndcode}
+				</when>
+				<otherwise>
+					and FC_2ND!='0'
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="trdcode != null">
+					and FC_3RD!='0'
+				</when>
+				<otherwise>
+					and FC_3RD='0'
+				</otherwise>
+			</choose>
+	</select>
 	
 </mapper>

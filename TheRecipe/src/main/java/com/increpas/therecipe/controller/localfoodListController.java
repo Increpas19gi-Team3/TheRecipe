@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.increpas.therecipe.service.LocalService;
 import com.increpas.therecipe.vo.FoodVO;
+import com.increpas.therecipe.vo.FoodcodeVO;
 import com.increpas.therecipe.vo.ReviewVO;
 
 
@@ -32,8 +33,12 @@ public class localfoodListController {
 		
 		@Autowired
 		LocalService localService;
-		
-		
+
+		/**
+		 * 이미지명 데이터의 "_" 제거
+		 * @param allImgname : foodvo.getF_imgname() - 저장된 이미지명  
+		 * @return 구분자를 split한 배열
+		 */
 		public String[] splitImgname(String allImgname){
 			//String[] imgname = allImgname.split("\\|");
 			String[] imgname = null;
@@ -43,7 +48,12 @@ public class localfoodListController {
 			}
 			return imgname;
 		}
-		
+
+		/**
+		 * DB에 저장된 이미지명 set
+		 * @param foodvo : FoodVO
+		 * @return FoodVO
+		 */
 		public List<FoodVO> arrySplitImgname(List<FoodVO> foodvo){
 			
 			for(int i=0; i<foodvo.size(); i++){
@@ -55,19 +65,32 @@ public class localfoodListController {
 			
 			return foodvo;
 		}
-		
-		//전체 리스트 출력
+
+		/**
+		 * 전체 리스트 출력
+		 * @param fvo : 뷰에서 받은 FoodVO
+		 * @param model : Model
+		 * @return 뷰파일명
+		 */
 		@RequestMapping(value = "/localFoodList.do", method = RequestMethod.GET)
 		public String allLocalFoodList(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model){
 			List<FoodVO> foodvo =  localService.selectAllList();
 			foodvo = arrySplitImgname(foodvo);
 			
+			List<FoodcodeVO> foodcdvo = localService.searchFoodCode("1","0","0");
 			model.addAttribute("foodList", foodvo);
+			model.addAttribute("foodcode",foodcdvo);
 			
 			return "localfoodListView";
 		}
 		
-		//종류별 리스트 출력
+		/**
+		 * 종류별 리스트 출력
+		 * @param fvo : 뷰에서 받은 FoodVO 
+		 * @param model : Model
+		 * @param request : HttpServletRequest
+		 * @return 뷰파일명
+		 */
 		@RequestMapping(value = "/localKindList.do", method = RequestMethod.GET)
 		public String kindFoodList(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
 			int kind = 1;
@@ -76,12 +99,21 @@ public class localfoodListController {
 			List<FoodVO> foodvo =  localService.selectKindList(kind, local);
 			foodvo = arrySplitImgname(foodvo);
 			
+			List<FoodcodeVO> foodcdvo = localService.searchFoodCode("1",request.getParameter("local"),"1");
+			
 			model.addAttribute("foodList", foodvo);
+			model.addAttribute("foodcode",foodcdvo);
 			
 			return "localfoodListView";
 		}
 		
-		// 검색어(음식명)로 리스트 출력
+		/**
+		 * 검색어(음식명)로 리스트 출력
+		 * @param fvo : 뷰에서 받은 FoodVO 
+		 * @param model : Model
+		 * @param request : HttpServletRequest
+		 * @return 뷰파일명
+		 */
 		@RequestMapping(value = "/localTitleList.do", method = RequestMethod.POST)
 		public String FoodTitleList(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
 			int kind = 1;
@@ -94,7 +126,14 @@ public class localfoodListController {
 			
 			return "localfoodListView";
 		}
-		
+
+		/**
+		 * 음식 상세페이지
+		 * @param fvo : 뷰에서 받은 FoodVO 
+		 * @param model : Model
+		 * @param request : HttpServletRequest
+		 * @return 뷰파일명
+		 */
 		@RequestMapping(value = "/foodDetailView.do", method = RequestMethod.GET)
 		public String FoodDeatilList(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
 			int kind = 1;
@@ -110,7 +149,14 @@ public class localfoodListController {
 			
 			return "foodDetailView";
 		}
-		
+			
+		/**
+		 * 장바구니 상품 등록
+		 * @param fvo : 뷰에서 받은 FoodVO 
+		 * @param model : Model
+		 * @param request : HttpServletRequest
+		 * @return 뷰파일명
+		 */
 		@RequestMapping(value = "/shoppingBasket.do", method = RequestMethod.POST)
 		public String ShoppingBasket(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
 			int kind = 1;

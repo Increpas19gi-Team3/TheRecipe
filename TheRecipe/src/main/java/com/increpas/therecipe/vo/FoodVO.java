@@ -17,7 +17,7 @@ public class FoodVO {
 	private String f_explan;	/* 상세설명		VARCHAR2(1000) */
 	private String f_imgname;	/* 이미지명		VARCHAR2(2000) */
 	private String f_thumname;	/* 썸네일명		VARCHAR2(2000) */
-	private String f_isblock;	/* 블록 여부:0정상/블록:2  NOT NULL CHAR(1) */
+	private String f_isblock;	/* 블록 여부:0정상/블록:1  NOT NULL CHAR(1) */
 	
 	
 	public String getF_fdcode() {

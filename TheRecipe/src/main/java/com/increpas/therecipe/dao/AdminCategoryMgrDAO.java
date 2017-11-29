@@ -32,7 +32,7 @@ public class AdminCategoryMgrDAO {
 	
 	/**
 	 * 전체 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오기
-	 * @return
+	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selectAllFoodcodeWithFoodCnt(){
 		return sqlSessionTemplate.selectList("foodcode_ns.selectAllFoodcodeWithFoodCnt"); 
@@ -40,7 +40,7 @@ public class AdminCategoryMgrDAO {
 	
 	/**
 	 * 1st 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오기
-	 * @return
+	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> select1stFoodcodeWithFoodCnt(){
 		return sqlSessionTemplate.selectList("foodcode_ns.select1stFoodcodeWithFoodCnt"); 
@@ -48,7 +48,7 @@ public class AdminCategoryMgrDAO {
 	
 	/**
 	 * 2nd 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오기
-	 * @return
+	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> select2ndFoodcodeWithFoodCnt(){
 		return sqlSessionTemplate.selectList("foodcode_ns.select2ndFoodcodeWithFoodCnt"); 
@@ -56,7 +56,7 @@ public class AdminCategoryMgrDAO {
 	
 	/**
 	 * 3rd 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오기
-	 * @return
+	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> select3rdFoodcodeWithFoodCnt(){
 		return sqlSessionTemplate.selectList("foodcode_ns.select3rdFoodcodeWithFoodCnt"); 
@@ -66,7 +66,7 @@ public class AdminCategoryMgrDAO {
 	
 	/**
 	 * 전체 음식 코드 가져오기
-	 * @return
+	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selectAllFoodcode(){
 		return sqlSessionTemplate.selectList("foodcode_ns.selectAllFoodcode"); 
@@ -74,7 +74,7 @@ public class AdminCategoryMgrDAO {
 	
 	/**
 	 * 1st 음식 코드 가져오기
-	 * @return
+	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> select1stFoodcode(){
 		return sqlSessionTemplate.selectList("foodcode_ns.select1stFoodcode"); 
@@ -82,7 +82,7 @@ public class AdminCategoryMgrDAO {
 	
 	/**
 	 * 2nd 음식 코드 가져오기
-	 * @return
+	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> select2ndFoodcode(){
 		return sqlSessionTemplate.selectList("foodcode_ns.select2ndFoodcode"); 
@@ -90,7 +90,7 @@ public class AdminCategoryMgrDAO {
 	
 	/**
 	 * 3rd 음식 코드 가져오기
-	 * @return
+	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> select3rdFoodcode(){
 		return sqlSessionTemplate.selectList("foodcode_ns.select3rdFoodcode"); 
@@ -100,8 +100,8 @@ public class AdminCategoryMgrDAO {
 	
 	/**
 	 * 2nd Foodcode의 최고값 리턴
-	 * @param Foodcode1st
-	 * @return
+	 * @param : String foodcode1st 대분류코드값
+	 * @return : int
 	 */
 	public int getMax2ndFoodcode(String foodcode1st){
 		return sqlSessionTemplate.selectOne("foodcode_ns.select2ndMax", foodcode1st);
@@ -110,8 +110,8 @@ public class AdminCategoryMgrDAO {
 	
 	/**
 	 * 3rd Foodcode의 최고값 리턴
-	 * @param Foodcode2st
-	 * @return
+	 * @param : String foodcode1st 대분류코드값, String foodcode2st 중분류코드값
+	 * @return : int
 	 */
 	public int getMax3rdFoodcode(String foodcode1st, String foodcode2st){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -124,7 +124,7 @@ public class AdminCategoryMgrDAO {
 	
 	/**
 	 * 음식 코드 등록
-	 * @param fcVO
+	 * @param : FoodcodeVO
 	 */
 	public void insertFoodcode(FoodcodeVO fcVO){
 		
@@ -144,7 +144,7 @@ public class AdminCategoryMgrDAO {
 	
 	/**
 	 * 음식 코드 이름 수정
-	 * @param fcVO
+	 * @param : FoodcodeVO
 	 */
 	public void updateFoodcode(FoodcodeVO fcVO){
 		
@@ -152,9 +152,15 @@ public class AdminCategoryMgrDAO {
 		String logMsg_01 = "AdminCategoryMgrDAO";
 		String logMsg_02 = "updateFoodcode()";
 		logger.info("▶▶▶▶▶ DAO Log : {}, {}", logMsg_01, logMsg_02 +" " +fcVO.toString());
-				
 		
-		sqlSessionTemplate.update("foodcode_ns.modifyFc_ctgnameFoodcode", fcVO);
+		
+		if(fcVO.getFc_3rd() == 0){//2nd 등록
+			sqlSessionTemplate.update("foodcode_ns.modify2ndFoodcode", fcVO);
+			sqlSessionTemplate.update("foodcode_ns.modify2ndTo3rdFoodcode", fcVO); //isblock 변경시 소속된 3rd 전부 isblock 값을 수정함
+			
+		}else{//3rd 등록
+			sqlSessionTemplate.update("foodcode_ns.modify3rdFoodcode", fcVO);
+		}
 	}
 	
 	

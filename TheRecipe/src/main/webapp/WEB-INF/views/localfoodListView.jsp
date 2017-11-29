@@ -24,21 +24,25 @@
 			</div>
 			<div class="con_tabBox">
 				<a href="" class="active">전체보기</a>
-				<a href="">찌개</a>
-				<a href="">고기</a>
-				<a href="">해물</a>
-				<a href="">김치</a>
-				<a href="">반찬</a>
+				<c:forEach var="foodcd" items="${foodcode}">
+					<a href="">${foodcd.fc_ctgname}</a>
+				</c:forEach>
 			</div>
 			<div class="con_card4 con_card_list con_card">
 			<ul>
 				<c:forEach var="food" items="${foodList }">
 					<li>
 						<a href="foodDetailView.do?fcode=${food.f_fdcode }">
-							<img src="/images/${food.f_imgname}" >
+							<c:choose>
+								<c:when test="${not empty food.f_imgname}">
+									<img src="/images/${food.f_imgname}" >
+								</c:when>
+								<c:otherwise>
+									<img src="/therecipe/resources/images/noimg.JPG" >
+								</c:otherwise>
+							</c:choose>
 							<div class="desc">
 								<h3>${food.f_foodname }</h3>
-								<!-- <p>맛이 없을 수 없는 조합! 국민반찬 스팸과 매콤한 김치볶음!</p> -->
 								<c:choose>
 									<c:when test="${not empty food.e_evtcode}">	
 										<span><b>${food.f_price }</b>${food.f_price }<small>원</small></span>

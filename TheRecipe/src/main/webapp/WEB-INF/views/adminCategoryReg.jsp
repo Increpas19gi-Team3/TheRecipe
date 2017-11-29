@@ -173,7 +173,7 @@
 		        unique: false,
 		        animate: true,
 		        duration: 100 ,
-		        aTagClick : true ,
+		        aTagClick : true , 
 		        btnAllExpand : '.expend',
 		        btnAllColspand : '.colspend',
 		        btnFirst : '.btnFirst',

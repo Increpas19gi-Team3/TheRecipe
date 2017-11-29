@@ -27,12 +27,12 @@ public class EventNoticeListService {
 	/**
 	 * 조건 별로 게시글 목록 가져오기
 	 * 
-	 * @param whereColumn
-	 * @param word
-	 * @param sortColumn
-	 * @param orderby
-	 * @param GUBUN
-	 * @return
+	 * @param whereColumn ; 검색 컬럼명
+	 * @param word ; 검색할 단어
+	 * @param sortColumn ; 정렬 컬럼
+	 * @param orderby ; 정렬방식 ASC, DESC
+	 * @param GUBUN ; 공지사항:0, 이벤트:1 
+	 * @return eventNoticeDAO.selectNoticeSetList(eventListDTO)
 	 */
 	public List<EventVO> getSetList(String whereColumn, String word, String sortColumn, String orderby,
 			String GUBUN) {
@@ -48,6 +48,18 @@ public class EventNoticeListService {
 		return eventNoticeDAO.selectNoticeSetList(eventListDTO);
 	}
 	
+	
+	/**
+	 * 
+	 * @param pageCutCount ; 게시글 보기 수
+	 * @param requestPageNumber ; 요청 페이지 번호
+	 * @param whereColumn ; 검색 컬럼명
+	 * @param word ; 검색어
+	 * @param sortColumn ; 정렬 컬럼
+	 * @param orderby ; 정렬방식 ASC, DESC
+	 * @param GUBUN ;  공지사항:0, 이벤트:1
+	 * @return
+	 */
 	public EventListDTO getBoardVOList(int pageCutCount, int requestPageNumber, String whereColumn, String word,
 			String sortColumn, String orderby, String GUBUN) {
 
@@ -89,7 +101,7 @@ public class EventNoticeListService {
 		eventListDTO.setStartRow(firstRow);
 		eventListDTO.setEndRow(endRow);
 
-		System.out.println("5. before ▶▶▶▶ List<EventVO> boardDTOList = eventNoticeDAO.selectSetList(eventListDTO);");
+		System.err.println("5. before ▶▶▶▶ List<EventVO> boardDTOList = eventNoticeDAO.selectSetList(eventListDTO);");
 		// 'DAO'에게 "DB Select" 요청
 		// 6..
 		List<EventVO> boardDTOList = eventNoticeDAO.selectNoticeSetList(eventListDTO);
@@ -103,6 +115,12 @@ public class EventNoticeListService {
 		return boardVOListView;
 	}	
 
+	/**
+	 * 전체 페이지 갯수 계산
+	 * @param pageCutCount;
+	 * @param totalBoardVOCount;
+	 * @return pageCount;
+	 */
 	private int calculateTotalPageCount(int pageCutCount, int totalBoardVOCount) {
 		if (totalBoardVOCount == 0) {
 			return 0;
@@ -115,7 +133,6 @@ public class EventNoticeListService {
 		if (totalBoardVOCount % pageCutCount > 0) {
 			pageCount++;
 		}
-
 		return pageCount;
 	}
 }
