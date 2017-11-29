@@ -22,9 +22,9 @@
 				</fieldset>
 			</form>
 			<div class="bottom_box">
-				<a href="forgetId.html">아이디 찾기</a>
-				<a href="forgetPassword.html">비밀번호 찾기</a>
-				<a href="join.html">회원가입</a>
+				<a href="http://localhost:8282/therecipe/test_171129/forgetId.jsp">아이디 찾기</a>
+				<a href="http://localhost:8282/therecipe/test_171129/forgetPassword.jsp">비밀번호 찾기</a>
+				<a href="http://localhost:8282/therecipe/test_171129/join.jsp">회원가입</a>
 			</div>
 		</div>
 	</div>

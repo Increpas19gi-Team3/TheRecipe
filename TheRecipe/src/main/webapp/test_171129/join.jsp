@@ -10,7 +10,7 @@
 			<h3>
 				회원가입
 				<div class="page_locationBox">
-					<a href="home.html">홈</a>
+					<a href="http://localhost:8282/therecipe/test_171129/home.jsp">홈</a>
 					<span> > </span>
 					<a href="join.html" class="active">회원가입</a>
 				</div>

@@ -8,7 +8,7 @@
 	<div class="container home">
 		<div class="con_inner">
 			<div class="page_locationBox2">
-				<a href="home.html">홈</a>
+				<a href="http://localhost:8282/therecipe/test_171129/home.jsp">홈</a>
 				<span> &gt; </span>
 				<a href="#">분류</a>
 				<span> &gt; </span>

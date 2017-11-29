@@ -28,7 +28,7 @@
 				<h3>
 					글수정하기
 					<div class="page_locationBox">
-						<a href="home.html">홈</a>
+						<a href="http://localhost:8282/therecipe/test_171129/home.jsp">홈</a>
 						<span> > </span>
 						<a href="#">커뮤니티</a>
 						<span> > </span>

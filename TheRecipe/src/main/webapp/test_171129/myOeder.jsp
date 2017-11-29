@@ -10,9 +10,9 @@
 			<div class="left_tab">
 				<h2>고객센터</h2>
 				<ul>
-					<li><a href="myPage.html">내정보관리</a></li>
-					<li class="active"><a href="myorder.html">주문 조회</a></li>
-					<li><a href="myWrite.html">내가 쓴 글</a></li>
+					<li><a href="http://localhost:8282/therecipe/test_171129/myPage.jsp">내정보관리</a></li>
+					<li class="active"><a href="http://localhost:8282/therecipe/test_171129/myOrder.jsp">주문 조회</a></li>
+					<li><a href="http://localhost:8282/therecipe/test_171129/myWrite.jsp">내가 쓴 글</a></li>
 				</ul>
 				<div class="service_info">
 					<h4>배민찬 고객센터</h4>
@@ -27,11 +27,11 @@
 				<h3>
 					주문조회
 					<div class="page_locationBox">
-						<a href="home.html">홈</a>
+						<a href="http://localhost:8282/therecipe/test_171129/home.jsp">홈</a>
 						<span> > </span>
-						<a href="join.html">마이페이지</a>
+						<a href="http://localhost:8282/therecipe/test_171129/myPage.jsp">마이페이지</a>
 						<span> > </span>
-						<a href="join.html" class="active">주문조회</a>
+						<a href="http://localhost:8282/therecipe/test_171129/myOrder.jsp" class="active">주문조회</a>
 					</div>
 				</h3>
 				<table>
