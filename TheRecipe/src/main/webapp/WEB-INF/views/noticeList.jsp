@@ -168,7 +168,7 @@
 					<td>${list.e_nttilte }</td>					
 					<td>${list.e_gubun }</td>					
 					<td>
-						<fmt:formatDate value="${list.e_gubun }" pattern="yyyy-MM-dd HH:mm:ss" />
+						<fmt:formatDate value="${list.e_ntdate }" pattern="yyyy-MM-dd HH:mm:ss" />
 					</td>
 					<td>${list.e_ntcontens }</td>
 					<td>${list.e_ntimgname }</td>
@@ -197,7 +197,7 @@
 		<!-- 페이징 처리 -->		
 		<c:if test="${beginPage > 10 }">
 			<div style="display: inline; color: black;" >
-				<a href='<c:url value="list.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&isBlock=${isBlock }&pageCutCount=${pageCutCount }&pn=${beginPage-1}"/>'>◀ 이전 </a>&nbsp;
+				<a href='<c:url value="NoticeList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${beginPage-1}"/>'>◀ 이전 </a>&nbsp;
 			</div>
 		</c:if> 
 		
@@ -209,7 +209,7 @@
 				</c:when>
 				<c:otherwise>
 					<div style="display: inline; color: black;" >
-						<a href='<c:url value="list.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&isBlock=${isBlock }&pageCutCount=${pageCutCount }&pn=${pno}" />'>${pno}</a>&nbsp;
+						<a href='<c:url value="NoticeList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${pno}" />'>${pno}</a>&nbsp;
 					</div>	
 				</c:otherwise>
 			</c:choose>
@@ -217,7 +217,7 @@
 		 
 		<c:if test="${endPage < listModel.totalPageCount}">
 			<div style="display: inline; color: black;" >
-				&nbsp; <a href='<c:url value="list.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&isBlock=${isBlock }&pageCutCount=${pageCutCount }&pn=${endPage + 1}"/>'> 다음 ▶ </a>
+				&nbsp; <a href='<c:url value="NoticeList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${endPage + 1}"/>'> 다음 ▶ </a>
 			</div>
 		</c:if>
 		
@@ -231,11 +231,11 @@
 					
 					<c:choose>
 						<c:when test="${whereColumn eq 'ALL'}">
-							<option value="ALL" selected="selected">전체검색</option>
+							<option value="ALL" selected="selected">제목:내용</option>
 							<option value="TITLE" >제목</option>							
 						</c:when>
 						<c:when test="${whereColumn eq 'TITLE'}">
-							<option value="ALL">전체검색</option>
+							<option value="ALL">제목:내용</option>
 							<option value="TITLE" selected="selected">제목</option>							
 						</c:when>						
 					</c:choose>

@@ -19,42 +19,25 @@
 		<result property="e_enddate" column="e_enddate" /><!-- 종료날짜 -->
 	</resultMap>
 
-	<!-- 전체 공지사항 글갯수 리턴 -->
+	<!-- 전체 공지사항 글 갯수 리턴 -->
 	<select id="selectNoticeCount" parameterType="com.increpas.therecipe.dto.EventListDTO"
 		resultType="int">
 		SELECT COUNT(*)
 		FROM tr_event
 		<where>
-			<if test="!GUBUN.equals('') and !GUBUN.equals('ALL')"> <!-- //전체글 보기가 아닐때 -->
-				e_gubun = '0'
-			</if>
+			e_gubun = '0'
 
-			<if test="whereColumn.equals('e_nttilte')">
-				e_gubun = '0' AND e_nttilte LIKE '%' || #{word } || '%'
+			<if test="whereColumn.equals('ALL')">
+				and (E_NTTILTE LIKE '%' || #{word } || '%' or E_NTCONTENS LIKE '%' || #{word } || '%')
+			</if>
+			
+			<if test="whereColumn.equals('TITLE')">
+				AND e_nttilte LIKE '%' || #{word } || '%'
 			</if>
 		</where>
 	</select>
 
-
-	<!-- 전체 이벤트 글갯수 리턴 -->
-	<!-- <select id="selectNoticeCount" parameterType="com.increpas.therecipe.dto.EventListDTO" 
-		resultType="int"> SELECT COUNT(*) FROM tr_event <where> e_gubun = '1' <if 
-		test="!GUBUN.equals('') and !GUBUN.equals('ALL')"> //전체글 보기가 아닐때 AND e_gubun 
-		= #{e_gubun} </if> <if test="whereColumn.equals('e_nttilte')"> AND e_nttilte 
-		LIKE '%' || #{word } || '%' </if> </where> </select> -->
-
-
-
-
-	<!-- 공지사항 or 이벤트 리스트만 불러옴 -->
-	<!-- <select id="SelectList" resultMap="eventResult"> SELECT * FROM tr_event 
-		<where> <if test="GUBUN.equals('')"> ORDER BY e_ntdate DESC, e_evtcode DESC 
-		</if> 공지사항 <if test="GUBUN.equals('0')"> e_gubun = '0' and ORDER BY e_ntdate 
-		DESC, e_evtcode DESC </if> 이벤트 <if test="GUBUN.equals('1')"> e_gubun = '1' 
-		and ORDER BY e_ntdate DESC, e_evtcode DESC </if> </where> </select> -->
-	<!-- ================================================================================== -->
-
-	<!-- 공지사항 리스트와 리스트 갯 수를 던져줌 --> 
+	<!-- 공지사항 리스트와 리스트 갯 수를 던져줌 -->
 	<select id="selectNoticeSetList" parameterType="com.increpas.therecipe.dto.EventListDTO"
 		resultMap="eventResult">
 
@@ -73,9 +56,9 @@
 
 		<!-- WHERE -->
 		<where>
-			e_gubun = '0';
+			e_gubun = '0'
 
-			<!-- 이벤트에 대한 제목만 검색 -->
+			<!-- 공지사항에 대한 제목만 검색 -->
 			<if test="whereColumn.equals('e_nttilte')">
 				AND e_nttilte LIKE '%' || #{word} || '%'
 			</if>
@@ -101,4 +84,15 @@
 			rn between #{startRow} and #{endRow}
 		</where>
 	</select>
+
+
+	<!-- 공지사항 or 이벤트 리스트만 불러옴 -->
+	<!-- <select id="SelectList" resultMap="eventResult"> SELECT * FROM tr_event 
+		<where> <if test="GUBUN.equals('')"> ORDER BY e_ntdate DESC, e_evtcode DESC 
+		</if> 공지사항 <if test="GUBUN.equals('0')"> e_gubun = '0' and ORDER BY e_ntdate 
+		DESC, e_evtcode DESC </if> 이벤트 <if test="GUBUN.equals('1')"> e_gubun = '1' 
+		and ORDER BY e_ntdate DESC, e_evtcode DESC </if> </where> </select> -->
+	<!-- ================================================================================== -->
+
+
 </mapper>
