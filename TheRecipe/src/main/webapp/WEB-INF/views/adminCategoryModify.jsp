@@ -215,8 +215,6 @@
 	</div>
 	
 	
-	<input type="button" value="test" onclick="check();">
-	
 	<p/><p/>
 	<h3>수정 카테고리</h3>
 	<!-- modifyCategory.do -->

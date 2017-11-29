@@ -1,7 +1,7 @@
 package com.increpas.therecipe.util;
 
 /**
- * Null 값 처리하는 클래스
+ * Blank 값 처리하는 클래스
  * @author 손가연
  * 
  */

@@ -17,9 +17,7 @@ import com.increpas.therecipe.util.NullToBlank;
  * 검색(제목), 페이징, 정렬(기간) 
  * 1. 단순 리스트 출력 
  * 2. 상세보기로 들어가기 위한 연결 링크
- * @author 손대성 * 
- * @param model
- * @return 
+ * @author 손대성
  *
  */
 @Controller

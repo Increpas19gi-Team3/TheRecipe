@@ -13,7 +13,7 @@ import com.increpas.therecipe.service.AdminCategoryMgrService;
  * 관리자) 이벤트 등록 관리 컨트롤러
  * @author 손가연
  * 
- * Ajax 테스트용 파일
+ * 
  */
 @Controller
 public class AdminEventMgrController {
@@ -26,6 +26,11 @@ public class AdminEventMgrController {
 	AdminCategoryMgrService adminCategoryMgrService;
 	
 	
+	/**
+	 * 
+	 * @param model : Model
+	 * @return : String jsp파일명
+	 */
 	@RequestMapping(value="/adminEventMgr.do")
 	public String testingAjax(Model model){
 		

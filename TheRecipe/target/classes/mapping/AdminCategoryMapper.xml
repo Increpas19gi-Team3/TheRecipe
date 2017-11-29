@@ -165,8 +165,22 @@
 	</insert>
 
 
-	<!-- 수정: 코드 이름  -->
-	<update id="modifyFc_ctgnameFoodcode" parameterType="Foodcode">
+	<!-- 수정: 중분류 / 하부에 소속된 3rd 까지 전부 변경 / , FC_ISBLOCK = ${fc_isblock}  -->
+	<update id="modify2ndFoodcode" parameterType="Foodcode">
+		UPDATE TR_FOODCODE 
+		SET FC_CTGNAME = #{fc_ctgname}
+		WHERE FC_1ST = #{fc_1st} AND FC_2ND = #{fc_2nd} AND FC_3RD = #{fc_3rd}
+	</update>
+	
+	<!-- 수정: 중분류 isblock 변경 시 → 하부에 소속된 3rd의 isblock 까지 전부 변경  -->
+	<update id="modify2ndTo3rdFoodcode" parameterType="Foodcode">
+		UPDATE TR_FOODCODE 
+		SET FC_ISBLOCK = ${fc_isblock}
+		WHERE FC_1ST = #{fc_1st} AND FC_2ND = #{fc_2nd}
+	</update>
+
+	<!-- 수정: 소분류 / modifyFc_ctgnameFoodcode  -->
+	<update id="modify3rdFoodcode" parameterType="Foodcode">
 		UPDATE TR_FOODCODE 
 		SET FC_CTGNAME = #{fc_ctgname}, FC_ISBLOCK = ${fc_isblock}
 		WHERE FC_1ST = #{fc_1st} AND FC_2ND = #{fc_2nd} AND FC_3RD = #{fc_3rd}

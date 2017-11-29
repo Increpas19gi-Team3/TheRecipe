@@ -38,8 +38,8 @@ public class AdminCategoryMgrController {
 	
 	/**
 	 * 음식 코드(tr_foodcode) 가져오는 메소드
-	 * @param model
-	 * @return
+	 * @param model : Model
+	 * @return : Model
 	 */
 	public Model getFoodcodeOnlyAll(Model model){
 		// 개발용 Log
@@ -58,8 +58,8 @@ public class AdminCategoryMgrController {
 	
 	/**
 	 * 음식 코드(tr_foodcode + subQuery : tr_food count() ) 가져오는 메소드
-	 * @param model
-	 * @return
+	 * @param model : Model
+	 * @return : Model
 	 */
 	public Model getFoodcodeWithFoodCntAll(Model model){
 		// 개발용 Log
@@ -76,10 +76,12 @@ public class AdminCategoryMgrController {
 	}
 	
 	
+	
 	/**
 	 * 음식 코드 등록 form
-	 * @return
-	 * adminCategoryMgr
+	 * @param model : Model
+	 * @param request : HttpServletRequest
+	 * @return : String jsp파일명
 	 */
 	@RequestMapping(value="regCategory.do", method = RequestMethod.GET)
 	public String regCategory_Form(Model model, HttpServletRequest request){
@@ -95,9 +97,12 @@ public class AdminCategoryMgrController {
 	}
 	
 	
+	
 	/**
 	 * 음식 코드 등록 proc
-	 * @return
+	 * @param model : Model
+	 * @param request : HttpServletRequest
+	 * @return : String jsp파일명
 	 */
 	@RequestMapping(value="regCategory.do", method = RequestMethod.POST)
 	public String regCategory_Do(Model model, HttpServletRequest request){
@@ -136,7 +141,7 @@ public class AdminCategoryMgrController {
 	 * 음식 코드 수정 / 삭제 폼
 	 * @param model
 	 * @param request
-	 * @return
+	 * @return : String jsp파일명
 	 */
 	@RequestMapping(value="modifyCategory.do", method = RequestMethod.GET)
 	public String modifyCategory_Form(Model model, HttpServletRequest request){
@@ -152,9 +157,12 @@ public class AdminCategoryMgrController {
 	}
 	
 	
+	
 	/**
 	 * 음식 코드 수정 proc
-	 * @return
+	 * @param model : Model
+	 * @param request : HttpServletRequest
+	 * @return : String jsp파일명
 	 */
 	@RequestMapping(value="modifyCategory.do", method = RequestMethod.POST)
 	public String modifyCategory_Do(Model model, HttpServletRequest request){
