@@ -1,7 +1,6 @@
 package com.increpas.therecipe.dao;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.increpas.therecipe.vo.MemberVO;
 
 /**
- * 
+ * 로그인 로그아웃 아이디찾기 비밀번호찾기 DAO
  * @author 한범석, 박호진
  *
  */
@@ -21,26 +20,35 @@ public class LoginDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<MemberVO> selectAllMember(){
-		return sqlSessionTemplate.selectList("member_ns.selectAllMembers"); 
-	} 
-	
-	//로그인
-	public  MemberVO selectLogin(String m_userid, String m_pw) {
+	/**
+	 * 로그인 DAO 
+	 * @param m_userid 아이디	
+	 * @param m_pw 비밀번호
+	 * @return MemberVO
+	 */
+	public MemberVO selectLogin(String m_userid, String m_pw) {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("m_userid", m_userid);
 		map.put("m_pw", m_pw);
 		return sqlSessionTemplate.selectOne("member_ns.selectLogin", map);
 	}
-	//아이디 찾기
+	/**
+	 * 아이디찾기
+	 * @param m_email 이메일
+	 * @return MemberVO
+	 */
 	public MemberVO selectFindId(String m_email) {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("m_email", m_email);
 		return sqlSessionTemplate.selectOne("member_ns.selectId", map);
 	}
-	//비밀번호 찾기
+	/**
+	 * 비밀번호 찾기
+	 * @param m_userid 아이디
+	 * @return MemberVO
+	 */
 	public MemberVO selectFindPw(String m_userid) {
 		
 		Map<String, String> map = new HashMap<String, String>();

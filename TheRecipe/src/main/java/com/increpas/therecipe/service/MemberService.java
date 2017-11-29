@@ -22,7 +22,11 @@ public class MemberService {
 		 return memberDAO.insertMember();
 		 }*/
 	
-	//mypage
+	/**
+	 * 마이페이지로 이동
+	 * @param m_userid 아이디
+	 * @return MemberVO
+	 */
 	public MemberVO selectMyInfo(String m_userid){
 		return memberDAO.selectMyInfo(m_userid);
 	}

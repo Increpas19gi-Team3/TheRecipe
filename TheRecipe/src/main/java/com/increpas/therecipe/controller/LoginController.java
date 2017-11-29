@@ -1,6 +1,5 @@
 package com.increpas.therecipe.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -18,14 +17,12 @@ import com.increpas.therecipe.service.LoginService;
 import com.increpas.therecipe.vo.MemberVO;
 
 /**
+ * 로그인 로그아웃 아이디찾기 비밀번호찾기 컨트롤러
  * 
  * @author 한범석, 박호진
  *
- *         로그인 컨트롤러
- * 
- * 
- * 
  */
+
 @Controller
 public class LoginController {
 
@@ -35,21 +32,36 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 
-	// 메인페이지로 이동
+	
+	/**메인페이지 이동동작수행
+	 * @return 메인페이지로 이동
+	 */
+	
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String homeForm() {
 
 		return "home";
 	}
-	// 로그인 뷰이동
+	
 
+	/**로그인 페이지 이동동작수행
+	 * @return 로그인 페이지로 이동
+	 */
+	
 	@RequestMapping(value = "/loginView.do", method = RequestMethod.GET)
 	public String loginForm() {
 
 		return "loginView";
 	}
+	/**
+	 *  로그인 동작수행
+	 * @param vo MemberVO
+	 * @param errors 에러메세지를 위한 errors
+	 * @param session 세션사용
+	 * @param model Model
+	 * @return 메이페이지로 이동
+	 */
 
-	// 로그인 기능
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String loginSubmit(@Valid @ModelAttribute("member") MemberVO vo, Errors errors, HttpSession session,
 			Model model) {
@@ -78,21 +90,36 @@ public class LoginController {
 		return "home";
 	}
 
-	// 로그아웃
+	/**
+	 * 로그아웃 동작수행
+	 * @param session 세션사용
+	 * @return 메인페이지로 이동
+	 */
+	
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.setAttribute("m_userid", null);
 		return "redirect:home.do";
 	}
 
-	// 아이디찾기 뷰
+	/**
+	 * 아이디찾기 뷰이동
+	 * @return 아이디찾기 페이지로 이동
+	 */
 	@RequestMapping(value = "/forgetId.do", method = RequestMethod.GET)
 	public String findIdViewGet() {
 
 		return "forgetId";
 	}
 
-	// 아이디 찾기
+	/**
+	 * 아이디찾기 동작수행
+	 * @param vo  MemberVO           
+	 * @param errors 에러메세지를 위한 errors
+	 * @param session 세션사용
+	 * @param model modle
+	 * @return 아이디찾기 결과창으로 이동
+	 */
 	@RequestMapping(value = "/fine_Id.do", method = RequestMethod.POST)
 	public String findIdSubmit(@Valid @ModelAttribute("id_find") MemberVO vo, Errors errors, HttpSession session,
 			Model model) {
@@ -116,14 +143,23 @@ public class LoginController {
 		return "resultId";
 	}
 	
-	// 비밀번호 찾기 뷰
+	/**
+	 * 비밀번호찾기 뷰이동
+	 * @return 비밀번호찾기 페이지로 이동
+	 */
 	@RequestMapping(value = "/forgetPw.do", method = RequestMethod.GET)
 	public String findPwViewGet() {
 
 		return "forgetPw";
 	}
 
-	// 비밀번호 찾기
+	/**
+	 * 비밀번호 찾기 동작수행
+	 * @param vo MemberVO   
+	 * @param errors 에러메세지를 위한 errors
+	 * @param model model
+	 * @return 비밀번호찾기 결과창으로 이동
+	 */
 	@RequestMapping(value = "/fine_Pw.do", method = RequestMethod.POST)
 	public String findPwSubmit(@Valid @ModelAttribute("pw_find") MemberVO vo, Errors errors, Model model) {
 		if (errors.hasErrors()) {
