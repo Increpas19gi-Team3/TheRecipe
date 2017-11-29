@@ -7,7 +7,7 @@ import com.increpas.therecipe.dao.MemberDAO;
 import com.increpas.therecipe.vo.MemberVO;
 
 /**
- * 
+ * 회원등록 회원탈퇴 회원정보 조회,수정 관련 서비스
  * @author 박호진
  *
  */
