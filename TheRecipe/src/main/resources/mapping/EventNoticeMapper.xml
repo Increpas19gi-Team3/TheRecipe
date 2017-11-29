@@ -84,15 +84,73 @@
 			rn between #{startRow} and #{endRow}
 		</where>
 	</select>
+	
+	<!-- =======================================이벤트에 관한================================================== -->
+	
+	<!-- 전체 공지사항 글 갯수 리턴 -->
+	<select id="selectEventCount" parameterType="com.increpas.therecipe.dto.EventListDTO"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM tr_event
+		<where>
+			e_gubun = '1'
 
+			<if test="whereColumn.equals('ALL')">
+				and (E_NTTILTE LIKE '%' || #{word } || '%' or E_NTCONTENS LIKE '%' || #{word } || '%')
+			</if>
+			
+			<if test="whereColumn.equals('TITLE')">
+				AND e_nttilte LIKE '%' || #{word } || '%'
+			</if>
+		</where>
+	</select>
+	
+	
+	<!-- 공지사항 리스트와 리스트 갯 수를 던져줌 -->
+	<select id="selectEventSetList" parameterType="com.increpas.therecipe.dto.EventListDTO"
+		resultMap="eventResult">
 
-	<!-- 공지사항 or 이벤트 리스트만 불러옴 -->
-	<!-- <select id="SelectList" resultMap="eventResult"> SELECT * FROM tr_event 
-		<where> <if test="GUBUN.equals('')"> ORDER BY e_ntdate DESC, e_evtcode DESC 
-		</if> 공지사항 <if test="GUBUN.equals('0')"> e_gubun = '0' and ORDER BY e_ntdate 
-		DESC, e_evtcode DESC </if> 이벤트 <if test="GUBUN.equals('1')"> e_gubun = '1' 
-		and ORDER BY e_ntdate DESC, e_evtcode DESC </if> </where> </select> -->
-	<!-- ================================================================================== -->
+		SELECT *
+		FROM (
 
+		SELECT e_evtcode, e_nttilte, e_gubun, e_ntdate,
+		e_ntcontens, e_ntimgname,
+		e_discount, e_startdate, e_enddate, rownum rn
+		FROM (
 
+		SELECT e_evtcode, e_nttilte, e_gubun, e_ntdate, e_ntcontens,
+		e_ntimgname,
+		e_discount, e_startdate, e_enddate
+		FROM tr_event
+
+		<!-- WHERE -->
+		<where>
+			e_gubun = '1'
+
+			<!-- 공지사항에 대한 제목만 검색 -->
+			<if test="whereColumn.equals('e_nttilte')">
+				AND e_nttilte LIKE '%' || #{word} || '%'
+			</if>
+		</where>
+
+		<!-- ORDER BY -->
+		<choose>
+			<when test="sortColumn.equals('e_nttilte')">
+				<if test="orderby.equals('ASC')">ORDER BY e_gubun DESC, e_nttilte ASC</if>
+				<if test="orderby.equals('DESC')">ORDER BY e_gubun DESC, e_nttilte DESC</if>
+			</when>
+			<when test="sortColumn.equals('e_ntdate')">
+				<if test="orderby.equals('ASC')">ORDER BY e_gubun DESC, e_ntdate ASC</if>
+				<if test="orderby.equals('DESC')">ORDER BY e_gubun DESC, e_ntdate DESC</if>
+			</when>
+			<otherwise>
+				ORDER BY e_gubun DESC, e_evtcode DESC
+			</otherwise>
+		</choose>
+		)
+		)
+		<where>
+			rn between #{startRow} and #{endRow}
+		</where>
+	</select>
 </mapper>

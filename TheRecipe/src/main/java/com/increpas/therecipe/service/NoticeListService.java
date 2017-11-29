@@ -16,7 +16,7 @@ import com.increpas.therecipe.vo.EventVO;
  *
  */
 @Service
-public class EventNoticeListService {
+public class NoticeListService {
 
 	@Autowired
 	EventNoticeDAO eventNoticeDAO;

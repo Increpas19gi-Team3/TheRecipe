@@ -24,8 +24,8 @@
 
 	손대성 개발부분:
 	<ul>
-		<li><a href="NoticeList.do">list</a></li>
-		<li><a href=""> </a></li>
+		<li><a href="NoticeList.do">NoticeList(공지사항 리스트 출력)</a></li>
+		<li><a href="EventList.do">EventList(이벤트 출력) </a></li>
 		<li><a href=""> </a></li>
 		<li><a href=""> </a></li>
 		<li><a href=""> </a></li>
