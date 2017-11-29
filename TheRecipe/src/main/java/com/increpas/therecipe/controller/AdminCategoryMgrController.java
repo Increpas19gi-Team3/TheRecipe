@@ -42,7 +42,7 @@ public class AdminCategoryMgrController {
 	 * 음식 코드(tr_foodcode) 가져오는 메소드
 	 * @param model : Model
 	 * @return : Model
-	 */
+	 *//*
 	public Model getFoodcodeOnlyAll(Model model){
 		// 개발용 Log
 		String logMsg_01 = "getFoodcodeAll()";
@@ -55,7 +55,7 @@ public class AdminCategoryMgrController {
 		model.addAttribute("foodcode3rdList", adminCategoryMgrService.selec3rdFoodcode());
 		
 		return model;
-	}
+	}*/
 	
 	
 	/**

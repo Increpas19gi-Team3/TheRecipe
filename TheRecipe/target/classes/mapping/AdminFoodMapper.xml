@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+/**
+ * 상품테이블(tr_food) + Join + 음식 분류코드(tr_foodcode)
+ * @author 손가연
+ *
+ */
+ -->
+
+<mapper namespace="adminFoodJoinFoodcode_ns">
+
+	
+
+	<resultMap id="FoodJoinFoodcodeResult" type="FoodJoinFoodcode"> 
+		<!-- tr_food -->
+		<result property="f_fdcode" column="f_fdcode" />
+		<result property="e_evtcode" column="e_evtcode" />
+		<result property="fc_1st" column="fc_1st" />
+		<result property="fc_2nd" column="fc_2nd" />
+		<result property="fc_3rd" column="fc_3rd" />
+		
+		<result property="f_isblock" column="f_isblock" />
+		<result property="f_foodname" column="f_foodname" />
+		<result property="f_price" column="f_price" />
+		<result property="f_explan" column="f_explan" />
+		<result property="f_imgname" column="f_imgname" />
+		<result property="f_thumname" column="f_thumname" />
+	
+		<!-- tr_foodcode -->
+		<result property="fc_1st" column="fc_1st" />
+		<result property="fc_2nd" column="fc_2nd" />
+		<result property="fc_3rd" column="fc_3rd" />
+		<result property="fc_ctgname" column="fc_ctgname" />
+		<result property="fc_isblock" column="fc_isblock" />
+	</resultMap>
+	
+	
+	
+	<!-- <resultMap id="FoodJoinFoodcodeResult" type="FoodJoinFoodcode"> 
+		tr_food
+		<result property="f_fdcode" column="tf.f_fdcode" />
+		<result property="e_evtcode" column="tf.e_evtcode" />
+		<result property="fc_1st" column="tf.fc_1st" />
+		<result property="fc_2nd" column="tf.fc_2nd" />
+		<result property="fc_3rd" column="tf.fc_3rd" />
+		
+		<result property="f_isblock" column="tf.f_isblock" />
+		<result property="f_foodname" column="tf.f_foodname" />
+		<result property="f_price" column="tf.f_price" />
+		<result property="f_explan" column="tf.f_explan" />
+		<result property="f_imgname" column="tf.f_imgname" />
+		<result property="f_thumname" column="tf.f_thumname" />
+	
+		tr_foodcode
+		<result property="fc_1st" column="fc_1st" />
+		<result property="fc_2nd" column="fc_2nd" />
+		<result property="fc_3rd" column="fc_3rd" />
+		<result property="fc_ctgname" column="tfc.fc_ctgname" />
+		<result property="fc_isblock" column="tfc.fc_isblock" />
+	</resultMap> -->
+	
+	
+	<!-- 전체 데이터 -->
+	<select id="selectAdminFoodListAll" resultMap="FoodJoinFoodcodeResult">
+		SELECT TF.F_FDCODE, TF.E_EVTCODE, TF.FC_1ST, TF.FC_2ND, TF.FC_3RD, TFC.FC_CTGNAME, TFC.FC_ISBLOCK, 
+		        TF.F_ISBLOCK, TF.F_FOODNAME, TF.F_PRICE, TF.F_EXPLAN, TF.F_IMGNAME, TF.F_THUMNAME
+		FROM TR_FOOD TF 
+		INNER JOIN TR_FOODCODE TFC
+		ON TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD
+	</select>
+
+
+
+
+
+	
+</mapper>

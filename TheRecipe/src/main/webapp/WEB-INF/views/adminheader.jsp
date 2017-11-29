@@ -62,13 +62,13 @@
 					</a>
                     <ul class="sidenav-second-level collapse" id="collapseExamplePages2">
                         <li>
-                            <a href="table.html">목록</a>
+                            <a href="adminFoodMgr.do">목록</a>
                         </li>
                         <li>
-                            <a href="write_1.html">등록</a>
+                            <a href="#">등록</a>
                         </li>
                         <li>
-                            <a href="update_1.html">수정</a>
+                            <a href="#">수정</a>
                         </li>
                     </ul>
                 </li>

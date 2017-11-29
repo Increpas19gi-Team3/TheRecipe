@@ -15,9 +15,11 @@
 		<typeAlias alias="Order" type="com.increpas.therecipe.vo.OrderVO" />
 		<typeAlias alias="Review" type="com.increpas.therecipe.vo.ReviewVO" />
 		
-		<!-- FoodCode + subQuery(Food Count() 함수 적용) -->
+		<!-- FoodCode + subQuery(Food Count() 함수 적용) : 손가연 -->
 		<typeAlias alias="FoodcodeWithFoodCnt" type="com.increpas.therecipe.vo.FoodcodeWithFoodCntVO" />
 		
+		<!-- 상품테이블(tr_food) + Join + 음식 분류코드(tr_foodcode) : 손가연  -->
+		<typeAlias alias="FoodJoinFoodcode" type="com.increpas.therecipe.vo.FoodJoinFoodcodeVO" />
 		
 	</typeAliases>
 	

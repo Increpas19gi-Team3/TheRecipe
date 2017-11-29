@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import com.increpas.therecipe.dao.AdminCategoryMgrDAO;
 import com.increpas.therecipe.vo.FoodcodeVO;
@@ -25,6 +26,29 @@ public class AdminCategoryMgrService {
 	
 	@Autowired
 	AdminCategoryMgrDAO adminCategoryMgrDAO;
+	
+	
+	
+	/**
+	 * 음식 코드(tr_foodcode) 가져오는 메소드
+	 * @param model : Model
+	 * @return : Model
+	 */
+	public Model getFoodcodeOnlyAll(Model model){
+		// 개발용 Log
+		String logMsg_01 = "getFoodcodeAll()";
+		String logMsg_02 = "";
+		logger.info("▶▶▶ Log : {}, {}", logMsg_01, logMsg_02);
+		
+		//model.addAttribute("foodcodeAllList", adminCategoryMgrService.selectAllFoodcode());		
+		model.addAttribute("foodcode1stList", select1stFoodcode());
+		model.addAttribute("foodcode2ndList", selec2ndFoodcode());
+		model.addAttribute("foodcode3rdList", selec3rdFoodcode());
+		
+		return model;
+	}
+	
+	
 	
 	
 	

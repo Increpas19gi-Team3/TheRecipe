@@ -14,7 +14,7 @@ import com.increpas.therecipe.service.AdminCategoryMgrService;
 import com.increpas.therecipe.vo.FoodcodeVO;
 
 /**
- * 음식 코드 가져오기
+ * 관리자) 음식코드 등록관리 Query 제어
  * @author 손가연
  *
  */
@@ -35,7 +35,7 @@ public class AdminCategoryMgrDAO {
 	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selectAllFoodcodeWithFoodCnt(){
-		return sqlSessionTemplate.selectList("foodcode_ns.selectAllFoodcodeWithFoodCnt"); 
+		return sqlSessionTemplate.selectList("adminFoodcode_ns.selectAllFoodcodeWithFoodCnt"); 
 	}
 	
 	/**
@@ -43,7 +43,7 @@ public class AdminCategoryMgrDAO {
 	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> select1stFoodcodeWithFoodCnt(){
-		return sqlSessionTemplate.selectList("foodcode_ns.select1stFoodcodeWithFoodCnt"); 
+		return sqlSessionTemplate.selectList("adminFoodcode_ns.select1stFoodcodeWithFoodCnt"); 
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class AdminCategoryMgrDAO {
 	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> select2ndFoodcodeWithFoodCnt(){
-		return sqlSessionTemplate.selectList("foodcode_ns.select2ndFoodcodeWithFoodCnt"); 
+		return sqlSessionTemplate.selectList("adminFoodcode_ns.select2ndFoodcodeWithFoodCnt"); 
 	} 
 	
 	/**
@@ -59,7 +59,7 @@ public class AdminCategoryMgrDAO {
 	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> select3rdFoodcodeWithFoodCnt(){
-		return sqlSessionTemplate.selectList("foodcode_ns.select3rdFoodcodeWithFoodCnt"); 
+		return sqlSessionTemplate.selectList("adminFoodcode_ns.select3rdFoodcodeWithFoodCnt"); 
 	}
 	
 	
@@ -69,7 +69,7 @@ public class AdminCategoryMgrDAO {
 	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selectAllFoodcode(){
-		return sqlSessionTemplate.selectList("foodcode_ns.selectAllFoodcode"); 
+		return sqlSessionTemplate.selectList("adminFoodcode_ns.selectAllFoodcode"); 
 	}
 	
 	/**
@@ -77,7 +77,7 @@ public class AdminCategoryMgrDAO {
 	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> select1stFoodcode(){
-		return sqlSessionTemplate.selectList("foodcode_ns.select1stFoodcode"); 
+		return sqlSessionTemplate.selectList("adminFoodcode_ns.select1stFoodcode"); 
 	}
 	
 	/**
@@ -85,7 +85,7 @@ public class AdminCategoryMgrDAO {
 	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> select2ndFoodcode(){
-		return sqlSessionTemplate.selectList("foodcode_ns.select2ndFoodcode"); 
+		return sqlSessionTemplate.selectList("adminFoodcode_ns.select2ndFoodcode"); 
 	} 
 	
 	/**
@@ -93,7 +93,7 @@ public class AdminCategoryMgrDAO {
 	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> select3rdFoodcode(){
-		return sqlSessionTemplate.selectList("foodcode_ns.select3rdFoodcode"); 
+		return sqlSessionTemplate.selectList("adminFoodcode_ns.select3rdFoodcode"); 
 	} 
 	
 	
@@ -104,7 +104,7 @@ public class AdminCategoryMgrDAO {
 	 * @return : int
 	 */
 	public int getMax2ndFoodcode(String foodcode1st){
-		return sqlSessionTemplate.selectOne("foodcode_ns.select2ndMax", foodcode1st);
+		return sqlSessionTemplate.selectOne("adminFoodcode_ns.select2ndMax", foodcode1st);
 	}
 	
 	
@@ -118,7 +118,7 @@ public class AdminCategoryMgrDAO {
 		map.put("fc_1st", foodcode1st);
 		map.put("fc_2nd", foodcode2st);
 		
-		return sqlSessionTemplate.selectOne("foodcode_ns.select3rdMax", map);
+		return sqlSessionTemplate.selectOne("adminFoodcode_ns.select3rdMax", map);
 	}
 	
 	
@@ -135,9 +135,9 @@ public class AdminCategoryMgrDAO {
 				
 		
 		if(fcVO.getFc_2nd() == 0){//2nd 등록
-			sqlSessionTemplate.insert("foodcode_ns.reg2ndFoodcode", fcVO);
+			sqlSessionTemplate.insert("adminFoodcode_ns.reg2ndFoodcode", fcVO);
 		}else{//3rd 등록
-			sqlSessionTemplate.insert("foodcode_ns.reg3rdFoodcode", fcVO);
+			sqlSessionTemplate.insert("adminFoodcode_ns.reg3rdFoodcode", fcVO);
 		}
 	}
 	
@@ -155,11 +155,11 @@ public class AdminCategoryMgrDAO {
 		
 		
 		if(fcVO.getFc_3rd() == 0){//2nd 등록
-			sqlSessionTemplate.update("foodcode_ns.modify2ndFoodcode", fcVO);
-			sqlSessionTemplate.update("foodcode_ns.modify2ndTo3rdFoodcode", fcVO); //isblock 변경시 소속된 3rd 전부 isblock 값을 수정함
+			sqlSessionTemplate.update("adminFoodcode_ns.modify2ndFoodcode", fcVO);
+			sqlSessionTemplate.update("adminFoodcode_ns.modify2ndTo3rdFoodcode", fcVO); //isblock 변경시 소속된 3rd 전부 isblock 값을 수정함
 			
 		}else{//3rd 등록
-			sqlSessionTemplate.update("foodcode_ns.modify3rdFoodcode", fcVO);
+			sqlSessionTemplate.update("adminFoodcode_ns.modify3rdFoodcode", fcVO);
 		}
 	}
 	
