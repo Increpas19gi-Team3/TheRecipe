@@ -45,7 +45,7 @@ public class EventNoticeListService {
 		eventListDTO.setOrderby(orderby);
 		eventListDTO.setGUBUN(GUBUN);
 
-		return eventNoticeDAO.selectSetList(eventListDTO);
+		return eventNoticeDAO.selectNoticeSetList(eventListDTO);
 	}
 	
 	public EventListDTO getBoardVOList(int pageCutCount, int requestPageNumber, String whereColumn, String word,
@@ -65,7 +65,7 @@ public class EventNoticeListService {
 		}
 
 		// DAO에게 DB의 전체 글 개수조회 요청
-		int totalBoardVOCount = eventNoticeDAO.selectCount(eventListDTO);
+		int totalBoardVOCount = eventNoticeDAO.selectNoticeCount(eventListDTO);
 
 		if (totalBoardVOCount == 0) { // 글의 개수가 '0'이면			
 			return new EventListDTO(); 
@@ -89,9 +89,9 @@ public class EventNoticeListService {
 		eventListDTO.setStartRow(firstRow);
 		eventListDTO.setEndRow(endRow);
 
-		System.out.println("6. before ▶▶▶▶ List<EventVO> boardDTOList = eventNoticeDAO.selectSetList(eventListDTO);");
+		System.out.println("5. before ▶▶▶▶ List<EventVO> boardDTOList = eventNoticeDAO.selectSetList(eventListDTO);");
 		// 'DAO'에게 "DB Select" 요청
-		List<EventVO> boardDTOList = eventNoticeDAO.selectSetList(eventListDTO);
+		List<EventVO> boardDTOList = eventNoticeDAO.selectNoticeSetList(eventListDTO);
 
 		// BoardVOListModel 결과 모델을 생성
 		EventListDTO boardVOListView = new EventListDTO(boardDTOList, whereColumn, word, sortColumn, orderby, GUBUN,

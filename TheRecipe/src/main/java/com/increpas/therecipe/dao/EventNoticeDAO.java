@@ -47,18 +47,18 @@ public class EventNoticeDAO {
 	 *            : 전체글 검색, 블록글 검색
 	 * @return - List<BoardDTO>
 	 */
-	public List<EventVO> selectSetList(EventListDTO eventListDTO) {
-		System.out.println("▶▶▶▶ EventNoticeDAO=" + eventListDTO.toString());
-		return sqlSessionTemplate.selectList("event_ns.", eventListDTO);
+	public List<EventVO> selectNoticeSetList(EventListDTO eventListDTO) {
+		System.out.println("6. ▶▶▶▶ EventNoticeDAO=" + eventListDTO.toString());
+		return sqlSessionTemplate.selectList("event_ns.selectEventSetList", eventListDTO);
 	}
 
 	/**
-	 * 전체 글 갯수 리턴
+	 * 전체 공지사항 글 갯수 리턴
 	 * 
 	 * @return
 	 */
-	public int selectCount(EventListDTO eventListDTO) {
-		System.out.println("5. ▶▶▶ EventNoticeDAO : selectCount");
-		return sqlSessionTemplate.selectOne("event_ns.selectCount", eventListDTO);
+	public int selectNoticeCount(EventListDTO eventListDTO) {
+		System.out.println("4. ▶▶▶ EventNoticeDAO : selectNoticeCount");
+		return sqlSessionTemplate.selectOne("event_ns.selectNoticeSetList", eventListDTO);
 	}
 }

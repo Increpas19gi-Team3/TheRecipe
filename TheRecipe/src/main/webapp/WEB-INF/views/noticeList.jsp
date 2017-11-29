@@ -234,26 +234,18 @@
 					<c:choose>
 						<c:when test="${whereColumn eq 'ALL'}">
 							<option value="ALL" selected="selected">전체검색</option>
-							<option value="TITLE" >제목</option>
-							<option value="WRITER"> 작성자</option>
+							<option value="TITLE" >제목</option>							
 						</c:when>
 						<c:when test="${whereColumn eq 'TITLE'}">
 							<option value="ALL">전체검색</option>
-							<option value="TITLE" selected="selected">제목</option>
-							<option value="WRITER"> 작성자</option>
-						</c:when>
-						<c:when test="${whereColumn eq 'WRITER'}">
-							<option value="ALL">전체검색</option>
-							<option value="TITLE" >제목</option>
-							<option value="WRITER" selected="selected"> 작성자</option>
-						</c:when>
+							<option value="TITLE" selected="selected">제목</option>							
+						</c:when>						
 					</c:choose>
 				
 				</c:when>
 				<c:otherwise>
 					<option value="ALL">전체검색</option>
-					<option value="TITLE" >제목</option>
-					<option value="WRITER"> 작성자</option>
+					<option value="TITLE" >제목</option>					
 				</c:otherwise>
 			</c:choose>
 		</select>
