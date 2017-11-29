@@ -10,10 +10,10 @@
 			<div class="left_tab">
 				<h2>고객센터</h2>
 				<ul>
-					<li><a href="boardNotice.html">공지사항</a></li>
-					<li><a href="boardReview.html">후기 게시판</a></li>
-					<li class="active"><a href="boardRecommend.html">추천 레시피</a></li>
-					<li><a href="boardEvent.html">이벤트</a></li>
+					<li><a href="http://localhost:8282/therecipe/test_171129/boardNotice.jsp">공지사항</a></li>
+					<li><a href="http://localhost:8282/therecipe/test_171129/boardReview.jsp">후기 게시판</a></li>
+					<li class="active"><a href="http://localhost:8282/therecipe/test_171129/boardRecommend.jsp">추천 레시피</a></li>
+					<li><a href="http://localhost:8282/therecipe/test_171129/boardEvent.jsp">이벤트</a></li>
 				</ul>
 				<div class="service_info">
 					<h4>배민찬 고객센터</h4>
