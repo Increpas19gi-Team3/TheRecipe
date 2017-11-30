@@ -53,6 +53,10 @@ public class MemberService {
 		memberDAO.updateMyInfo(vo);
 	}
 
+	/**
+	 * 회원탈퇴
+	 * @param m_userid 아이디
+	 */
 	public void deleteId(String m_userid){
 		memberDAO.deleteId(m_userid);
 	}

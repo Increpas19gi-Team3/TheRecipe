@@ -124,23 +124,29 @@ public class MemberController {
 
 	}
 
-	// 회원탈퇴
 
+	/**
+	 * 회원탈퇴
+	 * 
+	 * @param vo MemberVO vo
+	 * @param errors Errors errors
+	 * @param request HttpServletRequest
+	 * @param session HttpSession session
+	 * @return 회원탈퇴 성공 시 홈 화면으로 이동
+	 */
 	@RequestMapping(value = "/delete_Id.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String deleteIdViewGet(@Valid MemberVO vo, Errors errors, HttpServletRequest request, HttpSession session) {
 		if (errors.hasErrors()) {
 			logger.info("회원탈퇴 유효성체크 오류발생");
 		}
 		
-		
-		String m_userid = request.getParameter(">>>>>>>>>>>>>>>>"+"vo.M_userid");
+		String m_userid = (String) session.getAttribute("m_userid");
 		System.out.println(m_userid);
+		
 		memberService.deleteId(m_userid);
 		
 		session.invalidate();
 
-
-		
 		return "home";
 
 	}

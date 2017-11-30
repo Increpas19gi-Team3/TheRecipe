@@ -53,13 +53,13 @@ public class MemberDAO {
 		sqlSessionTemplate.update("member_ns.updateMyInfo", vo); 
 	} 
 
-
-	
-	  public void deleteId(String m_userid) {
-	 
-	 sqlSessionTemplate.delete("member_ns.deleteMember");
+	/**
+	 * 회원탈퇴 동작 수행
+	 * @param m_userid 아이디
+	 */
+	  public  void deleteId(String m_userid) {
+	 logger.info(m_userid.toString());
+	 sqlSessionTemplate.delete("member_ns.deleteMember", m_userid);
 	 }
-	 
-	 
-
+	
 }
