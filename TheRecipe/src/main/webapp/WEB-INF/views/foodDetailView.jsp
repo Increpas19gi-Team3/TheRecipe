@@ -117,31 +117,50 @@
 							<th>작성일</th>
 						</tr>
 					</thead>
+
+
 					<tbody>
 						<c:forEach var="review" items="${reviewList}">
-							<tr>
+							
+							<tr class="btn_dropdown">
 								<td>${review.r_rvcode}</td>
 								<td class="score"><span> 
-										<c:forEach begin="1" end="${review.r_grade}" step="1">
-											<img src="/therecipe/resources/images/star.gif" alt="">
-										</c:forEach>
+									<c:forEach begin="1" end="${review.r_grade}" step="1">
+										<img src="/therecipe/resources/images/star.gif" alt="">
+									</c:forEach>
 								</span></td>
-								<td class="text_left">${review.r_rvcontents}</td>
+								<td class="text_left">${review.r_title} 
+									<c:if test="${not empty review.r_admincmt}">(<b>1</b>)</c:if>
+								</td>
 								<td>${review.m_userid}</td>
 								<td>${review.r_rvdate}</td>
 							</tr>
-							<c:if test="${not empty review.r_admincmt}">
-								<tr>
+							
+								<tr class="dropdown_re">
 									<td></td>
-									<td class="score"></td>
-									<td class="text_left">${review.r_admincmt}</td>
-									<td>관리자</td>
-									<td>${review.r_admindate}</td>
+									<td colspan="4" class="text_left">
+										<p class="user_tx">
+										<c:if test="${not empty review.r_rvimgname}">
+											<img src="images/${review.r_rvimgname}" alt="">
+										</c:if>
+										${review.r_rvcontents}</p>
+										<c:if test="${not empty review.r_admincmt}">
+										<hr>
+										<p class="admin_tx">${review.r_admincmt}</p>
+										<p class="admin_desc">관리자 | ${review.r_admindate}</p>
+										</c:if>
+									</td>
 								</tr>
-							</c:if>
 						</c:forEach>
 					</tbody>
 				</table>
+				<script>
+					$(function() {
+						$(".btn_dropdown").click(function() {
+							$(this).next().toggleClass("toggle");
+						});
+					});
+				</script>
 				<div class="pagination_wrap">
 					<ul class="pagination">
 						<li>
@@ -160,15 +179,17 @@
 							</a>
 						</li>
 					</ul>
-					<div class="btn_right">
+				<!-- 	<div class="btn_right">
 						<a href="boardReview_write.html">후기 쓰기</a>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
 	</div>
 	</form>
 
+
+				
 <script>
 	var Counter = document.getElementById("buy_cnt");
 	var Increase = document.getElementById("up");

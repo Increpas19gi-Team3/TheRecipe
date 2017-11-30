@@ -55,6 +55,24 @@ public class LocalDAO {
 	}
 	
 	/**
+	 * 지역>종류>item별 리스트 select 서비스
+	 * @param kind : FC_1ST(대분류)
+	 * @param local : FC_2ND(중분류)
+	 * @param local : FC_3RD(소분류)
+	 * @return List<FoodVO>
+	 */
+	public List<FoodVO> selectLocalItemList(int kind, int local, int item){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("kind", kind);
+		map.put("local", local);
+		map.put("item", item);
+		
+		return sqlSessionTemplate.selectList("local_ns.selectLocalItemList", map); 
+		
+	}
+	
+	/**
 	 * 음식명으로 검색하기
 	 * @param kind : FC_1ST(대분류)
 	 * @param title : 검생명

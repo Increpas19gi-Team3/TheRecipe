@@ -74,10 +74,13 @@ public class localfoodListController {
 		 */
 		@RequestMapping(value = "/localFoodList.do", method = RequestMethod.GET)
 		public String allLocalFoodList(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model){
+			int level = 1;
+			
 			List<FoodVO> foodvo =  localService.selectAllList();
 			foodvo = arrySplitImgname(foodvo);
 			
 			List<FoodcodeVO> foodcdvo = localService.searchFoodCode("1","0","0");
+			model.addAttribute("level", level);
 			model.addAttribute("foodList", foodvo);
 			model.addAttribute("foodcode",foodcdvo);
 			
@@ -94,13 +97,15 @@ public class localfoodListController {
 		@RequestMapping(value = "/localKindList.do", method = RequestMethod.GET)
 		public String kindFoodList(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
 			int kind = 1;
+
 			int local = Integer.parseInt(request.getParameter("local"));
 			
 			List<FoodVO> foodvo =  localService.selectKindList(kind, local);
+
 			foodvo = arrySplitImgname(foodvo);
 			
 			List<FoodcodeVO> foodcdvo = localService.searchFoodCode("1",request.getParameter("local"),"1");
-			
+
 			model.addAttribute("foodList", foodvo);
 			model.addAttribute("foodcode",foodcdvo);
 			

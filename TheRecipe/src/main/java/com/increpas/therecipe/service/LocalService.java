@@ -43,6 +43,18 @@ public class LocalService {
 	}
 	
 	/**
+	 * 지역>종류>item별 리스트 select 서비스
+	 * @param kind : FC_1ST(대분류)
+	 * @param local : FC_2ND(중분류)
+	 * @param local : FC_3RD(소분류)
+	 * @return List<FoodVO>
+	 */
+	public List<FoodVO> selectItemList(int kind, int local, int item){
+		
+		return lDao.selectLocalItemList(kind, local, item);
+	}
+	
+	/**
 	 * 음식명으로 검색하기
 	 * @param kind : FC_1ST(대분류)
 	 * @param title : 검생명

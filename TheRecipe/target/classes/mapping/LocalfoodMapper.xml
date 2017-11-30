@@ -63,6 +63,22 @@
 		</where>
 	</select>
 
+	<!-- item별 음식 리스트 -->
+	<select id="selectLocalItemList" parameterType="map" resultMap="LocalfoodResult">
+		select * from tr_food
+		<where>
+			<if test="kind != null">
+				fc_1st=#{kind}
+			</if>
+			<if test="local != 0">
+				AND fc_2nd=#{local}
+			</if>
+			<if test="item != 0">
+				AND fc_3rd=#{item}
+			</if>
+		</where>
+	</select>
+	
 	<!-- 음식명으로 찾기 리스트 -->
 	<select id="searchTitleList" parameterType="map" resultMap="LocalfoodResult">
 		select * from tr_food

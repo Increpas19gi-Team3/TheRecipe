@@ -12,9 +12,15 @@
 			<div class="page_locationBox2">
 				<a href="home.html">홈</a>
 				<span> &gt; </span>
-				<a href="#">분류</a>
-				<span> &gt; </span>
-				<a href="#" class="active">한식</a>
+				<a href="localFoodList.do">분류</a>
+				<c:if test="${level!=1 }">
+					<span> &gt; </span>
+					<a href="#" class="active">한식</a>
+					<c:if test="${level!=2 }">
+						<span> &gt; </span>
+						<a href="#" class="active">한식</a>
+					</c:if>
+				</c:if>
 				<div class="search_box">
 					<form action="localTitleList.do" method="post">
 						<input type="text" name="foodname" required="">
@@ -23,9 +29,9 @@
 				</div>
 			</div>
 			<div class="con_tabBox">
-				<a href="" class="active">전체보기</a>
+				<a href="localKindList.do?local=0" class="active">전체보기</a>
 				<c:forEach var="foodcd" items="${foodcode}">
-					<a href="">${foodcd.fc_ctgname}</a>
+					<a href="localKindList.do?local=${foodcd.fc_2nd}">${foodcd.fc_ctgname}</a>
 				</c:forEach>
 			</div>
 			<div class="con_card4 con_card_list con_card">
