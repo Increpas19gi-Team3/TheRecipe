@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
 <jsp:include page="include/header.jsp" />
 
@@ -105,7 +105,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr class="btn_dropdown">
 							<td>
 								1
 							</td>
@@ -119,7 +119,7 @@
 								</span>
 							</td>
 							<td class="text_left"> 
-								<a href="#">별로였어요</a>
+								별로였어요 (<b>1</b>)
 							</td>
 							<td>
 								조혁래
@@ -128,27 +128,96 @@
 								2017.10.19
 							</td>
 						</tr>
-						<tr>
+						<tr class="dropdown_re">
+							<td></td>
+							<td colspan="4" class="text_left"> 
+								<p class="user_tx">
+									별로네요ㅠㅠㅠ<br>
+									ㅆㅆㅆㅆㅆㅆㅆㅆㅂ별롤라오ㅓㄹ오ㅓㄹㅇㄹ이ㅏ미암ㅇ<br>
+									ㅁ
+								</p>
+								<hr>
+								<p class="admin_tx">
+									asdasd<br>
+									asd<br>
+									fgfg
+								</p>
+								<p class="admin_desc">관리자 | 2017-11-18</p>
+							</td>
+						</tr>
+						<tr class="btn_dropdown">
 							<td>
 								1
 							</td>
 							<td class="score">
 								<span>
 									<img src="images/star.gif" alt="">
+									<img src="images/star.gif" alt="">
+									<img src="images/star.gif" alt="">
+									<img src="images/star.gif" alt="">
+									<img src="images/star.gif" alt="">
 								</span>
 							</td>
 							<td class="text_left"> 
-								<a href="#">별로였어요</a>
+								별로였어요
 							</td>
 							<td>
 								조혁래
 							</td>
 							<td>
 								2017.10.19
+							</td>
+						</tr>
+						<tr class="btn_dropdown">
+							<td>
+								1
+							</td>
+							<td class="score">
+								<span>
+									<img src="images/star.gif" alt="">
+									<img src="images/star.gif" alt="">
+									<img src="images/star.gif" alt="">
+									<img src="images/star.gif" alt="">
+									<img src="images/star.gif" alt="">
+								</span>
+							</td>
+							<td class="text_left"> 
+								별로였어요 (<b>1</b>)
+							</td>
+							<td>
+								조혁래
+							</td>
+							<td>
+								2017.10.19
+							</td>
+						</tr>
+						<tr class="dropdown_re">
+							<td></td>
+							<td colspan="4" class="text_left">
+								<img src="images/con1_1.jpg" alt="">
+								<p class="user_tx">
+									별로네요ㅠㅠㅠ<br>
+									ㅆㅆㅆㅆㅆㅆㅆㅆㅂ별롤라오ㅓㄹ오ㅓㄹㅇㄹ이ㅏ미암ㅇ<br>
+									ㅁ
+								</p>
+								<hr>
+								<p class="admin_tx">
+									dfgdfgdfgsdfgdfgdsfgsdfgdfsgdfsgdsfg<br>
+									ghjtybdgdgfdgdfgdfgdfg<br>
+									ghjghjtrydfgsg
+								</p>
+								<p class="admin_desc">관리자 | 2017-11-18</p>
 							</td>
 						</tr>
 					</tbody>
 				</table>
+				<script>
+					$(function(){
+						$(".btn_dropdown").click(function(){
+							$(this).next().toggleClass("toggle");
+						});
+					});
+				</script>
 				<div class="pagination_wrap">
 					<ul class="pagination">
 						<li>
