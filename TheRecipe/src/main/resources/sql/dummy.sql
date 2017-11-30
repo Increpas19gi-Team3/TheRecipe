@@ -20,7 +20,8 @@ INSERT INTO tr_foodcode VALUES(2,1,1,'메인','0');
 INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '김치찌개',1,1,1,5000,'김치찌개',null,null,'0');
 INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '된장찌개',1,1,1,5000,'된장찌개',null,null,'0');
 INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '짜장면',1,2,1,5000,'짜장면',null,null,'0');
-INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '탕수육',1,2,2,5000,'탕수육',null,null,'0');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, 0, '탕수육',1,2,2,5000,'탕수육',null,null,'0');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '짬뽕',1,2,1,5000,'짜장면',null,null,'0');
 
 
 /* 장바구니 */
