@@ -20,9 +20,10 @@ public class MemberVO {
 	private String m_addr;	/* 주소		VARCHAR2(100) NOT NULL*/
 	private String m_phone;	/* 전화번호	VARCHAR2(20) NOT NULL */
 	private int m_level;	/* 등급		NUMBER NOT NULL */
+	private String ms_code;		/* 마스터코드: 1	CHAR(1) */
+	
 	
 	public String getM_userid() {
-		
 		return m_userid;
 	}
 	public void setM_userid(String m_userid) {
@@ -70,12 +71,19 @@ public class MemberVO {
 	public void setM_level(int m_level) {
 		this.m_level = m_level;
 	}
+	public String getMs_code() {
+		return ms_code;
+	}
+	public void setMs_code(String ms_code) {
+		this.ms_code = ms_code;
+	}
+	
 	
 	@Override
 	public String toString() {
 		return "MemberVO [m_userid=" + m_userid + ", m_pw=" + m_pw + ", m_name=" + m_name + ", m_email=" + m_email
-				+ ", m_post=" + m_post + ", m_addr=" + m_addr + ", m_phone=" + m_phone + ", m_level=" + m_level + "]";
+				+ ", m_post=" + m_post + ", m_addr=" + m_addr + ", m_phone=" + m_phone + ", m_level=" + m_level
+				+ ", ms_code=" + ms_code + "]";
 	}
-	
 	
 }

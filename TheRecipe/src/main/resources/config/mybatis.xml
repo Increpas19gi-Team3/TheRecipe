@@ -7,7 +7,6 @@
 	<typeAliases>
 		<typeAlias alias="Member" type="com.increpas.therecipe.vo.MemberVO" />
 		<typeAlias alias="Basket" type="com.increpas.therecipe.vo.BasketVO" />
-		<typeAlias alias="Dvycode" type="com.increpas.therecipe.vo.DvycodeVO" />
 		<typeAlias alias="Event" type="com.increpas.therecipe.vo.EventVO" />
 		<typeAlias alias="Foodcode" type="com.increpas.therecipe.vo.FoodcodeVO" />
 		<typeAlias alias="Food" type="com.increpas.therecipe.vo.FoodVO" />
@@ -15,11 +14,15 @@
 		<typeAlias alias="Order" type="com.increpas.therecipe.vo.OrderVO" />
 		<typeAlias alias="Review" type="com.increpas.therecipe.vo.ReviewVO" />
 		
+		<!-- 2017.11.30 추가 테이블 -->
+		<typeAlias alias="Mastercode" type="com.increpas.therecipe.vo.MastercodeVO" />
+		<typeAlias alias="Subcode" type="com.increpas.therecipe.vo.SubcodeVO" />
+		
 		<!-- FoodCode + subQuery(Food Count() 함수 적용) : 손가연 -->
 		<typeAlias alias="FoodcodeWithFoodCnt" type="com.increpas.therecipe.vo.FoodcodeWithFoodCntVO" />
 		
-		<!-- 상품테이블(tr_food) + Join + 음식 분류코드(tr_foodcode) : 손가연  -->
-		<typeAlias alias="FoodJoinFoodcode" type="com.increpas.therecipe.vo.FoodJoinFoodcodeVO" />
+		<!-- 상품테이블(tr_food) + Join + 음식 분류코드(tr_foodcode) + Join + 이벤트(tr_event) : 손가연  -->
+		<typeAlias alias="FoodMgr" type="com.increpas.therecipe.vo.FoodJoinFoodcodeJoinEventVO" />
 		
 	</typeAliases>
 	

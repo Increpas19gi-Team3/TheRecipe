@@ -10,6 +10,8 @@ public class BasketVO {
 	private String f_fdcode; /* 상품코드	VARCHAR2(20) NOT NULL  */
 	private int b_buyprice;  /* 구입가격	NUMBER NOT NULL */
 	private int b_amount; 	 /* 구매수량	NUMBER NOT NULL */
+	
+	
 	public String getM_userid() {
 		return m_userid;
 	}

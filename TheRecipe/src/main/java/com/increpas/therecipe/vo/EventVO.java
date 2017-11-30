@@ -17,7 +17,8 @@ public class EventVO {
 	private int e_discount; 	/* 할인율 		NUMBER */
 	private Timestamp e_startdate;	/* 시작날짜 DATE */
 	private Timestamp e_enddate;	/* 종료날짜	DATE */
-
+	private String ms_code;		/* 마스터코드: 3	CHAR(1) */
+	
 	
 	public String getE_evtcode() {
 		return e_evtcode;
@@ -73,14 +74,20 @@ public class EventVO {
 	public void setE_enddate(Timestamp e_enddate) {
 		this.e_enddate = e_enddate;
 	}
+	public String getMs_code() {
+		return ms_code;
+	}
+	public void setMs_code(String ms_code) {
+		this.ms_code = ms_code;
+	}
 	
 	
 	@Override
 	public String toString() {
 		return "EventVO [e_evtcode=" + e_evtcode + ", e_nttilte=" + e_nttilte + ", e_gubun=" + e_gubun + ", e_ntdate="
 				+ e_ntdate + ", e_ntcontens=" + e_ntcontens + ", e_ntimgname=" + e_ntimgname + ", e_discount="
-				+ e_discount + ", e_startdate=" + e_startdate + ", e_enddate=" + e_enddate + "]";
+				+ e_discount + ", e_startdate=" + e_startdate + ", e_enddate=" + e_enddate + ", ms_code=" + ms_code
+				+ "]";
 	}
-	
-	
+		
 }

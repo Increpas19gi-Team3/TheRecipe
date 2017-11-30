@@ -18,6 +18,9 @@ public class OrderVO {
 	private String o_reciever; 	/* 수취인		VARCHAR2(20) NOT NULL */
 	private String o_dvypost; 	/* 배송지우편번호 VARCHAR2(20) NOT NULL */
 	private String o_dvyaddr; 	/* 배송지주소 	VARCHAR2(100) NOT NULL */
+	private String ms_code;		/* 마스터코드: 4	CHAR(1) */
+	
+	
 	public String getO_orderid() {
 		return o_orderid;
 	}
@@ -78,14 +81,19 @@ public class OrderVO {
 	public void setO_dvyaddr(String o_dvyaddr) {
 		this.o_dvyaddr = o_dvyaddr;
 	}
-	
-	
+	public String getMs_code() {
+		return ms_code;
+	}
+	public void setMs_code(String ms_code) {
+		this.ms_code = ms_code;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderVO [o_orderid=" + o_orderid + ", d_status=" + d_status + ", m_userid=" + m_userid + ", f_fdcode="
 				+ f_fdcode + ", o_buyprice=" + o_buyprice + ", o_amount=" + o_amount + ", o_orderdate=" + o_orderdate
-				+ ", o_reciever=" + o_reciever + ", o_dvypost=" + o_dvypost + ", o_dvyaddr=" + o_dvyaddr + "]";
+				+ ", o_reciever=" + o_reciever + ", o_dvypost=" + o_dvypost + ", o_dvyaddr=" + o_dvyaddr + ", ms_code="
+				+ ms_code + "]";
 	}
-	
-	
+
 }

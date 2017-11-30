@@ -18,6 +18,8 @@ public class ReviewVO {
 	private Timestamp r_rvdate; /* 글등록시간	DATE */
 	private String r_admincmt; 	/* 관리자댓글 VARCHAR2(100) */
 	private Timestamp r_admindate; /* 관리자댓글시간	DATE */
+	
+	
 	public String getR_rvcode() {
 		return r_rvcode;
 	}
@@ -87,6 +89,5 @@ public class ReviewVO {
 				+ ", r_rvcount=" + r_rvcount + ", r_rvdate=" + r_rvdate + ", r_admincmt=" + r_admincmt
 				+ ", r_admindate=" + r_admindate + "]";
 	}
-	
 	
 }
