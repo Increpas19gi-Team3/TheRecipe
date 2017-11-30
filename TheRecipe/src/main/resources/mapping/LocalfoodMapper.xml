@@ -18,12 +18,14 @@
 		<result property="f_imgname" column="F_IMGNAME" />
 		<result property="f_thumname" column="F_THUMNAME" />
 		<result property="f_isblock" column="F_ISBLOCK" />
+		<result property="ms_code" column="ms_code" />
 	</resultMap>
 	
 	<resultMap id="ReviewResult" type="Review">
 		<result property="r_rvcode" column="r_rvcode" />
 		<result property="m_userid" column="m_userid" />
 		<result property="f_fdcode" column="f_fdcode" />
+		<result property="r_title" column="r_title" />
 		<result property="r_rvcontents" column="r_rvcontents" />
 		<result property="r_grade" column="r_grade" />
 		<result property="r_rvimgname" column="r_rvimgname" />

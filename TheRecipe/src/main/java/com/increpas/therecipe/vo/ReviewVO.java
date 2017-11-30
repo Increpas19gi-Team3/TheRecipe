@@ -88,12 +88,10 @@ public class ReviewVO {
 	public void setR_admindate(Timestamp r_admindate) {
 		this.r_admindate = r_admindate;
 	}
-	
-	
 	@Override
 	public String toString() {
-		return "ReviewVO [r_rvcode=" + r_rvcode + ", m_userid=" + m_userid + ", f_fdcode=" + f_fdcode
-				+ ", r_rvcontents=" + r_rvcontents + ", r_grade=" + r_grade + ", r_rvimgname=" + r_rvimgname
+		return "ReviewVO [r_rvcode=" + r_rvcode + ", m_userid=" + m_userid + ", f_fdcode=" + f_fdcode + ", r_title="
+				+ r_title + ", r_rvcontents=" + r_rvcontents + ", r_grade=" + r_grade + ", r_rvimgname=" + r_rvimgname
 				+ ", r_rvcount=" + r_rvcount + ", r_rvdate=" + r_rvdate + ", r_admincmt=" + r_admincmt
 				+ ", r_admindate=" + r_admindate + "]";
 	}
