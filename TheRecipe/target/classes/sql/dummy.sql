@@ -77,13 +77,13 @@ INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'son', '4', '난 맛있는�
 INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '0', '넌 어디서 왔니?','비추 누르면 싫어할꺼야', 5, null, 0, sysdate, '지구에서 옴', sysdate);
 INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'son', '1', '맛있다는놈 누구야','내가 맛있다고 했음', 5, null, 0, sysdate, '훗 감사', sysdate);
 INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '2', '신세계임','지옥으로 가는 신세계', 5, null, 0, sysdate, 'ㅡㅡ;', sysdate);
-INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'son', '3', '김치찌게','내가 맛있다고 했음', 5, null, 0, sysdate, '훗 감사', sysdate);
-INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '4', '된장찌게','아부라카타', 5, null, 0, sysdate, 'ㅡㅡ;', sysdate);
-INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'son', '0', '고등어 통조림','주문을 외워봐', 5, null, 0, sysdate, '훗 감사', sysdate);
-INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '1', '짱짱','넌 내게 빠져', 5, null, 0, sysdate, 'ㅡㅡ;', sysdate);
-INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'son', '2', '굿굿','빠져빠져', 5, null, 0, sysdate, '훗 감사', sysdate);
-INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '3', '우엑~!','정신나갔음', 5, null, 0, sysdate, 'ㅡㅡ;', sysdate);
-INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '4', '쿠엑!@','정말 정신나갔음', 5, null, 0, sysdate, 'ㅡㅡ;', sysdate);
+INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'son', '3', '김치찌게','내가 맛있다고 했음', 5, null, 0, sysdate, '악플임', sysdate);
+INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '4', '된장찌게','아부라카타', 5, null, 0, sysdate, '뭐야 이것들', sysdate);
+INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'son', '0', '고등어 통조림','주문을 외워봐', 5, null, 0, sysdate, '글작성', sysdate);
+INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '1', '짱짱','넌 내게 빠져', 5, null, 0, sysdate, '쓸말없다', sysdate);
+INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'son', '2', '굿굿','빠져빠져', 5, null, 0, sysdate, '혼종임', sysdate);
+INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '3', '우엑~!','정신나갔음', 5, null, 0, sysdate, '진정우리에게 자유를', sysdate);
+INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '4', '쿠엑!@','정말 정신나갔음', 5, null, 0, sysdate, '커피만3잔째', sysdate);
 
 
 INSERT INTO tr_mastercode VALUES('1','회원');
