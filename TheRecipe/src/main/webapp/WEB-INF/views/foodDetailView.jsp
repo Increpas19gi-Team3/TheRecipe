@@ -89,7 +89,14 @@
 					<div class="price_total">
 						<span>총 상품금액</span><b><input id="totalPrice" type="text" name="totalPrice" value="${foodList.f_price }"></b>원
 					</div>
-					<input type="submit" value="담기" class="btn_submit">
+					<c:choose>
+						<c:when test="${not empty sessionScope.m_userid}">
+							<input type="submit" value="담기" class="btn_submit">
+						</c:when>
+						<c:otherwise>
+							<input type="submit" value="담기" class="btn_notsubmit">
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 			<div class="detail_con">
@@ -105,34 +112,33 @@
 						<tr>
 							<th>번호</th>
 							<th>평점</th>
-							<th>제목</th>
+							<th>내용</th>
 							<th>작성자</th>
 							<th>작성일</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="review" items="${reviewList}">
-						<tr>
-							<td>
-								${review.r_rvcode}
-							</td>
-							<td class="score">
-								<span>
-									<c:forEach begin="1" end="${review.r_grade}" step="1">
-										<img src="/therecipe/resources/images/star.gif" alt="">
-									</c:forEach>
-								</span>
-							</td>
-							<td class="text_left"> 
-								<a href="#">${review.r_rvcontents}</a>
-							</td>
-							<td>
-								${review.m_userid}
-							</td>
-							<td>
-								${review.r_rvdate}
-							</td>
-						</tr>
+							<tr>
+								<td>${review.r_rvcode}</td>
+								<td class="score"><span> 
+										<c:forEach begin="1" end="${review.r_grade}" step="1">
+											<img src="/therecipe/resources/images/star.gif" alt="">
+										</c:forEach>
+								</span></td>
+								<td class="text_left">${review.r_rvcontents}</td>
+								<td>${review.m_userid}</td>
+								<td>${review.r_rvdate}</td>
+							</tr>
+							<c:if test="${not empty review.r_admincmt}">
+								<tr>
+									<td></td>
+									<td class="score"></td>
+									<td class="text_left">${review.r_admincmt}</td>
+									<td>관리자</td>
+									<td>${review.r_admindate}</td>
+								</tr>
+							</c:if>
 						</c:forEach>
 					</tbody>
 				</table>
