@@ -90,9 +90,9 @@
 	</select>
 	
 	<!-- 공지사항 상세보기 쿼리문 -->
-	<select id="selectNoticeDetail" parameterType="map" resultMap="BoardResult" useCache="false"  >
+	<!-- <select id="selectNoticeDetail" parameterType="map" resultMap="com.increpas.therecipe.dto.EventListDTO" useCache="false"  >
 		select * from tr_event where e_gubun = '0' and e_evtcode=#{Ncode}
-	</select>
+	</select> -->
 	
 	
 	
@@ -173,9 +173,9 @@
 	</select>	
 	
 	<!-- 이벤트 상세보기 쿼리문 -->
-	<select id="selectEventDetail" parameterType="map" resultMap="BoardResult" useCache="false"  >
+	<!-- <select id="selectEventDetail" parameterType="map" resultMap="com.increpas.therecipe.dto.EventListDTO" useCache="false"  >
 		select * from tr_event where e_gubun = '1' and e_evtcode=#{Ecode}
-	</select>	
+	</select> -->	
 	
 	<!-- 조회수 증가 쿼리문 -->
 	<!-- <update id="updateHitCount" parameterType="integer">
