@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Recipe</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo"><a href="http://localhost:8282/therecipe/test_171129/home.jsp">The Recipe</a></div>
+        <div class="nav_wrap">
+            <div class="nav_inner">
+                <div class="nav_left">
+                    <ul>
+                        <li class="dropdown_wrap">
+                            <a href="http://localhost:8282/therecipe/test_171129/foodList.jsp" class="dropdown_select">분류</a>
+                            <ul class="dropdown_itemWrap">
+                                <li><a href="http://localhost:8282/therecipe/test_171129/foodList.jsp">한식</a></li>
+                                <li><a href="http://localhost:8282/therecipe/test_171129/foodList.jsp">중식</a></li>
+                                <li><a href="http://localhost:8282/therecipe/test_171129/foodList.jsp">양식</a></li>
+                                <li><a href="http://localhost:8282/therecipe/test_171129/foodList.jsp">간식</a></li>
+                                <li><a href="http://localhost:8282/therecipe/test_171129/foodList.jsp">야식</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown_wrap">
+                            <a href="#" class="dropdown_select">유명 TV 레시피</a>
+                            <ul class="dropdown_itemWrap">
+                                <li><a href="#">올리브TV</a></li>
+                                <li><a href="#">집밥백선생</a></li>
+                                <li><a href="#">냉장고를 부탁해</a></li>
+                                <li><a href="#">최고의 요리</a></li>
+                                <li><a href="#">오늘 뭐먹지</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown_wrap">
+                            <a href="http://localhost:8282/therecipe/test_171129/boardNotice.jsp" class="dropdown_select">커뮤니티</a>
+                            <ul class="dropdown_itemWrap">
+                                <li><a href="http://localhost:8282/therecipe/test_171129/boardNotice.jsp">공지사항</a></li>
+                                <li><a href="http://localhost:8282/therecipe/test_171129/boardReview.jsp">후기 게시판</a></li>
+                                <li><a href="http://localhost:8282/therecipe/test_171129/boardRecommend.js">추천 레시피</a></li>
+                                <li><a href="http://localhost:8282/therecipe/test_171129/boardEvent.jsp">이벤트</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav_right">
+                    <ul>
+                        <li class="dropdown_wrap"><a href="http://localhost:8282/therecipe/test_171129/login.jsp">로그인</a></li>
+                        <li><a href="http://localhost:8282/therecipe/test_171129/join.jsp">회원가입</a></li>
+                        <li class="dropdown_wrap">
+                            <a href="http://localhost:8282/therecipe/test_171129/myPage.jsp" class="dropdown_select">마이페이지</a>
+                            <ul class="dropdown_itemWrap">
+                                <li><a href="http://localhost:8282/therecipe/test_171129/myOrder.jsp">주문현황</a></li>
+                                <li><a href="#">1:1 문의</a></li>
+                                <li><a href="#">교환/반품</a></li>
+                                <li><a href="#">쿠폰함</a></li>
+                                <li><a href="http://localhost:8282/therecipe/test_171129/myPage.jsp">내정보관리</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">장바구니</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="con_inner">
+            <div class="cart">
+                <form action="">
+                	<h2>장바구니</h2>
+	                <table>
+	                    <thead>
+	                        <tr>
+		                    	<th><input type="checkbox"></th>
+		                        <th colspan="2">상품</th>
+		                        <th>수량</th>
+		                        <th>주문금액</th>
+								<th><a href=""></a></th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                    	<tr>
+	                    		<td><input type="checkbox"></td>
+	                    		<td class="img_width"><img src="images/con1_1.jpg" alt=""></td>
+	                    		<td class="text_left">[담미] [담미] 차돌박이 꽈리고추조림 100g</td>
+	                    		<td class="quantity_wrap">
+									<div class="quantity">
+										<input type="text" value="1">
+										<span>
+											<a href="#" class="up">+</a>
+											<a href="#" class="down">-</a>
+										</span>
+									</div>
+									<button type="button" class="btn_change"">변경</button>
+	                    		</td>
+	                    		<td>12,900원</td>
+								<td><a href="">X</a></td>
+	                    	</tr>
+	                    	<tr>
+	                    		<td><input type="checkbox"></td>
+	                    		<td class="img_width"><img src="images/con1_1.jpg" alt=""></td>
+	                    		<td class="text_left">[담미] [담미] 차돌박이 꽈리고추조림 100g</td>
+	                    		<td class="quantity_wrap">
+									<div class="quantity">
+										<input type="text" value="1">
+										<span>
+											<a href="#" class="up">+</a>
+											<a href="#" class="down">-</a>
+										</span>
+									</div>
+									<button type="button" class="btn_change"">변경</button>
+	                    		</td>
+	                    		<td>12,900원</td>
+								<td><a href="">X</a></td>
+	                    	</tr>
+	                    </tbody>
+	                </table>
+	                <div class="btn_selectDelete">
+	                	<button type="button">선택상품 삭제</button>
+	                </div>
+	                <h3>구매 가격</h3>
+	                <div class="total_price">
+	                	<p>상품 금액 <span><b>25,700</b>원</span></p>
+	                	<p>배송비<span><b>2,500</b>원</span></p>
+	                	<hr>
+	                	<p class="price">총 주문금액 <span><b>28,200</b>원</span></p>
+	                </div>
+	                <div class="btn_submitWrap">
+	                	<button type="submit">주문하기</button>
+	                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="fnb_wrap">
+            <ul class="fnb">
+                <li><a href="">회사소개</a></li>
+                <li><a href="">제휴문의</a></li>
+                <li><a href="">단체구매문의</a></li>
+                <li><a href="">이메일 무단 수집거부</a></li>
+                <li><a href="">이용약관</a></li>
+                <li><a href="">개인정보처리방침</a></li>
+                <li><a href="">공지사항</a></li>
+            </ul>
+        </div>
+        <div class="fnb_info_wrap">
+            <ul>
+                <li>(주)우아한신선들</li>
+                <li>대표이사 : 박일한</li>
+                <li>사업자등록번호 : 110-81-97233 [<a href="" target="_blank">사업자 정보확인</a>]</li>
+                <li>통신판매업신고 : 제2015-서울송파-1733호</li>
+                <li>
+                    <address>주소 : 서울특별시 송파구 위례성대로 2, 5층(방이동, 장은빌딩)</address>
+                </li>
+                <li>개인정보담당자 : 김용재</li>
+                <li>이메일 : <a href=""><span>privacy@baeminchan.com</span></a></li>
+                <li>고객센터 : 1899-2468</li>
+                <li>고객님의 안전거래를 위해 현금 등으로 결제 시 LG U+의 구매안전 서비스를 이용하실 수 있습니다. [
+                    <a href="" target="_blank"><span>서비스 가입사실 확인</span></a>]
+                </li>
+            </ul>
+            <p class="copyright">©Woowahan Fresh. All Rights Reserved.</p>
+            <p class="bottom_copy">
+                배민찬은 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 배민찬은 상품 거래정보 및 거래에 대해 책임지지 않습니다.
+                <br> 다만 회사가 판매하는 직매입 상품의 경우 판매업체의 지위를 갖게 됩니다.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
