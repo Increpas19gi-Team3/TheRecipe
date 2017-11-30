@@ -3,11 +3,11 @@ package com.increpas.therecipe.vo;
 import java.sql.Timestamp;
 
 /**
- * 상품테이블(tr_food) + Join + 음식 분류코드(tr_foodcode) + Join + 이벤트(tr_event)
+ * 상품테이블(tr_food) + Join + 이벤트(tr_event) + SubQuery(음식 분류코드(tr_foodcode))
  * @author 손가연
  *
  */
-public class FoodJoinFoodcodeJoinEventVO {
+public class FoodMgrVO {
 	
 	// tr_food
 	private String f_fdcode;	/* 상품코드	 	VARCHAR2(20) NOT NULL*/
@@ -21,20 +21,31 @@ public class FoodJoinFoodcodeJoinEventVO {
 	private String f_imgname;	/* 이미지명		VARCHAR2(2000) */
 	private String f_thumname;	/* 썸네일명		VARCHAR2(2000) */
 	private String f_isblock;	/* 블록 여부:0정상/블록:1  NOT NULL CHAR(1) */
+	private String ms_code;		/* 마스터코드: 2	CHAR(1) */
 	
 	// tr_foodcode
 	private String fc_ctgname;	/* 카테고리명	VARCHAR2(20) NOT NULL */
 	private String fc_isblock;	/* 블록여부: 0정상/1:블락 NOT NULL CHAR(1) */
 	
 	// tr_event
-	private String e_nttilte;	/* 제목 		VARCHAR2(100) */
-	private String e_gubun;		/* 구분 		CHAR(1) */
-	private Timestamp e_ntdate; /* 작성날짜 	DATE */
-	private String e_ntcontens; /* 내용			VARCHAR2(2000) */
-	private String e_ntimgname; /* 이미지		VARCHAR2(2000) */
-	private int e_discount; 	/* 할인율 		NUMBER */
+	private String e_nttilte;		/* 제목		VARCHAR2(100) */
 	private Timestamp e_startdate;	/* 시작날짜 DATE */
 	private Timestamp e_enddate;	/* 종료날짜	DATE */
+	private Timestamp today;		/* 오늘날짜	SYSDATE */
+	
+	
+	private String fcname_1st;	// 서브쿼리로 가져온 fc_1st 의 fc_ctgname
+	private String fcname_2nd;	// 서브쿼리로 가져온 fc_2nd 의 fc_ctgname
+	private String fcname_3rd;	// 서브쿼리로 가져온 fc_3rd 의 fc_ctgname
+	
+	
+
+	
+//	private String e_gubun;		/* 구분 		CHAR(1) */
+//	private Timestamp e_ntdate; /* 작성날짜 	DATE */
+//	private String e_ntcontens; /* 내용			VARCHAR2(2000) */
+//	private String e_ntimgname; /* 이미지		VARCHAR2(2000) */
+//	private int e_discount; 	/* 할인율 		NUMBER */
 	
 	
 	
@@ -104,6 +115,12 @@ public class FoodJoinFoodcodeJoinEventVO {
 	public void setF_isblock(String f_isblock) {
 		this.f_isblock = f_isblock;
 	}
+	public String getMs_code() {
+		return ms_code;
+	}
+	public void setMs_code(String ms_code) {
+		this.ms_code = ms_code;
+	}
 	public String getFc_ctgname() {
 		return fc_ctgname;
 	}
@@ -122,36 +139,6 @@ public class FoodJoinFoodcodeJoinEventVO {
 	public void setE_nttilte(String e_nttilte) {
 		this.e_nttilte = e_nttilte;
 	}
-	public String getE_gubun() {
-		return e_gubun;
-	}
-	public void setE_gubun(String e_gubun) {
-		this.e_gubun = e_gubun;
-	}
-	public Timestamp getE_ntdate() {
-		return e_ntdate;
-	}
-	public void setE_ntdate(Timestamp e_ntdate) {
-		this.e_ntdate = e_ntdate;
-	}
-	public String getE_ntcontens() {
-		return e_ntcontens;
-	}
-	public void setE_ntcontens(String e_ntcontens) {
-		this.e_ntcontens = e_ntcontens;
-	}
-	public String getE_ntimgname() {
-		return e_ntimgname;
-	}
-	public void setE_ntimgname(String e_ntimgname) {
-		this.e_ntimgname = e_ntimgname;
-	}
-	public int getE_discount() {
-		return e_discount;
-	}
-	public void setE_discount(int e_discount) {
-		this.e_discount = e_discount;
-	}
 	public Timestamp getE_startdate() {
 		return e_startdate;
 	}
@@ -164,16 +151,39 @@ public class FoodJoinFoodcodeJoinEventVO {
 	public void setE_enddate(Timestamp e_enddate) {
 		this.e_enddate = e_enddate;
 	}
-
+	public Timestamp getToday() {
+		return today;
+	}
+	public void setToday(Timestamp today) {
+		this.today = today;
+	}
+	public String getFcname_1st() {
+		return fcname_1st;
+	}
+	public void setFcname_1st(String fcname_1st) {
+		this.fcname_1st = fcname_1st;
+	}
+	public String getFcname_2nd() {
+		return fcname_2nd;
+	}
+	public void setFcname_2nd(String fcname_2nd) {
+		this.fcname_2nd = fcname_2nd;
+	}
+	public String getFcname_3rd() {
+		return fcname_3rd;
+	}
+	public void setFcname_3rd(String fcname_3rd) {
+		this.fcname_3rd = fcname_3rd;
+	}
 	@Override
 	public String toString() {
-		return "FoodJoinFoodcodeJoinEventVO [f_fdcode=" + f_fdcode + ", e_evtcode=" + e_evtcode + ", f_foodname="
-				+ f_foodname + ", fc_1st=" + fc_1st + ", fc_2nd=" + fc_2nd + ", fc_3rd=" + fc_3rd + ", f_price="
-				+ f_price + ", f_explan=" + f_explan + ", f_imgname=" + f_imgname + ", f_thumname=" + f_thumname
-				+ ", f_isblock=" + f_isblock + ", fc_ctgname=" + fc_ctgname + ", fc_isblock=" + fc_isblock
-				+ ", e_nttilte=" + e_nttilte + ", e_gubun=" + e_gubun + ", e_ntdate=" + e_ntdate + ", e_ntcontens="
-				+ e_ntcontens + ", e_ntimgname=" + e_ntimgname + ", e_discount=" + e_discount + ", e_startdate="
-				+ e_startdate + ", e_enddate=" + e_enddate + "]";
+		return "FoodMgrVO [f_fdcode=" + f_fdcode + ", e_evtcode=" + e_evtcode + ", f_foodname=" + f_foodname
+				+ ", fc_1st=" + fc_1st + ", fc_2nd=" + fc_2nd + ", fc_3rd=" + fc_3rd + ", f_price=" + f_price
+				+ ", f_explan=" + f_explan + ", f_imgname=" + f_imgname + ", f_thumname=" + f_thumname + ", f_isblock="
+				+ f_isblock + ", ms_code=" + ms_code + ", fc_ctgname=" + fc_ctgname + ", fc_isblock=" + fc_isblock
+				+ ", e_nttilte=" + e_nttilte + ", e_startdate=" + e_startdate + ", e_enddate=" + e_enddate + ", today="
+				+ today + ", fcname_1st=" + fcname_1st + ", fcname_2nd=" + fcname_2nd + ", fcname_3rd=" + fcname_3rd
+				+ "]";
 	}
-
+	
 }

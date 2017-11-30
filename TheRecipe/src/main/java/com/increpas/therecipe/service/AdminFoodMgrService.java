@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.increpas.therecipe.dao.AdminFoodMgrDAO;
-import com.increpas.therecipe.vo.FoodJoinFoodcodeJoinEventVO;
+import com.increpas.therecipe.vo.FoodMgrVO;
 
 /**
  * 관리자) 음식 관리 하기 위한 Service 
@@ -31,7 +31,7 @@ public class AdminFoodMgrService {
 	 * 전체 등록 데이터 가져오기
 	 * @return : List<FoodJoinFoodcodeVO>
 	 */
-	public List<FoodJoinFoodcodeJoinEventVO> selectAdminFoodListAll(){
+	public List<FoodMgrVO> selectAdminFoodListAll(){
 		return adminFoodMgrDAO.selectAdminFoodListAll();
 	}
 	

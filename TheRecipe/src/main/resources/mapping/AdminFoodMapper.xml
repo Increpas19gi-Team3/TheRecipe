@@ -28,23 +28,32 @@
 		<result property="f_explan" column="f_explan" />
 		<result property="f_imgname" column="f_imgname" />
 		<result property="f_thumname" column="f_thumname" />
+		<result property="ms_code" column="ms_code" />
 	
 		<!-- tr_foodcode -->
-		<result property="fc_1st" column="fc_1st" />
+		<!-- <result property="fc_1st" column="fc_1st" />
 		<result property="fc_2nd" column="fc_2nd" />
-		<result property="fc_3rd" column="fc_3rd" />
+		<result property="fc_3rd" column="fc_3rd" /> -->
 		<result property="fc_ctgname" column="fc_ctgname" />
 		<result property="fc_isblock" column="fc_isblock" />
 		
 		<!-- tr_event -->
 		<result property="e_nttilte" column="e_nttilte" />
-		<result property="e_gubun" column="e_gubun" />
+		<result property="e_startdate" column="e_startdate" />
+		<result property="e_enddate" column="e_enddate" />
+		<result property="today" column="today" />
+		
+		
+		<!-- <result property="e_gubun" column="e_gubun" />
 		<result property="e_ntdate" column="e_ntdate" />
 		<result property="e_ntcontens" column="e_ntcontens" />
 		<result property="e_ntimgname" column="e_ntimgname" />
-		<result property="e_discount" column="e_discount" />
-		<result property="e_startdate" column="e_startdate" />
-		<result property="e_enddate" column="e_enddate" />
+		<result property="e_discount" column="e_discount" /> -->
+		
+		<!-- 서브쿼리 데이터 -->
+		<result property="fcname_1st" column="fcname_1st" /><!-- fc_1st 의 fc_ctgname -->
+		<result property="fcname_2nd" column="fcname_2nd" /><!-- fc_2nd 의 fc_ctgname -->
+		<result property="fcname_3rd" column="fcname_3rd" /><!-- fc_3rd 의 fc_ctgname -->
 		
 	</resultMap>
 	
@@ -52,17 +61,35 @@
 	
 	<!-- 전체 데이터 -->
 	<select id="selectAdminFoodListAll" resultMap="FoodMgrResult">
-		SELECT TF.F_FDCODE, TF.E_EVTCODE, TE.E_NTTILTE, 
-			TF.FC_1ST, TF.FC_2ND, TF.FC_3RD, TFC.FC_CTGNAME, TFC.FC_ISBLOCK, TF.F_ISBLOCK, TF.F_FOODNAME, TF.F_PRICE, 
-			TF.F_EXPLAN, TF.F_IMGNAME, TF.F_THUMNAME,
-			TE.E_GUBUN, TE.E_NTDATE, TE.E_NTCONTENS, TE.E_NTIMGNAME, TE.E_DISCOUNT, TE.E_STARTDATE, TE.E_ENDDATE
-		FROM TR_FOOD TF 
-		INNER JOIN TR_FOODCODE TFC 
-			ON TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD
-		INNER JOIN TR_EVENT TE 
-			ON TF.E_EVTCODE = TE.E_EVTCODE
+		SELECT TF.F_FDCODE, 
+		    TF.E_EVTCODE, TE.E_NTTILTE, TE.E_STARTDATE, TE.E_ENDDATE, SYSDATE AS TODAY, 
+		    TF.FC_1ST, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TFC.FC_2ND = 0 AND TFC.FC_3RD = 0) AS FCNAME_1ST, 
+		    TF.FC_2ND, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TFC.FC_3RD = 0) AS FCNAME_2ND, 
+		    TF.FC_3RD, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD) AS FCNAME_3RD, 
+            (SELECT TFC.FC_ISBLOCK FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD) AS FC_ISBLOCK, 
+		    TF.F_FOODNAME, 
+		    TF.F_PRICE, TF.F_EXPLAN, TF.F_IMGNAME, TF.F_THUMNAME, TF.F_ISBLOCK, TF.MS_CODE 
+		FROM TR_FOOD TF
+		LEFT OUTER JOIN TR_EVENT TE
+		    ON TF.E_EVTCODE = TE.E_EVTCODE
 	</select>
 
-
+	<!-- 조건 검색 
+	SELECT TF.F_FDCODE, 
+		    TF.E_EVTCODE, TE.E_NTTILTE, TE.E_STARTDATE, TE.E_ENDDATE, SYSDATE AS TODAY, 
+		    TF.FC_1ST, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TFC.FC_2ND = 0 AND TFC.FC_3RD = 0) AS FCNAME_1ST, 
+		    TF.FC_2ND, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TFC.FC_3RD = 0) AS FCNAME_2ND, 
+		    TF.FC_3RD, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD) AS FCNAME_3RD, 
+            (SELECT TFC.FC_ISBLOCK FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD) AS FC_ISBLOCK, 
+		    TF.F_FOODNAME, 
+		    TF.F_PRICE, TF.F_EXPLAN, TF.F_IMGNAME, TF.F_THUMNAME, TF.F_ISBLOCK, TF.MS_CODE 
+		FROM TR_FOOD TF
+		LEFT OUTER JOIN TR_EVENT TE
+		    ON TF.E_EVTCODE = TE.E_EVTCODE
+        WHERE TF.FC_1ST = 1 AND TF.FC_2ND = 2 AND TF.FC_3RD = 0
+        AND TF.F_EXPLAN LIKE '%짜장%'
+	
+	
+	 -->
 	
 </mapper>
