@@ -20,3 +20,15 @@ label{
 	display: inline-block;
     margin-bottom: .5rem;
 }
+
+
+.cateReg #category{
+	width: 350px;
+	float: left;
+}
+.cateReg #con_right{
+	width: 600px;
+	margin-left: 50px;
+	float: left;
+	border: 1px solid #ccc;
+}
