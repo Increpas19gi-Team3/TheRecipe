@@ -7,7 +7,8 @@ CREATE TABLE tr_member (
 	m_post VARCHAR2(20) NOT NULL, /* 우편번호 */
 	m_addr VARCHAR2(100) NOT NULL, /* 주소 */
 	m_phone VARCHAR2(20) NOT NULL, /* 전화번호 */
-	m_level NUMBER NOT NULL /* 등급 */
+	m_level CHAR(1) NOT NULL, /* 등급 */
+	ms_code CHAR(1) NOT NULL /* 마스터코드값 */
 );
 
 COMMENT ON TABLE tr_member IS '회원테이블';
@@ -26,7 +27,9 @@ COMMENT ON COLUMN tr_member.m_addr IS '주소';
 
 COMMENT ON COLUMN tr_member.m_phone IS '전화번호';
 
-COMMENT ON COLUMN tr_member.m_level IS '0:관리자, 1:일반유저';
+COMMENT ON COLUMN tr_member.m_level IS '서브코드';
+
+COMMENT ON COLUMN tr_member.ms_code IS '마스터코드값 1';
 
 CREATE UNIQUE INDEX PK_tr_member
 	ON tr_member (
@@ -52,7 +55,8 @@ CREATE TABLE tr_food (
 	f_explan VARCHAR2(1000), /* 상세설명 */
 	f_imgname VARCHAR2(2000), /* 이미지명 */
 	f_thumname VARCHAR2(2000), /* 썸네일명 */
-	f_isblock CHAR(1) NOT NULL /* 블락여부 */
+	f_isblock CHAR(1) NOT NULL, /* 블락여부 */
+	ms_code CHAR(1) NOT NULL /* 마스터코드값 */
 );
 
 COMMENT ON TABLE tr_food IS '상품테이블';
@@ -77,7 +81,9 @@ COMMENT ON COLUMN tr_food.f_imgname IS '이미지명';
 
 COMMENT ON COLUMN tr_food.f_thumname IS '썸네일명';
 
-COMMENT ON COLUMN tr_food.f_isblock IS '0:정상, 1:블락';
+COMMENT ON COLUMN tr_food.f_isblock IS '서브코드';
+
+COMMENT ON COLUMN tr_food.ms_code IS '마스터코드값 2';
 
 CREATE UNIQUE INDEX PK_tr_food
 	ON tr_food (
@@ -115,7 +121,7 @@ COMMENT ON COLUMN tr_foodcode.fc_isblock IS '0:정상, 1:블락';
 /* 주문테이블 */
 CREATE TABLE tr_order (
 	o_orderid VARCHAR2(20) NOT NULL, /* 주문코드 */
-	d_status CHAR(1) NOT NULL, /* 배송상태 */
+	d_status CHAR(1) NOT NULL, /* 배송코드 */
 	m_userid VARCHAR2(20) NOT NULL, /* 아이디 */
 	f_fdcode VARCHAR2(20) NOT NULL, /* 상품코드 */
 	o_buyprice NUMBER NOT NULL, /* 구입가격 */
@@ -123,14 +129,15 @@ CREATE TABLE tr_order (
 	o_orderdate DATE NOT NULL, /* 주문날짜 */
 	o_reciever VARCHAR2(20) NOT NULL, /* 수취인 */
 	o_dvypost VARCHAR2(20) NOT NULL, /* 배송지우편번호 */
-	o_dvyaddr VARCHAR2(100) NOT NULL /* 배송지주소 */
+	o_dvyaddr VARCHAR2(100) NOT NULL, /* 배송지주소 */
+	ms_code CHAR(1) NOT NULL /* 마스터코드값 */
 );
 
 COMMENT ON TABLE tr_order IS '주문테이블';
 
 COMMENT ON COLUMN tr_order.o_orderid IS '주문코드';
 
-COMMENT ON COLUMN tr_order.d_status IS '외래키';
+COMMENT ON COLUMN tr_order.d_status IS '서브코드';
 
 COMMENT ON COLUMN tr_order.m_userid IS '아이디';
 
@@ -148,9 +155,10 @@ COMMENT ON COLUMN tr_order.o_dvypost IS '배송지우편번호';
 
 COMMENT ON COLUMN tr_order.o_dvyaddr IS '배송지주소';
 
+COMMENT ON COLUMN tr_order.ms_code IS '마스터코드값 4';
+
 CREATE UNIQUE INDEX PK_tr_order
 	ON tr_order (
-		d_status ASC,
 		m_userid ASC,
 		f_fdcode ASC
 	);
@@ -159,33 +167,8 @@ ALTER TABLE tr_order
 	ADD
 		CONSTRAINT PK_tr_order
 		PRIMARY KEY (
-			d_status,
 			m_userid,
 			f_fdcode
-		);
-
-/* 배송코드 */
-CREATE TABLE tr_dvycode (
-	d_status CHAR(1) NOT NULL, /* 배송상태 */
-	d_stname VARCHAR2(12) /* 상태명 */
-);
-
-COMMENT ON TABLE tr_dvycode IS '배송코드';
-
-COMMENT ON COLUMN tr_dvycode.d_status IS '0,1,2,3,4';
-
-COMMENT ON COLUMN tr_dvycode.d_stname IS '입금확인, 상품준비, 배송준비, 배송중, 배송완료';
-
-CREATE UNIQUE INDEX PK_tr_dvycode
-	ON tr_dvycode (
-		d_status ASC
-	);
-
-ALTER TABLE tr_dvycode
-	ADD
-		CONSTRAINT PK_tr_dvycode
-		PRIMARY KEY (
-			d_status
 		);
 
 /* 장바구니 */
@@ -266,9 +249,10 @@ CREATE TABLE tr_event (
 	e_ntdate DATE, /* 작성날짜 */
 	e_ntcontens VARCHAR2(2000), /* 내용 */
 	e_ntimgname VARCHAR2(2000), /* 이미지 */
-	e_discount NUMBER, /* 할인율 */
+	e_discount CHAR(1), /* 할인율 */
 	e_startdate DATE, /* 시작날짜 */
-	e_enddate DATE /* 종료날짜 */
+	e_enddate DATE, /* 종료날짜 */
+	ms_code CHAR(1) NOT NULL /* 마스터코드값 */
 );
 
 COMMENT ON TABLE tr_event IS '이벤트';
@@ -277,7 +261,7 @@ COMMENT ON COLUMN tr_event.e_evtcode IS '이벤트 코드';
 
 COMMENT ON COLUMN tr_event.e_nttilte IS '제목';
 
-COMMENT ON COLUMN tr_event.e_gubun IS '0:공지사항, 1:이벤트';
+COMMENT ON COLUMN tr_event.e_gubun IS '서브코드';
 
 COMMENT ON COLUMN tr_event.e_ntdate IS '작성날짜';
 
@@ -285,11 +269,13 @@ COMMENT ON COLUMN tr_event.e_ntcontens IS '내용';
 
 COMMENT ON COLUMN tr_event.e_ntimgname IS '이미지';
 
-COMMENT ON COLUMN tr_event.e_discount IS '10,20,30';
+COMMENT ON COLUMN tr_event.e_discount IS '서브코드';
 
 COMMENT ON COLUMN tr_event.e_startdate IS '시작날짜';
 
 COMMENT ON COLUMN tr_event.e_enddate IS '종료날짜';
+
+COMMENT ON COLUMN tr_event.ms_code IS '마스터코드값 3';
 
 CREATE UNIQUE INDEX PK_tr_event
 	ON tr_event (
@@ -303,6 +289,45 @@ ALTER TABLE tr_event
 			e_evtcode
 		);
 
+/* 마스터코드 */
+CREATE TABLE tr_mastercode (
+	ms_code CHAR(1) NOT NULL, /* 코드 */
+	ms_name VARCHAR2(50) NOT NULL /* 코드명 */
+);
+
+COMMENT ON TABLE tr_mastercode IS '마스터코드';
+
+COMMENT ON COLUMN tr_mastercode.ms_code IS '코드';
+
+COMMENT ON COLUMN tr_mastercode.ms_name IS '코드명';
+
+CREATE UNIQUE INDEX PK_tr_mastercode
+	ON tr_mastercode (
+		ms_code ASC
+	);
+
+ALTER TABLE tr_mastercode
+	ADD
+		CONSTRAINT PK_tr_mastercode
+		PRIMARY KEY (
+			ms_code
+		);
+
+/* 서브코드 */
+CREATE TABLE tr_subcode (
+	ms_code CHAR(1) NOT NULL, /* 코드 */
+	sub_code CHAR(1) NOT NULL, /* 서브코드 */
+	sub_name VARCHAR2(50) NOT NULL /* 서브코드명 */
+);
+
+COMMENT ON TABLE tr_subcode IS '서브코드';
+
+COMMENT ON COLUMN tr_subcode.ms_code IS '마스터코드';
+
+COMMENT ON COLUMN tr_subcode.sub_code IS '서브코드';
+
+COMMENT ON COLUMN tr_subcode.sub_name IS '코드명';
+
 ALTER TABLE tr_food
 	ADD
 		CONSTRAINT FK_tr_event_TO_tr_food
@@ -311,16 +336,6 @@ ALTER TABLE tr_food
 		)
 		REFERENCES tr_event (
 			e_evtcode
-		);
-
-ALTER TABLE tr_order
-	ADD
-		CONSTRAINT FK_tr_dvycode_TO_tr_order
-		FOREIGN KEY (
-			d_status
-		)
-		REFERENCES tr_dvycode (
-			d_status
 		);
 
 ALTER TABLE tr_basket
@@ -361,4 +376,14 @@ ALTER TABLE tr_review
 		)
 		REFERENCES tr_food (
 			f_fdcode
+		);
+
+ALTER TABLE tr_subcode
+	ADD
+		CONSTRAINT FK_tr_mastercode_TO_tr_subcode
+		FOREIGN KEY (
+			ms_code
+		)
+		REFERENCES tr_mastercode (
+			ms_code
 		);
