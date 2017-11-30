@@ -58,9 +58,13 @@
 		<where>
 			e_gubun = '0'
 
+			<!-- 공지사항에 대한 제목과 내용만 검색 -->
+			<if test="whereColumn.equals('ALL')">
+				and (E_NTTILTE LIKE '%' || #{word } || '%' or E_NTCONTENS LIKE '%' || #{word } || '%')
+			</if>
 			<!-- 공지사항에 대한 제목만 검색 -->
-			<if test="whereColumn.equals('e_nttilte')">
-				AND e_nttilte LIKE '%' || #{word} || '%'
+			<if test="whereColumn.equals('TITLE')">
+				AND e_nttilte LIKE '%' || #{word } || '%'
 			</if>
 		</where>
 
@@ -127,9 +131,14 @@
 		<where>
 			e_gubun = '1'
 
+			<!-- 공지사항에 대한 제목과 내용만 검색 -->
+			<if test="whereColumn.equals('ALL')">
+				and (E_NTTILTE LIKE '%' || #{word } || '%' or E_NTCONTENS LIKE '%' || #{word } || '%')
+			</if>
+			
 			<!-- 공지사항에 대한 제목만 검색 -->
-			<if test="whereColumn.equals('e_nttilte')">
-				AND e_nttilte LIKE '%' || #{word} || '%'
+			<if test="whereColumn.equals('TITLE')">
+				AND e_nttilte LIKE '%' || #{word } || '%'
 			</if>
 		</where>
 

@@ -182,6 +182,6 @@ public class EventNoticeListController {
 			model.addAttribute("endPage", endPageNumber);
 		}
 		
-		return "/EventList";
+		return "/eventList";
 	}
 }
