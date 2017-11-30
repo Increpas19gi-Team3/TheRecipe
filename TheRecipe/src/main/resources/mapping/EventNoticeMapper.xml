@@ -175,12 +175,6 @@
 	<!-- 이벤트 상세보기 쿼리문 -->
 	<select id="selectEventDetail" parameterType="map" resultMap="eventResult" useCache="false"  >
 		select * from tr_event where e_gubun = '1' and e_evtcode=#{Ecode}
-	</select>	
-	
-	<!-- 조회수 증가 쿼리문 -->
-	<!-- <update id="updateHitCount" parameterType="integer">
-		update SB_BOARD set count = count+1
-		where e_evtcode=#{e_evtcode}
-	</update> -->	
+	</select>		
 	
 </mapper>
