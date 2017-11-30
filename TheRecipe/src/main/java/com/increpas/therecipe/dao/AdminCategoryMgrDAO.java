@@ -98,6 +98,31 @@ public class AdminCategoryMgrDAO {
 	
 	
 	
+
+	
+	/**
+	 * 선택한 2nd 음식 코드 가져오기
+	 * @return : List<FoodcodeVO>
+	 */
+	public List<FoodcodeVO> selectSel2ndFoodcode(FoodcodeVO fcVO){
+		return sqlSessionTemplate.selectList("adminFoodcode_ns.selectSel2ndFoodcode"); 
+	} 
+	
+	/**
+	 * 선택한 3rd 음식 코드 가져오기
+	 * @return : List<FoodcodeVO>
+	 */
+	public List<FoodcodeVO> selectSel3rdFoodcode(FoodcodeVO fcVO){
+		return sqlSessionTemplate.selectList("adminFoodcode_ns.selectSel3rdFoodcode"); 
+	} 
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * 2nd Foodcode의 최고값 리턴
 	 * @param : String foodcode1st 대분류코드값

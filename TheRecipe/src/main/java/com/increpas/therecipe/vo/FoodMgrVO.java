@@ -1,5 +1,6 @@
 package com.increpas.therecipe.vo;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -29,9 +30,9 @@ public class FoodMgrVO {
 	
 	// tr_event
 	private String e_nttilte;		/* 제목		VARCHAR2(100) */
-	private Timestamp e_startdate;	/* 시작날짜 DATE */
-	private Timestamp e_enddate;	/* 종료날짜	DATE */
-	private Timestamp today;		/* 오늘날짜	SYSDATE */
+	private Date e_startdate;	/* 시작날짜 DATE */
+	private Date e_enddate;	/* 종료날짜	DATE */
+	private Date today;		/* 오늘날짜	SYSDATE */
 	
 	
 	private String fcname_1st;	// 서브쿼리로 가져온 fc_1st 의 fc_ctgname
@@ -139,22 +140,22 @@ public class FoodMgrVO {
 	public void setE_nttilte(String e_nttilte) {
 		this.e_nttilte = e_nttilte;
 	}
-	public Timestamp getE_startdate() {
+	public Date getE_startdate() {
 		return e_startdate;
 	}
-	public void setE_startdate(Timestamp e_startdate) {
+	public void setE_startdate(Date e_startdate) {
 		this.e_startdate = e_startdate;
 	}
-	public Timestamp getE_enddate() {
+	public Date getE_enddate() {
 		return e_enddate;
 	}
-	public void setE_enddate(Timestamp e_enddate) {
+	public void setE_enddate(Date e_enddate) {
 		this.e_enddate = e_enddate;
 	}
-	public Timestamp getToday() {
+	public Date getToday() {
 		return today;
 	}
-	public void setToday(Timestamp today) {
+	public void setToday(Date today) {
 		this.today = today;
 	}
 	public String getFcname_1st() {

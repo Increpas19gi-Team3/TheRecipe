@@ -42,8 +42,8 @@ public class AdminCategoryMgrService {
 		
 		//model.addAttribute("foodcodeAllList", adminCategoryMgrService.selectAllFoodcode());		
 		model.addAttribute("foodcode1stList", select1stFoodcode());
-		model.addAttribute("foodcode2ndList", selec2ndFoodcode());
-		model.addAttribute("foodcode3rdList", selec3rdFoodcode());
+		model.addAttribute("foodcode2ndList", select2ndFoodcode());
+		model.addAttribute("foodcode3rdList", select3rdFoodcode());
 		
 		return model;
 	}
@@ -110,7 +110,7 @@ public class AdminCategoryMgrService {
 	 * 2nd 음식 코드 가져오기
 	 * @return : List<FoodcodeVO>
 	 */
-	public List<FoodcodeVO> selec2ndFoodcode(){
+	public List<FoodcodeVO> select2ndFoodcode(){
 		return adminCategoryMgrDAO.select2ndFoodcode();
 	}
 	
@@ -118,8 +118,25 @@ public class AdminCategoryMgrService {
 	 * 3rd 음식 코드 가져오기
 	 * @return : List<FoodcodeVO>
 	 */
-	public List<FoodcodeVO> selec3rdFoodcode(){
+	public List<FoodcodeVO> select3rdFoodcode(){
 		return adminCategoryMgrDAO.select3rdFoodcode();
+	}
+	
+	
+	/**
+	 * 선택한 2nd 음식 코드 가져오기
+	 * @return : List<FoodcodeVO>
+	 */
+	public List<FoodcodeVO> selectSel2ndFoodcode(String fc_1st, String fc_2nd, String fc_3rd, String fc_ctgname, String fc_isblock){
+		return adminCategoryMgrDAO.selectSel2ndFoodcode(setFoodcodeVO(fc_1st, fc_2nd, fc_3rd, fc_ctgname, fc_isblock));
+	}
+	
+	/**
+	 * 선택한 3rd 음식 코드 가져오기
+	 * @return : List<FoodcodeVO>
+	 */
+	public List<FoodcodeVO> selectSel3rdFoodcode(String fc_1st, String fc_2nd, String fc_3rd, String fc_ctgname, String fc_isblock){
+		return adminCategoryMgrDAO.selectSel3rdFoodcode(setFoodcodeVO(fc_1st, fc_2nd, fc_3rd, fc_ctgname, fc_isblock));
 	}
 	
 	

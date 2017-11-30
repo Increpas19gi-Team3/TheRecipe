@@ -49,7 +49,7 @@
 		        WHERE TR_FOODCODE.FC_1ST = TR_FOOD.FC_1ST 
 		    ) AS REGFOODCNT, FC_ISBLOCK 
 		FROM TR_FOODCODE 
-		WHERE FC_2ND = '0' AND FC_3RD = '0'
+		WHERE FC_2ND = 0 AND FC_3RD = 0
 		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
 	</select>
 	
@@ -62,7 +62,7 @@
 		            AND TR_FOODCODE.FC_2ND = TR_FOOD.FC_2ND 
 		        ) AS REGFOODCNT, FC_ISBLOCK   
 		FROM TR_FOODCODE 
-		WHERE FC_2ND != '0' AND FC_3RD = '0'
+		WHERE FC_2ND != 0 AND FC_3RD = 0
 		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
 	</select>
 	
@@ -76,7 +76,7 @@
 		            AND TR_FOODCODE.FC_3RD = TR_FOOD.FC_3RD
 		        ) AS REGFOODCNT, FC_ISBLOCK   
 		FROM TR_FOODCODE 
-		WHERE FC_2ND != '0' AND FC_3RD != '0'
+		WHERE FC_2ND != 0 AND FC_3RD != 0
 		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
 	</select>
 	
@@ -98,7 +98,7 @@
 	<select id="select1stFoodcode" resultMap="FoodcodeResult">
 		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME, FC_ISBLOCK 
 		FROM TR_FOODCODE 
-		WHERE FC_2ND = '0' AND FC_3RD = '0'
+		WHERE FC_2ND = 0 AND FC_3RD = 0
 		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
 	</select>
 	
@@ -106,7 +106,7 @@
 	<select id="select2ndFoodcode" resultMap="FoodcodeResult">
 		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME, FC_ISBLOCK   
 		FROM TR_FOODCODE 
-		WHERE FC_2ND != '0' AND FC_3RD = '0'
+		WHERE FC_2ND != 0 AND FC_3RD = 0
 		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
 	</select>
 	
@@ -115,9 +115,38 @@
 	<select id="select3rdFoodcode" resultMap="FoodcodeResult">
 		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME, FC_ISBLOCK   
 		FROM TR_FOODCODE 
-		WHERE FC_2ND != '0' AND FC_3RD != '0'
+		WHERE FC_2ND != 0 AND FC_3RD != 0
 		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
 	</select>
+	
+	
+	
+	
+	
+	<!-- 선택한 지역 > 중분류 (2nd)만 가져오기 -->
+	<select id="selectSel2ndFoodcode" resultMap="FoodcodeResult" parameterType="Foodcode">
+		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME, FC_ISBLOCK   
+		FROM TR_FOODCODE 
+		WHERE FC_2ND != 0 AND FC_3RD = 0
+            AND FC_1ST = #{fc_1st}
+		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
+	</select>
+	
+
+	<!-- 선택한 지역 > 중분류 > 소분류(3rd)만 가져오기 -->
+	<select id="selectSel3rdFoodcode" resultMap="FoodcodeResult" parameterType="Foodcode">
+		SELECT FC_1ST, FC_2ND, FC_3RD, FC_CTGNAME, FC_ISBLOCK   
+		FROM TR_FOODCODE 
+		WHERE FC_3RD != 0
+            AND FC_1ST = #{fc_1st} AND FC_2ND = #{fc_2nd}
+		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC;
+	</select>
+	
+	
+	
+	
+	
+	
 	
 	
 	<!-- 2nd 최대값 -->

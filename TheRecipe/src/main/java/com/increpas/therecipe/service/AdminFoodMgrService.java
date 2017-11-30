@@ -35,5 +35,8 @@ public class AdminFoodMgrService {
 		return adminFoodMgrDAO.selectAdminFoodListAll();
 	}
 	
-		
+	
+	
+	
+	
 }
