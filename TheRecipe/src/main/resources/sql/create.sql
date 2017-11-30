@@ -194,7 +194,7 @@ CREATE TABLE tr_review (
 	r_rvcode VARCHAR2(20) NOT NULL, /* 후기코드 */
 	m_userid VARCHAR2(20) NOT NULL, /* 아이디 */
 	f_fdcode VARCHAR2(20) NOT NULL, /* 상품코드 */
-	r_title VARCHAR2(20) NOT NULL, /* 제목 */
+	r_title VARCHAR2(50) NOT NULL, /* 제목 */
 	r_rvcontents VARCHAR2(3000) NOT NULL, /* 후기 */
 	r_grade NUMBER, /* 평점 */
 	r_rvimgname VARCHAR2(1000), /* 이미지명 */
