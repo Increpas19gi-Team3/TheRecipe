@@ -75,7 +75,8 @@
         
 
     
-	<div class="content-wrapper">
+	<!-- <div class="content-wrapper"> -->
+	<div class="content-wrapper cateReg">
         <div class="container-fluid">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
@@ -88,7 +89,7 @@
 	
 	
 			<%-- 카테고리 Tree 구조 표시 --%>
-			<div id="category" class="card card-register mx-auto mt-5">
+			<div id="category" class="">
 			    <div class="gExplorerCtrl">
 			    	등록되어 있는 음식 카테고리 &nbsp;
 			        <!-- <button class="btnFirst" > <span> 처음으로 </span></button>
@@ -174,7 +175,8 @@
 	
 	
 	
-			<div class="card card-register mx-auto mt-5">
+			<!-- <div class="card card-register mx-auto mt-5"> -->
+			<div id="con_right" class="">
                 <div class="card-header">상품 수정</div>
                 <div class="card-body">
                     <form action="modifyCategory.do" method="post" onsubmit="return check();">

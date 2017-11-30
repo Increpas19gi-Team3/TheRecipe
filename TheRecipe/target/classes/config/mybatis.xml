@@ -21,8 +21,8 @@
 		<!-- FoodCode + subQuery(Food Count() 함수 적용) : 손가연 -->
 		<typeAlias alias="FoodcodeWithFoodCnt" type="com.increpas.therecipe.vo.FoodcodeWithFoodCntVO" />
 		
-		<!-- 상품테이블(tr_food) + Join + 음식 분류코드(tr_foodcode) + Join + 이벤트(tr_event) : 손가연  -->
-		<typeAlias alias="FoodMgr" type="com.increpas.therecipe.vo.FoodJoinFoodcodeJoinEventVO" />
+		<!-- 상품테이블(tr_food) + Join + 이벤트(tr_event) + SubQuery(음식 분류코드(tr_foodcode)) : 손가연  -->
+		<typeAlias alias="FoodMgr" type="com.increpas.therecipe.vo.FoodMgrVO" />
 		
 	</typeAliases>
 	

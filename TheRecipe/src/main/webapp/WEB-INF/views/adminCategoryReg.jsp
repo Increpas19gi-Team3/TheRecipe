@@ -157,8 +157,7 @@
 		<div id="con_right" class="">
 			<div class="card-header">상품 등록</div>
 			<div class="card-body">
-				<form action="regCategory.do" method="post"
-					onsubmit="return check();">
+				<form action="regCategory.do" method="post" onsubmit="return check();">
 					<div class="form-group">
 						<div class="col-md-12">
 							<label for="">카테고리 등록할 위치 </label> <br />

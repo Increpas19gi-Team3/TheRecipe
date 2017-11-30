@@ -41,7 +41,7 @@
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
 						<i class="fa fa-fw fa-wrench"></i>
-						<span class="nav-link-text">상품 카테고리 관리</span>
+						<span class="nav-link-text">음식 카테고리 관리</span>
 					</a>
                     <ul class="sidenav-second-level collapse" id="collapseExamplePages">
                         <li>

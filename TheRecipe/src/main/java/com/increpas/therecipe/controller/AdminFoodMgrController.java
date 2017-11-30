@@ -1,5 +1,7 @@
 package com.increpas.therecipe.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +51,7 @@ public class AdminFoodMgrController {
 	
 	
 	@RequestMapping(value="/adminFoodMgr.do")
-	public String adminFoodList(Model model){
+	public String adminFoodList(Model model, HttpServletRequest request){
 		// 개발용 Log
 		String logMsg_01 = "/adminFoodMgr.do";
 		String logMsg_02 = "adminFoodList()";
@@ -59,21 +61,6 @@ public class AdminFoodMgrController {
 		
 		return "adminFoodList";
 	}
-	
-	/*
-	 
-	 select * from tr_foodcode;
-select * from tr_food;
-select * from tr_event;
---update tr_food set e_evtcode = 0 where f_fdcode = 3;
-SELECT TF.F_FDCODE, TF.E_EVTCODE, TR_EVENT.E_NTTILTE, 
-TF.FC_1ST, TF.FC_2ND, TF.FC_3RD, TFC.FC_CTGNAME, TFC.FC_ISBLOCK, TF.F_ISBLOCK, TF.F_FOODNAME, TF.F_PRICE, TF.F_EXPLAN, TF.F_IMGNAME, TF.F_THUMNAME 
-FROM TR_FOOD TF 
-INNER JOIN TR_FOODCODE TFC ON TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD
-INNER JOIN TR_EVENT ON TF.E_EVTCODE = TR_EVENT.E_EVTCODE;
 
-
-	 
-	 */
 	
 }

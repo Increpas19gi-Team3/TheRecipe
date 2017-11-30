@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.increpas.therecipe.vo.FoodJoinFoodcodeJoinEventVO;
+import com.increpas.therecipe.vo.FoodMgrVO;
 
 /**
  *  게시판용 DTO
@@ -15,7 +15,7 @@ import com.increpas.therecipe.vo.FoodJoinFoodcodeJoinEventVO;
 @Repository
 public class AdminFoodListDTO {
 
-private List<FoodJoinFoodcodeJoinEventVO> listVO;	// 게시글의 목록
+private List<FoodMgrVO> listVO;	// 게시글의 목록
 	
 	private String whereColumn;	// 검색 컬럼명
 	private String word;		// 검색어
@@ -33,10 +33,10 @@ private List<FoodJoinFoodcodeJoinEventVO> listVO;	// 게시글의 목록
 
 	// DB의 저장된 전체글의 개수가 0일때 리턴할 게시글 모델
 	public AdminFoodListDTO() {
-		this(new ArrayList<FoodJoinFoodcodeJoinEventVO>(), "", "", "", "", "", 10, 0, 0, 0, 0);
+		this(new ArrayList<FoodMgrVO>(), "", "", "", "", "", 10, 0, 0, 0, 0);
 	}
 	
-	public AdminFoodListDTO(List<FoodJoinFoodcodeJoinEventVO> listVO, String whereColumn, String word, String sortColumn,
+	public AdminFoodListDTO(List<FoodMgrVO> listVO, String whereColumn, String word, String sortColumn,
 			String orderby, String GUBUN, int pageCutCount, int requestPage, int totalPageCount, int startRow,
 			int endRow) {
 		super();
@@ -54,7 +54,7 @@ private List<FoodJoinFoodcodeJoinEventVO> listVO;	// 게시글의 목록
 	}
 
 		
-	public List<FoodJoinFoodcodeJoinEventVO> getEventVOList() {
+	public List<FoodMgrVO> getEventVOList() {
 		return listVO;
 	}
 		
@@ -68,11 +68,11 @@ private List<FoodJoinFoodcodeJoinEventVO> listVO;	// 게시글의 목록
 		return ! listVO.isEmpty();
 	}
 
-	public List<FoodJoinFoodcodeJoinEventVO> getListVO() {
+	public List<FoodMgrVO> getListVO() {
 		return listVO;
 	}
 
-	public void setListVO(List<FoodJoinFoodcodeJoinEventVO> listVO) {
+	public void setListVO(List<FoodMgrVO> listVO) {
 		this.listVO = listVO;
 	}
 
