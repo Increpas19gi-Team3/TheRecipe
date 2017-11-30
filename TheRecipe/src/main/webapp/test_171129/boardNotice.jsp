@@ -35,6 +35,14 @@
 						<a href="join.html" class="active">공지사항</a>
 					</div>
 				</h3>
+				<div class="table_top">
+					<div class="searchBox">
+						<form action="">
+							<input type="text">
+							<button type="submit"></button>
+						</form>
+					</div>
+				</div>
 				<table>
 					<thead>
 						<tr>

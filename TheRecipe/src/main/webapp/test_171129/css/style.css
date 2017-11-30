@@ -1067,6 +1067,32 @@ hr{
 }
 .productDetail .detail_review table{
 	width: 100%;
+	display: table;
+}
+.productDetail .detail_review table tbody tr.dropdown_re{
+	display: none;
+	-webkit-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.productDetail .detail_review table tbody tr.dropdown_re.toggle{
+	display: table-row;
+}
+.productDetail .detail_review table tbody tr.dropdown_re td{
+
+}
+.productDetail .detail_review table tbody tr.dropdown_re td img{
+	max-width: 500px;
+}
+.productDetail .detail_review table tbody tr.dropdown_re td p.user_tx{
+
+}
+.productDetail .detail_review table tbody tr.dropdown_re td p.admin_tx{
+
+}
+.productDetail .detail_review table tbody tr.dropdown_re td p.admin_desc{
+	color: #999;
+	font-size: 12px;
 }
 .productDetail .detail_review table thead tr th{
 	border-bottom: 1px solid #ccc;

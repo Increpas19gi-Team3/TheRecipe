@@ -40,13 +40,10 @@
 					</a>
                     <ul class="sidenav-second-level collapse" id="collapseExamplePages">
                         <li>
-                            <a href="table.html">목록</a>
+                            <a href="http://localhost:8282/therecipe/test_171129/admin/table.jsp">목록</a>
                         </li>
                         <li>
-                            <a href="write_1.html">등록</a>
-                        </li>
-                        <li>
-                            <a href="update_1.html">수정</a>
+                            <a href="http://localhost:8282/therecipe/test_171129/admin/write.jsp">등록</a>
                         </li>
                     </ul>
                 </li>
@@ -57,13 +54,10 @@
 					</a>
                     <ul class="sidenav-second-level collapse" id="collapseExamplePages2">
                         <li>
-                            <a href="table.html">목록</a>
+                            <a href="http://localhost:8282/therecipe/test_171129/admin/table.jsp">목록</a>
                         </li>
                         <li>
-                            <a href="write_1.html">등록</a>
-                        </li>
-                        <li>
-                            <a href="update_1.html">수정</a>
+                            <a href="http://localhost:8282/therecipe/test_171129/admin/write.jsp">등록</a>
                         </li>
                     </ul>
                 </li>
@@ -77,13 +71,10 @@
                             <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti1">공지사항 관리</a>
                             <ul class="sidenav-third-level collapse" id="collapseMulti1">
                                 <li>
-                                    <a href="table.html">목록</a>
+                                    <a href="http://localhost:8282/therecipe/test_171129/admin/table.jsp">목록</a>
                                 </li>
                                 <li>
-                                    <a href="write_1.html">등록</a>
-                                </li>
-                                <li>
-                                    <a href="update_1.html">수정</a>
+                                    <a href="http://localhost:8282/therecipe/test_171129/admin/write.jsp">등록</a>
                                 </li>
                             </ul>
                         </li>
@@ -91,27 +82,21 @@
                             <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">후기 게시판 관리</a>
                             <ul class="sidenav-third-level collapse" id="collapseMulti2">
                                 <li>
-                                    <a href="table.html">목록</a>
+                                    <a href="http://localhost:8282/therecipe/test_171129/admin/tablesp">목록</a>
                                 </li>
                                 <li>
-                                    <a href="write_1.html">등록</a>
-                                </li>
-                                <li>
-                                    <a href="update_1.html">수정</a>
+                                    <a href="http://localhost:8282/therecipe/test_171129/admin/write.jsp">등록</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
                             <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti3">추천 레시피 관리</a>
                             <ul class="sidenav-third-level collapse" id="collapseMulti3">
-                                <li>
-                                    <a href="table.html">목록</a>
+                               <li>
+                                    <a href="http://localhost:8282/therecipe/test_171129/admin/table.jsp">목록</a>
                                 </li>
                                 <li>
-                                    <a href="write_1.html">등록</a>
-                                </li>
-                                <li>
-                                    <a href="update_1.html">수정</a>
+                                    <a href="http://localhost:8282/therecipe/test_171129/admin/write.jsp">등록</a>
                                 </li>
                             </ul>
                         </li>
@@ -119,13 +104,10 @@
                             <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti4">이벤트 관리</a>
                             <ul class="sidenav-third-level collapse" id="collapseMulti4">
                                 <li>
-                                    <a href="table.html">목록</a>
+                                    <a href="http://localhost:8282/therecipe/test_171129/admin/table.jsp">목록</a>
                                 </li>
                                 <li>
-                                    <a href="write_1.html">등록</a>
-                                </li>
-                                <li>
-                                    <a href="update_1.html">수정</a>
+                                    <a href="http://localhost:8282/therecipe/test_171129/admin/write.jsp">등록</a>
                                 </li>
                             </ul>
                         </li>

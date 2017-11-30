@@ -1,22 +1,158 @@
 @charset "UTF-8";
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 
-*{
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
-body{
-	font-size: 14px;
+
+body {
+    font-size: 14px;
 }
-img{
-	width: 100%;
+
+img {
+    width: 100%;
 }
-a{
-	text-decoration: none;
-	display: block;
+
+a {
+    text-decoration: none;
+    display: block;
 }
-label{
-	display: inline-block;
+
+label {
+    display: inline-block;
     margin-bottom: .5rem;
+}
+
+
+
+
+
+.pure-tree {
+    text-align: left;
+    display: block;
+}
+
+.pure-tree.main-tree {
+    width: 100%;
+    display: inline-block;
+}
+
+.pure-tree:not(.main-tree) {
+    padding-left: 1.2em;
+}
+
+.pure-tree:not(.main-tree) li {
+    overflow: hidden;
+    height: 0;
+    display: block;
+}
+
+.pure-tree label {
+    display: block;
+    cursor: pointer;
+    color: #999;
+    border-bottom: 1px dashed #B0B9C5;
+    padding: 1.125em 1.125em 1.125em 0;
+}
+
+.pure-tree label:before {
+    width: 1em;
+    height: 1em;
+    line-height: 1em;
+    display: inline-block;
+    font-family: 'FontAwesome', sans-serif;
+    content: "\f114";
+    padding-right: .75em;
+}
+
+.pure-tree label:hover {
+    color: #434a58;
+    border-bottom-color: #434a58;
+}
+
+.pure-tree .pure-tree_link a {
+    padding: 1.500em 1.125em 0.750em 0;
+    display: block;
+    border-radius: .2em;
+    color: #717780;
+    text-decoration: none;
+}
+
+.pure-tree .pure-tree_link a:hover {
+    color: #434a58;
+}
+
+.pure-tree.nested {
+    padding-left: 1.7em;
+}
+
+.pure-tree [type="checkbox"] {
+    display: none;
+}
+
+.pure-tree [type="checkbox"]:checked+label {
+    color: #0069d9;
+    border-bottom-color: #434a58;
+}
+
+.pure-tree [type="checkbox"]:checked~ul>li {
+    height: auto;
+    color: #0069d9;
+}
+
+
+
+
+
+
+
+
+.con_col2{
+    overflow: hidden;
+}
+.con_col2 .con_left{
+    width: 300px;
+    height: 600px;
+    margin-left: 100px;
+    float: left;
+    overflow: scroll;
+}
+.con_col2 .con_right{
+    width: 500px;
+    padding-left: 50px;
+    float: left;
+}
+.con_col2 .con_right .form-group .form-control{
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+.table_defalt{
+    width: 100%;
+}
+.table_defalt table{
+    width: 100%;
+}
+.table_defalt table thead tr th{
+    padding: 15px 0;
+    text-align: center;
+    border-bottom: 2px solid #666;
+}
+.table_defalt table tbody tr:nth-child(2n){
+    background: #eee;
+}
+.table_defalt table tbody tr td{
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 1px solid #f5f5f5;
+}
+.table_defalt table tbody tr td.text_left{
+    text-align: left;
 }
