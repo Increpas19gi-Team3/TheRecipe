@@ -11,6 +11,7 @@ public class ReviewVO {
 	private String r_rvcode; 	/* 후기코드 VARCHAR2(20) NOT NULL */
 	private String m_userid; 	/* 아이디 	VARCHAR2(20) NOT NULL */
 	private String f_fdcode; 	/* 상품코드 VARCHAR2(20) NOT NULL */
+	private String r_title;		/* 후기제목 VARCHAR2(20) NOT NULL */
 	private String r_rvcontents; /* 후기 	VARCHAR2(3000) NOT NULL */
 	private int r_grade; 		/* 평점 	NUMBER */
 	private String r_rvimgname; /* 이미지명 VARCHAR2(1000) */
@@ -20,6 +21,13 @@ public class ReviewVO {
 	private Timestamp r_admindate; /* 관리자댓글시간	DATE */
 	
 	
+	
+	public String getR_title() {
+		return r_title;
+	}
+	public void setR_title(String r_title) {
+		this.r_title = r_title;
+	}
 	public String getR_rvcode() {
 		return r_rvcode;
 	}
