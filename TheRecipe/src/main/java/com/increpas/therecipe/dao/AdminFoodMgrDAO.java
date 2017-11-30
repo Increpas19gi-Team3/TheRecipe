@@ -10,9 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.increpas.therecipe.service.AdminCategoryMgrService;
-import com.increpas.therecipe.vo.FoodJoinFoodcodeVO;
-import com.increpas.therecipe.vo.FoodcodeVO;
+import com.increpas.therecipe.vo.FoodJoinFoodcodeJoinEventVO;
 
 /**
  * 관리자) 음식 등록관리 Query 제어
@@ -35,8 +33,8 @@ public class AdminFoodMgrDAO {
 	 * 전체 등록 데이터 가져오기
 	 * @return : List<FoodJoinFoodcodeVO>
 	 */
-	public List<FoodJoinFoodcodeVO> selectAdminFoodListAll(){
-		return sqlSessionTemplate.selectList("adminFoodJoinFoodcode_ns.selectAdminFoodListAll");
+	public List<FoodJoinFoodcodeJoinEventVO> selectAdminFoodListAll(){
+		return sqlSessionTemplate.selectList("adminFoodMgr_ns.selectAdminFoodListAll");
 	}
 	
 }

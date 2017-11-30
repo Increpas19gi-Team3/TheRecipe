@@ -10,11 +10,11 @@
  */
  -->
 
-<mapper namespace="adminFoodJoinFoodcode_ns">
+<mapper namespace="adminFoodMgr_ns">
 
 	
 
-	<resultMap id="FoodJoinFoodcodeResult" type="FoodJoinFoodcode"> 
+	<resultMap id="FoodMgrResult" type="FoodMgr"> 
 		<!-- tr_food -->
 		<result property="f_fdcode" column="f_fdcode" />
 		<result property="e_evtcode" column="e_evtcode" />
@@ -35,45 +35,33 @@
 		<result property="fc_3rd" column="fc_3rd" />
 		<result property="fc_ctgname" column="fc_ctgname" />
 		<result property="fc_isblock" column="fc_isblock" />
+		
+		<!-- tr_event -->
+		<result property="e_nttilte" column="e_nttilte" />
+		<result property="e_gubun" column="e_gubun" />
+		<result property="e_ntdate" column="e_ntdate" />
+		<result property="e_ntcontens" column="e_ntcontens" />
+		<result property="e_ntimgname" column="e_ntimgname" />
+		<result property="e_discount" column="e_discount" />
+		<result property="e_startdate" column="e_startdate" />
+		<result property="e_enddate" column="e_enddate" />
+		
 	</resultMap>
 	
 	
 	
-	<!-- <resultMap id="FoodJoinFoodcodeResult" type="FoodJoinFoodcode"> 
-		tr_food
-		<result property="f_fdcode" column="tf.f_fdcode" />
-		<result property="e_evtcode" column="tf.e_evtcode" />
-		<result property="fc_1st" column="tf.fc_1st" />
-		<result property="fc_2nd" column="tf.fc_2nd" />
-		<result property="fc_3rd" column="tf.fc_3rd" />
-		
-		<result property="f_isblock" column="tf.f_isblock" />
-		<result property="f_foodname" column="tf.f_foodname" />
-		<result property="f_price" column="tf.f_price" />
-		<result property="f_explan" column="tf.f_explan" />
-		<result property="f_imgname" column="tf.f_imgname" />
-		<result property="f_thumname" column="tf.f_thumname" />
-	
-		tr_foodcode
-		<result property="fc_1st" column="fc_1st" />
-		<result property="fc_2nd" column="fc_2nd" />
-		<result property="fc_3rd" column="fc_3rd" />
-		<result property="fc_ctgname" column="tfc.fc_ctgname" />
-		<result property="fc_isblock" column="tfc.fc_isblock" />
-	</resultMap> -->
-	
-	
 	<!-- 전체 데이터 -->
-	<select id="selectAdminFoodListAll" resultMap="FoodJoinFoodcodeResult">
-		SELECT TF.F_FDCODE, TF.E_EVTCODE, TF.FC_1ST, TF.FC_2ND, TF.FC_3RD, TFC.FC_CTGNAME, TFC.FC_ISBLOCK, 
-		        TF.F_ISBLOCK, TF.F_FOODNAME, TF.F_PRICE, TF.F_EXPLAN, TF.F_IMGNAME, TF.F_THUMNAME
+	<select id="selectAdminFoodListAll" resultMap="FoodMgrResult">
+		SELECT TF.F_FDCODE, TF.E_EVTCODE, TE.E_NTTILTE, 
+			TF.FC_1ST, TF.FC_2ND, TF.FC_3RD, TFC.FC_CTGNAME, TFC.FC_ISBLOCK, TF.F_ISBLOCK, TF.F_FOODNAME, TF.F_PRICE, 
+			TF.F_EXPLAN, TF.F_IMGNAME, TF.F_THUMNAME,
+			TE.E_GUBUN, TE.E_NTDATE, TE.E_NTCONTENS, TE.E_NTIMGNAME, TE.E_DISCOUNT, TE.E_STARTDATE, TE.E_ENDDATE
 		FROM TR_FOOD TF 
-		INNER JOIN TR_FOODCODE TFC
-		ON TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD
+		INNER JOIN TR_FOODCODE TFC 
+			ON TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD
+		INNER JOIN TR_EVENT TE 
+			ON TF.E_EVTCODE = TE.E_EVTCODE
 	</select>
-
-
-
 
 
 	

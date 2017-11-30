@@ -3,7 +3,8 @@
  * 관리자) 음식 등록 목록(대분류 > 중분류 > 소분류 선택 별로), 페이징 처리, 검색
  * @author 손가연
  * 
- * 
+ * 차후, 업버전내역
+ * select - option : bootstrap3 버전으로 변환 : https://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp 
  */
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -63,6 +64,7 @@
                 
                 
                 	<!-- 분류 코드 시작 -->
+                	<!-- https://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp -->
                 	<select id="fc_1st" name="fc_1st" onclick="setAllClear();">
 						<c:forEach var="foodcode1st" items="${foodcode1stList }">
 							<option value= "${foodcode1st.fc_1st }">${foodcode1st.fc_ctgname } 요리</option>
@@ -96,7 +98,7 @@
                             <thead>
                                 <tr>
                                     <th>Seq.</th>
-                                    <th>이벤트 코드</th>
+                                    <th>이벤트 이름</th>
                                     <th>대분류</th>
                                     <th>중분류</th>
                                     <th>소분류</th>
@@ -118,7 +120,7 @@
                                 <c:forEach var="foodList" items="${foodAllList }">
                                 	<tr>
                                     <td>${foodList.f_fdcode }</td>
-                                    <td>${foodList.e_evtcode }</td>
+                                    <td>${foodList.e_nttilte } ( ${foodList.e_evtcode } )</td>
                                     <td>${foodList.fc_1st }</td>
                                     <td>${foodList.fc_2nd }</td>
                                     <td>${foodList.fc_3rd }</td>
