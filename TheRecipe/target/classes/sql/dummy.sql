@@ -63,7 +63,7 @@ INSERT INTO tr_basket VALUES('han','3',5000,1);
 */
 INSERT INTO tr_order VALUES(TO_CHAR(SYSTIMESTAMP, 'YYYYMMDDHH24MISSFF3'),'3','han','3','5000','1',sysdate,'한범석','12345','서울시 강남구','4');
 
-INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '1', 'a맛있네요. 정말좋아요',3, null, 0,sysdate, null, null);
+INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '1', '맛잇음','a맛있네요. 정말좋아요',3, null, 0,sysdate, null, null);
 
 
 INSERT INTO tr_mastercode VALUES('1','회원');
