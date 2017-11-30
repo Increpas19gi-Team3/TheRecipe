@@ -6,6 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
+/**
+ * 개발용 - 일반유저 페이지 분기용 컨트롤러
+ * @author 김지현
+ *
+ */
 @Controller
 public class UserIndexController {
 
