@@ -16,10 +16,10 @@ INSERT INTO tr_foodcode VALUES(2,1,0,'냉.부','0');
 INSERT INTO tr_foodcode VALUES(2,1,1,'메인','0');
 
 /* 이벤트 */
-INSERT INTO tr_event VALUES(tr_event_seq.nextval, '탕수육 세일', '1', sysdate, '탕수육 세일', null, '2', sysdate, '2017/12/4','3');
-INSERT INTO tr_event VALUES(tr_event_seq.nextval, '짬뽕 세일', '1', sysdate, '뻥이야', null, '2', sysdate, '2017/12/4','3');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '탕수육 세일', '1', sysdate, '탕수육 세일', null, '2', sysdate-30, '2017/11/30','3');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '짬뽕 세일', '1', sysdate, '뻥이야', null, '2', sysdate-15, '2017/12/1','3');
 INSERT INTO tr_event VALUES(tr_event_seq.nextval, '짜장면 세일', '1', sysdate, '뻥이야', null, '4', sysdate, '2017/12/4','3');
-INSERT INTO tr_event VALUES(tr_event_seq.nextval, '황제 짬뽕 세일', '1', sysdate, '뻥이야', null, '2', sysdate, '2017/12/4','3');
+INSERT INTO tr_event VALUES(tr_event_seq.nextval, '김치찌개 세일', '1', sysdate, '뻥이야', null, '2', sysdate-7, sysdate+7,'3');
 INSERT INTO tr_event VALUES(tr_event_seq.nextval, '볶음밥 세일', '1', sysdate, '뻥이야', null, '2', sysdate, '2017/12/4','3');
 INSERT INTO tr_event VALUES(tr_event_seq.nextval, '깐쇼새우 세일', '1', sysdate, '뻥이야', null, '2', sysdate, '2017/12/4','3');
 INSERT INTO tr_event VALUES(tr_event_seq.nextval, '유산슬 세일', '1', sysdate, '뻥이야', null, '2', sysdate, '2017/12/4','3');
@@ -47,11 +47,14 @@ INSERT INTO tr_event VALUES(tr_event_seq.nextval, '12/04 공지사항입니다.'
 
 
 /* 상품 등록 */
-INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '김치찌개',1,1,1,5000,'김치찌개','kimci01.JPG_kimci02.JPG','kimci01.JPG_kimci02.JPG','0','2');
-INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '된장찌개',1,1,1,5000,'된장찌개','doenjang01.JPG_doenjang02.JPG','doenjang01.JPG_doenjang02.JPG','0','2');
-INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '짜장면',1,2,1,5000,'짜장면','jajangmyeon01.JPG_jajangmyeon02.JPG','jajangmyeon01.JPG_jajangmyeon02.JPG','0','2');
 INSERT INTO tr_food VALUES(tr_food_seq.nextval, '0', '탕수육',1,2,2,5000,'탕수육','SourPork01.JPG_SourPork02.JPG','SourPork01.JPG_SourPork02.JPG','0','2');
-INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '짬뽕',1,2,1,5000,'짬뽕',null,null,'0','2');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, '1', '짬뽕',1,2,1,5000,'짬뽕',null,null,'0','2');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, '3', '짜장면',1,2,1,5000,'짜장면','jajangmyeon01.JPG_jajangmyeon02.JPG','jajangmyeon01.JPG_jajangmyeon02.JPG','0','2');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, '4', '김치찌개',1,1,1,5000,'김치찌개','kimci01.JPG_kimci02.JPG','kimci01.JPG_kimci02.JPG','0','2');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '된장찌개',1,1,1,5000,'된장찌개','doenjang01.JPG_doenjang02.JPG','doenjang01.JPG_doenjang02.JPG','0','2');
+
+
+
 
 
 /* 장바구니 */
