@@ -25,16 +25,66 @@
 		resultType="int">
 		SELECT COUNT(*)
 		FROM TR_REVIEW
-		<where>
-			e_gubun = '0'
+		<where>			
 
 			<if test="whereColumn.equals('ALL')">
-				and (E_NTTILTE LIKE '%' || #{word } || '%' or E_NTCONTENS LIKE '%' || #{word } || '%')
+				AND (r_title LIKE '%' || #{word } || '%' or r_rvcontents LIKE '%' || #{word } || '%')
 			</if>
 			
 			<if test="whereColumn.equals('TITLE')">
-				AND e_nttilte LIKE '%' || #{word } || '%'
+				AND r_title LIKE '%' || #{word } || '%'
 			</if>
+		</where>
+	</select>
+	
+	<!-- 공지사항 리스트와 리스트 갯 수를 던져줌 -->
+	<select id="selectReviewSetList" parameterType="com.increpas.therecipe.dto.EventListDTO"
+		resultMap="ReviewResult">
+
+		SELECT *
+		FROM (
+
+		SELECT r_rvcode, m_userid, f_fdcode, r_title,
+		r_rvcontents, r_grade,
+		r_rvimgname, r_rvcount, r_rvdate, r_admincmt, r_admindate, rownum rn
+		FROM (
+
+		SELECT r_rvcode, m_userid, f_fdcode, r_title,
+		r_rvcontents, r_grade,
+		r_rvimgname, r_rvcount, r_rvdate, r_admincmt, r_admindate
+		FROM tr_review
+
+		<!-- WHERE -->
+		<where>			
+
+			<!-- 공지사항에 대한 제목과 내용만 검색 -->
+			<if test="whereColumn.equals('ALL')">
+				and (r_title LIKE '%' || #{word } || '%' or r_rvcontents LIKE '%' || #{word } || '%')
+			</if>
+			<!-- 공지사항에 대한 제목만 검색 -->
+			<if test="whereColumn.equals('TITLE')">
+				AND r_title LIKE '%' || #{word } || '%'
+			</if>
+		</where>
+
+		<!-- ORDER BY -->
+		<choose>
+			<when test="sortColumn.equals('r_title')">
+				<if test="orderby.equals('ASC')">ORDER BY r_title ASC</if>
+				<if test="orderby.equals('DESC')">ORDER BY r_title DESC</if>
+			</when>
+			<when test="sortColumn.equals('r_rvdate')">
+				<if test="orderby.equals('ASC')">ORDER BY r_rvdate ASC</if>
+				<if test="orderby.equals('DESC')">ORDER BY r_rvdate DESC</if>
+			</when>
+			<otherwise>
+				ORDER BY r_rvcode DESC
+			</otherwise>
+		</choose>
+		)
+		)
+		<where>
+			rn between #{startRow} and #{endRow}
 		</where>
 	</select>
 	
