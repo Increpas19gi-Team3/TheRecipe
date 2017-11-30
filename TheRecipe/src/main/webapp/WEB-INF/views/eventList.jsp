@@ -176,7 +176,7 @@
 								<c:forEach var="list" items="${eventList.listVO }">
 									<tr>
 										<td>${list.e_evtcode }</td>
-										<td>${list.e_nttilte }</td>
+										<td><a href="EventDetailView.do?e_evtcode=${list.e_evtcode}">${list.e_nttilte }</a></td>
 										<%-- <td>${list.e_gubun }</td> --%>
 										<td>
 											<fmt:formatDate value="${list.e_ntdate }" pattern="yyyy-MM-dd HH:mm:ss" />

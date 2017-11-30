@@ -166,7 +166,7 @@
 								<c:forEach var="list" items="${noticeList.listVO }">
 									<tr>
 										<td>${list.e_evtcode }</td>
-										<td>${list.e_nttilte }</td>									
+										<td><a href="NoticeDetailView.do?e_evtcode=${list.e_evtcode}">${list.e_nttilte }</a></td>																
 										<td>
 											<fmt:formatDate value="${list.e_ntdate }" pattern="yyyy-MM-dd HH:mm:ss" />
 										</td>
