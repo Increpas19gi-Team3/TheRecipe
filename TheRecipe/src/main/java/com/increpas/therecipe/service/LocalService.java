@@ -23,35 +23,36 @@ public class LocalService {
 	LocalDAO lDao;
 	
 	/**
-	 * 지역관련 전체 리스트 select 서비스
+	 * 대분류별 리스트 select 서비스
+	 * @param large : FC_1ST(대분류)
 	 * @return List<FoodVO>
 	 */
-	public List<FoodVO> selectAllList(){
+	public List<FoodVO> selectAllList(int large){
 		
-		return lDao.selectList();
+		return lDao.selectList(large);
 	}
 	
 	/**
 	 * 중분류별 리스트 select 서비스
-	 * @param kind : FC_1ST(대분류)
-	 * @param local : FC_2ND(중분류)
+	 * @param large : FC_1ST(대분류)
+	 * @param medium : FC_2ND(중분류)
 	 * @return List<FoodVO>
 	 */
-	public List<FoodVO> selectKindList(int kind, int local){
+	public List<FoodVO> selectKindList(int large, int medium){
 		
-		return lDao.selectLocalKindList(kind, local);
+		return lDao.selectLocalKindList(large, medium);
 	}
 	
 	/**
 	 * 소분류별 리스트 select 서비스
-	 * @param kind : FC_1ST(대분류)
-	 * @param local : FC_2ND(중분류)
-	 * @param item : FC_3RD(소분류)
+	 * @param large : FC_1ST(대분류)
+	 * @param medium : FC_2ND(중분류)
+	 * @param small : FC_3RD(소분류)
 	 * @return List<FoodVO>
 	 */
-	public List<FoodVO> selectItemList(int kind, int local, int item){
+	public List<FoodVO> selectItemList(int large, int medium, int small){
 		
-		return lDao.selectLocalItemList(kind, local, item);
+		return lDao.selectLocalItemList(large, medium, small);
 	}
 	
 	/**
@@ -69,13 +70,13 @@ public class LocalService {
 	
 	/**
 	 * 음식코드로 음식정보 가져오기
-	 * @param kind : FC_1ST(대분류)
+	 * @param large : FC_1ST(대분류)
 	 * @param code : F_FDCODE(음식코드)
 	 * @return FoodVO
 	 */
-	public FoodVO selectFood(int kind, String code){
+	public FoodVO selectFood(int large, String code){
 		
-		return lDao.selectFood(kind, code);
+		return lDao.selectFood(large, code);
 	}
 	
 	/**

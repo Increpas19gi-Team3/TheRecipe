@@ -29,26 +29,30 @@ public class LocalDAO {
 	
 
 	/**
-	 * 지역관련 전체 리스트 가져오기
+	 * 대분류별 리스트 가져오기
+	 * @param large : FC_1ST(대분류)
 	 * @return List<FoodVO>
 	 */
-	public List<FoodVO> selectList(){
+	public List<FoodVO> selectList(int large){
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-		return sqlSessionTemplate.selectList("local_ns.selectLocalList"); 
+		map.put("large", large);
+		
+		return sqlSessionTemplate.selectList("local_ns.selectLocalList", map); 
 		
 	}
 	
 	/**
 	 * 중분별 리스트 가져오기
-	 * @param kind : FC_1ST(대분류)
-	 * @param local : FC_2ND(중분류)
+	 * @param large : FC_1ST(대분류)
+	 * @param medium : FC_2ND(중분류)
 	 * @return List<FoodVO>
 	 */
-	public List<FoodVO> selectLocalKindList(int kind, int local){
+	public List<FoodVO> selectLocalKindList(int large, int medium){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("kind", kind);
-		map.put("local", local);
+		map.put("large", large);
+		map.put("medium", medium);
 		
 		return sqlSessionTemplate.selectList("local_ns.selectLocalKindList", map); 
 		
@@ -56,17 +60,17 @@ public class LocalDAO {
 	
 	/**
 	 * 소분류별 리스트 select 서비스
-	 * @param kind : FC_1ST(대분류)
-	 * @param local : FC_2ND(중분류)
-	 * @param item : FC_3RD(소분류)
+	 * @param large : FC_1ST(대분류)
+	 * @param medium : FC_2ND(중분류)
+	 * @param small : FC_3RD(소분류)
 	 * @return List<FoodVO>
 	 */
-	public List<FoodVO> selectLocalItemList(int kind, int local, int item){
+	public List<FoodVO> selectLocalItemList(int large, int medium, int small){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("kind", kind);
-		map.put("local", local);
-		map.put("item", item);
+		map.put("large", large);
+		map.put("medium", medium);
+		map.put("small", small);
 		
 		return sqlSessionTemplate.selectList("local_ns.selectLocalItemList", map); 
 		
@@ -94,14 +98,14 @@ public class LocalDAO {
 	
 	/**
 	 * 음식코드로 음식정보 가져오기
-	 * @param kind : FC_1ST(대분류)
+	 * @param large : FC_1ST(대분류)
 	 * @param code : F_FDCODE(음식코드)
 	 * @return FoodVO
 	 */
-	public FoodVO selectFood(int kind, String code){
+	public FoodVO selectFood(int large, String code){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("kind", kind);
+		map.put("large", large);
 		map.put("code", code);
 
 		return sqlSessionTemplate.selectOne("local_ns.selectFoodCode", map); 

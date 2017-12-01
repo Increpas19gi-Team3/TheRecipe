@@ -44,21 +44,21 @@
 		<result property="fc_isblock" column="fc_isblock" />
 	</resultMap>
 
-	<!-- 지역 음식 리스트 -->
-	<select id="selectLocalList" resultMap="LocalfoodResult">
+	<!-- 대분류 음식 리스트 -->
+	<select id="selectLocalList" parameterType="map" resultMap="LocalfoodResult">
 		select * from tr_food
-		where fc_1st=1
+		where fc_1st=#{large}
 	</select>
 
 	<!-- 중분류별 음식 리스트 -->
 	<select id="selectLocalKindList" parameterType="map" resultMap="LocalfoodResult">
 		select * from tr_food
 		<where>
-			<if test="kind != null">
-				fc_1st=#{kind}
+			<if test="large != null">
+				fc_1st=#{large}
 			</if>
-			<if test="local != 0">
-				AND fc_2nd=#{local}
+			<if test="medium != 0">
+				AND fc_2nd=#{medium}
 			</if>
 		</where>
 	</select>
@@ -67,14 +67,14 @@
 	<select id="selectLocalItemList" parameterType="map" resultMap="LocalfoodResult">
 		select * from tr_food
 		<where>
-			<if test="kind != null">
-				fc_1st=#{kind}
+			<if test="large != null">
+				fc_1st=#{large}
 			</if>
-			<if test="local != 0">
-				AND fc_2nd=#{local}
+			<if test="medium != 0">
+				AND fc_2nd=#{medium}
 			</if>
-			<if test="item != 0">
-				AND fc_3rd=#{item}
+			<if test="small != 0">
+				AND fc_3rd=#{small}
 			</if>
 		</where>
 	</select>
@@ -102,8 +102,8 @@
 	<select id="selectFoodCode" parameterType="map" resultMap="LocalfoodResult">
 		select * from tr_food
 		<where>
-			<if test="kind != null">
-				fc_1st=#{kind}
+			<if test="large != null">
+				fc_1st=#{large}
 			</if>
 			<if test="code != null">
 				AND f_fdcode=#{code} 

@@ -66,19 +66,21 @@ public class localfoodListController {
 		}
 
 		/**
-		 * 전체 리스트 출력
+		 * 대분류별 리스트 출력
 		 * @param fvo : 뷰에서 받은 FoodVO
 		 * @param model : Model
 		 * @return 뷰파일명
 		 */
-		@RequestMapping(value = "/localFoodList.do", method = RequestMethod.GET)
-		public String allLocalFoodList(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model){
+		@RequestMapping(value = "/totalFoodList.do", method = RequestMethod.GET)
+		public String allLocalFoodList(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
 			int level = 1;
+			int large = Integer.parseInt(request.getParameter("large"));
 			
-			List<FoodVO> foodvo =  localService.selectAllList();
+			List<FoodVO> foodvo =  localService.selectAllList(large);
 			foodvo = arrySplitImgname(foodvo);
 			
-			List<FoodcodeVO> foodcdvo = localService.searchFoodCode("1","0","0");
+			List<FoodcodeVO> foodcdvo = localService.searchFoodCode(request.getParameter("large"),"0","0");
+			model.addAttribute("large", large);
 			model.addAttribute("level", level);
 			model.addAttribute("foodList", foodvo);
 			model.addAttribute("foodcode",foodcdvo);
@@ -95,18 +97,18 @@ public class localfoodListController {
 		 */
 		@RequestMapping(value = "/localKindList.do", method = RequestMethod.GET)
 		public String kindFoodList(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
-			int kind = 1;
 			int level = 2;
-
-			int local = Integer.parseInt(request.getParameter("local"));
+			int large = Integer.parseInt(request.getParameter("large"));
+			int medium = Integer.parseInt(request.getParameter("medium"));
 			
-			List<FoodVO> foodvo =  localService.selectKindList(kind, local);
+			List<FoodVO> foodvo =  localService.selectKindList(large, medium);
 
 			foodvo = arrySplitImgname(foodvo);
 			
-			List<FoodcodeVO> ctgoryvo = localService.searchFoodCode("1",request.getParameter("local"),"0");
-			List<FoodcodeVO> foodcdvo = localService.searchFoodCode("1",request.getParameter("local"),"-1");
+			List<FoodcodeVO> ctgoryvo = localService.searchFoodCode(request.getParameter("large"),request.getParameter("medium"),"0");
+			List<FoodcodeVO> foodcdvo = localService.searchFoodCode(request.getParameter("large"),request.getParameter("medium"),"-1");
 
+			model.addAttribute("large", large);
 			model.addAttribute("foodList", foodvo);
 			model.addAttribute("ctgoryvo",ctgoryvo);
 			model.addAttribute("foodcode",foodcdvo);
@@ -124,20 +126,21 @@ public class localfoodListController {
 		 */
 		@RequestMapping(value = "/localKindItemList.do", method = RequestMethod.GET)
 		public String ItemFoodList(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
-			int kind = 1;
 			int level = 3;
 
-			int local = Integer.parseInt(request.getParameter("local"));
-			int item = Integer.parseInt(request.getParameter("item"));
+			int large = Integer.parseInt(request.getParameter("large"));
+			int medium = Integer.parseInt(request.getParameter("medium"));
+			int small = Integer.parseInt(request.getParameter("small"));
 			
-			List<FoodVO> foodvo =  localService.selectItemList(kind, local, item);
+			List<FoodVO> foodvo =  localService.selectItemList(large, medium, small);
 
 			foodvo = arrySplitImgname(foodvo);
 			
-			List<FoodcodeVO> ctgoryvo = localService.searchFoodCode("1",request.getParameter("local"),"0");
-			List<FoodcodeVO> itemvo = localService.searchFoodCode("1",request.getParameter("local"),request.getParameter("item"));			
-			List<FoodcodeVO> foodcdvo = localService.searchFoodCode("1",request.getParameter("local"),"-1");
+			List<FoodcodeVO> ctgoryvo = localService.searchFoodCode(request.getParameter("large"),request.getParameter("medium"),"0");
+			List<FoodcodeVO> itemvo = localService.searchFoodCode(request.getParameter("large"),request.getParameter("medium"),request.getParameter("small"));			
+			List<FoodcodeVO> foodcdvo = localService.searchFoodCode(request.getParameter("large"),request.getParameter("medium"),"-1");
 
+			model.addAttribute("large", large);
 			model.addAttribute("foodList", foodvo);
 			model.addAttribute("ctgoryvo",ctgoryvo);
 			model.addAttribute("itemvo",itemvo);
@@ -192,6 +195,7 @@ public class localfoodListController {
 			model.addAttribute("foodList", foodvo);
 			model.addAttribute("foodcode",foodcdvo);
 			model.addAttribute("level", level);
+			model.addAttribute("large", first);
 			
 			return "localfoodListView";
 		}
