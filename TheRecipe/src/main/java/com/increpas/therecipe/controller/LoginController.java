@@ -24,6 +24,7 @@ import com.increpas.therecipe.vo.MemberVO;
  */
 
 @Controller
+
 public class LoginController {
 
 	// slf4j 방식 로그

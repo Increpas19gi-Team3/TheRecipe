@@ -77,4 +77,9 @@
 		 where m_userid = #{m_userid}
 	</select>
 
+<!-- 아이디 체크 -->
+	<select id="checkId" resultType="string" parameterType="string">
+		SELECT COUNT(*) FROM TR_MEMBER
+		WHERE M_Userid = #{m_userid}
+	</select>
 </mapper>

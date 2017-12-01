@@ -124,6 +124,32 @@ public class MemberController {
 
 	}
 
+	
+	@RequestMapping(value="/idcheck.do", method = RequestMethod.GET)
+	public String IdCheck(){
+		
+		return "idcheck";
+	}
+	
+	@RequestMapping(value = "/idchecksuccess.do", method = RequestMethod.POST)
+	public String IdCheck(Model model, HttpServletRequest request) {
+		
+		String checkId = request.getParameter("checkid");
+
+
+		int userCnt = Integer.parseInt(memberService.checkId(checkId));
+
+		String msg = "";
+		if( userCnt >= 1){
+			msg = "사용중인 아이디 입니다.";
+		}else {
+			msg = "사용하실 수 있는 아이디 입니다.";
+		}
+		model.addAttribute("msg", msg);
+		
+		return "join";
+	}
+
 
 	/**
 	 * 회원탈퇴

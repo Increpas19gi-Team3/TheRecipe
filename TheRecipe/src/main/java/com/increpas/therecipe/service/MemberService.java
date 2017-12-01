@@ -30,10 +30,11 @@ public class MemberService {
 		  memberDAO.insertMember(vo);
 		 }
 	
-/*    //아이디 중복 체크
-	public boolean checkId(String m_userid) {
+   //아이디 중복 체크
+	public String checkId(String m_userid) {
+		logger.info(m_userid.toString());
 		return memberDAO.checkId(m_userid);
-	}*/
+	}
     
     /**
 	 * 마이페이지로 이동

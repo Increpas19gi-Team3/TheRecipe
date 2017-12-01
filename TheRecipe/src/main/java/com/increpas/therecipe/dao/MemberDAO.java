@@ -29,10 +29,11 @@ public class MemberDAO {
 		 vo.setM_level(1);
 	  sqlSessionTemplate.insert("member_ns.insertMember",vo); }
 	 
-/*	//아이디 체크 
-	 public boolean checkId(String m_userid) {
-		return sqlSessionTemplate.selectOne("member_ns.checkId",m_userid);
-	}*/
+	//아이디 체크 
+	 public String checkId(String m_userid) {
+		 logger.info(m_userid.toString());
+		return sqlSessionTemplate.selectOne("member_ns.checkId", m_userid);
+	}
 	 
 	 
 	/**
