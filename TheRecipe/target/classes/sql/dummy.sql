@@ -78,9 +78,6 @@ INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '규동',1,3,1,10000,'규�
 INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '라멘',1,3,2,10000,'라멘','Ramen01.JPG_Ramen02.JPG','Ramen01.JPG_Ramen02.JPG','0','2');
 INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '초밥',1,3,3,10000,'초밥','sushi01.JPG_sushi02.JPG','sushi01.JPG_sushi02.JPG','0','2');
 
-INSERT INTO tr_foodcode VALUES(1,4,0,'양식','0');
-INSERT INTO tr_foodcode VALUES(1,4,1,'스테이크','0');
-INSERT INTO tr_foodcode VALUES(1,4,2,'파스타','0');
 INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '스테이크',1,4,1,10000,'스테이크','steak01.JPG_steak02.JPG','steak01.JPG_steak02.JPG','0','2');
 INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '파스타',1,4,2,10000,'파스타','pasta01.JPG_pasta02.JPG','pasta01.JPG_pasta02.JPG','0','2');
 
