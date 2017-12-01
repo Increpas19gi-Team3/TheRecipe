@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="userbasket_ns">
+
+	<resultMap id="UserBasketResult" type="UserBasket">
+		<result property="f_fdcode" column="f_fdcode" /><!-- 상품코드 -->
+		<result property="b_amount" column="b_amount" /><!-- 구매수량 -->
+		<result property="e_nttilte" column="e_nttilte" /><!-- 이벤트제목 -->
+		<result property="e_startdate" column="e_startdate" /><!-- 시작날짜 -->
+		<result property="e_enddate" column="e_enddate" /><!-- 종료날짜 -->
+		<result property="today" column="today" /><!-- sysdate -->
+		<result property="f_foodname" column="f_foodname" /><!-- 상품명 -->
+		<result property="f_price" column="f_price" /><!-- 가격 -->
+		<result property="f_isblock" column="f_isblock" /><!-- 블록 여부:0정상/블록:1 -->
+		<result property="f_thumname" column="f_thumname" /><!-- 이미지경로 -->
+		<result property="discount_value" column="discount_value" /><!--  -->
+		<result property="name1st" column="name1st" /><!--  -->
+		<result property="name2nd" column="name2nd" /><!--  -->
+		<result property="name3rd" column="name3rd" /><!--  -->
+		<result property="f_isblockname" column="f_isblockname" /><!--  -->
+	</resultMap>
+	
+	<select id="selectBasket" resultMap="UserBasketResult" parameterType="String" >
+	SELECT TF.F_FDCODE, ET.E_NTTILTE
+    , (SELECT SC.SUB_NAME
+        FROM TR_MASTERCODE MC 
+        INNER JOIN TR_SUBCODE SC
+        ON SC.MS_CODE = MC.MS_CODE
+        WHERE MC.MS_CODE = ET.MS_CODE AND SC.SUB_CODE = ET.E_DISCOUNT) AS DISCOUNT_VALUE
+    , ET.E_STARTDATE, SYSDATE AS TODAY, ET.E_ENDDATE
+    , (SELECT TR_FOODCODE.FC_CTGNAME FROM TR_FOODCODE WHERE FC_1ST=1 AND FC_2ND=0 AND FC_3RD=0) AS NAME1ST
+    , (SELECT TR_FOODCODE.FC_CTGNAME FROM TR_FOODCODE WHERE FC_1ST=1 AND FC_2ND=TF.FC_2ND AND FC_3RD=0) AS NAME2ND
+    , (SELECT TR_FOODCODE.FC_CTGNAME FROM TR_FOODCODE WHERE FC_1ST=1 AND FC_2ND=TF.FC_2ND AND FC_3RD=TF.FC_3RD) AS NAME3RD
+    , TF.F_FOODNAME
+    , TF.F_PRICE
+    , TB.B_AMOUNT
+    , TF.F_ISBLOCK
+    , TF.f_thumname
+    , (SELECT SC.SUB_NAME
+        FROM TR_MASTERCODE MC 
+        INNER JOIN TR_SUBCODE SC
+        ON SC.MS_CODE = MC.MS_CODE
+        WHERE MC.MS_CODE = TF.MS_CODE AND SC.SUB_CODE = TF.F_ISBLOCK) AS F_ISBLOCKNAME
+    FROM TR_BASKET TB INNER JOIN TR_FOOD TF
+    ON TB.F_FDCODE = TF.F_FDCODE
+    LEFT OUTER JOIN TR_EVENT ET
+    ON TF.E_EVTCODE = ET.E_EVTCODE
+	WHERE M_USERID= #{m_userid}
+	</select>
+	
+				
+	
+</mapper>
