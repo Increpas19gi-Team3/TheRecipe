@@ -39,7 +39,7 @@ public class LocalDAO {
 	}
 	
 	/**
-	 * 지역>종류별 리스트 가져오기
+	 * 중분별 리스트 가져오기
 	 * @param kind : FC_1ST(대분류)
 	 * @param local : FC_2ND(중분류)
 	 * @return List<FoodVO>
@@ -55,10 +55,10 @@ public class LocalDAO {
 	}
 	
 	/**
-	 * 지역>종류>item별 리스트 select 서비스
+	 * 소분류별 리스트 select 서비스
 	 * @param kind : FC_1ST(대분류)
 	 * @param local : FC_2ND(중분류)
-	 * @param local : FC_3RD(소분류)
+	 * @param item : FC_3RD(소분류)
 	 * @return List<FoodVO>
 	 */
 	public List<FoodVO> selectLocalItemList(int kind, int local, int item){

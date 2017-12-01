@@ -7,10 +7,25 @@ INSERT INTO TR_MEMBER VALUES('son','1234','손가연','son@naver.com','12345','�
 INSERT INTO tr_foodcode VALUES(1,0,0,'지역','0');
 INSERT INTO tr_foodcode VALUES(1,1,0,'한식','0');
 INSERT INTO tr_foodcode VALUES(1,1,1,'찌개','0');
-INSERT INTO tr_foodcode VALUES(1,1,2,'해물','0');
+INSERT INTO tr_foodcode VALUES(1,1,2,'탕/찜','0');
+INSERT INTO tr_foodcode VALUES(1,1,3,'구이','0');
+INSERT INTO tr_foodcode VALUES(1,1,4,'볶음','0');
+
 INSERT INTO tr_foodcode VALUES(1,2,0,'중식','0');
 INSERT INTO tr_foodcode VALUES(1,2,1,'단품','0');
 INSERT INTO tr_foodcode VALUES(1,2,2,'요리','0');
+
+INSERT INTO tr_foodcode VALUES(1,3,0,'일식','0');
+INSERT INTO tr_foodcode VALUES(1,3,1,'밥','0');
+INSERT INTO tr_foodcode VALUES(1,3,2,'면','0');
+INSERT INTO tr_foodcode VALUES(1,3,3,'회','0');
+
+INSERT INTO tr_foodcode VALUES(1,4,0,'양식','0');
+INSERT INTO tr_foodcode VALUES(1,4,1,'스테이크','0');
+INSERT INTO tr_foodcode VALUES(1,4,2,'파스타','0');
+
+
+
 INSERT INTO tr_foodcode VALUES(2,0,0,'TV','0');
 INSERT INTO tr_foodcode VALUES(2,1,0,'냉.부','0');
 INSERT INTO tr_foodcode VALUES(2,1,1,'메인','0');
@@ -50,14 +65,26 @@ INSERT INTO tr_event VALUES(tr_event_seq.nextval, '12/04 공지사항입니다.'
 INSERT INTO tr_food VALUES(tr_food_seq.nextval, '0', '탕수육',1,2,2,5000,'탕수육','SourPork01.JPG_SourPork02.JPG','SourPork01.JPG_SourPork02.JPG','0','2');
 INSERT INTO tr_food VALUES(tr_food_seq.nextval, '1', '짬뽕',1,2,1,5000,'짬뽕',null,null,'0','2');
 INSERT INTO tr_food VALUES(tr_food_seq.nextval, '3', '짜장면',1,2,1,5000,'짜장면','jajangmyeon01.JPG_jajangmyeon02.JPG','jajangmyeon01.JPG_jajangmyeon02.JPG','0','2');
+
 INSERT INTO tr_food VALUES(tr_food_seq.nextval, '4', '김치찌개',1,1,1,5000,'김치찌개','kimci01.JPG_kimci02.JPG','kimci01.JPG_kimci02.JPG','0','2');
 INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '된장찌개',1,1,1,5000,'된장찌개','doenjang01.JPG_doenjang02.JPG','doenjang01.JPG_doenjang02.JPG','0','2');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '꽃게탕',1,1,2,10000,'꽃게탕','crab01.JPG_crab02.JPG','crab01.JPG_crab02.JPG','0','2');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '해물찜',1,1,2,10000,'해물찜','seafood01.JPG_seafood02.JPG','seafood01.JPG_seafood02.JPG','0','2');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '고등어',1,1,3,8000,'고등어구이','mackerel01.JPG_mackerel02.JPG','mackerel01.JPG_mackerel02.JPG','0','2');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '스팸',1,1,3,2000,'스팸구이','spam01.JPG_spam02.JPG','spam01.JPG_spam02.JPG','0','2');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '제육볶음',1,1,4,10000,'제육볶음','spicypork01.JPG_spicypork02.JPG','spicypork01.JPG_spicypork02.JPG','0','2');
 
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '규동',1,3,1,10000,'규동','siliconbronze01.JPG_siliconbronze02.JPG','siliconbronze01.JPG_siliconbronze02.JPG','0','2');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '라멘',1,3,2,10000,'라멘','Ramen01.JPG_Ramen02.JPG','Ramen01.JPG_Ramen02.JPG','0','2');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '초밥',1,3,3,10000,'초밥','sushi01.JPG_sushi02.JPG','sushi01.JPG_sushi02.JPG','0','2');
 
+INSERT INTO tr_foodcode VALUES(1,4,0,'양식','0');
+INSERT INTO tr_foodcode VALUES(1,4,1,'스테이크','0');
+INSERT INTO tr_foodcode VALUES(1,4,2,'파스타','0');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '스테이크',1,4,1,10000,'스테이크','steak01.JPG_steak02.JPG','steak01.JPG_steak02.JPG','0','2');
+INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '파스타',1,4,2,10000,'파스타','pasta01.JPG_pasta02.JPG','pasta01.JPG_pasta02.JPG','0','2');
 
-
-
-/* 장바구니 */
+/* 장바구니 */ 
 INSERT INTO tr_basket VALUES('han','1',5000,1);
 INSERT INTO tr_basket VALUES('han','3',5000,1);
 

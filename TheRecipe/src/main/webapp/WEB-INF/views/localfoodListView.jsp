@@ -10,15 +10,19 @@
 	<div class="container home">
 		<div class="con_inner">
 			<div class="page_locationBox2">
-				<a href="home.html">홈</a>
+				<a href="userIndex.do">홈</a>
 				<span> &gt; </span>
 				<a href="localFoodList.do">분류</a>
 				<c:if test="${level!=1 }">
 					<span> &gt; </span>
-					<a href="#" class="active">한식</a>
+						<c:forEach var="code" items="${ctgoryvo}">
+							<a href="localKindList.do?local=${code.fc_2nd}" class="active">${code.fc_ctgname}</a>
+						</c:forEach>
 					<c:if test="${level!=2 }">
 						<span> &gt; </span>
-						<a href="#" class="active">한식</a>
+						<c:forEach var="foodcd" items="${foodcode}">
+							<a href="#" class="active">${foodcd.fc_ctgname}</a>
+						</c:forEach>
 					</c:if>
 				</c:if>
 				<div class="search_box">
@@ -28,12 +32,34 @@
 					</form>
 				</div>
 			</div>
-			<div class="con_tabBox">
-				<a href="localKindList.do?local=0" class="active">전체보기</a>
-				<c:forEach var="foodcd" items="${foodcode}">
-					<a href="localKindList.do?local=${foodcd.fc_2nd}">${foodcd.fc_ctgname}</a>
-				</c:forEach>
-			</div>
+			<c:choose>
+				<c:when test="${level == 1}">
+					<div class="con_tabBox">
+						<a href="localFoodList.do" class="active">전체보기</a>
+						<c:forEach var="foodcd" items="${foodcode}">
+							<a href="localKindList.do?local=${foodcd.fc_2nd}">${foodcd.fc_ctgname}</a>
+						</c:forEach>
+					</div>
+				</c:when>
+				<c:when test="${level == 2}">
+					<div class="con_tabBox">
+						<c:forEach var="foodcd" items="${foodcode}" varStatus="status">
+							<c:choose>
+								<c:when test="${status.index == 0 }">
+									<a href="localKindList.do?local=${foodcd.fc_2nd}" class="active">전체보기</a>
+									<a href="localKindItemList.do?local=${foodcd.fc_2nd}&item=${foodcd.fc_3rd}">${foodcd.fc_ctgname}</a>
+								</c:when>
+								<c:otherwise>
+									<a href="localKindItemList.do?local=${foodcd.fc_2nd}&item=${foodcd.fc_3rd}">${foodcd.fc_ctgname}</a>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</div>
+				</c:when>
+				<c:when test="${level == 3}">
+					<br><br>
+				</c:when>
+			</c:choose>
 			<div class="con_card4 con_card_list con_card">
 			<ul>
 				<c:forEach var="food" items="${foodList }">

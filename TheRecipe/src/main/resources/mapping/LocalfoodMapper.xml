@@ -50,7 +50,7 @@
 		where fc_1st=1
 	</select>
 
-	<!-- 지역별 음식 리스트 -->
+	<!-- 중분류별 음식 리스트 -->
 	<select id="selectLocalKindList" parameterType="map" resultMap="LocalfoodResult">
 		select * from tr_food
 		<where>
@@ -63,7 +63,7 @@
 		</where>
 	</select>
 
-	<!-- item별 음식 리스트 -->
+	<!-- 소분류 음식 리스트 -->
 	<select id="selectLocalItemList" parameterType="map" resultMap="LocalfoodResult">
 		select * from tr_food
 		<where>
@@ -141,11 +141,15 @@
 				</otherwise>
 			</choose>
 			<choose>
-				<when test="trdcode != null">
+				
+				<when test="trdcode == '-1'">
 					and FC_3RD!='0'
 				</when>
-				<otherwise>
+				<when test="trdcode == null">
 					and FC_3RD='0'
+				</when>
+				<otherwise>
+					and FC_3RD=#{trdcode}
 				</otherwise>
 			</choose>
 	</select>

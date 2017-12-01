@@ -32,7 +32,7 @@ public class LocalService {
 	}
 	
 	/**
-	 * 지역>종류별 리스트 select 서비스
+	 * 중분류별 리스트 select 서비스
 	 * @param kind : FC_1ST(대분류)
 	 * @param local : FC_2ND(중분류)
 	 * @return List<FoodVO>
@@ -43,10 +43,10 @@ public class LocalService {
 	}
 	
 	/**
-	 * 지역>종류>item별 리스트 select 서비스
+	 * 소분류별 리스트 select 서비스
 	 * @param kind : FC_1ST(대분류)
 	 * @param local : FC_2ND(중분류)
-	 * @param local : FC_3RD(소분류)
+	 * @param item : FC_3RD(소분류)
 	 * @return List<FoodVO>
 	 */
 	public List<FoodVO> selectItemList(int kind, int local, int item){
