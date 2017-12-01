@@ -12,12 +12,12 @@
 			<div class="page_locationBox2">
 				<a href="userIndex.do">홈</a>
 				<span> &gt; </span>
-				<a href="localFoodList.do">분류</a>
+				<a href="totalFoodList.do?large=${large }">분류</a>
 				<c:if test="${level!=1 }">
 					<span> &gt; </span>
 						<c:forEach var="code" items="${ctgoryvo}" varStatus="status">
 							<c:if test="${status.index == 0 }">
-								<a href="localKindList.do?local=${code.fc_2nd}" class="active">${code.fc_ctgname}</a>
+								<a href="localKindList.do?large=${code.fc_1st}&medium=${code.fc_2nd}" class="active">${code.fc_ctgname}</a>
 							</c:if>
 						</c:forEach>
 					<c:if test="${level!=2 }">
@@ -47,10 +47,10 @@
 									<input type="hidden" name="first" value="${foodcd.fc_1st}">
 									<input type="hidden" name="second" value="0">
 									<input type="hidden" name="third" value="0">
-									<a href="localKindList.do?local=${foodcd.fc_2nd}">${foodcd.fc_ctgname}</a>
+									<a href="localKindList.do?large=${foodcd.fc_1st}&medium=${foodcd.fc_2nd}">${foodcd.fc_ctgname}</a>
 								</c:when>
 								<c:otherwise>
-									<a href="localKindList.do?local=${foodcd.fc_2nd}">${foodcd.fc_ctgname}</a>
+									<a href="localKindList.do?large=${foodcd.fc_1st}&medium=${foodcd.fc_2nd}">${foodcd.fc_ctgname}</a>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
@@ -58,17 +58,18 @@
 				</c:when>
 				<c:when test="${level == 2}">
 					<div class="con_tabBox">
-						<a href="localFoodList.do">전체보기</a>
+						
 						<c:forEach var="foodcd" items="${foodcode}" varStatus="status">
 							<c:choose>
 								<c:when test="${status.index == 0 }">
 									<input type="hidden" name="first" value="${foodcd.fc_1st}">
 									<input type="hidden" name="second" value="${foodcd.fc_2nd}">
-									<input type="hidden" name="third" value="0">								
-									<a href="localKindItemList.do?local=${foodcd.fc_2nd}&item=${foodcd.fc_3rd}">${foodcd.fc_ctgname}</a>
+									<input type="hidden" name="third" value="0">
+									<a href="totalFoodList.do?large=${foodcd.fc_1st}">전체보기</a>								
+									<a href="localKindItemList.do?large=${foodcd.fc_1st}&medium=${foodcd.fc_2nd}&small=${foodcd.fc_3rd}">${foodcd.fc_ctgname}</a>
 								</c:when>
 								<c:otherwise>
-									<a href="localKindItemList.do?local=${foodcd.fc_2nd}&item=${foodcd.fc_3rd}">${foodcd.fc_ctgname}</a>
+									<a href="localKindItemList.do?large=${foodcd.fc_1st}&medium=${foodcd.fc_2nd}&small=${foodcd.fc_3rd}">${foodcd.fc_ctgname}</a>
 								</c:otherwise>
 							</c:choose>	
 						</c:forEach>
@@ -81,11 +82,11 @@
 							<c:when test="${status.index == 0 }">
 								<input type="hidden" name="first" value="${foodcd.fc_1st}">
 								<input type="hidden" name="second" value="${foodcd.fc_2nd}">		
-								<a href="localKindList.do?local=${foodcd.fc_2nd}">전체보기</a>
-								<a href="localKindItemList.do?local=${foodcd.fc_2nd}&item=${foodcd.fc_3rd}">${foodcd.fc_ctgname}</a>
+								<a href="localKindList.do?large=${foodcd.fc_1st}&medium=${foodcd.fc_2nd}">전체보기</a>
+								<a href="localKindItemList.do?large=${foodcd.fc_1st}&medium=${foodcd.fc_2nd}&small=${foodcd.fc_3rd}">${foodcd.fc_ctgname}</a>
 							</c:when>
 							<c:otherwise>
-								<a href="localKindItemList.do?local=${foodcd.fc_2nd}&item=${foodcd.fc_3rd}">${foodcd.fc_ctgname}</a>
+								<a href="localKindItemList.do?large=${foodcd.fc_1st}&medium=${foodcd.fc_2nd}&small=${foodcd.fc_3rd}">${foodcd.fc_ctgname}</a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>

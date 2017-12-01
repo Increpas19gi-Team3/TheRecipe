@@ -19,16 +19,16 @@
 				<div class="nav_left">
 					<ul>
 						<li class="dropdown_wrap">
-							<a href="localFoodList.do" class="dropdown_select">분류</a>
+							<a href="totalFoodList.do?large=1" class="dropdown_select">분류</a>
 							<ul class="dropdown_itemWrap">
-								<li><a href="localKindList.do?local=1">한식</a></li>
-								<li><a href="localKindList.do?local=2">중식</a></li>
-								<li><a href="localKindList.do?local=3">일식</a></li>
-								<li><a href="localKindList.do?local=4">양식</a></li>
+								<li><a href="localKindList.do?large=1&medium=1">한식</a></li>
+								<li><a href="localKindList.do?large=1&medium=2">중식</a></li>
+								<li><a href="localKindList.do?large=1&medium=3">일식</a></li>
+								<li><a href="localKindList.do?large=1&medium=4">양식</a></li>
 							</ul>
 						</li>
 						<li class="dropdown_wrap">
-							<a href="" class="dropdown_select">유명 TV 레시피</a>
+							<a href="totalFoodList.do?large=2" class="dropdown_select">유명 TV 레시피</a>
 							<ul class="dropdown_itemWrap">
 								<li><a href="">올리브TV</a></li>
 								<li><a href="">집밥백선생</a></li>
