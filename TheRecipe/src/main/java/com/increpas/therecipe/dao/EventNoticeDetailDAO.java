@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.increpas.therecipe.dto.EventListDTO;
+import com.increpas.therecipe.vo.EventNoticeVO;
 import com.increpas.therecipe.vo.EventVO;
 
 /**
@@ -40,7 +41,7 @@ public class EventNoticeDetailDAO {
 	 * @param Ecode 화면에서 입력받은 이벤트 코드값
 	 * @return
 	 */
-	public EventVO EventDetailView(int Ecode) {
+	public EventNoticeVO EventDetailView(int Ecode) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("Ecode", Ecode);// 글번호 맵에 저장

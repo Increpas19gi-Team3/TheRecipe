@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.increpas.therecipe.dto.EventListDTO;
 import com.increpas.therecipe.service.NoticeDetailViewService;
+import com.increpas.therecipe.vo.EventNoticeVO;
 import com.increpas.therecipe.vo.EventVO;
 
 
@@ -57,7 +58,8 @@ public class EventNoticeDetailViewController {
 
 		System.out.println("1. '이벤트 상세페이지'입니다.");
 		int Ecode = Integer.parseInt(req.getParameter("e_evtcode"));		
-		EventVO eVo = ndvs.getEventVODetail(Ecode);		
+		EventNoticeVO eVo = ndvs.getEventVODetail(Ecode);
+		System.out.println(">>>>>>>>>>> eVo = " + eVo.toString());
 		model.addAttribute("eVo", eVo);
 		return "xxxEventDetailView";
 	}	

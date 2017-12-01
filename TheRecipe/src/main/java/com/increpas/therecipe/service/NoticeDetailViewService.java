@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.increpas.therecipe.dao.EventNoticeDAO;
 import com.increpas.therecipe.dao.EventNoticeDetailDAO;
 import com.increpas.therecipe.dto.EventListDTO;
+import com.increpas.therecipe.vo.EventNoticeVO;
 import com.increpas.therecipe.vo.EventVO;
 
 /**
@@ -31,7 +32,7 @@ public class NoticeDetailViewService {
 	
 	//이벤트 상세보기
 	@Transactional	
-	public EventVO getEventVODetail(int Ecode) {
+	public EventNoticeVO getEventVODetail(int Ecode) {
 		System.err.println("▶▶▶▶ NoticeDetailViewService : getEventVODetail >> 들어옴");		
 		return endDAO.EventDetailView(Ecode);
 	}	

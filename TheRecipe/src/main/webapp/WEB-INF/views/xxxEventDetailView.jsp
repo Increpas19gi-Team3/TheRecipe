@@ -71,7 +71,7 @@
 
 					<tr>
 						<th>마스터 코드</th>
-						<td>${eVo.ms_code}</td>
+						<td>${eVo.discount_value} % </td>
 					</tr>
 				</table>
 			</div>

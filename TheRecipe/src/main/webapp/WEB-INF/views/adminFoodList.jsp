@@ -34,15 +34,7 @@
 <jsp:include page="adminheader.jsp" />
 
 	<script type="text/javascript">
-		function setAllClear() {
-			console.log(document.getElementById('fc_1st').value);
-			
-			document.getElementById("codeName").value = "";
-			document.getElementById("sel2nd").checked="";
-			document.getElementById("sel3rd").checked="";
-		}
-		
-		function getSel2nd(){
+		/* function getSel2nd(){
 			var value = $("#fc_2nd option:selected").val();
 			var text = $("#fc_2nd option:selected").text();
 			//alert(value + " :: " + text);
@@ -50,9 +42,9 @@
 			console.log(document.getElementById('fc_2nd').value);
 			
 			//document.getElementById("sel2nd").checked="checked";
-		}
+		} */
 		
-		function getSel3rd() {
+		/* function getSel3rd() {
 			var value = $("#fc_3rd option:selected").val();
 			var text = $("#fc_3rd option:selected").text();
 			//alert(value + " :: " + text);
@@ -60,7 +52,7 @@
 			console.log(document.getElementById('fc_3rd').value);
 			
 			//document.getElementById("sel3rd").checked="checked";
-		}
+		} */
 		
 		
 		
@@ -171,41 +163,46 @@
 									
 									<!-- 분류 코드 시작 -->
 				                	<!-- https://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp -->
-				                	<!-- onclick="setAllClear();" -->
-				                	<select id="fc_1st" name="fc_1st" >
-										<c:forEach var="foodcode1st" items="${foodcode1stList }">											
-											<c:choose>
-											<c:when test="${fc_1st eq foodcode1st.fc_1st }"><option value= "${foodcode1st.fc_1st }" selected="selected">${foodcode1st.fc_ctgname } 요리</option></c:when>
-											<c:otherwise><option value= "${foodcode1st.fc_1st }">${foodcode1st.fc_ctgname } 요리</option></c:otherwise>
-											</c:choose>											
-										</c:forEach>
+				                	<select id="fc_1st" name="fc_1st" onclick="go_filter();">
+										<c:if test="${not empty foodcode1stList }">
+											<c:forEach var="foodcode1st" items="${foodcode1stList }">											
+												<c:choose>
+												<c:when test="${fc_1st eq foodcode1st.fc_1st }"><option value= "${foodcode1st.fc_1st }" selected="selected">${foodcode1st.fc_ctgname } 요리</option></c:when>
+												<c:otherwise><option value= "${foodcode1st.fc_1st }">${foodcode1st.fc_ctgname } 요리</option></c:otherwise>
+												</c:choose>											
+											</c:forEach>
+										</c:if>
 									</select>									
 									<strong> > </strong>				
 									<!-- onclick="getSel2nd();" -->				
-									<select id="fc_2nd" name="fc_2nd" >
+									<select id="fc_2nd" name="fc_2nd" onclick="go_filter();">
 										<!-- <option value="">-- 중분류 --</option> -->
-									  	<c:forEach var="foodcode2nd" items="${foodcode2ndList }">
-									  		\${fc_2nd eq foodcode2nd.fc_2nd } : ${fc_2nd eq foodcode2nd.fc_2nd } <Br/>
-									  		\${foodcode2nd.fc_2nd } : ${foodcode2nd.fc_2nd }
-									  		<c:choose>
-									  		<c:when test="${fc_2nd eq foodcode2nd.fc_2nd }"><option class="${foodcode2nd.fc_1st }" value="${foodcode2nd.fc_1st }_${foodcode2nd.fc_2nd }" selected="selected">${foodcode2nd.fc_ctgname }</option></c:when>
-									  		<c:otherwise><option class="${foodcode2nd.fc_1st }" value="${foodcode2nd.fc_1st }_${foodcode2nd.fc_2nd }">${foodcode2nd.fc_ctgname }</option></c:otherwise>
-									  		</c:choose>
-										</c:forEach>
+										<c:if test="${not empty foodcode2ndList }">
+											<c:forEach var="foodcode2nd" items="${foodcode2ndList }">
+										  		\${fc_2nd eq foodcode2nd.fc_2nd } : ${fc_2nd eq foodcode2nd.fc_2nd } <Br/>
+										  		\${foodcode2nd.fc_2nd } : ${foodcode2nd.fc_2nd }
+										  		<c:choose>
+										  		<c:when test="${fc_2nd eq foodcode2nd.fc_2nd }"><option class="${foodcode2nd.fc_1st }" value="${foodcode2nd.fc_1st }_${foodcode2nd.fc_2nd }" selected="selected">${foodcode2nd.fc_ctgname }</option></c:when>
+										  		<c:otherwise><option class="${foodcode2nd.fc_1st }" value="${foodcode2nd.fc_1st }_${foodcode2nd.fc_2nd }">${foodcode2nd.fc_ctgname }</option></c:otherwise>
+										  		</c:choose>
+											</c:forEach>
+										</c:if>
 									</select>									
 									<strong> > </strong>				
 									<!-- onclick="getSel3rd();" -->					
-									<select id="fc_3rd" name="fc_3rd" >
+									<select id="fc_3rd" name="fc_3rd" onclick="go_filter();">
 										<!-- <option value="">-- 소분류 --</option> -->
-										<c:forEach var="foodcode3rd" items="${foodcode3rdList }">
-											\${fc_3rd eq foodcode3rd.fc_3rd } : ${fc_3rd eq foodcode3rd.fc_3rd } <Br/>
-									  		\${foodcode3rd.fc_3rd } : ${foodcode3rd.fc_3rd }
-									  		
-									  		<c:choose>
-									  		<c:when test="${fc_3rd eq foodcode3rd.fc_3rd }"><option class='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }' value='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }_${foodcode3rd.fc_3rd }' selected="selected">${foodcode3rd.fc_ctgname }</option></c:when>
-									  		<c:otherwise><option class='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }' value='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }_${foodcode3rd.fc_3rd }'>${foodcode3rd.fc_ctgname }</option></c:otherwise>
-									  		</c:choose>
-										</c:forEach>
+										<c:if test="${not empty foodcode3rdList }">
+											<c:forEach var="foodcode3rd" items="${foodcode3rdList }">
+												\${fc_3rd eq foodcode3rd.fc_3rd } : ${fc_3rd eq foodcode3rd.fc_3rd } <Br/>
+										  		\${foodcode3rd.fc_3rd } : ${foodcode3rd.fc_3rd }
+										  		
+										  		<c:choose>
+										  		<c:when test="${fc_3rd eq foodcode3rd.fc_3rd }"><option class='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }' value='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }_${foodcode3rd.fc_3rd }' selected="selected">${foodcode3rd.fc_ctgname }</option></c:when>
+										  		<c:otherwise><option class='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }' value='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }_${foodcode3rd.fc_3rd }'>${foodcode3rd.fc_ctgname }</option></c:otherwise>
+										  		</c:choose>
+											</c:forEach>
+										</c:if>
 									</select>
 									
 									<input type="button" value="필터적용" onclick="go_filter();">

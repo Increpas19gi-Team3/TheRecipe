@@ -24,6 +24,10 @@
 		<!-- 상품테이블(tr_food) + Join + 이벤트(tr_event) + SubQuery(음식 분류코드(tr_foodcode)) : 손가연  -->
 		<typeAlias alias="FoodMgr" type="com.increpas.therecipe.vo.FoodMgrVO" />
 		
+		
+		<!-- 이벤트(tr_event) + SubQuery (tr_mastercode INNER JOIN tr_subcode) : 손가연 -->
+		<typeAlias alias="EventNotice" type="com.increpas.therecipe.vo.EventNoticeVO" />
+		
 	</typeAliases>
 	
 	
