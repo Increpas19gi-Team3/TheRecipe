@@ -106,7 +106,7 @@ public class AdminCategoryMgrService {
 		// 개발용 Log
 				String logMsg_01 = "select1stFoodcode()=";
 				String logMsg_02 = "";
-				logger.info("▶▶▶>>>>>>>> Log : {}, {}", logMsg_01, logMsg_02);
+				logger.info("▶▶▶ Log : {}, {}", logMsg_01, logMsg_02);
 				
 		return adminCategoryMgrDAO.select1stFoodcode();
 	}
@@ -136,10 +136,21 @@ public class AdminCategoryMgrService {
 		// 개발용 Log
 		String logMsg_01 = "selectSel2ndFoodcode()=";
 		String logMsg_02 = "";
-		logger.info("▶▶▶>>>>>>>> Log : {}, {}", logMsg_01, "fc_1st="+fc_1st+", fc_2nd="+fc_2nd+", fc_3rd="+fc_3rd);
+		logger.info("▶▶▶ Log : {}, {}", logMsg_01, "fc_1st="+fc_1st+", fc_2nd="+fc_2nd+", fc_3rd="+fc_3rd);
 		
 		return adminCategoryMgrDAO.selectSel2ndFoodcode(setFoodcodeVO(fc_1st, fc_2nd, fc_3rd, fc_ctgname, fc_isblock));
 	}
+	public List<FoodcodeVO> selectSel2ndFoodcode(FoodcodeVO fcVO){
+		// 개발용 Log
+		String logMsg_01 = "selectSel2ndFoodcode(FoodcodeVO fcVO) =";
+		String logMsg_02 = fcVO.toString();
+		logger.info("▶▶▶ Log : {}, {}", logMsg_01, logMsg_02);
+		
+		return adminCategoryMgrDAO.selectSel2ndFoodcode(fcVO);
+	}
+	
+	
+	
 	
 	/**
 	 * 선택한 3rd 음식 코드 가져오기
@@ -148,6 +159,15 @@ public class AdminCategoryMgrService {
 	public List<FoodcodeVO> selectSel3rdFoodcode(String fc_1st, String fc_2nd, String fc_3rd, String fc_ctgname, String fc_isblock){
 		return adminCategoryMgrDAO.selectSel3rdFoodcode(setFoodcodeVO(fc_1st, fc_2nd, fc_3rd, fc_ctgname, fc_isblock));
 	}
+	
+	public List<FoodcodeVO> selectSel3rdFoodcode(FoodcodeVO fcVO){
+		return adminCategoryMgrDAO.selectSel3rdFoodcode(fcVO);
+	}
+	
+	
+	
+	
+	
 	
 	
 	/**
@@ -176,13 +196,12 @@ public class AdminCategoryMgrService {
 			fcVO.setFc_3rd(Integer.parseInt(fc_3rdArr[fc_3rdArr.length-1]));
 		}else{
 			fcVO.setFc_3rd(Integer.parseInt(fc_3rd));
-		}
-		
+		}		
 		
 		fcVO.setFc_ctgname(fc_ctgname);
 		fcVO.setFc_isblock(fc_isblock);
 		
-		logger.debug("▶▶▶▶++++++++++++ Log : {}, {}", "AdminCategoryMgrService.setFoodcodeVO()", fcVO.toString());
+		logger.debug("▶▶▶▶ Log : {}, {}", "AdminCategoryMgrService.setFoodcodeVO()", fcVO.toString());
 		
 		return fcVO;
 	}

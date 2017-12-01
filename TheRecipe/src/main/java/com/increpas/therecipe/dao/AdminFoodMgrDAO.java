@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.increpas.therecipe.vo.FoodMgrVO;
+import com.increpas.therecipe.vo.FoodcodeVO;
 
 /**
  * 관리자) 음식 등록관리 Query 제어
@@ -37,4 +38,9 @@ public class AdminFoodMgrDAO {
 		return sqlSessionTemplate.selectList("adminFoodMgr_ns.selectAdminFoodListAll");
 	}
 	
+	
+	
+	public List<FoodMgrVO> selectAdminFoodListSel(FoodcodeVO fcVO){
+		return sqlSessionTemplate.selectList("adminFoodMgr_ns.selectAdminFoodListSel", fcVO);
+	}
 }

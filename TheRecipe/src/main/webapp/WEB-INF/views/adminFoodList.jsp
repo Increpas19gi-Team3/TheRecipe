@@ -38,12 +38,25 @@
 			document.listForm.word.value = "";
 		}
 		
-		function go_filter() {
+		function click_1st() {
+			var fc_1st = document.getElementById('fc_1st').value;
+			document.getElementById('fc_2nd').value = 0;
+			var fc_2nd = document.getElementById('fc_2nd').value;
+			document.getElementById('fc_3rd').value = 0;
+			var fc_3rd = document.getElementById('fc_3rd').value;
+		}
+		
+		function click_2nd() {
+			var fc_1st = document.getElementById('fc_1st').value;
+			var fc_2nd = document.getElementById('fc_2nd').value;
+			document.getElementById('fc_3rd').value = 0;
+			var fc_3rd = document.getElementById('fc_3rd').value;
+		}
+		
+		function filter() {
 			var fc_1st = document.getElementById('fc_1st').value;
 			var fc_2nd = document.getElementById('fc_2nd').value;
 			var fc_3rd = document.getElementById('fc_3rd').value;
-
-			console.log('fc_1st= ${fc_1st},    fc_2nd=${fc_2nd},     fc_3rd=${fc_3rd}');
 			
 			var sortColumn = '${sortColumn}';
 			var orderby = '${orderby }';
@@ -88,19 +101,9 @@
 		<c:set var="pageCutCount" value="5" />
 	</c:if>
 	
-	
-	현재상황 : 
-	1st 변경시 2nd 값이 0으로 초기화 되지 않고 있음. 
-	3rd 선택시 DB 오류가 나고 있음.
-	
-	
-	<c:choose>
-	<c:when test="${empty fc_1st }"><c:set var="fc_1st" value="1" /></c:when>
-	<c:otherwise></c:otherwise>
-	</c:choose>
-	
-	<c:if test="${empty fc_1st }">
 		
+	<c:if test="${empty fc_1st }">
+		<c:set var="fc_1st" value="1" />
 	</c:if>
 	<c:if test="${empty fc_2nd }">
 		<c:set var="fc_2nd" value="0" />
@@ -134,7 +137,51 @@
 	<p /><p />    
         
         
-        
+        <!-- 분류 코드 시작 -->
+				                	<!-- https://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp -->
+				                	<select id="fc_1st" name="fc_1st" onchange="click_1st(); filter();">
+										<c:if test="${not empty foodcode1stList }">
+											<c:forEach var="foodcode1st" items="${foodcode1stList }">											
+												<c:choose>
+												<c:when test="${fc_1st eq foodcode1st.fc_1st }"><option value= "${foodcode1st.fc_1st }" selected="selected">${foodcode1st.fc_ctgname } 요리</option></c:when>
+												<c:otherwise><option value= "${foodcode1st.fc_1st }">${foodcode1st.fc_ctgname } 요리</option></c:otherwise>
+												</c:choose>											
+											</c:forEach>
+										</c:if>
+									</select>									
+									<strong> > </strong>				
+									<!-- onclick="getSel2nd();" -->				
+									<select id="fc_2nd" name="fc_2nd" onchange="click_2nd(); filter();">
+										<!-- <option value="">-- 중분류 --</option> -->
+										<option value="0">-- 중분류 --</option>
+										<c:if test="${not empty foodcode2ndList }">
+											<c:forEach var="foodcode2nd" items="${foodcode2ndList }">
+										  		\${fc_2nd eq foodcode2nd.fc_2nd } : ${fc_2nd eq foodcode2nd.fc_2nd } <Br/>
+										  		\${foodcode2nd.fc_2nd } : ${foodcode2nd.fc_2nd }
+										  		<c:choose>
+										  		<c:when test="${fc_2nd eq foodcode2nd.fc_2nd }"><option class="${foodcode2nd.fc_1st }" value="${foodcode2nd.fc_1st }_${foodcode2nd.fc_2nd }" selected="selected">${foodcode2nd.fc_ctgname }</option></c:when>
+										  		<c:otherwise><option class="${foodcode2nd.fc_1st }" value="${foodcode2nd.fc_1st }_${foodcode2nd.fc_2nd }">${foodcode2nd.fc_ctgname }</option></c:otherwise>
+										  		</c:choose>
+											</c:forEach>
+										</c:if>
+									</select>									
+									<strong> > </strong>				
+									<!-- onclick="getSel3rd();" -->					
+									<select id="fc_3rd" name="fc_3rd" onchange="filter();">
+										<option value="0">-- 소분류 --</option>
+										<c:if test="${not empty foodcode3rdList }">
+											<c:forEach var="foodcode3rd" items="${foodcode3rdList }">
+												\${fc_3rd eq foodcode3rd.fc_3rd } : ${fc_3rd eq foodcode3rd.fc_3rd } <Br/>
+										  		\${foodcode3rd.fc_3rd } : ${foodcode3rd.fc_3rd }
+										  		
+										  		<c:choose>
+										  		<c:when test="${fc_3rd eq foodcode3rd.fc_3rd }"><option class='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }' value='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }_${foodcode3rd.fc_3rd }' selected="selected">${foodcode3rd.fc_ctgname }</option></c:when>
+										  		<c:otherwise><option class='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }' value='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }_${foodcode3rd.fc_3rd }'>${foodcode3rd.fc_ctgname }</option></c:otherwise>
+										  		</c:choose>
+											</c:forEach>
+										</c:if>
+									</select>
+									<!-- 분류 코드 끝 -->
         
         
             <ol class="breadcrumb">
@@ -157,52 +204,7 @@
 								<td style="text-align: left; border: none;">
 												
 									
-									<!-- 분류 코드 시작 -->
-				                	<!-- https://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp -->
-				                	<select id="fc_1st" name="fc_1st" onchange="go_filter();">
-										<c:if test="${not empty foodcode1stList }">
-											<c:forEach var="foodcode1st" items="${foodcode1stList }">											
-												<c:choose>
-												<c:when test="${fc_1st eq foodcode1st.fc_1st }"><option value= "${foodcode1st.fc_1st }" selected="selected">${foodcode1st.fc_ctgname } 요리</option></c:when>
-												<c:otherwise><option value= "${foodcode1st.fc_1st }">${foodcode1st.fc_ctgname } 요리</option></c:otherwise>
-												</c:choose>											
-											</c:forEach>
-										</c:if>
-									</select>									
-									<strong> > </strong>				
-									<!-- onclick="getSel2nd();" -->				
-									<select id="fc_2nd" name="fc_2nd" onchange="go_filter();">
-										<!-- <option value="">-- 중분류 --</option> -->
-										<c:if test="${not empty foodcode2ndList }">
-											<c:forEach var="foodcode2nd" items="${foodcode2ndList }">
-										  		\${fc_2nd eq foodcode2nd.fc_2nd } : ${fc_2nd eq foodcode2nd.fc_2nd } <Br/>
-										  		\${foodcode2nd.fc_2nd } : ${foodcode2nd.fc_2nd }
-										  		<c:choose>
-										  		<c:when test="${fc_2nd eq foodcode2nd.fc_2nd }"><option class="${foodcode2nd.fc_1st }" value="${foodcode2nd.fc_1st }_${foodcode2nd.fc_2nd }" selected="selected">${foodcode2nd.fc_ctgname }</option></c:when>
-										  		<c:otherwise><option class="${foodcode2nd.fc_1st }" value="${foodcode2nd.fc_1st }_${foodcode2nd.fc_2nd }">${foodcode2nd.fc_ctgname }</option></c:otherwise>
-										  		</c:choose>
-											</c:forEach>
-										</c:if>
-									</select>									
-									<strong> > </strong>				
-									<!-- onclick="getSel3rd();" -->					
-									<select id="fc_3rd" name="fc_3rd" onchange="go_filter();">
-										<!-- <option value="">-- 소분류 --</option> -->
-										<c:if test="${not empty foodcode3rdList }">
-											<c:forEach var="foodcode3rd" items="${foodcode3rdList }">
-												\${fc_3rd eq foodcode3rd.fc_3rd } : ${fc_3rd eq foodcode3rd.fc_3rd } <Br/>
-										  		\${foodcode3rd.fc_3rd } : ${foodcode3rd.fc_3rd }
-										  		
-										  		<c:choose>
-										  		<c:when test="${fc_3rd eq foodcode3rd.fc_3rd }"><option class='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }' value='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }_${foodcode3rd.fc_3rd }' selected="selected">${foodcode3rd.fc_ctgname }</option></c:when>
-										  		<c:otherwise><option class='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }' value='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }_${foodcode3rd.fc_3rd }'>${foodcode3rd.fc_ctgname }</option></c:otherwise>
-										  		</c:choose>
-											</c:forEach>
-										</c:if>
-									</select>
 									
-									<input type="button" value="필터적용" onclick="go_filter();">
-				                	<!-- 분류 코드 끝 -->
 								</td>
 								<td style="text-align: right; border: none;">
 								
@@ -265,7 +267,7 @@
                             </thead>
                             <tbody>
                                 
-                                <c:forEach var="foodList" items="${foodAllList }">
+                                <c:forEach var="foodList" items="${foodList }">
                                 	<tr>
                                     <td>${foodList.f_fdcode }</td>
                                     <td>

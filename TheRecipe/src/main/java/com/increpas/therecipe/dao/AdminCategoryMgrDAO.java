@@ -108,7 +108,7 @@ public class AdminCategoryMgrDAO {
 		// 개발용 Log
 		String logMsg_01 = "selectSel2ndFoodcode()=";
 		String logMsg_02 = "";
-		logger.debug("▶▶▶▶++++++++++++ Log : {}, {}", "AdminCategoryMgrDAO.setFoodcodeVO()", fcVO.toString());
+		logger.debug("▶▶▶▶ Log : {}, {}", "AdminCategoryMgrDAO.setFoodcodeVO()", fcVO.toString());
 		
 		
 		List<FoodcodeVO> list = sqlSessionTemplate.selectList("adminFoodcode_ns.selectSel2ndFoodcode", fcVO);

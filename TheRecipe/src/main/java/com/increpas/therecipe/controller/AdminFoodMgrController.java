@@ -45,15 +45,20 @@ public class AdminFoodMgrController {
 		
 		//model = adminCategoryMgrService.getFoodcodeOnlyAll(model);//카테고리관리 서비스에서 카테고리 정보를 가져옮
 		
-		logger.debug("▶▶▶▶ >>>>>>>> Log : {} {}", "getAdminFoodListAll()=", "fc_1st="+fc_1st+", fc_2nd="+fc_2nd+", fc_3rd="+fc_3rd);
+		logger.debug("▶▶▶▶ >>>>>>>> Log : {} {}", 
+				"getAdminFoodListAll()=", "fc_1st="+fc_1st+", fc_2nd="+fc_2nd+", fc_3rd="+fc_3rd);
+		
+		FoodcodeVO fcVO = adminCategoryMgrService.setFoodcodeVO(fc_1st, fc_2nd, fc_3rd, "", "");
+		
 		
 		model.addAttribute("foodcode1stList", adminCategoryMgrService.select1stFoodcode());
-		System.out.println("************************** 여기까이 이상 없음1");
-		model.addAttribute("foodcode2ndList", adminCategoryMgrService.selectSel2ndFoodcode(fc_1st, fc_2nd, fc_3rd, "", ""));
-		System.out.println("************************** 여기까이 이상 없음2");
-//		model.addAttribute("foodcode3rdList", adminCategoryMgrService.selectSel3rdFoodcode(fc_1st, fc_2nd, fc_3rd, "", ""));
-//		
-//		model.addAttribute("foodAllList", adminFoodMgrService.selectAdminFoodListAll());
+		model.addAttribute("foodcode2ndList", adminCategoryMgrService.selectSel2ndFoodcode(fcVO));
+		model.addAttribute("foodcode3rdList", adminCategoryMgrService.selectSel3rdFoodcode(fcVO));
+		
+
+		//model.addAttribute("foodAllList", adminFoodMgrService.selectAdminFoodListAll());
+		model.addAttribute("foodList", adminFoodMgrService.selectAdminFoodListSel(fcVO));
+		
 		
 		return model;
 	}

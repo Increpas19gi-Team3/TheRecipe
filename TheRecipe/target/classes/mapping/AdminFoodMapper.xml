@@ -74,6 +74,48 @@
 		    ON TF.E_EVTCODE = TE.E_EVTCODE
 	</select>
 
+
+	<select id="selectAdminFoodListSel" resultMap="FoodMgrResult" parameterType="Foodcode">
+		SELECT TF.F_FDCODE, 
+		    TF.E_EVTCODE, TE.E_NTTILTE, TE.E_STARTDATE, TE.E_ENDDATE, SYSDATE AS TODAY, 
+		    TF.FC_1ST, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TFC.FC_2ND = 0 AND TFC.FC_3RD = 0) AS FCNAME_1ST, 
+		    TF.FC_2ND, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TFC.FC_3RD = 0) AS FCNAME_2ND, 
+		    TF.FC_3RD, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD) AS FCNAME_3RD, 
+            (SELECT TFC.FC_ISBLOCK FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD) AS FC_ISBLOCK, 
+		    TF.F_FOODNAME, 
+		    TF.F_PRICE, TF.F_EXPLAN, TF.F_IMGNAME, TF.F_THUMNAME, TF.F_ISBLOCK, TF.MS_CODE 
+		FROM TR_FOOD TF
+		LEFT OUTER JOIN TR_EVENT TE
+		    ON TF.E_EVTCODE = TE.E_EVTCODE
+		    
+		<where>
+			TF.FC_1ST = #{fc_1st} 
+			<if test="!fc_2nd.equals(0)"><!-- 중분류에 값이 있을때만 -->
+				AND TF.FC_2ND = #{fc_2nd} 
+			</if>
+			<if test="!fc_3rd.equals(0)"><!-- 소분류에 값이 있을때만 -->
+				AND TF.FC_3RD = #{fc_3rd} 
+			</if>
+		</where>
+		
+		
+		<!-- ORDER BY -->
+   		<!-- <choose>
+   			<when test="sortColumn.equals('TITLE')">   				
+   				<if test="orderby.equals('ASC')">ORDER BY TE.E_NTTILTE ASC</if>
+   				<if test="orderby.equals('DESC')">ORDER BY TE.E_NTTILTE DESC</if>   				
+   			</when>
+   			<when test="sortColumn.equals('PRICE')">
+   				<if test="orderby.equals('ASC')">ORDER BY TF.F_PRICE ASC</if>
+   				<if test="orderby.equals('DESC')">ORDER BY TF.F_PRICE DESC</if>
+   			</when>
+   			<otherwise> -->
+   				ORDER BY TF.F_FDCODE DESC, TF.F_FDCODE DESC
+   			<!-- </otherwise>
+   		</choose> -->
+        
+	</select>
+
 	<!-- 조건 검색 
 	SELECT TF.F_FDCODE, 
 		    TF.E_EVTCODE, TE.E_NTTILTE, TE.E_STARTDATE, TE.E_ENDDATE, SYSDATE AS TODAY, 
