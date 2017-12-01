@@ -86,11 +86,11 @@ hr{
 .page_locationBox2 .search_box:focus{
 	background: #000;
 }
-.page_locationBox2 .search_box form{
+.page_locationBox2 .search_box{
 	overflow: hidden;
 	border: 1px solid #ccc;
 }
-.page_locationBox2 .search_box form input{
+.page_locationBox2 .search_box input{
 	height: 38px;
 	padding-left: 15px;
 	float: left;
@@ -98,13 +98,13 @@ hr{
 	outline: none;
 	background: none;
 }
-.page_locationBox2 .search_box form button{
+.page_locationBox2 .search_box button{
 	width: 38px;
 	height: 38px;
 	border: none;
 	background: url(../images/ic_search.png) center 0 no-repeat;
 }
-.page_locationBox2 .search_box form button:hover{
+.page_locationBox2 .search_box button:hover{
 	background: url(../images/ic_search.png) center -38px no-repeat;
 }
 
@@ -1067,6 +1067,32 @@ hr{
 }
 .productDetail .detail_review table{
 	width: 100%;
+	display: table;
+}
+.productDetail .detail_review table tbody tr.dropdown_re{
+	display: none;
+	-webkit-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.productDetail .detail_review table tbody tr.dropdown_re.toggle{
+	display: table-row;
+}
+.productDetail .detail_review table tbody tr.dropdown_re td{
+
+}
+.productDetail .detail_review table tbody tr.dropdown_re td img{
+	max-width: 500px;
+}
+.productDetail .detail_review table tbody tr.dropdown_re td p.user_tx{
+
+}
+.productDetail .detail_review table tbody tr.dropdown_re td p.admin_tx{
+
+}
+.productDetail .detail_review table tbody tr.dropdown_re td p.admin_desc{
+	color: #999;
+	font-size: 12px;
 }
 .productDetail .detail_review table thead tr th{
 	border-bottom: 1px solid #ccc;
