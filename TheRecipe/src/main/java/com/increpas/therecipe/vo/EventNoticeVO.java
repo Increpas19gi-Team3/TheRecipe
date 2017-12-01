@@ -8,6 +8,7 @@ import java.sql.Timestamp;
  *
  */
 public class EventNoticeVO {
+	
 	private String e_evtcode;	/* 이벤트코드	VARCHAR2(20) NOT NULL */
 	private String e_nttilte;	/* 제목 		VARCHAR2(100) */
 	private String e_gubun;		/* 구분 		CHAR(1) */
