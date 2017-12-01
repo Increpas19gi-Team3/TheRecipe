@@ -89,30 +89,6 @@ public class NoticeListService {
 
 		return boardVOListView;
 	}
-	
-	/**
-	 * 조건 별로 게시글 목록 가져오기
-	 * 
-	 * @param whereColumn ; 검색 컬럼명
-	 * @param word ; 검색할 단어
-	 * @param sortColumn ; 정렬 컬럼
-	 * @param orderby ; 정렬방식 ASC, DESC
-	 * @param GUBUN ; 공지사항:0, 이벤트:1 
-	 * @return eventNoticeDAO.selectNoticeSetList(eventListDTO)
-	 */
-	public List<EventVO> getSetList(String whereColumn, String word, String sortColumn, String orderby,
-			String GUBUN) {
-
-		System.err.println("4. ▶▶▶▶ EventNoticeListService : getSetList >> 조건 검색 들어옴");
-
-		eventListDTO.setWhereColumn(whereColumn);
-		eventListDTO.setWord(word);
-		eventListDTO.setSortColumn(sortColumn);
-		eventListDTO.setOrderby(orderby);
-		eventListDTO.setGUBUN(GUBUN);
-
-		return eventNoticeDAO.selectNoticeSetList(eventListDTO);
-	}
 
 	/**
 	 * 전체 페이지 갯수 계산
