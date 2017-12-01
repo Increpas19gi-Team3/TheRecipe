@@ -105,7 +105,19 @@ public class AdminCategoryMgrDAO {
 	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selectSel2ndFoodcode(FoodcodeVO fcVO){
-		return sqlSessionTemplate.selectList("adminFoodcode_ns.selectSel2ndFoodcode"); 
+		// 개발용 Log
+		String logMsg_01 = "selectSel2ndFoodcode()=";
+		String logMsg_02 = "";
+		logger.debug("▶▶▶▶++++++++++++ Log : {}, {}", "AdminCategoryMgrDAO.setFoodcodeVO()", fcVO.toString());
+		
+		
+		List<FoodcodeVO> list = sqlSessionTemplate.selectList("adminFoodcode_ns.selectSel2ndFoodcode", fcVO);
+		
+		for(int i=0; i<list.size(); i++){
+			System.out.println(i+"="+list.get(i).toString());
+		}
+		
+		return list;
 	} 
 	
 	/**
@@ -113,7 +125,14 @@ public class AdminCategoryMgrDAO {
 	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selectSel3rdFoodcode(FoodcodeVO fcVO){
-		return sqlSessionTemplate.selectList("adminFoodcode_ns.selectSel3rdFoodcode"); 
+		
+		List<FoodcodeVO> list = sqlSessionTemplate.selectList("adminFoodcode_ns.selectSel3rdFoodcode", fcVO);
+		
+		for(int i=0; i<list.size(); i++){
+			System.out.println(i+"="+list.get(i).toString());
+		}
+		
+		return list; 
 	} 
 	
 	

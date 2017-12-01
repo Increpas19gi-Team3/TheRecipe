@@ -139,7 +139,7 @@
 		FROM TR_FOODCODE 
 		WHERE FC_3RD != 0
             AND FC_1ST = #{fc_1st} AND FC_2ND = #{fc_2nd}
-		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC;
+		ORDER BY FC_1ST ASC, FC_2ND ASC, FC_3RD ASC
 	</select>
 	
 	

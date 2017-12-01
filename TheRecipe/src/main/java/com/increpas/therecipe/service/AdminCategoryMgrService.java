@@ -103,6 +103,11 @@ public class AdminCategoryMgrService {
 	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> select1stFoodcode(){
+		// 개발용 Log
+				String logMsg_01 = "select1stFoodcode()=";
+				String logMsg_02 = "";
+				logger.info("▶▶▶>>>>>>>> Log : {}, {}", logMsg_01, logMsg_02);
+				
 		return adminCategoryMgrDAO.select1stFoodcode();
 	}
 	
@@ -128,6 +133,11 @@ public class AdminCategoryMgrService {
 	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selectSel2ndFoodcode(String fc_1st, String fc_2nd, String fc_3rd, String fc_ctgname, String fc_isblock){
+		// 개발용 Log
+		String logMsg_01 = "selectSel2ndFoodcode()=";
+		String logMsg_02 = "";
+		logger.info("▶▶▶>>>>>>>> Log : {}, {}", logMsg_01, "fc_1st="+fc_1st+", fc_2nd="+fc_2nd+", fc_3rd="+fc_3rd);
+		
 		return adminCategoryMgrDAO.selectSel2ndFoodcode(setFoodcodeVO(fc_1st, fc_2nd, fc_3rd, fc_ctgname, fc_isblock));
 	}
 	
@@ -154,16 +164,25 @@ public class AdminCategoryMgrService {
 		FoodcodeVO fcVO = new FoodcodeVO();
 		fcVO.setFc_1st(Integer.parseInt(fc_1st));
 		
-		String[] fc_2ndArr = fc_2nd.split("_");// 데이터가 1st_2nd 형태(구분자 '_')로 들어옴 예) 1_2
-		fcVO.setFc_2nd(Integer.parseInt(fc_2ndArr[fc_2ndArr.length-1]));
+		if(fc_2nd.contains("_")){
+			String[] fc_2ndArr = fc_2nd.split("_");// 데이터가 1st_2nd 형태(구분자 '_')로 들어옴 예) 1_2
+			fcVO.setFc_2nd(Integer.parseInt(fc_2ndArr[fc_2ndArr.length-1]));
+		}else{
+			fcVO.setFc_2nd(Integer.parseInt(fc_2nd));
+		}
 		
-		String[] fc_3rdArr = fc_3rd.split("_");// 데이터가 1st_2nd_3rd 형태(구분자 '_')로 들어옴 예) 1_2_3
-		fcVO.setFc_3rd(Integer.parseInt(fc_3rdArr[fc_3rdArr.length-1]));
+		if(fc_3rd.contains("_")){
+			String[] fc_3rdArr = fc_3rd.split("_");// 데이터가 1st_2nd_3rd 형태(구분자 '_')로 들어옴 예) 1_2_3
+			fcVO.setFc_3rd(Integer.parseInt(fc_3rdArr[fc_3rdArr.length-1]));
+		}else{
+			fcVO.setFc_3rd(Integer.parseInt(fc_3rd));
+		}
+		
 		
 		fcVO.setFc_ctgname(fc_ctgname);
 		fcVO.setFc_isblock(fc_isblock);
 		
-		logger.debug("▶▶▶▶ Log : {}, {}", "AdminCategoryMgrService.setFoodcodeVO()", fcVO.toString());
+		logger.debug("▶▶▶▶++++++++++++ Log : {}, {}", "AdminCategoryMgrService.setFoodcodeVO()", fcVO.toString());
 		
 		return fcVO;
 	}

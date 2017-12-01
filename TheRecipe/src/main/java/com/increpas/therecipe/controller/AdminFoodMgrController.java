@@ -43,13 +43,17 @@ public class AdminFoodMgrController {
 		logger.info("▶▶▶ Log : {}, {}", logMsg_01, logMsg_02);
 		
 		
-		model = adminCategoryMgrService.getFoodcodeOnlyAll(model);//카테고리관리 서비스에서 카테고리 정보를 가져옮
+		//model = adminCategoryMgrService.getFoodcodeOnlyAll(model);//카테고리관리 서비스에서 카테고리 정보를 가져옮
+		
+		logger.debug("▶▶▶▶ >>>>>>>> Log : {} {}", "getAdminFoodListAll()=", "fc_1st="+fc_1st+", fc_2nd="+fc_2nd+", fc_3rd="+fc_3rd);
 		
 		model.addAttribute("foodcode1stList", adminCategoryMgrService.select1stFoodcode());
+		System.out.println("************************** 여기까이 이상 없음1");
 		model.addAttribute("foodcode2ndList", adminCategoryMgrService.selectSel2ndFoodcode(fc_1st, fc_2nd, fc_3rd, "", ""));
-		model.addAttribute("foodcode3rdList", adminCategoryMgrService.selectSel3rdFoodcode(fc_1st, fc_2nd, fc_3rd, "", ""));
-		
-		model.addAttribute("foodAllList", adminFoodMgrService.selectAdminFoodListAll());
+		System.out.println("************************** 여기까이 이상 없음2");
+//		model.addAttribute("foodcode3rdList", adminCategoryMgrService.selectSel3rdFoodcode(fc_1st, fc_2nd, fc_3rd, "", ""));
+//		
+//		model.addAttribute("foodAllList", adminFoodMgrService.selectAdminFoodListAll());
 		
 		return model;
 	}
@@ -68,7 +72,7 @@ public class AdminFoodMgrController {
 		//글보기 설정
 				
 		//String fc_ctgname = NullChange.doBlank(request.getParameter("fc_ctgname")); 
-		String fc_1st = BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_1st")));//null→ "" → "0" 
+		String fc_1st = BlankChange.doStringNumber(NullChange.doBlank(request.getParameter("fc_1st")), "1");//null → "" → "1" 
 		String fc_2nd = BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_2nd")));
 		String fc_3rd = BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_3rd")));
 		//String fc_isblock = NullChange.doBlank(request.getParameter("fc_isblock"));	

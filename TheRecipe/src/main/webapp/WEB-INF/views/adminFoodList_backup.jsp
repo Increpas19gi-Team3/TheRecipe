@@ -34,6 +34,28 @@
 <jsp:include page="adminheader.jsp" />
 
 	<script type="text/javascript">
+		/* function getSel2nd(){
+			var value = $("#fc_2nd option:selected").val();
+			var text = $("#fc_2nd option:selected").text();
+			//alert(value + " :: " + text);
+			console.log(value + " :: " + text);
+			console.log(document.getElementById('fc_2nd').value);
+			
+			//document.getElementById("sel2nd").checked="checked";
+		} */
+		
+		/* function getSel3rd() {
+			var value = $("#fc_3rd option:selected").val();
+			var text = $("#fc_3rd option:selected").text();
+			//alert(value + " :: " + text);
+			console.log(value + " :: " + text);
+			console.log(document.getElementById('fc_3rd').value);
+			
+			//document.getElementById("sel3rd").checked="checked";
+		} */
+		
+		
+		
 		function change_whereColumn(){
 			document.listForm.word.value = "";
 		}
@@ -43,8 +65,6 @@
 			var fc_2nd = document.getElementById('fc_2nd').value;
 			var fc_3rd = document.getElementById('fc_3rd').value;
 
-			console.log('fc_1st= ${fc_1st},    fc_2nd=${fc_2nd},     fc_3rd=${fc_3rd}');
-			
 			var sortColumn = '${sortColumn}';
 			var orderby = '${orderby }';
 						
@@ -52,10 +72,6 @@
 			var word = '${word }';
 			
 			var pageCutCount = '${pageCutCount }';
-			
-			console.log('sortColumn='+sortColumn+'&orderby='+orderby+'&whereColumn='+whereColumn+'&word='+word+
-				'&fc_1st='+fc_1st+'&fc_2nd='+fc_2nd+'&fc_3rd='+fc_3rd+
-				'&pageCutCount='+pageCutCount);
 			
 			location.href='adminFoodMgr.do?sortColumn='+sortColumn+'&orderby='+orderby+'&whereColumn='+whereColumn+'&word='+word+
 						'&fc_1st='+fc_1st+'&fc_2nd='+fc_2nd+'&fc_3rd='+fc_3rd+
@@ -87,20 +103,8 @@
 	<c:if test="${empty pageCutCount }">
 		<c:set var="pageCutCount" value="5" />
 	</c:if>
-	
-	
-	현재상황 : 
-	1st 변경시 2nd 값이 0으로 초기화 되지 않고 있음. 
-	3rd 선택시 DB 오류가 나고 있음.
-	
-	
-	<c:choose>
-	<c:when test="${empty fc_1st }"><c:set var="fc_1st" value="1" /></c:when>
-	<c:otherwise></c:otherwise>
-	</c:choose>
-	
 	<c:if test="${empty fc_1st }">
-		
+		<c:set var="fc_1st" value="1" />
 	</c:if>
 	<c:if test="${empty fc_2nd }">
 		<c:set var="fc_2nd" value="0" />
@@ -159,7 +163,7 @@
 									
 									<!-- 분류 코드 시작 -->
 				                	<!-- https://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp -->
-				                	<select id="fc_1st" name="fc_1st" onchange="go_filter();">
+				                	<select id="fc_1st" name="fc_1st" onclick="go_filter();">
 										<c:if test="${not empty foodcode1stList }">
 											<c:forEach var="foodcode1st" items="${foodcode1stList }">											
 												<c:choose>
@@ -171,7 +175,7 @@
 									</select>									
 									<strong> > </strong>				
 									<!-- onclick="getSel2nd();" -->				
-									<select id="fc_2nd" name="fc_2nd" onchange="go_filter();">
+									<select id="fc_2nd" name="fc_2nd" onclick="go_filter();">
 										<!-- <option value="">-- 중분류 --</option> -->
 										<c:if test="${not empty foodcode2ndList }">
 											<c:forEach var="foodcode2nd" items="${foodcode2ndList }">
@@ -186,7 +190,7 @@
 									</select>									
 									<strong> > </strong>				
 									<!-- onclick="getSel3rd();" -->					
-									<select id="fc_3rd" name="fc_3rd" onchange="go_filter();">
+									<select id="fc_3rd" name="fc_3rd" onclick="go_filter();">
 										<!-- <option value="">-- 소분류 --</option> -->
 										<c:if test="${not empty foodcode3rdList }">
 											<c:forEach var="foodcode3rd" items="${foodcode3rdList }">
@@ -333,13 +337,18 @@
 
 	
 
-	
+	<!-- 반드시 하단에 있어야 함 -->
+	<script src="//code.jquery.com/jquery.min.js"></script>
+	<script src='//rawgit.com/tuupola/jquery_chained/master/jquery.chained.min.js'></script>
 	<script>
+	  $("#fc_2nd").chained("#fc_1st");
+      $("#fc_3rd").chained("#fc_2nd");
       
-		/* console.log('fc_1st= ${fc_1st},    fc_2nd=${fc_2nd},     fc_3rd=${fc_3rd}');
-		document.getElementById('fc_1st').value = '${fc_1st}';
-		document.getElementById('fc_2nd').value = '${fc_2nd}';
-		document.getElementById('fc_3rd').value = '${fc_3rd}'; */
+      
+		console.log('fc_1st= ${fc_1st},    fc_2nd=${fc_2nd},     fc_3rd=${fc_3rd}');
+      	document.getElementById('fc_1st').value = '${fc_1st}';
+		document.getElementById('fc_2nd').value = '${fc_1st}_${fc_2nd}';
+		document.getElementById('fc_3rd').value = '${fc_1st}_${fc_2nd}_${fc_3rd}';
 	</script>
 	
 	<!-- 선택 -->

@@ -42,4 +42,28 @@ public class NullChange {
 		if(data == null) return 0;
 		else return Integer.parseInt(data);
 	}
+	
+	/**
+	 * Null 데이터가 들어오면 number 값으로 돌려보내기
+	 * @param data
+	 * @return  data == null → number / 
+	 * 			data != null → data
+	 */
+	public static String doStringNumber(String data, String number){
+		if(data == null) return number;
+		else return data;
+	}
+	
+
+	/**
+	 * Null 데이터가 들어오면 number 값으로 돌려보내기
+	 * @param data
+	 * @return  data == null → number / 
+	 * 			data != null → Integer.parseInt(data)
+	 */
+	public static int doIntegerNumber(String data, int number){
+		
+		if(data == null) return number;
+		else return Integer.parseInt(data);
+	}
 }
