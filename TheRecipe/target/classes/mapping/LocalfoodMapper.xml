@@ -83,8 +83,14 @@
 	<select id="searchTitleList" parameterType="map" resultMap="LocalfoodResult">
 		select * from tr_food
 		<where>
-			<if test="kind != null">
-				fc_1st=#{kind}
+			<if test="fisrt != null">
+				fc_1st=#{fisrt}
+			</if>
+			<if test="second != 0">
+				AND FC_2ND=#{second}
+			</if>
+			<if test="third != 0">
+				AND FC_3RD=#{third}
 			</if>
 			<if test="title != null">
 				AND f_foodname like '%'||#{title}||'%' 

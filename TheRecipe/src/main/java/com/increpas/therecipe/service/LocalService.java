@@ -56,13 +56,15 @@ public class LocalService {
 	
 	/**
 	 * 음식명으로 검색하기
-	 * @param kind : FC_1ST(대분류)
+	 * @param fisrt : FC_1ST(대분류)
+	 * @param second : FC_2ND(중분류)
+	 * @param third : FC_3RD(소분류)
 	 * @param title : 검생명
 	 * @return List<FoodVO>
 	 */
-	public List<FoodVO> selectTitleList(int kind, String title){
+	public List<FoodVO> selectTitleList(int fisrt, int second, int third, String title){
 		
-		return lDao.selectTitleList(kind, title);
+		return lDao.selectTitleList(fisrt, second, third, title);
 	}
 	
 	/**

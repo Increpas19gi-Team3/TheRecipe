@@ -6,7 +6,7 @@
 	<jsp:include page="header.jsp" />
 
 
-
+<form action="localTitleList.do" method="post">
 	<div class="container home">
 		<div class="con_inner">
 			<div class="page_locationBox2">
@@ -15,50 +15,82 @@
 				<a href="localFoodList.do">분류</a>
 				<c:if test="${level!=1 }">
 					<span> &gt; </span>
-						<c:forEach var="code" items="${ctgoryvo}">
-							<a href="localKindList.do?local=${code.fc_2nd}" class="active">${code.fc_ctgname}</a>
+						<c:forEach var="code" items="${ctgoryvo}" varStatus="status">
+							<c:if test="${status.index == 0 }">
+								<a href="localKindList.do?local=${code.fc_2nd}" class="active">${code.fc_ctgname}</a>
+							</c:if>
 						</c:forEach>
 					<c:if test="${level!=2 }">
 						<span> &gt; </span>
-						<c:forEach var="foodcd" items="${foodcode}">
-							<a href="#" class="active">${foodcd.fc_ctgname}</a>
+						<c:forEach var="foodcd" items="${itemvo}" varStatus="status">
+							<c:if test="${status.index == 0 }">
+								<input type="hidden" name="third" value="${foodcd.fc_3rd}">
+								<a href="#" class="active">${foodcd.fc_ctgname}</a>
+							</c:if>
 						</c:forEach>
 					</c:if>
 				</c:if>
 				<div class="search_box">
-					<form action="localTitleList.do" method="post">
+					
 						<input type="text" name="foodname" required="">
 						<button type="submit"></button>
-					</form>
+					
 				</div>
 			</div>
 			<c:choose>
 				<c:when test="${level == 1}">
 					<div class="con_tabBox">
-						<a href="localFoodList.do" class="active">전체보기</a>
-						<c:forEach var="foodcd" items="${foodcode}">
-							<a href="localKindList.do?local=${foodcd.fc_2nd}">${foodcd.fc_ctgname}</a>
-						</c:forEach>
-					</div>
-				</c:when>
-				<c:when test="${level == 2}">
-					<div class="con_tabBox">
+						<!-- <a href="localFoodList.do" class="active">전체보기</a> -->
 						<c:forEach var="foodcd" items="${foodcode}" varStatus="status">
 							<c:choose>
-								<c:when test="${status.index == 0 }">
-									<a href="localKindList.do?local=${foodcd.fc_2nd}" class="active">전체보기</a>
-									<a href="localKindItemList.do?local=${foodcd.fc_2nd}&item=${foodcd.fc_3rd}">${foodcd.fc_ctgname}</a>
+								<c:when test="${status.count == 1 }">
+									<input type="hidden" name="first" value="${foodcd.fc_1st}">
+									<input type="hidden" name="second" value="0">
+									<input type="hidden" name="third" value="0">
+									<a href="localKindList.do?local=${foodcd.fc_2nd}">${foodcd.fc_ctgname}</a>
 								</c:when>
 								<c:otherwise>
-									<a href="localKindItemList.do?local=${foodcd.fc_2nd}&item=${foodcd.fc_3rd}">${foodcd.fc_ctgname}</a>
+									<a href="localKindList.do?local=${foodcd.fc_2nd}">${foodcd.fc_ctgname}</a>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 					</div>
 				</c:when>
-				<c:when test="${level == 3}">
-					<br><br>
+				<c:when test="${level == 2}">
+					<div class="con_tabBox">
+						<a href="localFoodList.do">전체보기</a>
+						<c:forEach var="foodcd" items="${foodcode}" varStatus="status">
+							<c:choose>
+								<c:when test="${status.index == 0 }">
+									<input type="hidden" name="first" value="${foodcd.fc_1st}">
+									<input type="hidden" name="second" value="${foodcd.fc_2nd}">
+									<input type="hidden" name="third" value="0">								
+									<a href="localKindItemList.do?local=${foodcd.fc_2nd}&item=${foodcd.fc_3rd}">${foodcd.fc_ctgname}</a>
+								</c:when>
+								<c:otherwise>
+									<a href="localKindItemList.do?local=${foodcd.fc_2nd}&item=${foodcd.fc_3rd}">${foodcd.fc_ctgname}</a>
+								</c:otherwise>
+							</c:choose>	
+						</c:forEach>
+					</div>
 				</c:when>
+				<c:when test="${level == 3}">
+				<div class="con_tabBox">
+					<c:forEach var="foodcd" items="${foodcode}" varStatus="status">
+						<c:choose>
+							<c:when test="${status.index == 0 }">
+								<input type="hidden" name="first" value="${foodcd.fc_1st}">
+								<input type="hidden" name="second" value="${foodcd.fc_2nd}">		
+								<a href="localKindList.do?local=${foodcd.fc_2nd}">전체보기</a>
+								<a href="localKindItemList.do?local=${foodcd.fc_2nd}&item=${foodcd.fc_3rd}">${foodcd.fc_ctgname}</a>
+							</c:when>
+							<c:otherwise>
+								<a href="localKindItemList.do?local=${foodcd.fc_2nd}&item=${foodcd.fc_3rd}">${foodcd.fc_ctgname}</a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</div>
+			</c:when>
 			</c:choose>
 			<div class="con_card4 con_card_list con_card">
 			<ul>
@@ -92,5 +124,5 @@
 		</div>
 	</div>
 	
-
+</form>
 	<jsp:include page="footer.jsp" />

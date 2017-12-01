@@ -135,10 +135,12 @@ public class localfoodListController {
 			foodvo = arrySplitImgname(foodvo);
 			
 			List<FoodcodeVO> ctgoryvo = localService.searchFoodCode("1",request.getParameter("local"),"0");
-			List<FoodcodeVO> foodcdvo = localService.searchFoodCode("1",request.getParameter("local"),request.getParameter("item"));
+			List<FoodcodeVO> itemvo = localService.searchFoodCode("1",request.getParameter("local"),request.getParameter("item"));			
+			List<FoodcodeVO> foodcdvo = localService.searchFoodCode("1",request.getParameter("local"),"-1");
 
 			model.addAttribute("foodList", foodvo);
 			model.addAttribute("ctgoryvo",ctgoryvo);
+			model.addAttribute("itemvo",itemvo);
 			model.addAttribute("foodcode",foodcdvo);
 			model.addAttribute("level",level);
 			
@@ -154,13 +156,42 @@ public class localfoodListController {
 		 */
 		@RequestMapping(value = "/localTitleList.do", method = RequestMethod.POST)
 		public String FoodTitleList(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
-			int kind = 1;
 			String title = request.getParameter("foodname");
+			int first = Integer.parseInt(request.getParameter("first"));
+			int second = Integer.parseInt(request.getParameter("second"));
+			int third = Integer.parseInt(request.getParameter("third"));
+			int level = 0;
+			List<FoodcodeVO> ctgoryvo = null;
+			List<FoodcodeVO> itemvo = null;
+			List<FoodcodeVO> foodcdvo = null;
 			
-			List<FoodVO> foodvo =  localService.selectTitleList(kind, title);
+			if(first!=0 && second==0 && third==0){
+				level = 1;
+				foodcdvo = localService.searchFoodCode(request.getParameter("first"),"0","0");
+			}
+			else if(second!=0 && third==0){
+				level = 2;
+				ctgoryvo = localService.searchFoodCode(request.getParameter("first"),request.getParameter("second"),"0");
+				foodcdvo = localService.searchFoodCode(request.getParameter("first"),request.getParameter("second"),"-1");
+				model.addAttribute("ctgoryvo",ctgoryvo);
+				
+			}
+			else{
+				level = 3;
+				ctgoryvo = localService.searchFoodCode("1",request.getParameter("second"),"0");
+				itemvo = localService.searchFoodCode("1",request.getParameter("second"),request.getParameter("third"));
+				foodcdvo = localService.searchFoodCode("1",request.getParameter("second"),"-1");
+				
+				model.addAttribute("ctgoryvo",ctgoryvo);
+				model.addAttribute("itemvo",itemvo);
+			}
+			
+			List<FoodVO> foodvo =  localService.selectTitleList(first, second, third, title);
 			foodvo = arrySplitImgname(foodvo);
 			
 			model.addAttribute("foodList", foodvo);
+			model.addAttribute("foodcode",foodcdvo);
+			model.addAttribute("level", level);
 			
 			return "localfoodListView";
 		}
