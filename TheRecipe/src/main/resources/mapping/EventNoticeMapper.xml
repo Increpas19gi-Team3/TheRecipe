@@ -28,7 +28,7 @@
 			e_gubun = '0'
 
 			<if test="whereColumn.equals('ALL')">
-				and (E_NTTILTE LIKE '%' || #{word } || '%' or E_NTCONTENS LIKE '%' || #{word } || '%')
+				and (e_nttilte LIKE '%' || #{word } || '%' or e_ntcontens LIKE '%' || #{word } || '%')
 			</if>
 			
 			<if test="whereColumn.equals('TITLE')">
@@ -60,7 +60,7 @@
 
 			<!-- 공지사항에 대한 제목과 내용만 검색 -->
 			<if test="whereColumn.equals('ALL')">
-				and (E_NTTILTE LIKE '%' || #{word } || '%' or E_NTCONTENS LIKE '%' || #{word } || '%')
+				and (e_nttilte LIKE '%' || #{word } || '%' or e_ntcontens LIKE '%' || #{word } || '%')
 			</if>
 			<!-- 공지사항에 대한 제목만 검색 -->
 			<if test="whereColumn.equals('TITLE')">
@@ -71,15 +71,15 @@
 		<!-- ORDER BY -->
 		<choose>
 			<when test="sortColumn.equals('e_nttilte')">
-				<if test="orderby.equals('ASC')">ORDER BY e_gubun DESC, e_nttilte ASC</if>
-				<if test="orderby.equals('DESC')">ORDER BY e_gubun DESC, e_nttilte DESC</if>
+				<if test="orderby.equals('ASC')">ORDER BY e_nttilte ASC</if>
+				<if test="orderby.equals('DESC')">ORDER BY e_nttilte DESC</if>
 			</when>
 			<when test="sortColumn.equals('e_ntdate')">
-				<if test="orderby.equals('ASC')">ORDER BY e_gubun DESC, e_ntdate ASC</if>
-				<if test="orderby.equals('DESC')">ORDER BY e_gubun DESC, e_ntdate DESC</if>
+				<if test="orderby.equals('ASC')">ORDER BY e_ntdate ASC</if>
+				<if test="orderby.equals('DESC')">ORDER BY e_ntdate DESC</if>
 			</when>
 			<otherwise>
-				ORDER BY e_gubun DESC, e_evtcode DESC
+				ORDER BY e_evtcode DESC
 			</otherwise>
 		</choose>
 		)
@@ -109,7 +109,7 @@
 			e_gubun = '1'
 
 			<if test="whereColumn.equals('ALL')">
-				and (E_NTTILTE LIKE '%' || #{word } || '%' or E_NTCONTENS LIKE '%' || #{word } || '%')
+				and (e_nttilte LIKE '%' || #{word } || '%' or E_NTCONTENS LIKE '%' || #{word } || '%')
 			</if>
 			
 			<if test="whereColumn.equals('TITLE')">
@@ -154,15 +154,15 @@
 		<!-- ORDER BY -->
 		<choose>
 			<when test="sortColumn.equals('e_nttilte')">
-				<if test="orderby.equals('ASC')">ORDER BY e_gubun DESC, e_nttilte ASC</if>
-				<if test="orderby.equals('DESC')">ORDER BY e_gubun DESC, e_nttilte DESC</if>
+				<if test="orderby.equals('ASC')">ORDER BY e_nttilte ASC</if>
+				<if test="orderby.equals('DESC')">ORDER BY e_nttilte DESC</if>
 			</when>
 			<when test="sortColumn.equals('e_ntdate')">
-				<if test="orderby.equals('ASC')">ORDER BY e_gubun DESC, e_ntdate ASC</if>
-				<if test="orderby.equals('DESC')">ORDER BY e_gubun DESC, e_ntdate DESC</if>
+				<if test="orderby.equals('ASC')">ORDER BY e_ntdate ASC</if>
+				<if test="orderby.equals('DESC')">ORDER BY e_ntdate DESC</if>
 			</when>
 			<otherwise>
-				ORDER BY e_gubun DESC, e_evtcode DESC
+				ORDER BY e_evtcode DESC
 			</otherwise>
 		</choose>
 		)

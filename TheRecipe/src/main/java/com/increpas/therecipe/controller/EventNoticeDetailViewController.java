@@ -42,7 +42,7 @@ public class EventNoticeDetailViewController {
 		int Ncode = Integer.parseInt(req.getParameter("e_evtcode"));		
 		EventVO nVo = ndvs.getNoticeVODetail(Ncode);
 		model.addAttribute("nVo", nVo);
-		return "NoticeDetailView";
+		return "xxxNoticeDetailView";
 	}
 	
 	/**
@@ -59,6 +59,6 @@ public class EventNoticeDetailViewController {
 		int Ecode = Integer.parseInt(req.getParameter("e_evtcode"));		
 		EventVO eVo = ndvs.getEventVODetail(Ecode);		
 		model.addAttribute("eVo", eVo);
-		return "EventDetailView";
+		return "xxxEventDetailView";
 	}	
 }
