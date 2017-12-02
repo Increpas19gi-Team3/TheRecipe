@@ -159,16 +159,14 @@ COMMENT ON COLUMN tr_order.ms_code IS '마스터코드값 4';
 
 CREATE UNIQUE INDEX PK_tr_order
 	ON tr_order (
-		m_userid ASC,
-		f_fdcode ASC
+		o_orderid ASC
 	);
 
 ALTER TABLE tr_order
 	ADD
 		CONSTRAINT PK_tr_order
 		PRIMARY KEY (
-			m_userid,
-			f_fdcode
+			o_orderid
 		);
 
 /* 장바구니 */
