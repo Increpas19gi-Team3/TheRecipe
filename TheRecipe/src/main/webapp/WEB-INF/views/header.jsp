@@ -69,7 +69,7 @@
 								<li><a href="mypageInfo.do">내정보관리</a></li>
 							</ul>
 						</li>
-						<li><a href="">장바구니</a></li>
+						<li><a href="BasketForm.do">장바구니</a></li>
 							</c:when>
 							<c:otherwise>
 								<li class="dropdown_wrap"><a href="loginView.do">로그인</a></li>

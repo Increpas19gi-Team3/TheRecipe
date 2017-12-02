@@ -7,8 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.increpas.therecipe.dao.UserMyDAO;
+import com.increpas.therecipe.dao.UserMyBasketDAO;
 import com.increpas.therecipe.vo.BasketVO;
+import com.increpas.therecipe.vo.UserMyBasketVO;
 
 /**
  * 장바구니보기 주문조회 후기등록 관련 서비스
@@ -17,14 +18,14 @@ import com.increpas.therecipe.vo.BasketVO;
  */
 
 @Service
-public class UserMyService {
+public class UserMyBasketService {
 	
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
 	
 	@Autowired
-	UserMyDAO userMyDAO;
-	public List<BasketVO> selectBasket(String m_userid) {
+	UserMyBasketDAO userMyDAO;
+	public List<UserMyBasketVO> selectBasket(String m_userid) {
 		return userMyDAO.selectBasket(m_userid);
 		
 	}
