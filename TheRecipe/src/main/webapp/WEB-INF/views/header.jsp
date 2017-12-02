@@ -30,11 +30,11 @@
 						<li class="dropdown_wrap">
 							<a href="totalFoodList.do?large=2" class="dropdown_select">유명 TV 레시피</a>
 							<ul class="dropdown_itemWrap">
-								<li><a href="">올리브TV</a></li>
-								<li><a href="">집밥백선생</a></li>
-								<li><a href="">냉장고를 부탁해</a></li>
-								<li><a href="">최고의 요리</a></li>
-								<li><a href="">오늘 뭐먹지</a></li>
+								<li><a href="localKindList.do?large=2&medium=1">올리브TV</a></li>
+								<li><a href="localKindList.do?large=2&medium=2">집밥백선생</a></li>
+								<li><a href="localKindList.do?large=2&medium=3">냉장고를 부탁해</a></li>
+								<li><a href="localKindList.do?large=2&medium=4">최고의 요리</a></li>
+								<li><a href="localKindList.do?large=2&medium=5">오늘 뭐먹지</a></li>
 							</ul>
 						</li>
 						<li class="dropdown_wrap">

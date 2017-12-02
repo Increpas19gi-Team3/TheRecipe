@@ -48,6 +48,7 @@
 	<select id="selectLocalList" parameterType="map" resultMap="LocalfoodResult">
 		select * from tr_food
 		where fc_1st=#{large}
+		and f_isblock=0
 	</select>
 
 	<!-- 중분류별 음식 리스트 -->
@@ -60,6 +61,7 @@
 			<if test="medium != 0">
 				AND fc_2nd=#{medium}
 			</if>
+			and f_isblock=0
 		</where>
 	</select>
 
@@ -76,6 +78,7 @@
 			<if test="small != 0">
 				AND fc_3rd=#{small}
 			</if>
+			and f_isblock=0
 		</where>
 	</select>
 	
@@ -95,6 +98,7 @@
 			<if test="title != null">
 				AND f_foodname like '%'||#{title}||'%' 
 			</if>
+			and f_isblock=0
 		</where>
 	</select>
 	
@@ -158,6 +162,7 @@
 					and FC_3RD=#{trdcode}
 				</otherwise>
 			</choose>
+			and fc_isblock='0'
 	</select>
 	
 </mapper>
