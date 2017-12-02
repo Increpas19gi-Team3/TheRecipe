@@ -103,7 +103,7 @@ INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '3', '별로임','정
 INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'son', '4', '난 맛있는데?','좋아요와 구독 눌러주세요', 5, null, 0, sysdate, '아리가또', sysdate);
 INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '0', '넌 어디서 왔니?','비추 누르면 싫어할꺼야', 5, null, 0, sysdate, null, null);
 INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'son', '1', '맛있다는놈 누구야','내가 맛있다고 했음', 5, null, 0, sysdate, '훗 감사', sysdate);
-INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '2', '신세계임','지옥으로 가는 신세계', 5, null, 0, sysdate, null', null);
+INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '2', '신세계임','지옥으로 가는 신세계', 5, null, 0, sysdate, null, null);
 INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'son', '3', '김치찌게','내가 맛있다고 했음', 5, null, 0, sysdate, '악플임', sysdate);
 INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '4', '된장찌게','아부라카타', 5, null, 0, sysdate, null, null);
 INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'son', '0', '고등어 통조림','주문을 외워봐', 5, null, 0, sysdate, '글작성', sysdate);
