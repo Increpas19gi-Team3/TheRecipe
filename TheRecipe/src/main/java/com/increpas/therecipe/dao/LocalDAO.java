@@ -147,6 +147,40 @@ public class LocalDAO {
 		
 	}
 	
+	/**
+	 * 장바구니 상품 수량 증가
+	 * @param userID : 로그인한 유저ID
+	 * @param fdcode : F_FDCODE(음식코드)
+	 * @param amount : 구매수량
+	 * @return int
+	 */
+	@Transactional
+	public int updateBasket(String userID, String fdcode, int amount){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userID", userID);
+		map.put("fdcode", fdcode);
+		map.put("amount", amount);
+		
+		return sqlSessionTemplate.insert("local_ns.updateBasket", map); 
+		
+	}
+	
+	/**
+	 * 장바구니에 이미 등록된 상품인지 조회
+	 * @param userID : 로그인한 유저ID
+	 * @param fdcode : F_FDCODE(음식코드)
+	 * @return int
+	 */
+	public int selectExist(String userID, String fdcode){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userID", userID);
+		map.put("fdcode", fdcode);
+		
+		return sqlSessionTemplate.selectOne("local_ns.selectExist", map); 
+		
+	}
 	
 	/**
 	 * 대분류, 중분류, 소분류로 카테고리명

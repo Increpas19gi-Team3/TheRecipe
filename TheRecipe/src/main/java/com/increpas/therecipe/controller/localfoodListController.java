@@ -233,12 +233,20 @@ public class localfoodListController {
 		@RequestMapping(value = "/shoppingBasket.do", method = RequestMethod.POST)
 		public String ShoppingBasket(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
 			int kind = 1;
+			int result = 0;
 			String userID = request.getParameter("userID");
 			String fdcode = request.getParameter("fdcode");
 			int buyPrice = Integer.parseInt(request.getParameter("buyPrice"));
 			int amount = Integer.parseInt(request.getParameter("amount"));
 			
-			int result =  localService.insertBasket(userID, fdcode, buyPrice, amount);
+			int count = localService.selectExist(userID,fdcode);
+			
+			if(count>0){
+				result =  localService.updateBasket(userID, fdcode, amount);
+			}else{
+				result =  localService.insertBasket(userID, fdcode, buyPrice, amount);
+			}
+			
 			FoodVO foodvo =  localService.selectFood(kind, fdcode);
 			
 			model.addAttribute("result", result);

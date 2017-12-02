@@ -103,6 +103,29 @@ public class LocalService {
 	}
 	
 	/**
+	 * 장바구니 상품 수량 증가
+	 * @param userID : 로그인한 유저ID
+	 * @param fdcode : F_FDCODE(음식코드)
+	 * @param amount : 구매수량
+	 * @return int
+	 */
+	public int updateBasket(String userID, String fdcode, int amount){
+		
+		return lDao.updateBasket(userID, fdcode, amount);
+	}
+	
+	/**
+	 * 장바구니에 이미 등록된 상품인지 조회
+	 * @param userID : 로그인한 유저ID
+	 * @param fdcode : F_FDCODE(음식코드)
+	 * @return int
+	 */
+	public int selectExist(String userID, String fdcode){
+		
+		return lDao.selectExist(userID, fdcode);
+	}
+	
+	/**
 	 * 대분류, 중분류, 소분류로 카테고리명
 	 * @param fstcode : FC_1ST(대분류)
 	 * @param sndcode : FC_2ND(중분류)
