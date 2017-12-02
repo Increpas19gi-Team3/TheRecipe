@@ -19,22 +19,22 @@
 				<div class="nav_left">
 					<ul>
 						<li class="dropdown_wrap">
-							<a href="totalFoodList.do?large=1" class="dropdown_select">분류</a>
+							<a href="totalFoodList.do?level=1&large=1" class="dropdown_select">분류</a>
 							<ul class="dropdown_itemWrap">
-								<li><a href="localKindList.do?large=1&medium=1">한식</a></li>
-								<li><a href="localKindList.do?large=1&medium=2">중식</a></li>
-								<li><a href="localKindList.do?large=1&medium=3">일식</a></li>
-								<li><a href="localKindList.do?large=1&medium=4">양식</a></li>
+								<li><a href="totalFoodList.do?level=2&large=1&medium=1">한식</a></li>
+								<li><a href="totalFoodList.do?level=2&large=1&medium=2">중식</a></li>
+								<li><a href="totalFoodList.do?level=2&large=1&medium=3">일식</a></li>
+								<li><a href="totalFoodList.do?level=2&large=1&medium=4">양식</a></li>
 							</ul>
 						</li>
 						<li class="dropdown_wrap">
-							<a href="totalFoodList.do?large=2" class="dropdown_select">유명 TV 레시피</a>
+							<a href="totalFoodList.do?level=1&large=2" class="dropdown_select">유명 TV 레시피</a>
 							<ul class="dropdown_itemWrap">
-								<li><a href="localKindList.do?large=2&medium=1">올리브TV</a></li>
-								<li><a href="localKindList.do?large=2&medium=2">집밥백선생</a></li>
-								<li><a href="localKindList.do?large=2&medium=3">냉장고를 부탁해</a></li>
-								<li><a href="localKindList.do?large=2&medium=4">최고의 요리</a></li>
-								<li><a href="localKindList.do?large=2&medium=5">오늘 뭐먹지</a></li>
+								<li><a href="totalFoodList.do?level=2&large=2&medium=1">올리브TV</a></li>
+								<li><a href="totalFoodList.do?level=2&large=2&medium=2">집밥백선생</a></li>
+								<li><a href="totalFoodList.do?level=2&large=2&medium=3">냉장고를 부탁해</a></li>
+								<li><a href="totalFoodList.do?level=2&large=2&medium=4">최고의 요리</a></li>
+								<li><a href="totalFoodList.do?level=2&large=2&medium=5">오늘 뭐먹지</a></li>
 							</ul>
 						</li>
 						<li class="dropdown_wrap">

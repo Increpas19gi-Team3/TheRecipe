@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.increpas.therecipe.service.LocalService;
+import com.increpas.therecipe.util.NullToBlank;
 import com.increpas.therecipe.vo.FoodVO;
 import com.increpas.therecipe.vo.FoodcodeVO;
 import com.increpas.therecipe.vo.ReviewVO;
@@ -73,17 +74,63 @@ public class localfoodListController {
 		 */
 		@RequestMapping(value = "/totalFoodList.do", method = RequestMethod.GET)
 		public String allLocalFoodList(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
-			int level = 1;
-			int large = Integer.parseInt(request.getParameter("large"));
+			int beginPage=1, endPage=0;
+			int startNum=0, endNum=0;
+			int level = 0, large = 0, medium = 0, small=0;
+			String tmp=null; 
+			List<FoodVO> foodvo ;
+			List<FoodcodeVO> foodcdvo, ctgoryvo, itemvo;
+						
+			if(!NullToBlank.doChange(request.getParameter("level")).equals(""))
+				level = Integer.parseInt(request.getParameter("level"));
+			if(!NullToBlank.doChange(request.getParameter("large")).equals(""))
+				large = Integer.parseInt(request.getParameter("large"));
+			if(!NullToBlank.doChange(request.getParameter("medium")).equals(""))
+				medium = Integer.parseInt(request.getParameter("medium"));
+			if(!NullToBlank.doChange(request.getParameter("small")).equals(""))
+				small = Integer.parseInt(request.getParameter("small"));
 			
-			List<FoodVO> foodvo =  localService.selectAllList(large);
+			tmp =  NullToBlank.doChange(request.getParameter("pageSize"));
+			int pageSize= tmp.equals("") ? 5 : Integer.parseInt(request.getParameter("pageSize"));
+						
+			tmp = NullToBlank.doChange(request.getParameter("currPage"));
+			int currPage = tmp.equals("") ? 1 : Integer.parseInt(request.getParameter("currPage"));
+
+			int totalCount = localService.selectLargeCount(large,medium,small); //총 음식 리스트 갯수
+			
+			// 끝 페이징 계산
+			if(totalCount%pageSize==0)
+				endPage = totalCount/pageSize;
+			else
+				endPage = (totalCount/pageSize)+1;
+			
+			//현재 페이지의 startNum, endNum 계산
+			startNum = (currPage*pageSize) - (pageSize-1);
+			endNum = currPage*pageSize;
+			
+			
+			foodvo =  localService.selectAllList(large,medium,small,startNum,endNum);
 			foodvo = arrySplitImgname(foodvo);
 			
-			List<FoodcodeVO> foodcdvo = localService.searchFoodCode(request.getParameter("large"),"0","0");
+			if(level == 1){
+				foodcdvo = localService.searchFoodCode(request.getParameter("large"),"0","0");
+			}
+			else if(level == 2){
+				ctgoryvo = localService.searchFoodCode(request.getParameter("large"),request.getParameter("medium"),"0");
+				foodcdvo = localService.searchFoodCode(request.getParameter("large"),request.getParameter("medium"),"-1");
+			}else{
+				ctgoryvo = localService.searchFoodCode(request.getParameter("large"),request.getParameter("medium"),"0");
+				itemvo = localService.searchFoodCode(request.getParameter("large"),request.getParameter("medium"),request.getParameter("small"));		
+				foodcdvo = localService.searchFoodCode(request.getParameter("large"),request.getParameter("medium"),"-1");
+			}
 			model.addAttribute("large", large);
 			model.addAttribute("level", level);
 			model.addAttribute("foodList", foodvo);
 			model.addAttribute("foodcode",foodcdvo);
+			model.addAttribute("beginPage",beginPage);			
+			model.addAttribute("endPage",endPage);		
+			model.addAttribute("currPage",currPage);		
+			
 			
 			return "localfoodListView";
 		}
@@ -94,7 +141,7 @@ public class localfoodListController {
 		 * @param model : Model
 		 * @param request : HttpServletRequest
 		 * @return 뷰파일명
-		 */
+		 *//*
 		@RequestMapping(value = "/localKindList.do", method = RequestMethod.GET)
 		public String kindFoodList(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
 			int level = 2;
@@ -115,15 +162,59 @@ public class localfoodListController {
 			model.addAttribute("level",level);
 			
 			return "localfoodListView";
+			int level = 2;
+			int beginPage=1, endPage=0;
+			
+			String tmp =  NullToBlank.doChange(request.getParameter("pageSize"));
+			int pageSize= tmp.equals("") ? 5 : Integer.parseInt(request.getParameter("pageSize"));
+			
+			
+			int startNum=0, endNum=0;
+			int large = Integer.parseInt(request.getParameter("large"));
+			int medium = Integer.parseInt(request.getParameter("medium"));
+			
+			tmp = NullToBlank.doChange(request.getParameter("currPage"));
+			int currPage = tmp.equals("") ? 1 : Integer.parseInt(request.getParameter("currPage"));
+
+			int totalCount = localService.selectMediumCount(large, medium); //총 음식 리스트 갯수
+			
+			// 끝 페이징 계산
+			if(totalCount%pageSize==0)
+				endPage = totalCount/pageSize;
+			else
+				endPage = (totalCount/pageSize)+1;
+			
+			//현재 페이지의 startNum, endNum 계산
+			startNum = (currPage*pageSize) - (pageSize-1);
+			endNum = currPage*pageSize;
+			
+			
+			List<FoodVO> foodvo =  localService.selectKindList(large,medium,startNum,endNum);
+			foodvo = arrySplitImgname(foodvo);
+			
+			List<FoodcodeVO> ctgoryvo = localService.searchFoodCode(request.getParameter("large"),request.getParameter("medium"),"0");
+			List<FoodcodeVO> foodcdvo = localService.searchFoodCode(request.getParameter("large"),request.getParameter("medium"),"-1");
+			
+			model.addAttribute("large", large);
+			model.addAttribute("level", level);
+			model.addAttribute("foodList", foodvo);
+			model.addAttribute("ctgoryvo",ctgoryvo);
+			model.addAttribute("foodcode",foodcdvo);
+			model.addAttribute("beginPage",beginPage);			
+			model.addAttribute("endPage",endPage);		
+			model.addAttribute("currPage",currPage);		
+			
+			
+			return "localfoodListView";
 		}
 		
-		/**
+		*//**
 		 * 소분류별 리스트 출력
 		 * @param fvo : 뷰에서 받은 FoodVO 
 		 * @param model : Model
 		 * @param request : HttpServletRequest
 		 * @return 뷰파일명
-		 */
+		 *//*
 		@RequestMapping(value = "/localKindItemList.do", method = RequestMethod.GET)
 		public String ItemFoodList(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
 			int level = 3;
@@ -148,7 +239,53 @@ public class localfoodListController {
 			model.addAttribute("level",level);
 			
 			return "localfoodListView";
-		}
+			int level = 3;
+			int beginPage=1, endPage=0;
+			
+			String tmp =  NullToBlank.doChange(request.getParameter("pageSize"));
+			int pageSize= tmp.equals("") ? 5 : Integer.parseInt(request.getParameter("pageSize"));
+			
+			
+			int startNum=0, endNum=0;
+			int large = Integer.parseInt(request.getParameter("large"));
+			int medium = Integer.parseInt(request.getParameter("medium"));
+			int small = Integer.parseInt(request.getParameter("small"));
+			
+			tmp = NullToBlank.doChange(request.getParameter("currPage"));
+			int currPage = tmp.equals("") ? 1 : Integer.parseInt(request.getParameter("currPage"));
+
+			int totalCount = localService.selectSmallCount(large, medium, small); //총 음식 리스트 갯수
+			
+			// 끝 페이징 계산
+			if(totalCount%pageSize==0)
+				endPage = totalCount/pageSize;
+			else
+				endPage = (totalCount/pageSize)+1;
+			
+			//현재 페이지의 startNum, endNum 계산
+			startNum = (currPage*pageSize) - (pageSize-1);
+			endNum = currPage*pageSize;
+			
+			List<FoodVO> foodvo =  localService.selectItemList(large, medium, small,startNum,endNum);
+			foodvo = arrySplitImgname(foodvo);
+			
+			List<FoodcodeVO> ctgoryvo = localService.searchFoodCode(request.getParameter("large"),request.getParameter("medium"),"0");
+			List<FoodcodeVO> itemvo = localService.searchFoodCode(request.getParameter("large"),request.getParameter("medium"),request.getParameter("small"));		
+			List<FoodcodeVO> foodcdvo = localService.searchFoodCode(request.getParameter("large"),request.getParameter("medium"),"-1");
+			
+			model.addAttribute("large", large);
+			model.addAttribute("level", level);
+			model.addAttribute("foodList", foodvo);
+			model.addAttribute("ctgoryvo",ctgoryvo);
+			model.addAttribute("itemvo",itemvo);
+			model.addAttribute("foodcode",foodcdvo);
+			model.addAttribute("beginPage",beginPage);			
+			model.addAttribute("endPage",endPage);		
+			model.addAttribute("currPage",currPage);		
+			
+			
+			return "localfoodListView";
+		}*/
 		
 		/**
 		 * 검색어(음식명)로 리스트 출력
@@ -209,10 +346,11 @@ public class localfoodListController {
 		 */
 		@RequestMapping(value = "/foodDetailView.do", method = RequestMethod.GET)
 		public String FoodDeatilList(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
-			int kind = 1;
+			int large = Integer.parseInt(request.getParameter("large"));
+	
 			String code = request.getParameter("fcode");
 			
-			FoodVO foodvo =  localService.selectFood(kind, code);
+			FoodVO foodvo =  localService.selectFood(large, code);
 			List<ReviewVO> reviewvo = localService.selectReview(code);
 			
 			model.addAttribute("foodList", foodvo);
@@ -232,7 +370,7 @@ public class localfoodListController {
 		 */
 		@RequestMapping(value = "/shoppingBasket.do", method = RequestMethod.POST)
 		public String ShoppingBasket(@Valid @ModelAttribute("icmd") FoodVO fvo, Model model, HttpServletRequest request){
-			int kind = 1;
+			int large = Integer.parseInt(request.getParameter("large"));
 			int result = 0;
 			String userID = request.getParameter("userID");
 			String fdcode = request.getParameter("fdcode");
@@ -247,7 +385,7 @@ public class localfoodListController {
 				result =  localService.insertBasket(userID, fdcode, buyPrice, amount);
 			}
 			
-			FoodVO foodvo =  localService.selectFood(kind, fdcode);
+			FoodVO foodvo =  localService.selectFood(large, fdcode);
 			
 			model.addAttribute("result", result);
 			model.addAttribute("foodList", foodvo);

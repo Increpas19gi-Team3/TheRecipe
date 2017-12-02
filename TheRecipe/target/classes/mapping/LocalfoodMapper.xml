@@ -46,21 +46,64 @@
 
 	<!-- 대분류 음식 리스트 -->
 	<select id="selectLocalList" parameterType="map" resultMap="LocalfoodResult">
-		select * from tr_food
+		<!-- select * from tr_food
 		where fc_1st=#{large}
-		and f_isblock=0
+		and f_isblock=0 -->
+		SELECT * FROM
+		(SELECT ROWNUM rnum, A.* FROM (SELECT * FROM tr_food
+			<where>
+				<if test="large != null"> 
+					fc_1st=#{large} AND
+				</if>
+				<if test="medium != null"> 
+					fc_2nd=#{medium} AND 
+				</if>
+				<if test="small != null"> 
+					fc_3rd=#{small} AND 
+				</if>
+				f_isblock=0
+			</where>
+			ORDER BY f_foodname asc) A ) WHERE rnum between	#{startNum} and #{endNum}
 	</select>
 	
 	<!-- 대분류 음식 카운트 -->
 	<select id="selectLargeCount" parameterType="map" resultType="int">
 		select count(*) from tr_food
-		where fc_1st=#{large}
-		and f_isblock=0
+		<where>
+			<if test="large != null">
+				fc_1st=#{large}
+			</if>
+			<if test="medium != 0">
+				AND fc_2nd=#{medium}
+			</if>
+			<if test="small != 0">
+				AND fc_3rd=#{small}
+			</if>
+			and f_isblock=0
+		</where>
 	</select>
 
 	<!-- 중분류별 음식 리스트 -->
 	<select id="selectLocalKindList" parameterType="map" resultMap="LocalfoodResult">
-		select * from tr_food
+		<!-- select * from tr_food
+		<where>
+			<if test="large != null">
+				fc_1st=#{large}
+			</if>
+			<if test="medium != 0">
+				AND fc_2nd=#{medium}
+			</if>
+			and f_isblock=0
+		</where> -->
+		SELECT * FROM
+		(SELECT ROWNUM rnum, A.* FROM (SELECT * FROM tr_food where fc_1st=#{large} AND fc_2nd=#{medium} and f_isblock=0
+			ORDER BY f_foodname asc) A ) WHERE rnum between	#{startNum} and #{endNum}
+	</select>
+
+	<!-- 중분류 음식 카운트 -->
+	<select id="selectMediumCount" parameterType="map" resultType="int">
+		select count(*) from tr_food
+
 		<where>
 			<if test="large != null">
 				fc_1st=#{large}
@@ -71,10 +114,32 @@
 			and f_isblock=0
 		</where>
 	</select>
-
+	
 	<!-- 소분류 음식 리스트 -->
 	<select id="selectLocalItemList" parameterType="map" resultMap="LocalfoodResult">
-		select * from tr_food
+		<!-- select * from tr_food
+		<where>
+			<if test="large != null">
+				fc_1st=#{large}
+			</if>
+			<if test="medium != 0">
+				AND fc_2nd=#{medium}
+			</if>
+			<if test="small != 0">
+				AND fc_3rd=#{small}
+			</if>
+			and f_isblock=0
+		</where> -->
+		SELECT * FROM
+		(SELECT ROWNUM rnum, A.* FROM (SELECT * FROM tr_food where fc_1st=#{large} AND fc_2nd=#{medium} AND fc_3rd=#{small} and f_isblock=0
+			ORDER BY f_foodname asc) A ) WHERE rnum between	#{startNum} and #{endNum}
+	</select>
+	
+	
+	<!-- 소분류 음식 카운트 -->
+	<select id="selectSmallCount" parameterType="map" resultType="int">
+		select count(*) from tr_food
+
 		<where>
 			<if test="large != null">
 				fc_1st=#{large}
