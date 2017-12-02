@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.increpas.therecipe.dto.AdminFoodListDTO;
 import com.increpas.therecipe.service.AdminCategoryMgrService;
 import com.increpas.therecipe.service.AdminFoodMgrService;
 import com.increpas.therecipe.util.BlankChange;
@@ -50,15 +51,16 @@ public class AdminFoodMgrController {
 		
 		FoodcodeVO fcVO = adminCategoryMgrService.setFoodcodeVO(fc_1st, fc_2nd, fc_3rd, "", "");
 		
+		/* 페이징 X, 검색 X
+		model.addAttribute("foodcode1stList", adminCategoryMgrService.select1stFoodcode());
+		//model.addAttribute("foodAllList", adminFoodMgrService.selectAdminFoodListAll());
+		model.addAttribute("foodList", adminFoodMgrService.selectAdminFoodListSel(fcVO));
+		*/
 		
+		// 음식 카테고리 설정
 		model.addAttribute("foodcode1stList", adminCategoryMgrService.select1stFoodcode());
 		model.addAttribute("foodcode2ndList", adminCategoryMgrService.selectSel2ndFoodcode(fcVO));
 		model.addAttribute("foodcode3rdList", adminCategoryMgrService.selectSel3rdFoodcode(fcVO));
-		
-
-		//model.addAttribute("foodAllList", adminFoodMgrService.selectAdminFoodListAll());
-		model.addAttribute("foodList", adminFoodMgrService.selectAdminFoodListSel(fcVO));
-		
 		
 		return model;
 	}
@@ -109,18 +111,40 @@ public class AdminFoodMgrController {
 		//페이징  처리
 		String cutCount = NullChange.doBlank(request.getParameter("pageCutCount"));
 		int pageCutCount =  cutCount.equals("") ? 5 : Integer.parseInt(cutCount);//표시할 게시글 갯수
-		System.out.println("pageCutCount="+pageCutCount);		
+		//System.out.println("pageCutCount="+pageCutCount);
+		model.addAttribute("pageCutCount", pageCutCount);
 		
 		String pn = NullChange.doBlank(request.getParameter("pn"));
 		// 최종 모델 : BoardVOListModel, 페이지의 시작과 마지막 번호 // FC 에게 리턴
 		int requestPageNumber = pn.equals("") ? 1 : Integer.parseInt(pn);
-		System.out.println("pn="+requestPageNumber);
+		//System.out.println("pn="+requestPageNumber);
+		model.addAttribute("pn", requestPageNumber);
+		
+		
+		AdminFoodListDTO foodListDTO = adminFoodMgrService.getFoodMgrVOList(pageCutCount, requestPageNumber, whereColumn, word, sortColumn, orderby, 
+				fcVO.getFc_1st(), fcVO.getFc_2nd(), fcVO.getFc_3rd());
+		model.addAttribute("foodList", foodListDTO);// 검색, 페이징을 적용한 DB 데이터
+		
+		model = getAdminFoodListAll(model, fc_1st, fc_2nd, fc_3rd); // 카테고리 정보를 가져옮
+		
+		
+		// 페이지 네비게이션바 설정
+		if (foodListDTO.getTotalPageCount() > 0) {
+			
+			// 리스트 화면의 페이지의 시작번호 
+			int beginPageNumber = (foodListDTO.getRequestPage() - 1) / 10 * 10 + 1;
+			// 리스트 화면의 페이지의 마지막번호
+			int endPageNumber = beginPageNumber + 9;
+			if (endPageNumber > foodListDTO.getTotalPageCount()) {
+				endPageNumber = foodListDTO.getTotalPageCount();
+			}
+			
+			model.addAttribute("beginPage", beginPageNumber);//글 시작페이지
+			model.addAttribute("endPage", endPageNumber);
+		}
 		
 		
 		
-		
-		
-		model = getAdminFoodListAll(model, fc_1st, fc_2nd, fc_3rd);
 		
 		return "adminFoodList";
 	}

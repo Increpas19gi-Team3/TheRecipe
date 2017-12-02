@@ -29,6 +29,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  
 
     
 <jsp:include page="adminheader.jsp" />
@@ -66,9 +70,9 @@
 			
 			var pageCutCount = '${pageCutCount }';
 			
-			console.log('sortColumn='+sortColumn+'&orderby='+orderby+'&whereColumn='+whereColumn+'&word='+word+
+			/* console.log('sortColumn='+sortColumn+'&orderby='+orderby+'&whereColumn='+whereColumn+'&word='+word+
 				'&fc_1st='+fc_1st+'&fc_2nd='+fc_2nd+'&fc_3rd='+fc_3rd+
-				'&pageCutCount='+pageCutCount);
+				'&pageCutCount='+pageCutCount); */
 			
 			location.href='adminFoodMgr.do?sortColumn='+sortColumn+'&orderby='+orderby+'&whereColumn='+whereColumn+'&word='+word+
 						'&fc_1st='+fc_1st+'&fc_2nd='+fc_2nd+'&fc_3rd='+fc_3rd+
@@ -120,7 +124,7 @@
         
         
         
-    	<%-- 디버그용 코드 --%>	
+    	<%-- 디버그용 코드
 	\${pn } : ${pn }<br />
 		
 	\${sortColumn }: ${sortColumn } <br />
@@ -135,9 +139,28 @@
 	\${whereColumn }: ${whereColumn } <br />
 	\${word }: ${word } <br />
 	<p /><p />    
-        
-        
-        <!-- 분류 코드 시작 -->
+     --%>	    
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <!-- <a href="index.html">The Recipe</a> -->
+                    The Recipe
+                </li>
+                <li class="breadcrumb-item active">음식 등록 관리</li>
+            </ol>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fa fa-table"></i> 등록 음식 목록</div>
+                
+                <div class="card-body">
+                <form action="adminFoodMgr.do" method="post" name="listForm">
+                
+                	<div class="">                	
+	                	<table id="listGubun" style="border: none;" width="100%" cellspacing="0">
+	                	<!-- <table class="table table-bordered table-hover table-condensed table-responsive"> -->
+							<tr style="border: none;">
+								<td style="text-align: left; border: none;">
+												
+									<!-- 분류 코드 시작 -->
 				                	<!-- https://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp -->
 				                	<select id="fc_1st" name="fc_1st" onchange="click_1st(); filter();">
 										<c:if test="${not empty foodcode1stList }">
@@ -182,34 +205,12 @@
 										</c:if>
 									</select>
 									<!-- 분류 코드 끝 -->
-        
-        
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <!-- <a href="index.html">The Recipe</a> -->
-                    The Recipe
-                </li>
-                <li class="breadcrumb-item active">음식 등록 관리</li>
-            </ol>
-            <div class="card mb-3">
-                <div class="card-header">
-                    <i class="fa fa-table"></i> 등록 음식 목록</div>
-                <div class="card-body">
-                
-                
-                	<div class="">
-	                	<!-- <table id="listGubun" style="border: none;"> -->
-	                	<table class="table table-bordered table-hover table-condensed table-responsive">
-							<tr style="border: none;">
-								<td style="text-align: left; border: none;">
-												
-									
 									
 								</td>
 								<td style="text-align: right; border: none;">
 								
 									<%-- ${listModel.startRow}-${listModel.endRow} --%>
-									[${listModel.requestPage}/${listModel.totalPageCount}]
+									[${foodList.requestPage}/${foodList.totalPageCount}]
 									
 									<select name = "pageCutCount" id = "pageCutCount" onchange="change_pageCutCount();">
 									
@@ -234,7 +235,8 @@
                 
                 	
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"> -->
+                        <table class="table table-bordered table-hover table-condensed table-responsive" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>상품코드</th>
@@ -242,22 +244,44 @@
                                     <th colspan="3">카테고리</th>
                                     <th>카테고리 사용여부</th>
                                     
-                                    <th>음식 이름</th>
-                                    <th>음식 사용여부</th>
                                     <th>
                                     	<c:choose>
-											<c:when test="${sortColumn eq 'f_price'}"><!-- 가격 일때 -->
+											<c:when test="${sortColumn eq 'FOODNAME'}"><!-- 음식 이름 일때 -->
 												<c:choose>
 													<c:when test="${orderby eq 'ASC' }">
-														<a href="adminFoodMgr.do?sortColumn=REGTIME&orderby=DESC&whereColumn=${whereColumn }&word=${word }&isBlock=${isBlock }&pageCutCount=${pageCutCount }">가격 ▲</a>		
+														<a href="adminFoodMgr.do?sortColumn=FOODNAME&orderby=DESC&whereColumn=${whereColumn }&word=${word }
+															&fc_1st=${fc_1st}&fc_2nd=${fc_2nd}&fc_3rd=${fc_3rd}&pageCutCount=${pageCutCount }">음식 이름 ▲</a>		
 													</c:when>
 													<c:otherwise>
-														<a href="adminFoodMgr.do?sortColumn=REGTIME&orderby=ASC&whereColumn=${whereColumn }&word=${word }&isBlock=${isBlock }&pageCutCount=${pageCutCount }">가격 ▼</a>
+														<a href="adminFoodMgr.do?sortColumn=FOODNAME&orderby=ASC&whereColumn=${whereColumn }&word=${word }
+															&fc_1st=${fc_1st}&fc_2nd=${fc_2nd}&fc_3rd=${fc_3rd}&pageCutCount=${pageCutCount }">음식 이름 ▼</a>
 													</c:otherwise>
 												</c:choose>
 											</c:when>
 											<c:otherwise><!-- 작성일 정렬이 아닐 때 -->
-												<a href="adminFoodMgr.do?sortColumn=REGTIME&orderby=ASC&whereColumn=${whereColumn }&word=${word }&isBlock=${isBlock }&pageCutCount=${pageCutCount }">가격 ▼</a>
+												<a href="adminFoodMgr.do?sortColumn=FOODNAME&orderby=ASC&whereColumn=${whereColumn }&word=${word }
+													&fc_1st=${fc_1st}&fc_2nd=${fc_2nd}&fc_3rd=${fc_3rd}&pageCutCount=${pageCutCount }">음식 이름 ▼</a>
+											</c:otherwise>
+										</c:choose>
+                                    </th>
+                                    <th>음식 사용여부</th>
+                                    <th>
+                                    	<c:choose>
+											<c:when test="${sortColumn eq 'PRICE'}"><!-- 가격 일때 -->
+												<c:choose>
+													<c:when test="${orderby eq 'ASC' }">
+														<a href="adminFoodMgr.do?sortColumn=PRICE&orderby=DESC&whereColumn=${whereColumn }&word=${word }
+															&fc_1st=${fc_1st}&fc_2nd=${fc_2nd}&fc_3rd=${fc_3rd}&pageCutCount=${pageCutCount }">가격 ▲</a>		
+													</c:when>
+													<c:otherwise>
+														<a href="adminFoodMgr.do?sortColumn=PRICE&orderby=ASC&whereColumn=${whereColumn }&word=${word }
+															&fc_1st=${fc_1st}&fc_2nd=${fc_2nd}&fc_3rd=${fc_3rd}&pageCutCount=${pageCutCount }">가격 ▼</a>
+													</c:otherwise>
+												</c:choose>
+											</c:when>
+											<c:otherwise><!-- 작성일 정렬이 아닐 때 -->
+												<a href="adminFoodMgr.do?sortColumn=PRICE&orderby=ASC&whereColumn=${whereColumn }&word=${word }
+													&fc_1st=${fc_1st}&fc_2nd=${fc_2nd}&fc_3rd=${fc_3rd}&pageCutCount=${pageCutCount }">가격 ▼</a>
 											</c:otherwise>
 										</c:choose>
                                     
@@ -267,7 +291,7 @@
                             </thead>
                             <tbody>
                                 
-                                <c:forEach var="foodList" items="${foodList }">
+                                <c:forEach var="foodList" items="${foodList.listVO }">
                                 	<tr>
                                     <td>${foodList.f_fdcode }</td>
                                     <td>
@@ -319,14 +343,85 @@
                             </tbody>
                         </table>
                         
+                        <!-- 양끝에 글쓰기 버튼 -->
                         <div>
-		                	검색 : 음식명 <br />
-							소트 : 가격
+                        	<!-- 양 끝에 글등록 링크 위치 -->
+							<table style="border: none;">
+								<tr style="border: none;">
+									<td style="text-align: left; border: none;">
+										<input type="button" value="글 쓰기" onclick="location.href='regFoodMgr.do'" />
+									</td>
+									<td style="text-align: right; border: none;">
+										<input type="button" value="글 쓰기" onclick="location.href='regFoodMgr.do'" />	
+									</td>
+								</tr>
+							</table>
 		                </div>
 		                
 		                
+		                <!-- 페이징 처리 -->
+		                <div>
+		                	<ul class="pagination pagination-sm">
+		                		<c:if test="${beginPage > 10 }">
+									<li class="previous">
+										<a href='<c:url value="adminFoodMgr.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&fc_1st=${fc_1st}&fc_2nd=${fc_2nd}&fc_3rd=${fc_3rd}&pageCutCount=${pageCutCount }&pn=${beginPage-1}"/>'>◀ 이전 </a>&nbsp;
+									</li>
+								</c:if>
+								
+								<c:forEach var="pno" begin="${beginPage}" end="${endPage}">								
+									<c:choose>
+										<c:when test="${pno == pn}">
+											<%-- <div style="display: inline; color: red;" ><strong>${pno}</strong></div>&nbsp; --%>
+											 <li class="active"><a href="#">${pno}</a></li>
+										</c:when>
+										<c:otherwise>								
+											<li><a href='<c:url value="adminFoodMgr.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&fc_1st=${fc_1st}&fc_2nd=${fc_2nd}&fc_3rd=${fc_3rd}&pageCutCount=${pageCutCount }&pn=${pno}" />'>${pno}</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							 	
+								
+								<c:if test="${endPage < foodList.totalPageCount}">
+									<li class="next"><a href='<c:url value="adminFoodMgr.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&fc_1st=${fc_1st}&fc_2nd=${fc_2nd}&fc_3rd=${fc_3rd}&pageCutCount=${pageCutCount }&pn=${endPage + 1}"/>'> 다음 ▶ </a></li>
+								</c:if>
+							</ul>
+		                </div>
 		                
+		                <p /><p />
+		                
+		                
+		                <!-- 검색 처리 -->
+		                <div>		
+							<select name="whereColumn" onchange="change_whereColumn()">
+								<c:choose>
+									<c:when test="${not empty whereColumn }">
+										
+										<c:choose>
+											<c:when test="${whereColumn eq 'ALL'}">
+												<option value="ALL" selected="selected">전체검색</option>
+												<option value="FOODNAME" >음식이름</option>
+											</c:when>
+											<c:when test="${whereColumn eq 'FOODNAME'}">
+												<option value="ALL">전체검색</option>
+												<option value="FOODNAME" selected="selected">음식이름</option>
+											</c:when>
+										</c:choose>
+									
+									</c:when>
+									<c:otherwise>
+										<option value="ALL">전체검색</option>
+										<option value="FOODNAME" >음식이름</option>
+									</c:otherwise>
+								</c:choose>
+							</select>
+							
+							<input type="text" name="word" value="${word }">
+							<input type="submit" value="검색">
+		                </div>
                     </div>
+                    
+                    </form>
+                    
                 </div>
                 <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
             </div>
@@ -335,30 +430,5 @@
 
 	
 
-	
-	<script>
-      
-		/* console.log('fc_1st= ${fc_1st},    fc_2nd=${fc_2nd},     fc_3rd=${fc_3rd}');
-		document.getElementById('fc_1st').value = '${fc_1st}';
-		document.getElementById('fc_2nd').value = '${fc_2nd}';
-		document.getElementById('fc_3rd').value = '${fc_3rd}'; */
-	</script>
-	
-	<!-- 선택 -->
-	<script>
-	/* function paramsetting(){
-			alert('fc_1st= ${fc_1st},    fc_2nd=${fc_2nd},     fc_3st=${fc_3st}');
-			document.getElementById('fc_1st').value = '${fc_1st}';
-			document.getElementById('fc_2nd').value = '${fc_2nd}';
-			document.getElementById('fc_3st').value = '${fc_3st}';
-			var optcnt = document.fm.select.options.length;
-			for(i=0; i<opcnt; i++){
-				if(document.fm.select.options[i].value == ${fc_1st}){
-					document.fm.select.options[i].selected = true;
-					break;
-				}
-			} 
-		}*/
-	</script>
 </body>
 </html>

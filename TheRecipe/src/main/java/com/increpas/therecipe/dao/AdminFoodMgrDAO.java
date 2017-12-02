@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.increpas.therecipe.dto.AdminFoodListDTO;
 import com.increpas.therecipe.vo.FoodMgrVO;
 import com.increpas.therecipe.vo.FoodcodeVO;
 
@@ -32,15 +33,52 @@ public class AdminFoodMgrDAO {
 	
 	/**
 	 * 전체 등록 데이터 가져오기
-	 * @return : List<FoodJoinFoodcodeVO>
+	 * @return : List<FoodMgrVO>
 	 */
 	public List<FoodMgrVO> selectAdminFoodListAll(){
 		return sqlSessionTemplate.selectList("adminFoodMgr_ns.selectAdminFoodListAll");
 	}
 	
-	
-	
+	/**
+	 * 선택한 등록 데이터 가져오기
+	 * @param FoodcodeVO fcVO
+	 * @return List<FoodMgrVO>
+	 */
 	public List<FoodMgrVO> selectAdminFoodListSel(FoodcodeVO fcVO){
 		return sqlSessionTemplate.selectList("adminFoodMgr_ns.selectAdminFoodListSel", fcVO);
 	}
+
+
+	
+	/**
+	 * 선택한 등록 데이터 가져오기 - 페이징, 검색
+	 * @param FoodcodeVO fcVO
+	 * @return List<FoodMgrVO>
+	 */
+	public List<AdminFoodListDTO> selectSetAdminFoodList(FoodcodeVO fcVO){
+		return sqlSessionTemplate.selectList("adminFoodMgr_ns.selectSetAdminFoodList", fcVO);
+	}
+	
+	
+	
+	
+	/**
+	 * 선택한 등록 데이터 가져오기 - 페이징, 검색
+	 * @param FoodcodeVO fcVO
+	 * @return List<FoodMgrVO>
+	 */
+	public List<FoodMgrVO> selectSetAdminFoodList(AdminFoodListDTO adminFoodListDTO){
+		return sqlSessionTemplate.selectList("adminFoodMgr_ns.selectSetAdminFoodList", adminFoodListDTO);
+	}
+	
+	
+	/**
+	 * 전체 글 갯수 리턴
+	 * @return
+	 */
+	public int listCount(AdminFoodListDTO listDTOListModel) {		
+		System.out.println("▶▶▶▶ listDTO : selectCount");
+		return sqlSessionTemplate.selectOne("adminFoodMgr_ns.selectCount", listDTOListModel);
+	}
+	
 }
