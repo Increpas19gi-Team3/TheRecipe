@@ -29,8 +29,10 @@ public class LocalDAO {
 	
 
 	/**
-	 * 대분류별 리스트 가져오기
+	 * 분류별 리스트 가져오기
 	 * @param large : FC_1ST(대분류)
+	 * @param medium : FC_2ND(중분류)
+	 * @param small : FC_3RD(소분류)
 	 * @param startNum : 페이징 처리를 위한 ROWNUM
 	 * @param endNum : 페이징 처리를 위한 ROWNUM
 	 * @return List<FoodVO>
@@ -46,14 +48,15 @@ public class LocalDAO {
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
 
-		System.out.println("KJH TEST >>>>>>>>>>>>> " + large+","+startNum+","+endNum);
 		return sqlSessionTemplate.selectList("local_ns.selectLocalList", map); 
 		
 	}
 	
 	/**
-	 * 대분류 음식 카운트 가져오기
+	 * 분류별 음식 카운트 가져오기
 	 * @param large : FC_1ST(대분류)
+	 * @param medium : FC_2ND(중분류)
+	 * @param small : FC_3RD(소분류)
 	 * @return int
 	 */
 	public int selectLargeCount(int large, int medium, int small){
@@ -66,83 +69,7 @@ public class LocalDAO {
 		return sqlSessionTemplate.selectOne("local_ns.selectLargeCount", map); 
 		
 	}
-	
-	/**
-	 * 중분별 리스트 가져오기
-	 * @param large : FC_1ST(대분류)
-	 * @param medium : FC_2ND(중분류)
-	 * @param startNum : 페이징 처리를 위한 ROWNUM
-	 * @param endNum : 페이징 처리를 위한 ROWNUM
-	 * @return List<FoodVO>
-	 */
-	public List<FoodVO> selectLocalKindList(int large, int medium, int startNum, int endNum){
-		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("large", large);
-		map.put("medium", medium);
-		map.put("startNum", startNum);
-		map.put("endNum", endNum);
-		
-		return sqlSessionTemplate.selectList("local_ns.selectLocalKindList", map); 
-		
-	}
-	
-	/**
-	 * 중분류 음식 카운트 가져오기
-	 * @param large : FC_1ST(대분류)
-	 * @param medium : FC_2ND(중분류)
-	 * @return int
-	 */
-	public int selectMediumCount(int large, int medium){
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("large", large);
-		map.put("medium", medium);
-		
-		return sqlSessionTemplate.selectOne("local_ns.selectMediumCount", map); 
-		
-	}
-	
-	/**
-	 * 소분류별 리스트 select 서비스
-	 * @param large : FC_1ST(대분류)
-	 * @param medium : FC_2ND(중분류)
-	 * @param small : FC_3RD(소분류)
-	 * @param startNum : 페이징 처리를 위한 ROWNUM
-	 * @param endNum : 페이징 처리를 위한 ROWNUM
-	 * @return List<FoodVO>
-	 */
-	public List<FoodVO> selectLocalItemList(int large, int medium, int small, int startNum, int endNum){
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("large", large);
-		map.put("medium", medium);
-		map.put("small", small);
-		map.put("startNum", startNum);
-		map.put("endNum", endNum);
-		
-		return sqlSessionTemplate.selectList("local_ns.selectLocalItemList", map); 
-		
-	}
-	
-	/**
-	 * 소분류 음식 카운트 가져오기
-	 * @param large : FC_1ST(대분류)
-	 * @param medium : FC_2ND(중분류)
-	 * @param small : FC_3RD(소분류)
-	 * @return int
-	 */
-	public int selectSmallCount(int large, int medium, int small){
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("large", large);
-		map.put("medium", medium);
-		map.put("small", small);
-		
-		return sqlSessionTemplate.selectOne("local_ns.selectSmallCount", map); 
-		
-	}
-	
 	/**
 	 * 음식명으로 검색하기
 	 * @param fisrt : FC_1ST(대분류)
@@ -151,17 +78,17 @@ public class LocalDAO {
 	 * @param title : 검생명
 	 * @return List<FoodVO>
 	 */
-	public List<FoodVO> selectTitleList(int fisrt, int second, int third, String title){
+	public List<FoodVO> selectTitleList(int first, int second, int third, String title){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("fisrt", fisrt);
+		map.put("first", first);
 		map.put("second", second);
 		map.put("third", third);
 		map.put("title", title);
 				
 		return sqlSessionTemplate.selectList("local_ns.searchTitleList", map); 
 		
-	}
+	}	
 	
 	/**
 	 * 음식코드로 음식정보 가져오기

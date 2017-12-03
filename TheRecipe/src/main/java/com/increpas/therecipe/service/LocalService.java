@@ -23,8 +23,10 @@ public class LocalService {
 	LocalDAO lDao;
 	
 	/**
-	 * 대분류별 리스트 select 서비스
+	 * 분류별 리스트 select 서비스
 	 * @param large : FC_1ST(대분류)
+	 * @param medium : FC_2ND(중분류)
+	 * @param small : FC_3RD(소분류)
 	 * @param startNum : 페이징 처리를 위한 ROWNUM
 	 * @param endNum : 페이징 처리를 위한 ROWNUM
 	 * @return List<FoodVO>
@@ -35,8 +37,10 @@ public class LocalService {
 	}
 	
 	/**
-	 * 대분류 음식 카운트 가져오기
+	 * 분류별 음식 카운트 가져오기
 	 * @param large : FC_1ST(대분류)
+	 * @param medium : FC_2ND(중분류)
+	 * @param small : FC_3RD(소분류)
 	 * @return int
 	 */
 	public int selectLargeCount(int large, int medium, int small){
@@ -44,67 +48,18 @@ public class LocalService {
 		return lDao.selectLargeCount(large,medium,small);
 	}
 	
-	/**
-	 * 중분류별 리스트 select 서비스
-	 * @param large : FC_1ST(대분류)
-	 * @param medium : FC_2ND(중분류)
-	 * @param startNum : 페이징 처리를 위한 ROWNUM
-	 * @param endNum : 페이징 처리를 위한 ROWNUM
-	 * @return List<FoodVO>
-	 */
-	public List<FoodVO> selectKindList(int large, int medium, int startNum, int endNum){
-		
-		return lDao.selectLocalKindList(large, medium,startNum,endNum);
-	}
-	
-	/**
-	 * 중분류 음식 카운트 가져오기
-	 * @param large : FC_1ST(대분류)
-	 * @param medium : FC_2ND(중분류)
-	 * @return int
-	 */
-	public int selectMediumCount(int large, int medium){
-		
-		return lDao.selectMediumCount(large, medium);
-	}
-	
-	/**
-	 * 소분류별 리스트 select 서비스
-	 * @param large : FC_1ST(대분류)
-	 * @param medium : FC_2ND(중분류)
-	 * @param small : FC_3RD(소분류)
-	 * @param startNum : 페이징 처리를 위한 ROWNUM
-	 * @param endNum : 페이징 처리를 위한 ROWNUM
-	 * @return List<FoodVO>
-	 */
-	public List<FoodVO> selectItemList(int large, int medium, int small, int startNum, int endNum){
-		
-		return lDao.selectLocalItemList(large, medium, small,startNum,endNum);
-	}
-	
-	/**
-	 * 소분류 음식 카운트 가져오기
-	 * @param large : FC_1ST(대분류)
-	 * @param medium : FC_2ND(중분류)
-	 * @param small : FC_3RD(소분류)
-	 * @return int
-	 */
-	public int selectSmallCount(int large, int medium, int small){
-		
-		return lDao.selectSmallCount(large, medium, small);
-	}
 	
 	/**
 	 * 음식명으로 검색하기
 	 * @param fisrt : FC_1ST(대분류)
 	 * @param second : FC_2ND(중분류)
 	 * @param third : FC_3RD(소분류)
-	 * @param title : 검생명
+	 * @param title : 검생명 
 	 * @return List<FoodVO>
 	 */
-	public List<FoodVO> selectTitleList(int fisrt, int second, int third, String title){
+	public List<FoodVO> selectTitleList(int first, int second, int third, String title){
 		
-		return lDao.selectTitleList(fisrt, second, third, title);
+		return lDao.selectTitleList(first, second, third, title);
 	}
 	
 	/**

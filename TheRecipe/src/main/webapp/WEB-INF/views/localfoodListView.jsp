@@ -5,13 +5,10 @@
 
 	<jsp:include page="header.jsp" />
 
-<c:if test="${empty pageSize}">
-	<c:set var="pageSize" value="5" />
-</c:if>
-
 <c:set var="medium" />
 <c:set var="small" />
 <form action="localTitleList.do" method="post">
+	<input type="hidden" name="level" value="${level}">
 	<div class="container home">
 		<div class="con_inner">
 			<div class="page_locationBox2">
@@ -130,27 +127,33 @@
 			</ul>
 		</div>
 
-		<c:forEach var="page" begin="${beginPage}" end="${endPage}">
-			<c:choose>
-				<c:when test="${page == currPage}">
-					${page}
-				</c:when>
-				<c:otherwise>
-					<c:choose>
-						<c:when test="${level == 1}">
-							<a href='<c:url value="totalFoodList.do?level=1&currPage=${page }&pageSize=5&large=${large }" />'>${page}</a>
-						</c:when>
-						<c:when test="${level == 2}">
-							<a href='<c:url value="totalFoodList.do?level=2&currPage=${page }&pageSize=5&large=${large}&medium=${medium}" />'>${page}</a>
-						</c:when>
-						<c:when test="${level == 3}">
-							<a href='<c:url value="totalFoodList.do?level=3&currPage=${page }&pageSize=5&large=${large}&medium=${medium}&small=${small}" />'>${page}</a>
-						</c:when>
-					</c:choose>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>	
+			<div class="pagination_wrap">
+				<ul class="pagination">
+					<c:if test="${not empty endPage }">
+					<c:forEach var="page" begin="${beginPage}" end="${endPage}">
+						<c:choose>
+							<c:when test="${page == currPage}">
+								<li><a href="#" class="active">${page }</a></li>
+							</c:when>
+							<c:otherwise>
+								<c:choose>
+									<c:when test="${level == 1}">
+										<li><a href="totalFoodList.do?level=1&currPage=${page }&large=${large }">${page}</a></li>
+									</c:when>
+									<c:when test="${level == 2}">
+										<li><a href="totalFoodList.do?level=2&currPage=${page }&large=${large}&medium=${medium}">${page}</a></li>
+									</c:when>
+									<c:when test="${level == 3}">
+										<li><a href="totalFoodList.do?level=3&currPage=${page }&large=${large}&medium=${medium}&small=${small}">${page}</a></li>
+									</c:when>
+								</c:choose>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					</c:if>
+				</ul>
 
+			</div>
 		</div>
 	</div>
 	

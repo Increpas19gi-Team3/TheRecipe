@@ -11,6 +11,7 @@
 		<input type="hidden" name="userID" value="<%=session.getAttribute("m_userid")%>">
 		<input type="hidden" name="fdcode" value="${foodList.f_fdcode }">
 		<input type="hidden" name="buyPrice" value="${foodList.f_price }">
+		<input type="hidden" name="large" value="${foodList.fc_1st }">
 	
 	<div class="container productDetail">
 		<div class="con_inner">
