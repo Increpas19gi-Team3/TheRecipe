@@ -48,8 +48,8 @@
 					</tr>
 
 					<tr>
-						<th>이미지</th>
-						<td>${eVo.e_ntimgname}</td>
+						<th>이미지</th>												
+						<td><img src="/images/${eVo.e_ntimgname}" width="400"height="400"></td>						
 					</tr>
 
 					<tr>

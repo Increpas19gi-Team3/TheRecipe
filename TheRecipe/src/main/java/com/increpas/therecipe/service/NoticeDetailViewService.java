@@ -34,13 +34,20 @@ public class NoticeDetailViewService {
 		System.out.println("▶▶▶▶ NoticeEventDetailViewService : insertWrtNoticeVO >> 공지사항 등록");
 		endDAO.NoticeReg(erVo);
 	}
-	
-	//======================이벤트==========================================================================
+
+	// ======================이벤트==========================================================================
 
 	// 이벤트 상세보기
 	@Transactional
 	public EventNoticeVO getEventVODetail(int Ecode) {
 		System.out.println("▶▶▶▶ NoticeDetailViewService : getEventVODetail >> 들어옴");
 		return endDAO.EventDetailView(Ecode);
+	}
+
+	// 이벤트 등록
+	@Transactional
+	public void insertWrtEventVO(EventNoticeRegVO erVo) {
+		System.out.println("▶▶▶▶ NoticeEventDetailViewService : insertWrtEventVO >> 이벤트 등록");
+		endDAO.EventReg(erVo);
 	}
 }

@@ -83,15 +83,16 @@ public class EventNoticeDetailViewController {
 			// 업로드파일객체를 지정한 파일에 복사
 			try {
 				file.transferTo(new File(path, systemFilename));
-				System.out.println(systemFilename + " 업로드완료.");
+				System.out.println("▶▶▶▶▶ "+ systemFilename + " 업로드완료.");
 				UploadFileDTO fileDTO = new UploadFileDTO();
 				fileDTO.setOriginalFilename(originalFilename);
 				fileDTO.setSystemFilename(systemFilename);
 				fileDTO.setFileSize(file.getSize());
 
-				System.out.println("▶▶▶▶▶ model.addAttribute()");
-				model.addAttribute("fileDTO", fileDTO);
+				erVo.setE_ntimgname(systemFilename);
 				
+				System.out.println("▶▶▶▶▶ model.addAttribute()");
+				model.addAttribute("fileDTO", fileDTO);				
 				
 			} catch (IllegalStateException e) {
 				// TODO Auto-generated catch block
@@ -112,7 +113,8 @@ public class EventNoticeDetailViewController {
 		ndvs.insertWrtNoticeVO(erVo);
 
 		System.out.println("▶▶▶▶▶ 등록 마지막 단계");
-		return "redirect:index.jsp";
+		// return "redirect:index.jsp";
+		return "redirect:NoticeList.do";
 	}
 
 	// ===========================================이벤트===============================================================
@@ -146,7 +148,59 @@ public class EventNoticeDetailViewController {
 	public String GET_EventReg(Model model) {
 
 		System.out.println("1. '이벤트 등록'입니다.");
-		return "";
+		return "eventReg";
 	}
+	
+	@RequestMapping(value = "/EventReg.do", method = RequestMethod.POST)
+	public String POST_EventReg(@Valid @ModelAttribute("eventCom") EventNoticeRegVO erVo, Errors errors, Model model) {
+
+		System.out.println("▶▶▶▶▶ EventNoticeDetailViewController ; EventReg.do ; POST ; ");
+
+		MultipartFile file = erVo.getUpfile();
+
+		String path = "C:/images/";
+		String originalFilename = "";
+		originalFilename = file.getOriginalFilename();
+		String systemFilename = UUID.randomUUID() + "_" + originalFilename;
+
+		if (!file.isEmpty()) {
+			// 업로드파일객체를 지정한 파일에 복사
+			try {
+				file.transferTo(new File(path, systemFilename));
+				System.out.println("▶▶▶▶▶ "+ systemFilename + " 업로드완료.");
+				UploadFileDTO fileDTO = new UploadFileDTO();
+				fileDTO.setOriginalFilename(originalFilename);
+				fileDTO.setSystemFilename(systemFilename);
+				fileDTO.setFileSize(file.getSize());
+
+				erVo.setE_ntimgname(systemFilename);
+				
+				System.out.println("▶▶▶▶▶ model.addAttribute()");
+				model.addAttribute("fileDTO", fileDTO);				
+				
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		if (errors.hasErrors()) {
+			System.out.println("errors.getAllErrors()"+errors.getAllErrors());
+			System.out.println("▶▶▶▶▶ 에러 입니다.");
+			return "noticeReg";
+		}
+
+		System.out.println("▶▶▶▶▶ 이미지 저장후 'NoticeDetailViewService' 이동");
+		ndvs.insertWrtEventVO(erVo);
+
+		System.out.println("▶▶▶▶▶ 이벤트 등록 마지막 단계");
+		// return "redirect:index.jsp";
+		return "redirect:EventList.do";
+	}
+	
+	
 
 }

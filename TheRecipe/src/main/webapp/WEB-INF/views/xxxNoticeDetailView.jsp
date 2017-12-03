@@ -46,11 +46,13 @@
 						<th>내&nbsp;&nbsp;용</th>
 						<td>${nVo.e_ntcontens}</td>
 					</tr>
+					
 
 					<tr>
 						<th>이미지</th>
-						<td>${nVo.e_ntimgname}</td>
+						<td><img src="/images/${eVo.e_ntimgname}" width="400" height="400"></td>						
 					</tr>
+					
 
 					<tr>
 						<th>할인율</th>

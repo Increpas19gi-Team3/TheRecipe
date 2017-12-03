@@ -49,7 +49,7 @@ public class EventNoticeDetailDAO {
 	
 	
 	/**
-	 * 상세글 보기
+	 * 이벤트 상세글 보기
 	 * @param Ecode 화면에서 입력받은 이벤트 코드값
 	 * @return
 	 */
@@ -58,5 +58,13 @@ public class EventNoticeDetailDAO {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("Ecode", Ecode);// 글번호 맵에 저장
 		return sqlSessionTemplate.selectOne("event_ns.selectEventDetail", map);		
-	} 		
+	} 
+	
+	/**
+	 * 이벤트 등록
+	 * @param eVo
+	 */
+	public void EventReg(EventNoticeRegVO erVo) {				
+		sqlSessionTemplate.insert("event_ns.EventInsertWrite", erVo);		
+	}
 }

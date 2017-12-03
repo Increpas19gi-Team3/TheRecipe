@@ -226,4 +226,15 @@
 		WHERE ET.E_EVTCODE = #{Ecode}
 	</select>
 	
+	<!-- 이벤트 등록(이미지도 들어감) -->
+	<insert id="EventInsertWrite" parameterType="EventNoticeReg">
+		INSERT INTO tr_event
+		(e_evtcode, e_nttilte, e_gubun, e_ntdate, 
+		e_ntcontens, e_ntimgname, 
+		e_discount, e_startdate, e_enddate, ms_code)
+		VALUES
+		(tr_event_SEQ.NEXTVAL, #{e_nttilte}, '1', sysdate,
+		#{e_ntcontens, jdbcType=VARCHAR}, #{e_ntimgname, jdbcType=VARCHAR}, 
+		#{e_discount}, #{e_startdate}, #{e_enddate}, '3')		
+	</insert>	
 </mapper>
