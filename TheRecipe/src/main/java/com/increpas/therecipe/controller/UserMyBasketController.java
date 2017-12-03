@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.increpas.therecipe.service.UserMyBasketService;
 import com.increpas.therecipe.vo.UserMyBasketVO;
@@ -70,24 +71,54 @@ public class UserMyBasketController {
 
 			list = arrySplitImgname(list);
 			
-			
-			
 			model.addAttribute("basket", list);
 			
 
 			return "cart";
 		}
 		
-		@RequestMapping(value = "/DeleteBasket.do", method = RequestMethod.POST)
-		public String DeleteBasket( HttpSession session , Model model) {
-			// 장바구니  삭제(아이디)
+	/*	@RequestMapping(value = "/UpdateBasket.do", method = RequestMethod.POST)
+		public String UpdateBasket( HttpSession session , Model model) {
+			// 장바구니 리스트 조회(아이디)
 			
 			String m_userid = (String) session.getAttribute("m_userid");
 			
-			
-			model.addAttribute("basket", userMyService.selectBasket(m_userid));
+			List<UserMyBasketVO> list = userMyService.selectBasket(m_userid);
 
-			return "cart";
+			
+			
+			int b_amount = 0;
+			int f_price = 0;
+			for (UserMyBasketVO userMyBasketVO : list) {
+				
+				list = arrySplitImgname(list);
+				b_amount = userMyBasketVO.getB_amount();
+				f_price = userMyBasketVO.getF_price();
+				int b_buyprice = userMyService.calBuyprice(b_amount, f_price);
+				
+				
+
+				
+			}
+			
+			
+			model.addAttribute("basket", list);
+			
+
+			return "redirect:BasketForm.do";
+		}
+		*/
+		@RequestMapping(value = "/DeleteBasket.do", method = RequestMethod.GET)
+		public String DeleteBasket(@RequestParam("f_fdcode") String f_fdcode , HttpSession session , Model model) {
+			// 장바구니  삭제(아이디)
+			
+			String m_userid = (String) session.getAttribute("m_userid");
+			System.out.println(f_fdcode);
+			
+			
+			 userMyService.deleteBasket(m_userid,f_fdcode);
+
+			return "redirect:BasketForm.do";
 		}
 		
 		@RequestMapping(value = "/myorder.do", method = RequestMethod.POST)

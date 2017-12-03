@@ -29,5 +29,18 @@ public class UserMyBasketService {
 		return userMyDAO.selectBasket(m_userid);
 		
 	}
+	
+	public int calBuyprice(int b_amount,int f_price) {
+		int result=0;
+		
+		result = b_amount*f_price;
+		//계산
+		return result;
+		
+	}
+
+	public void deleteBasket(String m_userid,String f_fdcode) {
+		 userMyDAO.deleteBasket(m_userid,f_fdcode);
+	}
 
 }

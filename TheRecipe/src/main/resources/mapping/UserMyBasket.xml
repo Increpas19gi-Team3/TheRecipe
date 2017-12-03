@@ -52,6 +52,13 @@
 	WHERE M_USERID= #{m_userid}
 	</select>
 	
+	<delete id="deleteBasket" parameterType="map">
+		delete from tr_basket
+		where m_userid = #{m_userid} and f_fdcode = #{f_fdcode}
+	</delete>
+	
+	
+	
 				
 	
 </mapper>
