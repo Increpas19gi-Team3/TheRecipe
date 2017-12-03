@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author 손가연
  *
  */
-public class EventNoticeVO {
+public class EventNoticeRegVO {
 	
 	private String e_evtcode;	/* 이벤트코드	VARCHAR2(20) NOT NULL */
 	private String e_nttilte;	/* 제목 		VARCHAR2(100) */
@@ -23,6 +23,18 @@ public class EventNoticeVO {
 	private String ms_code;		/* 마스터코드: 3	CHAR(1) */
 	
 	private String discount_value; // SubQuery : 할인율 
+
+	MultipartFile upfile;	
+	
+	public MultipartFile getUpfile() {
+		return upfile;
+	}
+
+	public void setUpfile(MultipartFile upfile) {
+		this.upfile = upfile;
+	}
+	
+	
 
 	public String getE_evtcode() {
 		return e_evtcode;

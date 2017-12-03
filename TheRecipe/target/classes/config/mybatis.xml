@@ -30,6 +30,9 @@
 		<!-- 이벤트(tr_event) + SubQuery (tr_mastercode INNER JOIN tr_subcode) : 손가연 -->
 		<typeAlias alias="EventNotice" type="com.increpas.therecipe.vo.EventNoticeVO" />
 		
+		<!-- 12/03 손대성 -->
+		<typeAlias alias="EventNoticeReg" type="com.increpas.therecipe.vo.EventNoticeRegVO" />
+		
 		<!-- 2017.12.01 추가 테이블 -->
 		<!-- 이벤트(tr_event) + 푸드(tr_food) + 바스켓(tr_basket) + SubQuery  : 박호진 -->
 		<typeAlias alias="UserBasket" type="com.increpas.therecipe.vo.UserMyBasketVO" />

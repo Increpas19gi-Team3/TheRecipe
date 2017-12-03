@@ -188,20 +188,22 @@
 						
 						<!-- 글등록 링크 위치 -->
 						<table style="border: none;">
-						<c:choose>
-							<c:when test="${ sessionScope.m_level eq '1' }">
+						<%-- <c:choose>
+							<c:when test="${ sessionScope.m_level eq '1' }"> --%>
+							
 							<tr style="border: none;">
 								<td style="text-align: left; border: none;">
 									<input type="button" value="공지사항 등록" onclick="location.href='NoticeReg.do'" />
 								</td>				
 							</tr>
-							</c:when>
+							
+							<%-- </c:when>
 							<c:otherwise>
 								<tr>
 									<td>넌 관리자가 아니야</td>
 								</tr>
 							</c:otherwise>
-						</c:choose>
+						</c:choose> --%>
 						</table>
 						
 						

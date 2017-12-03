@@ -65,10 +65,20 @@
 					</select>
 				</fieldset> -->
 				
+				<fieldset>
+					<label for="">시작 날짜</label>
+					<input type="date" id="e_startdate" name="e_startdate">
+				</fieldset>
+				
+				<fieldset>
+					<label for="">종료 날짜</label>
+					<input type="date" id="e_enddate" name="e_enddate">
+				</fieldset>				
+				
 				<fieldset class="fileWrap">
 					<label for="" id="fileName">이미지</label>
 					<div class="file-select-name" id="noFile">이미지를 선택하세요</div>
-					<input type="file" id="chooseFile">
+					<input type="file" id="chooseFile" name="upfile">
 				</fieldset>
 				
 				<script>

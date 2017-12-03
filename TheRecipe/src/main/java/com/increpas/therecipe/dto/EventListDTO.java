@@ -30,6 +30,7 @@ private List<EventVO> listVO;	// 게시글의 목록
 	private int totalPageCount;			// 전체 페이지 수
 	private int startRow;				// 요청(클릭) 페이지 시작 글번호
 	private int endRow;					// 요청(클릭) 페이지 마지막 글번호
+		
 
 	// DB의 저장된 전체글의 개수가 0일때 리턴할 게시글 모델
 	public EventListDTO() {
@@ -52,12 +53,10 @@ private List<EventVO> listVO;	// 게시글의 목록
 		this.startRow = startRow;
 		this.endRow = endRow;
 	}
-
 		
 	public List<EventVO> getEventVOList() {
 		return listVO;
 	}
-		
 	
 	//리스트 Empty 상태 : boolean 일때 get이 아닌 is로 메소드명 정의
 	/**

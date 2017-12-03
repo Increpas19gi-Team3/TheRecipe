@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.increpas.therecipe.dto.EventListDTO;
+import com.increpas.therecipe.vo.EventNoticeRegVO;
 import com.increpas.therecipe.vo.EventNoticeVO;
 import com.increpas.therecipe.vo.EventVO;
 
@@ -25,7 +26,7 @@ public class EventNoticeDetailDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	/**
-	 * 상세글 보기
+	 * 공지사항 상세글 보기
 	 * @param Ncode 화면에서 입력받은 공시사항 코드값
 	 * @return
 	 */
@@ -35,6 +36,17 @@ public class EventNoticeDetailDAO {
 		map.put("Ncode", Ncode);// 글번호 맵에 저장
 		return sqlSessionTemplate.selectOne("event_ns.selectNoticeDetail", map);		
 	}
+	
+	/**
+	 * 공지사항 등록
+	 * @param eVo
+	 */
+	public void NoticeReg(EventNoticeRegVO erVo) {				
+		sqlSessionTemplate.insert("event_ns.NoticeInsertWrite", erVo);		
+	}
+	
+	
+	
 	
 	/**
 	 * 상세글 보기
