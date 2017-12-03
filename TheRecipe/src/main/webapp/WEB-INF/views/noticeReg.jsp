@@ -29,7 +29,6 @@
 			</div>
 		</div>
 		<div class="right_contnet">
-		
 			<h3> 
 				글쓰기 
 				<div class="page_locationBox">
