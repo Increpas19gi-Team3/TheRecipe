@@ -128,6 +128,7 @@
 						<br/><br/><br/><br/>
 						<div class="">
                         	<button type="submit" class="btn btn-primary btn-block" onclick="">수정</button>
+                        	<button type="button" class="btn btn-primary btn-block" onclick="">삭제</button>
                         	<button type="button" class="btn btn-primary btn-block" onclick="location.href='adminFoodMgr.do'">목록</button>
                         </div>
                     </form>

@@ -81,4 +81,13 @@ public class AdminFoodMgrDAO {
 		return sqlSessionTemplate.selectOne("adminFoodMgr_ns.selectCount", listDTOListModel);
 	}
 	
+	
+	/**
+	 * 선택한 음식정보 상세보기
+	 * @param String f_fdcode
+	 * @return FoodMgrVO
+	 */
+	public FoodMgrVO selFoodView(String f_fdcode){
+		return sqlSessionTemplate.selectOne("adminFoodMgr_ns.selFoodView", f_fdcode);
+	}
 }

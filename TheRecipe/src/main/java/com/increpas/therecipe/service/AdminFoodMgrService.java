@@ -1,16 +1,23 @@
 package com.increpas.therecipe.service;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.increpas.therecipe.dao.AdminFoodMgrDAO;
 import com.increpas.therecipe.dto.AdminFoodListDTO;
+import com.increpas.therecipe.dto.AdminFoodRegDTO;
+import com.increpas.therecipe.dto.UploadFileDTO;
 import com.increpas.therecipe.vo.FoodMgrVO;
 import com.increpas.therecipe.vo.FoodcodeVO;
 
@@ -150,6 +157,116 @@ public class AdminFoodMgrService {
 		}
 		
 		return pageCount;
+	}
+	
+	
+	
+	
+	/**
+	 * 선택한 음식정보 상세보기
+	 * @param String f_fdcode
+	 * @return FoodMgrVO
+	 */
+	public FoodMgrVO selFoodView(String f_fdcode){
+		return adminFoodMgrDAO.selFoodView(f_fdcode);
+	}
+	
+	
+	
+	public AdminFoodRegDTO saveImagesSetting(AdminFoodRegDTO adminFoodRegDTO, Model model){
+		
+		MultipartFile f_imgname_1 = adminFoodRegDTO.getF_imgname_1();
+		MultipartFile f_imgname_2 = adminFoodRegDTO.getF_imgname_2();
+		MultipartFile f_imgname_3 = adminFoodRegDTO.getF_imgname_3();
+		MultipartFile f_imgname_4 = adminFoodRegDTO.getF_imgname_4();
+		MultipartFile f_imgname_5 = adminFoodRegDTO.getF_imgname_5();
+		
+		System.out.println(">>>>>>>>>>> f_imgname_1="+f_imgname_1.getOriginalFilename()+
+				", f_imgname_2="+f_imgname_2.getOriginalFilename()+
+				", f_imgname_3="+f_imgname_3.getOriginalFilename()+
+				", f_imgname_4="+f_imgname_4.getOriginalFilename()+
+				", f_imgname_5="+f_imgname_5.getOriginalFilename());		
+		
+		
+		
+		String imageNames = "";
+		
+		// 이미지 1번 업로드
+		if (!f_imgname_1.isEmpty()) {
+			imageNames += saveImages(f_imgname_1, model); //이미지 명 누적합
+		}
+		
+		
+		// 이미지 2번 업로드
+		if (!f_imgname_2.isEmpty()) {
+			imageNames += "_"+saveImages(f_imgname_2, model); //이미지 명 누적합			
+		}
+		
+		
+		// 이미지 3번 업로드
+		if (!f_imgname_3.isEmpty()) {
+			imageNames += "_"+saveImages(f_imgname_3, model); //이미지 명 누적합
+		}
+		
+		
+		// 이미지 4번 업로드
+		if (!f_imgname_4.isEmpty()) {
+			imageNames += "_"+saveImages(f_imgname_4, model); //이미지 명 누적합
+			
+		}
+		
+		
+		// 이미지 5번 업로드
+		if (!f_imgname_5.isEmpty()) {
+			imageNames += "_"+saveImages(f_imgname_5, model); //이미지 명 누적합
+		}
+		
+		// 여기에 썸네일 이미지도 적용 해야함
+		/*
+		 https://okky.kr/article/367729
+		  http://jsonobject.tistory.com/226
+		  http://jaesu.tistory.com/entry/image-thumbnail-%EB%A7%8C%EB%93%A4%EA%B8%B0
+		  
+		 */
+		
+		//DB에 입력할 이미지 적용
+		adminFoodRegDTO.setF_imgname(imageNames);
+		System.out.println("getF_imgname : " + adminFoodRegDTO.getF_imgname());
+		
+		return adminFoodRegDTO;
+	}
+	
+	
+	
+	public String saveImages(MultipartFile f_imgname, Model model){
+		
+		String imageNames = "";
+		String path = "C:/images/";
+		
+		String originalFilename = f_imgname.getOriginalFilename();
+		String systemFilename = UUID.randomUUID() + "_" + originalFilename;
+		
+		// 업로드파일객체를 지정한 파일에 복사
+		try {
+			f_imgname.transferTo(new File(path, systemFilename));
+			System.out.println(systemFilename + " 업로드완료.");
+			UploadFileDTO fileDTO = new UploadFileDTO();
+			fileDTO.setOriginalFilename(originalFilename);
+			fileDTO.setSystemFilename(systemFilename);
+			fileDTO.setFileSize(f_imgname.getSize());
+			model.addAttribute(f_imgname+"_fileDTO", fileDTO);
+			
+			imageNames += systemFilename; //이미지 명 누적합
+			
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return imageNames;
 	}
 	
 }

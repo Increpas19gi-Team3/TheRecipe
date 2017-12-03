@@ -151,7 +151,7 @@
                 <div class="card-header">
                     <i class="fa fa-table"></i> 등록 음식 목록</div>
                 
-                <div class="card-body">
+                <div class="card-body" style="text-align: center;">
                 <form action="adminFoodMgr.do" method="post" name="listForm">
                 
                 	<div class="">                	
@@ -322,7 +322,7 @@
                                     
                                     <!-- 음식명에 상세보기 링크 -->
                                     <td>                                    
-                                    	<a href="listView.do?no=${foodList.f_fdcode }"> 
+                                    	<a href="adminFoodView.do?no=${foodList.f_fdcode }"> 
 											${foodList.f_foodname }
 										</a>
                                     </td>
@@ -346,17 +346,21 @@
                         <!-- 양끝에 글쓰기 버튼 -->
                         <div>
                         	<!-- 양 끝에 글등록 링크 위치 -->
-							<table style="border: none;">
+							<table style="border: none;" width="100%" cellspacing="0">
 								<tr style="border: none;">
 									<td style="text-align: left; border: none;">
-										<input type="button" value="글 쓰기" onclick="location.href='regFoodMgr.do'" />
+										<!-- <input type="button" value="글 쓰기" onclick="location.href=''" /> -->
+										<button type="button" class="btn btn-primary btn-sm" onclick="location.href='regFoodMgr.do'">음식 등록</button>
 									</td>
 									<td style="text-align: right; border: none;">
-										<input type="button" value="글 쓰기" onclick="location.href='regFoodMgr.do'" />	
+										<!-- <input type="button" value="글 쓰기" onclick="location.href='regFoodMgr.do'" /> -->
+										<button type="button" class="btn btn-primary btn-sm" onclick="location.href='regFoodMgr.do'">음식 등록</button>	
 									</td>
 								</tr>
 							</table>
 		                </div>
+		                
+		                
 		                
 		                
 		                <!-- 페이징 처리 -->

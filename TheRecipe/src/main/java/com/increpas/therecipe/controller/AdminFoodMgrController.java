@@ -1,26 +1,36 @@
 package com.increpas.therecipe.controller;
 
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.increpas.therecipe.dto.AdminFoodListDTO;
+import com.increpas.therecipe.dto.AdminFoodRegDTO;
 import com.increpas.therecipe.service.AdminCategoryMgrService;
 import com.increpas.therecipe.service.AdminFoodMgrService;
 import com.increpas.therecipe.util.BlankChange;
 import com.increpas.therecipe.util.NullChange;
+import com.increpas.therecipe.vo.FoodMgrVO;
 import com.increpas.therecipe.vo.FoodcodeVO;
 
 /**
  * 관리자) 지역음식, TV 레시피 음식 등록 관리 컨트롤러
  * @author 손가연
  * 
- * 
+ * modifyFoodMgr.do
+adminFoodModify.jsp
  */
 @Controller
 public class AdminFoodMgrController {
@@ -48,14 +58,7 @@ public class AdminFoodMgrController {
 		
 		logger.debug("▶▶▶▶ >>>>>>>> Log : {} {}", 
 				"getAdminFoodListAll()=", "fc_1st="+fc_1st+", fc_2nd="+fc_2nd+", fc_3rd="+fc_3rd);
-		
 		FoodcodeVO fcVO = adminCategoryMgrService.setFoodcodeVO(fc_1st, fc_2nd, fc_3rd, "", "");
-		
-		/* 페이징 X, 검색 X
-		model.addAttribute("foodcode1stList", adminCategoryMgrService.select1stFoodcode());
-		//model.addAttribute("foodAllList", adminFoodMgrService.selectAdminFoodListAll());
-		model.addAttribute("foodList", adminFoodMgrService.selectAdminFoodListSel(fcVO));
-		*/
 		
 		// 음식 카테고리 설정
 		model.addAttribute("foodcode1stList", adminCategoryMgrService.select1stFoodcode());
@@ -142,12 +145,71 @@ public class AdminFoodMgrController {
 			model.addAttribute("beginPage", beginPageNumber);//글 시작페이지
 			model.addAttribute("endPage", endPageNumber);
 		}
+		return "adminFoodList";
+	}
+
+
+	
+	@RequestMapping(value="/adminFoodView.do")
+	public String adminFoodView(Model model, HttpServletRequest request){
+				
+		String f_fdcode = BlankChange.doStringNumber(NullChange.doBlank(request.getParameter("no")), "0");//null → "" → "1"
+		
+		model.addAttribute("foodView", adminFoodMgrService.selFoodView(f_fdcode));
+		
+		return "adminFoodView";
+	}
+	
+	
+	/**
+	 * 음식 등록 폼으로 이동
+	 * @return adminFoodReg.jsp
+	 */
+	@RequestMapping(value="/regFoodMgr.do", method = RequestMethod.GET)
+	public String adminFoodReg(Model model, HttpServletRequest request){
+		
+		String fc_1st = BlankChange.doStringNumber(NullChange.doBlank(request.getParameter("fc_1st")), "1");//null → "" → "1" 
+		String fc_2nd = BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_2nd")));
+		String fc_3rd = BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_3rd")));
+		//String fc_isblock = NullChange.doBlank(request.getParameter("fc_isblock"));	
+		//logger.debug("▶▶▶▶ Log : {} {}", "param", "fc_1st="+fc_1st+", fc_2nd="+fc_2nd+", fc_3rd="+fc_3rd+", fc_isblock="+fc_isblock+", fc_ctgname="+fc_ctgname);
+		logger.debug("▶▶▶▶ Log : {} {}", "param", "fc_1st="+fc_1st+", fc_2nd="+fc_2nd+", fc_3rd="+fc_3rd);
+		FoodcodeVO fcVO = adminCategoryMgrService.setFoodcodeVO(fc_1st, fc_2nd, fc_3rd, "", "");
+		model.addAttribute("fc_1st", fcVO.getFc_1st());
+		model.addAttribute("fc_2nd", fcVO.getFc_2nd());
+		model.addAttribute("fc_3rd", fcVO.getFc_3rd());
 		
 		
+		
+		model = getAdminFoodListAll(model, fc_1st, fc_2nd, fc_3rd); // 카테고리 정보를 가져옮
+		
+		return "adminFoodReg";
+	}
+	
+	
+	@RequestMapping(value="/regFoodMgr.do", method = RequestMethod.POST)
+	public String adminFoodReg_Do(@Valid @ModelAttribute("foodReg") AdminFoodRegDTO adminFoodRegDTO, Errors errors, 
+			Model model){
+		
+		
+		
+		int fc_1st = adminFoodRegDTO.getFc_1st();	//BlankChange.doStringNumber(NullChange.doBlank(request.getParameter("fc_1st")), "1");//null → "" → "1" 
+		int fc_2nd = adminFoodRegDTO.getFc_2nd(); //BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_2nd")));
+		int fc_3rd = adminFoodRegDTO.getFc_3rd(); //BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_3rd")));
+		System.out.println(">>>>>>>>>>>>> fc_1st ="+fc_1st+", fc_2nd="+fc_2nd+", fc_3rd="+fc_3rd);
+		
+		String f_foodname = adminFoodRegDTO.getF_foodname(); //NullChange.doBlank(request.getParameter("f_foodname"));
+		int f_price = adminFoodRegDTO.getF_price(); //NullChange.doBlank(request.getParameter("f_price"));
+		String f_isblock = adminFoodRegDTO.getF_isblock(); //NullChange.doBlank(request.getParameter("f_isblock"));
+		String f_explan = adminFoodRegDTO.getF_explan(); //NullChange.doBlank(request.getParameter("f_explan"));
+		System.out.println(">>>>>>>>>> f_foodname="+f_foodname+", f_price="+f_price
+				+", f_isblock=" + f_isblock+", f_explan="+f_explan);
+		
+		
+		adminFoodMgrService.saveImagesSetting(adminFoodRegDTO, model);
+		System.out.println("DATA : " + adminFoodRegDTO.toString());
 		
 		
 		return "adminFoodList";
 	}
-
-	
 }
