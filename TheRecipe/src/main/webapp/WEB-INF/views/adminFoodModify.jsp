@@ -106,7 +106,7 @@
                     		
                     	<div>
                     		<!-- 분류 코드 시작  https://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp  -->
-		                	<select id="fc_1st" name="fc_1st" onchange="click_1st(); filter();">
+		                	<%-- <select id="fc_1st" name="fc_1st" onchange="click_1st(); filter();">
 								<c:if test="${not empty foodcode1stList }">
 									<c:forEach var="foodcode1st" items="${foodcode1stList }">											
 										<c:choose>
@@ -144,7 +144,7 @@
 								  		</c:choose>
 									</c:forEach>
 								</c:if>
-							</select>
+							</select> --%>
 							<!-- 분류 코드 끝 -->
                     		
 								
@@ -172,7 +172,7 @@
                     	</div>
                     	
                     			            
-						\${foodView.f_fdcode } : ${foodView.f_fdcode }<br/>
+						
 	                    <br/><br/>
 	                    <input type="hidden" name ="no" value="${foodView.f_fdcode }" />
 	                    <input type="hidden" name ="f_fdcode" value="${foodView.f_fdcode }" />
