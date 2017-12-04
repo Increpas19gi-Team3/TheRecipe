@@ -96,10 +96,11 @@
 							</fieldset>							
 					</div>
 
-					<div class="event_update">
-						<input type="button" value="이벤트 수정"
-							onclick="location.href='EventUpdate.do?e_evtcode=${eVo.e_evtcode}'">
+					<div class="event_UpdateDelete">
+						<input type="button" value="이벤트 수정" onclick="location.href='EventUpdate.do?e_evtcode=${eVo.e_evtcode}'">
+						<input type="button" value="이벤트 삭제" onclick="location.href='Eventdelete.do?e_evtcode=${eVo.e_evtcode}'">
 					</div>
+					
 				</section>
 				<hr>
 			</form>

@@ -42,6 +42,15 @@ public class EventNoticeUpdateDAO {
 	}
 	
 	/**
+	 * 공지사항 삭제
+	 * @param eVo
+	 */
+	public void deleteNotice(String e_evtcode) {
+		System.out.println("4. 공지사항 삭제 e_evtcode : "+ e_evtcode);
+		sqlSessionTemplate.delete("event_ns.deleteNotice", e_evtcode);		
+	}
+	
+	/**
 	 * 이벤트 수정
 	 * @param eVo
 	 */
@@ -49,5 +58,14 @@ public class EventNoticeUpdateDAO {
 		System.out.println("7. erVo.toString() : "+erVo.toString());
 		int result = sqlSessionTemplate.update("event_ns.updatetEvent", erVo);
 		System.out.println("8. update 결과 :"+result);
+	}
+	
+	/**
+	 * 이벤트 삭제
+	 * @param eVo
+	 */
+	public void deleteEvent(String e_evtcode) {
+		System.out.println("4. 이벤트 삭제 e_evtcode : "+ e_evtcode);
+		sqlSessionTemplate.delete("event_ns.deleteEvent", e_evtcode);		
 	}
 }

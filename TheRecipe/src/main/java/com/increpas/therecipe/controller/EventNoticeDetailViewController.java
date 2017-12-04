@@ -24,7 +24,7 @@ import com.increpas.therecipe.vo.EventNoticeVO;
 import com.increpas.therecipe.vo.EventVO;
 
 /**
- * 공지사항과 이벤트의 상세보기 등록 Controller
+ * 공지사항과 이벤트의 상세보기와 등록 Controller
  * 
  * @author 손대성
  *
@@ -195,10 +195,7 @@ public class EventNoticeDetailViewController {
 		ndvs.insertWrtEventVO(erVo);
 
 		System.out.println("▶▶▶▶▶ 이벤트 등록 마지막 단계");
-		// return "redirect:index.jsp";
+	
 		return "redirect:EventList.do";
 	}
-	
-	
-
 }

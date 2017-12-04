@@ -150,10 +150,18 @@
 		where e_evtcode=#{e_evtcode}
 	</update>
 	
+	<!-- 공지사항 삭제 P.S: 혹시 추가 사항에 공지사항에 관련된 조건만 삭제 가능하도록 따로 만듬--> 
+	<delete id="deleteNotice" parameterType="String">
+		delete from tr_event
+		where e_evtcode=#{e_evtcode}
+	</delete>
+	
 	
 	
 	
 	<!-- =======================================이벤트에 관한================================================== -->
+
+
 	
 	
 	
@@ -256,7 +264,7 @@
 		#{e_discount}, #{e_startdate}, #{e_enddate}, '3')		
 	</insert>
 	
-	<!-- 공지사항 수정 : 제목, 내용, 할인율, 수정날짜, 시작날짜, 끝날짜, 이미지 -->
+	<!-- 이벤트 수정 : 제목, 내용, 할인율, 수정날짜, 시작날짜, 끝날짜, 이미지 -->
 	<update id="updatetEvent" parameterType="EventNoticeReg">
 		update tr_event set
 		e_nttilte=#{e_nttilte}, e_ntcontens=#{e_ntcontens, jdbcType=VARCHAR}, 
@@ -264,5 +272,11 @@
 		e_discount=#{e_discount}, e_ntimgname=#{e_ntimgname, jdbcType=VARCHAR}
 		where e_evtcode=#{e_evtcode}
 	</update>
+	
+	<!-- 이벤트 삭제 P.S: 혹시 따로 추가사항이 들어갈 것 같아서 공지사항과 이벤트 삭제를 따로 둠  -->
+	<delete id="deleteEvent" parameterType="String">
+		delete from tr_event
+		where e_evtcode=#{e_evtcode}
+	</delete>
 		
 </mapper>

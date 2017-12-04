@@ -125,6 +125,24 @@ public class EventNoticeUpdateController {
 		return "redirect:NoticeList.do";
 	}
 	
+	/**
+	 * 공지사항 삭제 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/NoticeDelete.do", method = RequestMethod.GET)
+	public String NoticeDelete(HttpServletRequest request, Model model) {
+
+		System.out.println("1. 공지사항 삭제입니다. NoticeDelete : e_evtcode : " + request.getParameter("e_evtcode"));
+		String e_Num = request.getParameter("e_evtcode");
+		enuService.DeleteNotice(e_Num);
+		System.out.println("5. 공시사항 삭제 완료 ");
+
+		return "redirect:NoticeList.do";
+	}
+	
+	
 	
 	//==================================== 이벤트 ==========================================
 	
@@ -219,5 +237,23 @@ public class EventNoticeUpdateController {
 		enuService.updatetWrtEventVO(enrVo);
 
 		return "redirect:EventList.do";
-	}	
+	}
+	
+	
+	/**
+	 * 이벤트 삭제
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/Eventdelete.do", method = RequestMethod.GET)
+	public String EventDelete(HttpServletRequest request, Model model) {
+
+		System.out.println("1. 이벤트 삭제입니다. Eventdelete : e_evtcode : " + request.getParameter("e_evtcode"));
+		String e_Num = request.getParameter("e_evtcode");
+		enuService.DeleteEvent(e_Num);
+		System.out.println("5. 이벤트 삭제 완료 ");
+
+		return "redirect:EventList.do";
+	}
 }

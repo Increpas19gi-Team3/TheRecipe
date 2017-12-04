@@ -33,10 +33,25 @@ public class EventNoticeUpdateService {
 		enuDAO.updatetWrtNotice(enrVo);
 	}
 	
+	// 이벤트 삭제
+	@Transactional
+	public void DeleteNotice(String e_evtcode) {
+		System.out.println("2. ▶▶▶▶ EventNoticeDetailViewService : DeleteNotice >> 공지사항 삭제");
+		enuDAO.deleteNotice(e_evtcode);
+	}
+	
+	
 	// 이벤트 수정
 	@Transactional
 	public void updatetWrtEventVO(EventNoticeRegVO enrVo) {
 		System.out.println("6. ▶▶▶▶ EventNoticeDetailViewService : updatetWrtEventVO >> 이벤트 수정");
 		enuDAO.updatetWrtEvent(enrVo);
+	}
+	
+	// 이벤트 삭제
+	@Transactional
+	public void DeleteEvent(String e_evtcode) {
+		System.out.println("2. ▶▶▶▶ EventNoticeDetailViewService : DeleteEvent >> 이벤트 삭제");
+		enuDAO.deleteEvent(e_evtcode);
 	}
 }

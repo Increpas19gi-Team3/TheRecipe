@@ -97,6 +97,7 @@
 
 						<div class="notice_update">
 							<input type="button" value="공지사항 수정" onclick="location.href='NoticeUpdate.do?e_evtcode=${nVo.e_evtcode}'">
+							<input type="button" value="공지사항 삭제" onclick="location.href='NoticeDelete.do?e_evtcode=${nVo.e_evtcode}'">
 						</div>						
 					</div>
 				</section>
