@@ -2,7 +2,6 @@ package com.increpas.therecipe.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.increpas.therecipe.dto.EventListDTO;
 import com.increpas.therecipe.dto.UploadFileDTO;
 import com.increpas.therecipe.service.NoticeDetailViewService;
 import com.increpas.therecipe.vo.EventNoticeRegVO;
@@ -26,7 +24,7 @@ import com.increpas.therecipe.vo.EventNoticeVO;
 import com.increpas.therecipe.vo.EventVO;
 
 /**
- * 공지사항과 이벤트의 상세보기 Controller
+ * 공지사항과 이벤트의 상세보기 등록 Controller
  * 
  * @author 손대성
  *
@@ -52,7 +50,7 @@ public class EventNoticeDetailViewController {
 		int Ncode = Integer.parseInt(req.getParameter("e_evtcode"));
 		EventVO nVo = ndvs.getNoticeVODetail(Ncode);
 		model.addAttribute("nVo", nVo);
-		return "xxxNoticeDetailView";
+		return "NoticeDetailView";
 	}
 
 	/**
@@ -135,7 +133,7 @@ public class EventNoticeDetailViewController {
 		EventNoticeVO eVo = ndvs.getEventVODetail(Ecode);
 		System.out.println(">>>>>>>>>>> eVo = " + eVo.toString());
 		model.addAttribute("eVo", eVo);
-		return "xxxEventDetailView";
+		return "EventDetailView";
 	}
 
 	/**

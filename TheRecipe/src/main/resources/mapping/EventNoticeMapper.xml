@@ -44,6 +44,15 @@
 		<result property="e_enddate" column="e_enddate" /><!-- 종료날짜 -->
 	</resultMap>
 	
+	
+<!-- ============================================================================================= -->
+	
+	<!-- 공지사항과 이벤트 공통-sql -->
+	<select id="selectWrtByNum" parameterType="map" resultMap="EventNoticeRegResult">
+		select * from tr_event where E_evtcode=#{E_evtcode}
+	</select>
+
+<!-- ============================================================================================= -->
 
 	<!-- 전체 공지사항 글 갯수 리턴 -->
 	<select id="selectNoticeCount" parameterType="com.increpas.therecipe.dto.EventListDTO"
@@ -131,6 +140,15 @@
 		#{e_ntcontens, jdbcType=VARCHAR}, #{e_ntimgname, jdbcType=VARCHAR}, 
 		null, #{e_startdate}, #{e_enddate}, '3')		
 	</insert>
+	
+	<!-- 공지사항 수정 : 제목, 내용, 수정날짜, 시작날짜, 끝날짜, 이미지 -->
+	<update id="updatetNotice" parameterType="EventNoticeReg">
+		update tr_event set
+		e_nttilte=#{e_nttilte}, e_ntcontens=#{e_ntcontens, jdbcType=VARCHAR}, 
+		e_ntdate=sysdate, e_startdate=#{e_startdate}, e_enddate=#{e_enddate},
+		e_ntimgname=#{e_ntimgname, jdbcType=VARCHAR}
+		where e_evtcode=#{e_evtcode}
+	</update>
 	
 	
 	
@@ -236,5 +254,15 @@
 		(tr_event_SEQ.NEXTVAL, #{e_nttilte}, '1', sysdate,
 		#{e_ntcontens, jdbcType=VARCHAR}, #{e_ntimgname, jdbcType=VARCHAR}, 
 		#{e_discount}, #{e_startdate}, #{e_enddate}, '3')		
-	</insert>	
+	</insert>
+	
+	<!-- 공지사항 수정 : 제목, 내용, 할인율, 수정날짜, 시작날짜, 끝날짜, 이미지 -->
+	<update id="updatetEvent" parameterType="EventNoticeReg">
+		update tr_event set
+		e_nttilte=#{e_nttilte}, e_ntcontens=#{e_ntcontens, jdbcType=VARCHAR}, 
+		e_ntdate=sysdate, e_startdate=#{e_startdate}, e_enddate=#{e_enddate},
+		e_discount=#{e_discount}, e_ntimgname=#{e_ntimgname, jdbcType=VARCHAR}
+		where e_evtcode=#{e_evtcode}
+	</update>
+		
 </mapper>

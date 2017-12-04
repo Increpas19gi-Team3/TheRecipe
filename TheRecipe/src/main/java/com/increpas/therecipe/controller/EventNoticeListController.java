@@ -14,7 +14,7 @@ import com.increpas.therecipe.service.NoticeListService;
 import com.increpas.therecipe.util.NullToBlank;
 
 /**
- * 공지사항 게시판 리스트 컨트롤러 기능 : 
+ * 공지사항, 이벤트 게시판 리스트 컨트롤러 기능 : 
  * 검색(제목), 페이징, 정렬(기간) 
  * 1. 단순 리스트 출력 
  * 2. 상세보기로 들어가기 위한 연결 링크

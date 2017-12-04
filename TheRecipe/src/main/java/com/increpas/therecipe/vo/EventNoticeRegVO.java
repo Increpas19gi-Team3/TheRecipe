@@ -3,6 +3,7 @@ package com.increpas.therecipe.vo;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
