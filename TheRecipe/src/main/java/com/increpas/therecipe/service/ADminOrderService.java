@@ -6,11 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.increpas.therecipe.dao.AdminOrderDAO;
-import com.increpas.therecipe.dao.LocalDAO;
-import com.increpas.therecipe.vo.FoodVO;
-import com.increpas.therecipe.vo.FoodcodeVO;
-import com.increpas.therecipe.vo.OrderVO;
-import com.increpas.therecipe.vo.ReviewVO;
+import com.increpas.therecipe.vo.AdminOrderVO;
 
 /**
  * 
@@ -24,13 +20,18 @@ public class ADminOrderService {
 	@Autowired
 	AdminOrderDAO orderDAO;
 	
-	public List<OrderVO> selectOrder(){
+	public List<AdminOrderVO> selectOrder(){
 		
 		return orderDAO.selectOrder();
 	}
 	
-	public OrderVO selectOrderBycode(String orderid){
+	public AdminOrderVO selectOrderBycode(String orderid){
 		
 		return orderDAO.selectOrderBycode(orderid);
+	}
+	
+	public int uptOrderStatus(String orderid, String dvystatus){
+		
+		return orderDAO.uptOrderStatus(orderid, dvystatus);
 	}
 }

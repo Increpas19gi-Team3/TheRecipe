@@ -7,8 +7,9 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.increpas.therecipe.vo.OrderVO;
+import com.increpas.therecipe.vo.AdminOrderVO;
 
 /**
  * 
@@ -22,18 +23,29 @@ public class AdminOrderDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	public List<OrderVO> selectOrder(){
+	public List<AdminOrderVO> selectOrder(){
 
 		return sqlSessionTemplate.selectList("admin_order.selectOrder"); 
 		
 	}
 	
-	public OrderVO selectOrderBycode(String orderid){
+	public AdminOrderVO selectOrderBycode(String orderid){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("orderid", orderid);
 		
 		return sqlSessionTemplate.selectOne("admin_order.selectOrderBycode", map); 
+		
+	}
+	
+	@Transactional
+	public int uptOrderStatus(String orderid, String dvystatus){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("orderid", orderid);
+		map.put("dvystatus", dvystatus);
+		
+		return sqlSessionTemplate.update("admin_order.uptOrderStatus", map); 
 		
 	}
 }

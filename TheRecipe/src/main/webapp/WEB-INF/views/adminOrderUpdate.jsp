@@ -13,7 +13,7 @@
             <div class="card card-register mx-auto mt-5">
                 <div class="card-header">상품 수정</div>
                 <div class="card-body">
-                    <form>
+                    <form action="adminOrderUpt.do" method="post">
                         <div class="form-group">
                             <div class="col-md-12">
                                 <label for="">아이디</label>
@@ -39,10 +39,11 @@
                                 </select>
                             </div>
                         </div>
-                       
-                        <button type="submit" class="btn btn-primary btn-block" href="">변경</button>
+                       <button type="button" class="btn btn-primary btn-block" onclick="location.href='adminOrder.do'">목록보기</button>
+                        <button type="submit" class="btn btn-primary btn-block">변경</button>
                     </form>
                 </div>
+                
             </div>
         </div>
     </div>

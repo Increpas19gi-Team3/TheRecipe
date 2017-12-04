@@ -35,7 +35,7 @@
 	                                    <td>${order.m_userid }</td>
 	                                    <td>${order.f_fdcode }</td>
 	                                    <td>${order.o_reciever }</td>
-	                                    <td><a href="adminOrderUpdate.do?orderid=${order.o_orderid}">${order.d_status }</a></td>
+	                                    <td><a href="adminOrderList.do?orderid=${order.o_orderid}">${order.sub_name }</a></td>
 	                                    <td>${order.o_orderdate }</td>
 	                                </tr>
                                 </c:forEach>
@@ -43,7 +43,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+               <!--  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
             </div>
         </div>
     </div>

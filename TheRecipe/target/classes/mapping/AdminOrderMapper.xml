@@ -6,11 +6,11 @@
 <mapper namespace="admin_order">
 
 
-	<resultMap id="orderResult" type="Order">
+	<resultMap id="orderResult" type="com.increpas.therecipe.vo.AdminOrderVO">
 		<result property="o_orderid" column="o_orderid" />
 		<result property="d_status" column="d_status" />
 		<result property="m_userid" column="m_userid" />
-		<result property="m_userid" column="m_userid" />
+		<result property="f_fdcode" column="f_fdcode" />
 		<result property="o_buyprice" column="o_buyprice" />
 		<result property="o_amount" column="o_amount" />
 		<result property="o_orderdate" column="o_orderdate" />
@@ -18,21 +18,34 @@
 		<result property="o_dvypost" column="o_dvypost" />
 		<result property="o_dvyaddr" column="o_dvyaddr" />
 		<result property="ms_code" column="ms_code" />
+		<result property="sub_name" column="sub_name" />
 	</resultMap>
 
 	
 	<!-- 주문 내역 조회 -->
 	<select id="selectOrder" resultMap="orderResult">
-		select * from tr_order
+		select a.*, b.sub_name from tr_order a, tr_subcode b 
+		where a.d_status = B.SUB_CODE and A.MS_CODE = B.MS_CODE 	
 	</select>
 	
 	<!-- 특정 주문 코드로 주문 내역 조회 -->
 	<select id="selectOrderBycode" resultMap="orderResult">
-		select * from tr_order
+		select a.*, b.sub_name from tr_order a, tr_subcode b 
+		where a.d_status = B.SUB_CODE and A.MS_CODE = B.MS_CODE
+		<if test="orderid != null">
+			AND O_ORDERID = #{orderid}
+		</if>
+	</select>
+	
+	<!-- 특정 주문 코드의 배송상태값 업데이트 -->
+	<update id="uptOrderStatus" parameterType="map">
+		update tr_order set d_status = #{dvystatus}
 		<where>
 			<if test="orderid != null">
 				O_ORDERID = #{orderid}
 			</if>
 		</where>
-	</select>
+	</update>
+	
+	
 </mapper>

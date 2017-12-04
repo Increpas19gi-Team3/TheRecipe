@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.increpas.therecipe.service.ADminOrderService;
-import com.increpas.therecipe.vo.OrderVO;
+import com.increpas.therecipe.vo.AdminOrderVO;
 
 
 /**
@@ -33,9 +33,9 @@ public class AdminOrderController {
 	
 	
 	@RequestMapping(value = "/adminOrder.do", method = RequestMethod.GET)
-	public String orderlist(@Valid @ModelAttribute("icmd")OrderVO odVo, Model model){
+	public String orderlist(@Valid @ModelAttribute("icmd")AdminOrderVO odVo, Model model){
 
-		List<OrderVO> odvo = adminodlService.selectOrder();
+		List<AdminOrderVO> odvo = adminodlService.selectOrder();
 		
 		model.addAttribute("odvo", odvo);
 		
@@ -43,11 +43,11 @@ public class AdminOrderController {
 		
 	}
 		
-	@RequestMapping(value = "/adminOrderUpdate.do", method = RequestMethod.GET)
-	public String orderStatusUpt(@Valid @ModelAttribute("icmd")OrderVO odVo, Model model, HttpServletRequest request){
+	@RequestMapping(value = "/adminOrderList.do", method = RequestMethod.GET)
+	public String orderStatusList(@Valid @ModelAttribute("icmd")AdminOrderVO odVo, Model model, HttpServletRequest request){
 		
 		String orderid = (String)request.getParameter("orderid");
-		OrderVO odvo = adminodlService.selectOrderBycode(orderid);
+		AdminOrderVO odvo = adminodlService.selectOrderBycode(orderid);
 
 		model.addAttribute("odvo", odvo);
 		
@@ -55,5 +55,20 @@ public class AdminOrderController {
 		
 	}
 	
+	@RequestMapping(value = "/adminOrderUpt.do", method = RequestMethod.POST)
+	public String orderStatusUpt(@Valid @ModelAttribute("icmd")AdminOrderVO odVo, Model model, HttpServletRequest request){
+		
+		String userid = (String)request.getParameter("userid");
+		String orderid = (String)request.getParameter("orderid");
+		String dvystatus = (String)request.getParameter("dvystatus");
+		
+		int upt = adminodlService.uptOrderStatus(orderid,dvystatus);
+		List<AdminOrderVO> odvo = adminodlService.selectOrder();
+		
+		model.addAttribute("odvo", odvo);
+		
+		return "adminOrderList";
+		
+	}
 
 }
