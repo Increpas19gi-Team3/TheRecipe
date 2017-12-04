@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="admin_order">
+
+
+	<resultMap id="orderResult" type="Order">
+		<result property="o_orderid" column="o_orderid" />
+		<result property="d_status" column="d_status" />
+		<result property="m_userid" column="m_userid" />
+		<result property="m_userid" column="m_userid" />
+		<result property="o_buyprice" column="o_buyprice" />
+		<result property="o_amount" column="o_amount" />
+		<result property="o_orderdate" column="o_orderdate" />
+		<result property="o_reciever" column="o_reciever" />
+		<result property="o_dvypost" column="o_dvypost" />
+		<result property="o_dvyaddr" column="o_dvyaddr" />
+		<result property="ms_code" column="ms_code" />
+	</resultMap>
+
+	
+	<!-- 주문 내역 조회 -->
+	<select id="selectOrder" resultMap="orderResult">
+		select * from tr_order
+	</select>
+	
+	<!-- 특정 주문 코드로 주문 내역 조회 -->
+	<select id="selectOrderBycode" resultMap="orderResult">
+		select * from tr_order
+		<where>
+			<if test="orderid != null">
+				O_ORDERID = #{orderid}
+			</if>
+		</where>
+	</select>
+</mapper>
