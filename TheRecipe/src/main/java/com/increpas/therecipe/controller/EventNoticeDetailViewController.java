@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.increpas.therecipe.dto.UploadFileDTO;
-import com.increpas.therecipe.service.NoticeDetailViewService;
+import com.increpas.therecipe.service.EventNoticeViewRegService;
 import com.increpas.therecipe.vo.EventNoticeRegVO;
 import com.increpas.therecipe.vo.EventNoticeVO;
 import com.increpas.therecipe.vo.EventVO;
@@ -33,7 +33,7 @@ import com.increpas.therecipe.vo.EventVO;
 public class EventNoticeDetailViewController {
 
 	@Autowired
-	NoticeDetailViewService ndvs;
+	EventNoticeViewRegService ndvs;
 
 	/**
 	 * 공지사항 상세보기

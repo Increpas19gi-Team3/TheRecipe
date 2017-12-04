@@ -16,7 +16,7 @@ import com.increpas.therecipe.vo.EventVO;
  *
  */
 @Service
-public class NoticeDetailViewService {
+public class EventNoticeViewRegService {
 
 	@Autowired
 	EventNoticeDetailDAO endDAO;
