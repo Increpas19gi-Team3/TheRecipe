@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.increpas.therecipe.dao.ReviewDAO;
 import com.increpas.therecipe.dto.EventListDTO;
 import com.increpas.therecipe.dto.ReviewListDTO;
-
+import com.increpas.therecipe.vo.EventVO;
 import com.increpas.therecipe.vo.ReviewVO;
 
 /**
@@ -92,27 +93,6 @@ public class ReviewListService {
 
 		return boardVOListView;
 	}
-	
-//	/**
-//	 * 조건 별로 게시글 목록 가져오기
-//	 * 
-//	 * @param whereColumn ; 검색 컬럼명
-//	 * @param word ; 검색할 단어
-//	 * @param sortColumn ; 정렬 컬럼
-//	 * @param orderby ; 정렬방식 ASC, DESC	 
-//	 * @return 
-//	 */
-//	public List<ReviewVO> getSetList(String whereColumn, String word, String sortColumn, String orderby) {
-//
-//		System.err.println("4. ▶▶▶▶ EventNoticeListService : getSetList >> 조건 검색 들어옴");
-//
-//		reviewListDTO.setWhereColumn(whereColumn);
-//		reviewListDTO.setWord(word);
-//		reviewListDTO.setSortColumn(sortColumn);
-//		reviewListDTO.setOrderby(orderby);		
-//
-//		return reviewDAO.selectReviewSetList(reviewListDTO);
-//	}
 
 	/**
 	 * 전체 페이지 갯수 계산
@@ -134,4 +114,13 @@ public class ReviewListService {
 		}
 		return pageCount;
 	}
+	
+	// 후기 상세보기, 조회수 증가
+	public ReviewVO getReviewVODetail(int Ncode) {
+		System.out.println("2. ▶▶▶▶ NoticeDetailViewService : getNoticeVOList >> 들어옴");
+		reviewDAO.updateHitCount(Ncode); // 글 조회수 증가
+		return reviewDAO.ReviewDetailView(Ncode);
+	}
+	
+	
 }

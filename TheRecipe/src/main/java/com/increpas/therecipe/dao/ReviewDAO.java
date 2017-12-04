@@ -1,6 +1,8 @@
 package com.increpas.therecipe.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +48,28 @@ public class ReviewDAO {
 	 */
 	@Transactional
 	public List<ReviewVO> selectReviewSetList(ReviewListDTO reviewListDTO) {
-		System.err.println("6. ▶▶▶▶ ReviewDAO = " + reviewListDTO.toString());
+		System.out.println("6. ▶▶▶▶ ReviewDAO = " + reviewListDTO.toString());
 		return sqlSessionTemplate.selectList("review_ns.selectReviewSetList", reviewListDTO);
-	}			
+	}
+	
+	/**
+	 * 조회수 증가
+	 * @param num
+	 */
+	public void updateHitCount(int r_rvcode) {
+		sqlSessionTemplate.update("review_ns.updateHitCount", r_rvcode);
+	}
+	
+	/**
+	 * 후기 상세보기
+	 * @param Ncode
+	 * @return
+	 */
+	@Transactional
+	public ReviewVO ReviewDetailView(int Ncode) {
+		System.out.println("3. ▶▶▶▶ ReviewDetailView  = " + Ncode);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("r_rvcode", Ncode);		
+		return sqlSessionTemplate.selectOne("review_ns.reviewWrtByNum", map);
+	}	
 }

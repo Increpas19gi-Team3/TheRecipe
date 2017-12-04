@@ -20,7 +20,7 @@
 	}
 
 	function change_GUBUN() {
-		
+
 		var sortColumn = '${sortColumn}';
 		var orderby = '${orderby }';
 		var whereColumn = '${whereColumn }';
@@ -38,7 +38,7 @@
 		var sortColumn = '${sortColumn}';
 		var orderby = '${orderby }';
 		var whereColumn = '${whereColumn }';
-		var word = '${word }';		
+		var word = '${word }';
 
 		location.href = 'ReviewList.do?sortColumn=' + sortColumn + '&orderby='
 				+ orderby + '&whereColumn=' + whereColumn + '&word=' + word
@@ -51,25 +51,27 @@
 <c:if test="${empty pageCutCount }">
 	<c:set var="pageCutCount" value="5" />
 </c:if>
-<%-- <c:if test="${empty GUBUN }">
-	<c:set var="GUBUN" value="ALL" />
-</c:if> --%>
 
 <div class="container boardNotice board">
 	<div class="row">
 		<div class="left_tab">
 			<h2>고객센터</h2>
 			<ul>
-				<li><a
-					href="http://localhost:8282/therecipe/test_171129/boardNotice.jsp">공지사항</a></li>
-				<li class="active"><a
-					href="http://localhost:8282/therecipe/test_171129/boardReview.jsp">후기
-						게시판</a></li>
-				<li><a
-					href="http://localhost:8282/therecipe/test_171129/boardRecommend.jsp">추천
-						레시피</a></li>
-				<li><a
-					href="http://localhost:8282/therecipe/test_171129/boardEvent.jsp">이벤트</a></li>
+				<li>
+					<a href="http://localhost:8282/therecipe/test_171129/boardNotice.jsp">공지사항</a>
+				</li>
+				
+				<li class="active">
+					<a href="http://localhost:8282/therecipe/test_171129/boardReview.jsp">후기 게시판</a>
+				</li>
+				
+				<li>
+					<a href="http://localhost:8282/therecipe/test_171129/boardRecommend.jsp">추천 레시피</a>
+				</li>
+				
+				<li>
+					<a href="http://localhost:8282/therecipe/test_171129/boardEvent.jsp">이벤트</a>
+				</li>
 			</ul>
 			<div class="service_info">
 				<h4>배민찬 고객센터</h4>
@@ -95,15 +97,15 @@
 
 			<form action="ReviewList.do" method="post" name="listForm">
 				<input type="hidden" name="sortColumn" value="${sortColumn }">
-				<input type="hidden" name="orderby" value="${orderby }"> 
-				<%-- <input type="hidden" name="GUBUN" value="${GUBUN }"> --%> 
+				<input type="hidden" name="orderby" value="${orderby }">
+				<%-- <input type="hidden" name="GUBUN" value="${GUBUN }"> --%>
 				<input type="hidden" name="pageCutCount" value="${pageCutCount }">
 
 				<!-- 페이지 갯수 제한 -->
 				<table id="listGubun" style="border: none;">
 					<tr style="border: none;">
 						<td style="text-align: right; border: none;">
-						<select name="pageCutCount" id="pageCutCount" onchange="change_pageCutCount();">
+							<select name="pageCutCount" id="pageCutCount" onchange="change_pageCutCount();">
 								<c:choose>
 									<c:when test="${pageCutCount eq '5' }">
 										<option value="5" selected="selected">5개 보기</option>
@@ -148,16 +150,17 @@
 										<!-- 제목 정렬일때 -->
 										<c:choose>
 											<c:when test="${orderby eq 'ASC' }">
-												<a href="ReviewList.do?sortColumn=r_title&orderby=DESC&whereColumn=${whereColumn }&word=${word }&pageCutCount=${pageCutCount }">제&nbsp;&nbsp;목 ▲</a>
+												<a href="ReviewList.do?sortColumn=r_title&orderby=DESC&whereColumn=${whereColumn }&word=${word }&pageCutCount=${pageCutCount }">제&nbsp;&nbsp;목 ▲</a>												
 											</c:when>
+											
 											<c:otherwise>
 												<a href="ReviewList.do?sortColumn=r_title&orderby=ASC&whereColumn=${whereColumn }&word=${word }&pageCutCount=${pageCutCount }">제&nbsp;&nbsp;목 ▼</a>
 											</c:otherwise>
 										</c:choose>
 									</c:when>
 
-									<c:otherwise>										
-										<a href="ReviewList.do?sortColumn=r_title&orderby=ASC&whereColumn=${whereColumn }&word=${word }&pageCutCount=${pageCutCount }">제&nbsp;&nbsp;목 ▼</a>
+									<c:otherwise>
+										<a href="ReviewList.do?sortColumn=r_title&orderby=ASC&whereColumn=${whereColumn }&word=${word }&pageCutCount=${pageCutCount }">제&nbsp;&nbsp;목 ▼</a>																			
 									</c:otherwise>
 								</c:choose>
 							</th>
@@ -176,7 +179,7 @@
 											</c:otherwise>
 										</c:choose>
 									</c:when>
-									<c:otherwise>										
+									<c:otherwise>
 										<a href="ReviewList.do?sortColumn=r_rvdate&orderby=ASC&whereColumn=${whereColumn }&word=${word }&pageCutCount=${pageCutCount }">작성일 ▼</a>
 									</c:otherwise>
 								</c:choose>
@@ -189,16 +192,15 @@
 							<c:forEach var="list" items="${ReviewList.listVO }">
 								<tr>
 									<td>${list.m_userid }</td>
-									<td><a href="ReviewDetailView.do?r_rvcode=${list.r_rvcode}">${list.r_title}</a>
+									<td>
+										<a href="ReviewDetailView.do?r_rvcode=${list.r_rvcode}">${list.r_title}</a>
 									</td>
 									<td>${list.r_grade }</td>
-									<td>${list.r_rvcount }</td>									
+									<td>${list.r_rvcount }</td>
 									<td>
 										<fmt:formatDate value="${list.r_rvdate}" pattern="yyyy-MM-dd HH:mm:ss" />
 									</td>
-									<td>
-										${list.r_admincmt }
-									</td>
+									<td>${list.r_admincmt }</td>
 									<td>
 										<fmt:formatDate value="${list.r_admindate }" pattern="yyyy-MM-dd HH:mm:ss" />
 									</td>
@@ -264,7 +266,7 @@
 								</c:when>
 							</c:choose>
 						</c:when>
-						
+
 						<c:otherwise>
 							<option value="ALL">전체검색</option>
 							<option value="TITLE">제목</option>

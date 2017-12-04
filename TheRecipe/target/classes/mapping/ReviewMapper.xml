@@ -88,6 +88,18 @@
 		</where>
 	</select>
 	
+	<!-- 후기 조회수 증가 쿼리문 -->
+	<update id="updateHitCount" parameterType="integer">
+		update TR_REVIEW set r_rvcount = r_rvcount+1
+		where r_rvcode=#{r_rvcode}
+	</update>
+	
+	
+	<!-- 후기 상세보기 쿼리 -->
+	<select id="reviewWrtByNum" parameterType="map" resultMap="ReviewResult">
+		select * from tr_review where r_rvcode=#{r_rvcode}
+	</select>
+	
 				
 	
 </mapper>
