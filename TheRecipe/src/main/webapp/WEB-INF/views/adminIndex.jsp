@@ -40,6 +40,11 @@
 					<li><a href="admin_SampleUpdate.do"> 수정 </a></li>
 					<li><a href="admin_SampleWrite.do"> 등록 </a></li>
 				</ul>
+				
+				김지현 개발부분:
+				<ul>
+					<li><a href="adminOrder.do">주문 관리</a></li>
+				</ul>
         	
         </div>
     </div>
