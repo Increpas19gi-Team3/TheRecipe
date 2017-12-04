@@ -30,15 +30,35 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  
-  
-
     
 <jsp:include page="adminheader.jsp" />
 
+
+
+
+
 	<script type="text/javascript">
+		function filter() {
+			var fc_1st = document.getElementById('fc_1st').value;
+			var fc_2nd = document.getElementById('fc_2nd').value;
+			var fc_3rd = document.getElementById('fc_3rd').value;
+			var selEventCode = document.getElementById('selEventCode').value;
 				
+			
+			var sortColumn = '${sortColumn}';
+			var orderby = '${orderby }';
+						
+			var whereColumn = '${whereColumn }';
+			var word = '${word }';
+			
+			var pageCutCount = '${pageCutCount }';
+			
+			
+			location.href='adminEventMgr.do?sortColumn='+sortColumn+'&orderby='+orderby+'&whereColumn='+whereColumn+'&word='+word+
+						'&selEventCode='+selEventCode+
+						'&fc_1st='+fc_1st+'&fc_2nd='+fc_2nd+'&fc_3rd='+fc_3rd+
+						'&pageCutCount='+pageCutCount;
+		}				
 	</script>
 
 	
@@ -50,7 +70,7 @@
         
         
         
-    	<%-- 디버그용 코드
+    <%-- 디버그용 코드--%>	  
 	\${pn } : ${pn }<br />
 		
 	\${sortColumn }: ${sortColumn } <br />
@@ -65,7 +85,7 @@
 	\${whereColumn }: ${whereColumn } <br />
 	\${word }: ${word } <br />
 	<p /><p />    
-     --%>	    
+       
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <!-- <a href="index.html">The Recipe</a> -->
@@ -80,37 +100,70 @@
                 <div class="card-body" style="text-align: center;">
                 <form action="adminFoodMgr.do" method="post" name="listForm">
                 
-                	<div class="">                	
-	                	
-                	</div>
+                <table id="listGubun" style="border: none;" width="100%" cellspacing="0">
+					<tr style="border: none;">
+						<td style="text-align: left; border: none;">
+                		
+		            		<select id="selEventCode" name="selEventCode">
+		                    	<option value="ALL">전체</option>
+		                    	<c:forEach var="eventAllList" items="${eventAllList }">
+		                    		<option value="${eventAllList.e_evtcode }">${eventAllList.e_nttilte }</option>
+		                    	</c:forEach>
+		                    </select>    	
+	                	</td>
+					</tr>
+                </table>
                 
-                	
                     <div class="table-responsive">
         				<table class="table table-bordered table-hover table-condensed table-responsive" width="100%" cellspacing="0">
         					<tr>
-	        					<th>이벤트 코드</th>
-	        					<th>이벤트 이름</th>
-	        					<th>시작일</th>
-	        					<th>오늘날짜</th>
-	        					<th>종료일</th>
-	        					<th>할인 값</th>
+	        					<th>음식코드</th>  			
+								<th>이벤트 코드</th> 			
+								<th>이벤트 이름</th>  			
+								<th>시작일</th>  			
+								<th>오늘날짜</th> 		
+								<th>종료일</th> 	
+								<th>fc_1st</th>
+								<th>fc_1st 이름</th>
+								<th>fc_2nd</th>
+								<th>fc_2nd 이름</th>
+								<th>fc_3rd</th>
+								<th>fc_3rd 이름</th>
+								<th>카테고리 사용여부</th>
+								<th>음식명</th>
+								<th>가격</th>
+								<th>음식 사용여부</th>
+								<th>ms_code</th>
+								<th>할인코드</th>
+								<th>할인율</th>
 	        				</tr>
         					
-        					<c:forEach var="eventAllList" items="${eventAllList }">
+        					<c:forEach var="eventSelFoodList" items="${eventSelFoodList }">
         						<tr>
-								<td>${eventAllList.e_evtcode }</td>  			
-								<td>${eventAllList.e_nttilte }</td> 			
-								<td>${eventAllList.e_startdate }</td>  			
-								<td>${eventAllList.today }</td>  			
-								<td>${eventAllList.e_enddate }</td>  			
-								<td>${eventAllList.discount_value } %</td>
+								<td>${eventSelFoodList.f_fdcode }</td>  			
+								<td>${eventSelFoodList.e_evtcode }</td> 			
+								<td>${eventSelFoodList.e_nttilte }</td>  			
+								<td>${eventSelFoodList.e_startdate }</td>  			
+								<td>${eventSelFoodList.today }</td> 		
+								<td>${eventSelFoodList.e_enddate }</td> 	
+								<td>${eventSelFoodList.fc_1st }</td>
+								<td>${eventSelFoodList.fcname_1st }</td>
+								<td>${eventSelFoodList.fc_2nd }</td>
+								<td>${eventSelFoodList.fcname_2nd }</td>
+								<td>${eventSelFoodList.fc_3rd }</td>
+								<td>${eventSelFoodList.fcname_3rd }</td>
+								<td>${eventSelFoodList.fc_isblock }</td>
+								<td>${eventSelFoodList.f_foodname }</td>
+								<td>${eventSelFoodList.f_price }</td>
+								<td>${eventSelFoodList.f_isblock }</td>
+								<td>${eventSelFoodList.ms_code }</td>
+								<td>${eventSelFoodList.e_discount }</td>
+								<td>${eventSelFoodList.discount_value } %</td>
 								</tr>
         					</c:forEach>
         				</table>
-        				
-        				                
-                      
                     </div>
+                    
                     
                     </form>
                     

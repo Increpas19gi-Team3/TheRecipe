@@ -13,8 +13,8 @@ public class EventSetFoodVO {
 	private String e_evtcode; 
 	private String e_nttilte; 
 	private Date e_startdate; 
-	private Date e_enddate; 
 	private Date today; 
+	private Date e_enddate; 
 	private int fc_1st; 
 	private String fcname_1st; 
 	private int fc_2nd;
@@ -26,6 +26,9 @@ public class EventSetFoodVO {
 	private int f_price;
 	private String f_isblock; 
 	private String ms_code;
+	private String e_discount;
+	private String discount_value;
+	
 	
 	
 	public String getF_fdcode() {
@@ -130,14 +133,27 @@ public class EventSetFoodVO {
 	public void setMs_code(String ms_code) {
 		this.ms_code = ms_code;
 	}
-	
+	public String getE_discount() {
+		return e_discount;
+	}
+	public void setE_discount(String e_discount) {
+		this.e_discount = e_discount;
+	}
+	public String getDiscount_value() {
+		return discount_value;
+	}
+	public void setDiscount_value(String discount_value) {
+		this.discount_value = discount_value;
+	}
+
 	@Override
 	public String toString() {
 		return "EventSetFoodVO [f_fdcode=" + f_fdcode + ", e_evtcode=" + e_evtcode + ", e_nttilte=" + e_nttilte
 				+ ", e_startdate=" + e_startdate + ", e_enddate=" + e_enddate + ", today=" + today + ", fc_1st="
 				+ fc_1st + ", fcname_1st=" + fcname_1st + ", fc_2nd=" + fc_2nd + ", fcname_2nd=" + fcname_2nd
 				+ ", fc_3rd=" + fc_3rd + ", fcname_3rd=" + fcname_3rd + ", fc_isblock=" + fc_isblock + ", f_foodname="
-				+ f_foodname + ", f_price=" + f_price + ", f_isblock=" + f_isblock + ", ms_code=" + ms_code + "]";
-	} 
+				+ f_foodname + ", f_price=" + f_price + ", f_isblock=" + f_isblock + ", ms_code=" + ms_code
+				+ ", e_discount=" + e_discount + ", discount_value=" + discount_value + "]";
+	}
 	
 }
