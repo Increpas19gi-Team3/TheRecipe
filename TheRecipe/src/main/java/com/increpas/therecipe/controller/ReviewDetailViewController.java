@@ -43,5 +43,55 @@ public class ReviewDetailViewController {
 		return "reviewDetailView";
 	}
 	
+	/**
+	 * 후기 관리자 답변 등록
+	 * @param model
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+//	@RequestMapping(value = "/reviewAdminReg.do", method = RequestMethod.GET)
+//	public String GET_ReviewAdminReg(Model model, HttpServletRequest req, HttpServletResponse resp) {
+//
+//		System.out.println("1. 후기 관리자 답변 작업중입니다.");
+//		int Rcode = Integer.parseInt(req.getParameter("r_rvcode"));	
+//		ReviewVO rVo = rlService.getReviewVODetail(Rcode);
+//		model.addAttribute("rVo", rVo);
+//		return "reviewDetailView";
+//	}
+	
+	/**
+	 * 후기 관리자 답변 수정
+	 * @param model
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+//	@RequestMapping(value = "/reviewAdminRegUpdate.do", method = RequestMethod.GET)
+//	public String GET_ReviewAdminRegUpdate(Model model, HttpServletRequest req, HttpServletResponse resp) {
+//
+//		System.out.println("1. 후기 상세페이지와 조회수 작업중 입니다.");
+//		int Rcode = Integer.parseInt(req.getParameter("r_rvcode"));	
+//		ReviewVO rVo = rlService.getReviewVODetail(Rcode);
+//		model.addAttribute("rVo", rVo);
+//		return "reviewDetailView";
+//	}
+	
+	/**
+	 * 후기 관리자 답변 삭제
+	 * @param model
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+//	@RequestMapping(value = "/reviewAdminDelete.do", method = RequestMethod.GET)
+//	public String GET_ReviewAdminDelete(Model model, HttpServletRequest req, HttpServletResponse resp) {
+//
+//		System.out.println("1. 후기 상세페이지와 조회수 작업중 입니다.");
+//		int Rcode = Integer.parseInt(req.getParameter("r_rvcode"));	
+//		ReviewVO rVo = rlService.getReviewVODetail(Rcode);
+//		model.addAttribute("rVo", rVo);
+//		return "reviewDetailView";
+//	}	
 	
 }

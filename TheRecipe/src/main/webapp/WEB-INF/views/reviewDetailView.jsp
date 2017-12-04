@@ -103,8 +103,16 @@
 							</fieldset>													
 
 						<div class="review_update">
-							<input type="button" value="후기 수정" onclick="location.href='reviewUpdate.do?e_evtcode=${rVo.r_rvcode}'">
-							<input type="button" value="후기 삭제" onclick="location.href='reviewDelete.do?e_evtcode=${rVo.r_rvcode}'">
+						<c:choose>
+							<c:when test="${empty rVo.r_admincmt} }">
+								<input type="button" value="후기 답변 등록" onclick="location.href='reviewAdminReg.do?e_evtcode=${rVo.r_rvcode}'">						
+							</c:when>
+							<c:otherwise>
+								<input type="button" value="후기 답변 수정" onclick="location.href='reviewAdminRegUpdate.do?e_evtcode=${rVo.r_rvcode}'">
+								<input type="button" value="후기 답변 삭제" onclick="location.href='reviewAdminDelete.do?e_evtcode=${rVo.r_rvcode}'">
+							</c:otherwise>						
+						</c:choose>							
+							
 						</div>						
 					</div>
 				</section>
