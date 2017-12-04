@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+/**
+ * 상품테이블(tr_food) + Join + 음식 분류코드(tr_foodcode)
+ * @author 손가연
+ *
+ */
+ -->
+
+<mapper namespace="adminEventMgr_ns">
+
+	<resultMap type="EventInfo" id="EventInfoResult">
+		<result property="e_evtcode" column="e_evtcode" />
+		<result property="e_nttilte" column="e_nttilte" />
+		<result property="e_gubun" column="e_gubun" />
+		<result property="e_startdate" column="e_startdate" />
+		<result property="today" column="today" />
+		<result property="e_enddate" column="e_enddate" />
+		<result property="discount_value" column="discount_value" />
+	</resultMap>
+	
+	<resultMap type="EventSetFood" id="EventSetFoodResult">
+		<result property="f_fdcode" column="f_fdcode" />
+		<result property="e_evtcode" column="e_evtcode" />
+		<result property="e_nttilte" column="e_nttilte" />
+		<result property="e_startdate" column="e_startdate" />
+		<result property="e_enddate" column="e_enddate" />
+		<result property="today" column="today" />
+		<result property="fc_1st" column="fc_1st" />
+		<result property="fcname_1st" column="fcname_1st" />
+		<result property="fc_2nd" column="fc_2nd" />
+		<result property="fcname_2nd" column="fcname_2nd" />
+		<result property="fc_3rd" column="fc_3rd" />
+		<result property="fcname_3rd" column="fcname_3rd" />
+		<result property="fc_isblock" column="fc_isblock" />
+		<result property="f_foodname" column="f_foodname" />
+		<result property="f_price" column="f_price" />
+		<result property="f_isblock" column="f_isblock" />
+		<result property="ms_code" column="ms_code" />
+	</resultMap>
+
+
+	<!-- 전체 이벤트 가져오기 -->
+	<select id="selectAllEvent" resultMap="EventInfoResult">
+		SELECT E_EVTCODE, E_NTTILTE, E_STARTDATE, SYSDATE AS TODAY, E_ENDDATE,
+		    (
+		        SELECT SC.SUB_NAME FROM TR_MASTERCODE MC 
+		        INNER JOIN TR_SUBCODE SC 
+		        ON MC.MS_CODE = SC.MS_CODE
+		        WHERE TE.MS_CODE = MC.MS_CODE AND TE.E_DISCOUNT = SC.SUB_CODE
+		    ) AS DISCOUNT_VALUE
+		FROM TR_EVENT TE
+		WHERE E_GUBUN = 1
+	</select>	
+	
+	<!-- 
+	
+	선택 이벤트 상세 정보 가져오기
+	SELECT E_EVTCODE, E_NTTILTE, E_STARTDATE, SYSDATE AS TODAY, E_ENDDATE,
+    (
+        SELECT SC.SUB_NAME FROM TR_MASTERCODE MC 
+        INNER JOIN TR_SUBCODE SC 
+        ON MC.MS_CODE = SC.MS_CODE
+        WHERE TE.MS_CODE = MC.MS_CODE AND TE.E_DISCOUNT = SC.SUB_CODE
+    ) AS DISCOUNT_VALUE
+FROM TR_EVENT TE
+WHERE E_GUBUN = 1 and TE.E_EVTCODE=0;
+	 -->
+	
+	
+	<!-- 
+	선택한 이벤트가 걸린 음식코드 가져오기 
+	SELECT TF.F_FDCODE, 
+    TF.E_EVTCODE, TE.E_NTTILTE, TE.E_STARTDATE, TE.E_ENDDATE, SYSDATE AS TODAY, 
+    TF.FC_1ST, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TFC.FC_2ND = 0 AND TFC.FC_3RD = 0) AS FCNAME_1ST, 
+    TF.FC_2ND, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TFC.FC_3RD = 0) AS FCNAME_2ND, 
+    TF.FC_3RD, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD) AS FCNAME_3RD, 
+    (SELECT TFC.FC_ISBLOCK FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD) AS FC_ISBLOCK, 
+    TF.F_FOODNAME, 
+    TF.F_PRICE, TF.F_EXPLAN, TF.F_IMGNAME, TF.F_THUMNAME, TF.F_ISBLOCK, TF.MS_CODE 
+FROM TR_FOOD TF
+LEFT OUTER JOIN TR_EVENT TE
+    ON TF.E_EVTCODE = TE.E_EVTCODE
+WHERE TE.E_EVTCODE = 0
+	
+	 -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

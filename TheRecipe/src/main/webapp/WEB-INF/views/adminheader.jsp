@@ -50,9 +50,6 @@
                         <li>
                             <a href="modifyCategory.do">수정</a>
                         </li>
-                        <!-- <li>
-                            <a href="update_1.html">수정</a>
-                        </li> -->
                     </ul>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
@@ -65,10 +62,7 @@
                             <a href="adminFoodMgr.do">목록</a>
                         </li>
                         <li>
-                            <a href="#">등록</a>
-                        </li>
-                        <li>
-                            <a href="#">수정</a>
+                            <a href="regFoodMgr.do">등록</a>
                         </li>
                     </ul>
                 </li>
@@ -77,7 +71,7 @@
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages3" data-parent="#exampleAccordion">
 						<i class="fa fa-fw fa-wrench"></i>
-						<span class="nav-link-text">이벤트 설정(임시링크)</span>
+						<span class="nav-link-text">이벤트 설정</span>
 					</a>
                     <ul class="sidenav-second-level collapse" id="collapseExamplePages3">
                         <li>

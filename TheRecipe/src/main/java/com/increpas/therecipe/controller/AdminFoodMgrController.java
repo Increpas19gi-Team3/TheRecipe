@@ -210,7 +210,9 @@ public class AdminFoodMgrController {
 		// 설정한 모든 값들을 DB에 저장
 		adminFoodMgrService.insertAdminFoodReg(adminFoodRegDTO);
 		
-		return "adminFoodList";
+		
+		
+		return "redirect:/adminFoodMgr.do";//리스트로 보냄
 	}
 	
 	

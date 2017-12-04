@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.increpas.therecipe.service.AdminCategoryMgrService;
+import com.increpas.therecipe.service.AdminEventMgrService;
 
 /**
  * 관리자) 이벤트 등록 관리 컨트롤러
@@ -23,7 +24,7 @@ public class AdminEventMgrController {
 	
 	
 	@Autowired
-	AdminCategoryMgrService adminCategoryMgrService;
+	AdminEventMgrService adminEventMgrService;
 	
 	
 	/**
@@ -32,14 +33,17 @@ public class AdminEventMgrController {
 	 * @return : String jsp파일명
 	 */
 	@RequestMapping(value="/adminEventMgr.do")
-	public String testingAjax(Model model){
+	public String adminEventMgr(Model model){
 		
 		// 개발용 Log
 		String logMsg_01 = "/adminEventMgr.do";
-		String logMsg_02 = "testingAjax()";
+		String logMsg_02 = "adminEventMgr()";
 		logger.info("▶▶▶ Log : {}, {}", logMsg_01, logMsg_02);
 		
-		//model.addAttribute("memberList", adminCategoryMgrService.selectAllMember());
+		//model.addAttribute("eventList", adminCategoryMgrService.selectAllMember());
+		//selectAllEvent
+		
+		model.addAttribute("eventAllList", adminEventMgrService.selectAllEvent());
 		
 		return "adminEventMgrList";
 	}
