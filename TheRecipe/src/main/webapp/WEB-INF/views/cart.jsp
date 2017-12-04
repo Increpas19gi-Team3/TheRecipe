@@ -5,14 +5,6 @@
     
 <jsp:include page="header.jsp" />
 
-<head>
-<style type="text/css">
-tr, th, td {
-	border:1pt solid black;
-	padding: 10px;
-}
-</style>
-</head>
     <div class="container">
         <div class="con_inner">
             <div class="cart">
@@ -26,8 +18,7 @@ tr, th, td {
 		                        <th>수량</th>
 		                        <th>가격</th>
 		                        <th>주문금액</th>
-								<th>삭제</th>
-							
+								<th></th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
@@ -35,7 +26,7 @@ tr, th, td {
     					<c:when test="${empty basket}">
     						<tr>
 	    						<td colspan="7" style="text-align:center;">
-	    						장바구니가 비어있습니다.
+	    							장바구니가 비어있습니다.
 	    						</td>
     						</tr>
     					</c:when>
@@ -45,7 +36,7 @@ tr, th, td {
                 			<input type="hidden" name="f_fdcode" value="${bask.f_fdcode}">
                 			
 	                    	<tr>	                    		
-	                    		<td class="center"><input type="checkbox" name="checkRow" value="${bask.f_fdcode}" /></td><!--체크박스 회의 해보자  -->
+	                    		<td><input type="checkbox" name="checkRow" value="${bask.f_fdcode}" /></td><!--체크박스 회의 해보자  -->
 	                    		<!-- 이미지경로 -->
 	                    		<td class="img_width"><img src="/images/${bask.f_thumname}" alt="${bask.f_thumname} 이미지"> </td>
 	                    		<!-- 상품명 -->
@@ -53,27 +44,24 @@ tr, th, td {
 	                    		<td class="quantity_wrap">
 									<div class="quantity">
 										<!-- 수량 -->
-										<input id="buy_cnt" name="buy_cnt" type="text" style="width:40px;" class="result_input" name="amount" value="${bask.b_amount}" readonly>
+										<input id="buy_cnt" name="buy_cnt" type="text" class="result_input" name="amount" value="${bask.b_amount}" readonly>
 										<span>
 											<input id='up' name="up" type="button" value="+" class="up_input">
 											<input id='down' name="down" type="button" value="-" class="down_input">
 										</span>
 									</div>
 	                    		</td>
-	                    		
 	                    		<!-- 가격 -->
-	                    		<td><span><input id="price" type="text" name="price" readonly value="${bask.f_price }">원</span></td>
+	                    		<td><input class="text_center" id="price" type="text" name="price" readonly value="${bask.f_price }"><span class="asd">원</span></td>
 	                    		<!-- 주문금액 -->
-	                    		<td><span><input id="totalPrice" type="text"  name="totalPrice" value="${bask.f_price}" readonly>원</span></td>
+	                    		<td><input class="text_center" id="totalPrice" type="text"  name="totalPrice" value="${bask.f_price}" readonly><span class="asd">원</span></td>
 	                    		<!-- 삭제버튼 -->
-								<td><span><button type="button" onclick="deleteProduct(${bask.f_fdcode})">삭제</button></span></td>
-								
+								<td><a href="#" type="button" onclick="deleteProduct(${bask.f_fdcode})">x</a></td>
 	                    	</tr>
-	                    	
 	                    	</c:forEach>
-	                    	</c:otherwise>
+	       		          	</c:otherwise>
 	                    	</c:choose>
-	                    </tbody>
+						   </tbody>
 	                    
 	                </table>
 	                <div class="btn_selectDelete"><!--체크박스 회의 해보자  -->
@@ -82,7 +70,7 @@ tr, th, td {
 	               
 	                <h3>구매 가격</h3>
 	                <div class="total_price">
-	                	<p>총 상품금액 <input id="totalPriceSum" name="totalPriceSum" type="text" readonly>원</p>
+	                	<p>총 상품금액 <span><input id="totalPriceSum" name="totalPriceSum" type="text" readonly>원</span></p>
 	                	<p>배송비<span id="deliveryPrice"><b>2,500</b>원</span></p>
 	                	<hr>
 	                	<input name="o_buyprice" type="hidden" readonly>

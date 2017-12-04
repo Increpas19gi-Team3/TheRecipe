@@ -1161,7 +1161,7 @@ hr{
 	float: left;
 	border: 1px solid #ccc;
 }
-.cart .quantity_wrap .quantity input{
+.cart .quantity_wrap .quantity > input{
 	width: 50px;
 	height: 30px;
 	text-align: center;
@@ -1175,12 +1175,14 @@ hr{
 	overflow: hidden;
 	border-left: 1px solid #ccc;
 }
-.cart .quantity_wrap .quantity span a{
+.cart .quantity_wrap .quantity span input{
 	width: 20px;
 	height: 15px;
 	float: left;
+	border: none;
+	background: none;
 }
-.cart .quantity_wrap .quantity span a:first-child{
+.cart .quantity_wrap .quantity span input:first-child{
 	border-bottom: 1px solid #ccc;
 }
 .cart h2{
@@ -1213,13 +1215,22 @@ hr{
 	width: 150px;
 }
 .cart table tr th:nth-child(5){
-	width: 30px;
+	width: 150px;
 }
 .cart table tr td{
 	padding: 10px 0;
 	vertical-align: middle;
 	text-align: center;
 	border-bottom: 1px solid #eee;
+}
+.cart table tr td input.text_center{
+	width: 100px;
+	background: none;
+	border: none;
+	text-align: right;
+}
+.cart table tr td span.asd{
+	
 }
 .cart table tr td.text_left{
 	text-align: left;
@@ -1252,6 +1263,12 @@ hr{
 .cart .total_price p.price span b{
 	font-size: 30px;
 	font-weight: bold;
+}
+.cart .total_price #totalPriceSum{
+	width: 100px;
+	text-align: right;
+	border: none;
+	background: none;
 }
 .cart .btn_selectDelete{
 	padding: 20px 0;
