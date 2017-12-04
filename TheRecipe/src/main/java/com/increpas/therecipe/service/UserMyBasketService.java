@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.increpas.therecipe.dao.UserMyBasketDAO;
-import com.increpas.therecipe.vo.BasketVO;
 import com.increpas.therecipe.vo.UserMyBasketVO;
 
 /**
@@ -30,14 +29,6 @@ public class UserMyBasketService {
 		
 	}
 	
-	public int calBuyprice(int b_amount,int f_price) {
-		int result=0;
-		
-		result = b_amount*f_price;
-		//계산
-		return result;
-		
-	}
 
 	public void deleteBasket(String m_userid,String f_fdcode) {
 		 userMyDAO.deleteBasket(m_userid,f_fdcode);

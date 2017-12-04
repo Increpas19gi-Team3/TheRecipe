@@ -2,7 +2,10 @@ package com.increpas.therecipe.controller;
 
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.RequestWrapper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +20,7 @@ import com.increpas.therecipe.service.UserMyBasketService;
 import com.increpas.therecipe.vo.UserMyBasketVO;
 
 /**
- * 장바구니보기 주문조회 후기등록 관련 컨트롤러
+ * 장바구니보기  관련 컨트롤러
  * 
  * @author 박호진
  *
@@ -68,46 +71,21 @@ public class UserMyBasketController {
 			String m_userid = (String) session.getAttribute("m_userid");
 			
 			List<UserMyBasketVO> list = userMyService.selectBasket(m_userid);
-
-			list = arrySplitImgname(list);
 			
+	      for (int i = 0; i < list.size(); i++) {
+				if(list.get(i).getDiscount_value()==null) {
+					list.get(i).setDiscount_value("0");
+				}
+			}
+			
+			list = arrySplitImgname(list);
+
 			model.addAttribute("basket", list);
 			
-
 			return "cart";
 		}
 		
-	/*	@RequestMapping(value = "/UpdateBasket.do", method = RequestMethod.POST)
-		public String UpdateBasket( HttpSession session , Model model) {
-			// 장바구니 리스트 조회(아이디)
-			
-			String m_userid = (String) session.getAttribute("m_userid");
-			
-			List<UserMyBasketVO> list = userMyService.selectBasket(m_userid);
-
-			
-			
-			int b_amount = 0;
-			int f_price = 0;
-			for (UserMyBasketVO userMyBasketVO : list) {
-				
-				list = arrySplitImgname(list);
-				b_amount = userMyBasketVO.getB_amount();
-				f_price = userMyBasketVO.getF_price();
-				int b_buyprice = userMyService.calBuyprice(b_amount, f_price);
-				
-				
-
-				
-			}
-			
-			
-			model.addAttribute("basket", list);
-			
-
-			return "redirect:BasketForm.do";
-		}
-		*/
+	
 		@RequestMapping(value = "/DeleteBasket.do", method = RequestMethod.GET)
 		public String DeleteBasket(@RequestParam("f_fdcode") String f_fdcode , HttpSession session , Model model) {
 			// 장바구니  삭제(아이디)
@@ -121,12 +99,23 @@ public class UserMyBasketController {
 			return "redirect:BasketForm.do";
 		}
 		
-		@RequestMapping(value = "/myorder.do", method = RequestMethod.POST)
-		public String orderForm() {
-
-			return "myOrder";
+		@RequestMapping(value = "/orderWriteForm.do", method = { RequestMethod.GET, RequestMethod.POST })
+		public String orderWriteForm(HttpServletRequest request, UserMyBasketVO bVo, Model model) {
+			
+			String f_fdcode =  request.getParameter("f_fdcode");
+			int o_buyprice = Integer.parseInt(request.getParameter("o_buyprice"));
+			int o_amount = Integer.parseInt(request.getParameter("buy_cnt"));
+			String title= request.getParameter("title");
+			String thumname= request.getParameter("thumname");
+			 model.addAttribute("f_fdcode", f_fdcode);
+			 model.addAttribute("o_buyprice", o_buyprice);
+			 model.addAttribute("o_amount", o_amount);
+			 model.addAttribute("title", title);
+			 model.addAttribute("thumname", thumname);
+			
+			
+			return "orderWriteForm";
 		}
-		
 		
 
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="userorder_ns">
+
+	<resultMap id="userorderResult" type="Order">
+		<result property="o_orderid" column="o_orderid" /><!-- 주문코드 -->
+		<result property="d_status" column="d_status" /><!-- 배송상태 -->
+		<result property="m_userid" column="m_userid" /><!-- 아이디 -->
+		<result property="f_fdcode" column="f_fdcode" /><!-- 상품코드 -->
+		<result property="o_buyprice" column="o_buyprice" /><!-- 구입가격 -->
+		<result property="o_amount" column="o_amount" /><!-- 구매수량 -->
+		<result property="o_orderdate" column="o_orderdate" /><!-- 주문날짜 -->
+		<result property="o_reciever" column="o_reciever" /><!-- 수취인 -->
+		<result property="o_dvypost" column="o_dvypost" /><!-- 배송지우편번호 -->
+		<result property="o_dvyaddr" column="o_dvyaddr" /><!-- 배송지주소 -->
+		<result property="ms_code" column="ms_code" /><!--마스터코드: 4  -->
+		
+	</resultMap>
+	<select id="findTitle">
+	
+	</select>
+	
+	
+	
+	
+	
+				
+	
+</mapper>
