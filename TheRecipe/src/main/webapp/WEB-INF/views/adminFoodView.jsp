@@ -44,8 +44,18 @@
                 <div class="card-body">
                     
                     <div class="form-group">
-                    <form action=""></form>
+                    <form action="modifyFoodMgr.do" method="post">
                     
+                    	<input type="hidden" name ="f_fdcode" value="${foodView.f_fdcode }">
+                    	<input type="hidden" name ="e_evtcode" value="${foodView.e_evtcode }">
+                    	<input type="hidden" name ="fc_1st" value="${foodView.fc_1st }">
+                    	<input type="hidden" name ="fc_2nd" value="${foodView.fc_2nd }">
+                    	<input type="hidden" name ="fc_3rd" value="${foodView.fc_3rd }">
+                    	<input type="hidden" name ="f_isblock" value="${foodView.f_isblock }">
+                    	
+                    	<!-- f_isblock -->
+                    	<!-- ms_code -->
+                    	
 						<label for="">상품 카테고리 : </label>
                     	<input type="text" class="form-control" id="" readonly="readonly" value="${foodView.fcname_1st } > ${foodView.fcname_2nd } > ${foodView.fcname_3rd }">
 	                    
@@ -58,7 +68,7 @@
                         
                         <label for="">사용 여부 : </label>
 						<c:choose>
-							<c:when test="${foodView.fc_isblock eq '0' }">
+							<c:when test="${foodView.f_isblock eq '0' }">
 								<input type="text" class="form-control" id="" readonly="readonly" value="사용">
 							</c:when>
 							<c:otherwise>
@@ -67,7 +77,7 @@
 						</c:choose>		            
 						
                         <label for="">상품 설명</label>
-                        <textarea class="form-control" rows="5" id="" readonly="readonly">${foodView.f_explan }</textarea>
+                        <textarea class="form-control" rows="5" id="f_explan" name="f_explan" readonly="readonly">${foodView.f_explan }</textarea>
                         
                         <%
                         	FoodMgrVO fmVO = (FoodMgrVO)request.getAttribute("foodView");
@@ -116,8 +126,8 @@
 							<c:forEach var="thumimgname" items="${thumnameArr }">
 								<div class="form-group">
 		                            <div class="col-md-12">
-		                                <label for="">썸네일 이미지</label>
-										<img src="/images/${thumimgname}" >		                                
+		                            	<label for="">썸네일 이미지</label>
+										<img src="/images/${thumimgname}" >
 		                            </div>
 		                        </div>
 							</c:forEach>							
@@ -127,7 +137,7 @@
 						
 						<br/><br/><br/><br/>
 						<div class="">
-                        	<button type="submit" class="btn btn-primary btn-block" onclick="">수정</button>
+                        	<button type="button" class="btn btn-primary btn-block" onclick="location.href='modifyFoodMgr.do?no=${foodView.f_fdcode}'">수정</button>
                         	<button type="button" class="btn btn-primary btn-block" onclick="location.href='adminFoodMgr.do'">목록</button>
                         </div>
                     </form>
@@ -135,6 +145,7 @@
             </div>
         </div>
     </div>
+</div>
 </body>
 
 </html>

@@ -29,8 +29,7 @@ import com.increpas.therecipe.vo.FoodcodeVO;
  * 관리자) 지역음식, TV 레시피 음식 등록 관리 컨트롤러
  * @author 손가연
  * 
- * modifyFoodMgr.do
-adminFoodModify.jsp
+ * 
  */
 @Controller
 public class AdminFoodMgrController {
@@ -191,6 +190,71 @@ public class AdminFoodMgrController {
 	public String adminFoodReg_Do(@Valid @ModelAttribute("foodReg") AdminFoodRegDTO adminFoodRegDTO, Errors errors, 
 			Model model){
 		
+		int fc_1st = adminFoodRegDTO.getFc_1st();	//BlankChange.doStringNumber(NullChange.doBlank(request.getParameter("fc_1st")), "1");//null → "" → "1" 
+		int fc_2nd = adminFoodRegDTO.getFc_2nd(); //BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_2nd")));
+		int fc_3rd = adminFoodRegDTO.getFc_3rd(); //BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_3rd")));
+		System.out.println(">>>>>>>>>>>>> fc_1st ="+fc_1st+", fc_2nd="+fc_2nd+", fc_3rd="+fc_3rd);
+		
+		String f_foodname = adminFoodRegDTO.getF_foodname(); //NullChange.doBlank(request.getParameter("f_foodname"));
+		int f_price = adminFoodRegDTO.getF_price(); //NullChange.doBlank(request.getParameter("f_price"));
+		String f_isblock = adminFoodRegDTO.getF_isblock(); //NullChange.doBlank(request.getParameter("f_isblock"));
+		String f_explan = adminFoodRegDTO.getF_explan(); //NullChange.doBlank(request.getParameter("f_explan"));
+		System.out.println(">>>>>>>>>> f_foodname="+f_foodname+", f_price="+f_price
+				+", f_isblock=" + f_isblock+", f_explan="+f_explan);
+		
+		
+		// 이미지, 썸네일 이미지 저장
+		adminFoodMgrService.saveImagesSetting(adminFoodRegDTO, model);
+		System.out.println("DATA : " + adminFoodRegDTO.toString());
+		
+		// 설정한 모든 값들을 DB에 저장
+		adminFoodMgrService.insertAdminFoodReg(adminFoodRegDTO);
+		
+		return "adminFoodList";
+	}
+	
+	
+	/**
+	 * 수정 폼으로 이동
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/modifyFoodMgr.do", method = RequestMethod.GET)
+	public String adminFoodModify(Model model, HttpServletRequest request){
+		
+		String f_fdcode = BlankChange.doStringNumber(NullChange.doBlank(request.getParameter("no")), "0");//null → "" → "1"
+//		String change_fc_1st = NullChange.doBlank(request.getParameter("change_fc_1st")); 
+//		String change_fc_2nd = NullChange.doBlank(request.getParameter("change_fc_2nd"));
+//		String change_fc_3rd = NullChange.doBlank(request.getParameter("change_fc_3rd"));
+//		System.out.println(">>>>>>>>>>>>>>>>> change_fc_1st="+change_fc_1st+", change_fc_2nd="+change_fc_2nd+", change_fc_3rd="+change_fc_3rd);
+		
+		
+		FoodMgrVO fmVO = adminFoodMgrService.selFoodView(f_fdcode);
+		System.out.println("fmVO.toString="+fmVO.toString());
+		model.addAttribute("foodView", fmVO);
+		
+//		if(change_fc_1st.equals("") && change_fc_2nd.equals("") && change_fc_3rd.equals("")){
+			model = getAdminFoodListAll(model, String.valueOf(fmVO.getFc_1st()), String.valueOf(fmVO.getFc_2nd()), String.valueOf(fmVO.getFc_3rd()));
+//		}else{
+//			model = getAdminFoodListAll(model, change_fc_1st, change_fc_2nd, change_fc_3rd);
+//			model.addAttribute("change_fc_1st", change_fc_1st);
+//			model.addAttribute("change_fc_2nd", change_fc_2nd);
+//			model.addAttribute("change_fc_3rd", change_fc_3rd);
+//		}
+		
+		// 카테고리 수정하는 루틴 오류 발생 : DB 등록되어 있는 카테고리와 다를때
+		// 해당 값이 다를 경우 저장하는 부분 필요
+		
+		return "adminFoodModify";
+	}
+	
+	
+	@RequestMapping(value="/modifyFoodMgr.do", method = RequestMethod.POST)
+	public String adminFoodModify_Do(@Valid @ModelAttribute("foodModify") AdminFoodRegDTO adminFoodRegDTO, Errors errors, 
+			Model model, HttpServletRequest request){
+		String f_fdcode = BlankChange.doStringNumber(NullChange.doBlank(request.getParameter("no")), "0");//null → "" → "1"
+		System.out.println(">>>>>>>>>>>>>>>>>> f_fdcode="+f_fdcode);
 		
 		
 		int fc_1st = adminFoodRegDTO.getFc_1st();	//BlankChange.doStringNumber(NullChange.doBlank(request.getParameter("fc_1st")), "1");//null → "" → "1" 
@@ -206,10 +270,19 @@ public class AdminFoodMgrController {
 				+", f_isblock=" + f_isblock+", f_explan="+f_explan);
 		
 		
+		// 이미지, 썸네일 이미지 저장
 		adminFoodMgrService.saveImagesSetting(adminFoodRegDTO, model);
 		System.out.println("DATA : " + adminFoodRegDTO.toString());
 		
+		// 설정한 모든 값들을 DB에 수정 저장
+		adminFoodMgrService.updateAdminFoodReg(adminFoodRegDTO);
 		
-		return "adminFoodList";
+		
+		// 수정 완료 후 상세보기 폼으로 이동
+		FoodMgrVO fmVO = adminFoodMgrService.selFoodView(f_fdcode);
+		model.addAttribute("foodView", fmVO);
+		System.out.println(">>>>>>>> f_fdcode="+f_fdcode+", "+ fmVO.toString());
+		return "adminFoodView";
 	}
+	
 }

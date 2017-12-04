@@ -21,6 +21,8 @@ import com.increpas.therecipe.dto.UploadFileDTO;
 import com.increpas.therecipe.vo.FoodMgrVO;
 import com.increpas.therecipe.vo.FoodcodeVO;
 
+import net.coobird.thumbnailator.Thumbnails;
+
 /**
  * 관리자) 음식 관리 하기 위한 Service 
  * @author 손가연
@@ -172,7 +174,12 @@ public class AdminFoodMgrService {
 	}
 	
 	
-	
+	/**
+	 * 음식 사진을 저장을 위한 세팅. 이미지 사진명 작업
+	 * @param adminFoodRegDTO
+	 * @param model
+	 * @return
+	 */
 	public AdminFoodRegDTO saveImagesSetting(AdminFoodRegDTO adminFoodRegDTO, Model model){
 		
 		MultipartFile f_imgname_1 = adminFoodRegDTO.getF_imgname_1();
@@ -190,66 +197,91 @@ public class AdminFoodMgrService {
 		
 		
 		String imageNames = "";
+		String thumbnail_imageNames = "";
 		
 		// 이미지 1번 업로드
 		if (!f_imgname_1.isEmpty()) {
-			imageNames += saveImages(f_imgname_1, model); //이미지 명 누적합
+			String saveImgName = saveImages(f_imgname_1, model); //이미지 명 누적합 
+			imageNames += saveImgName;
+			thumbnail_imageNames += "thumbnail-" + saveImgName;
 		}
 		
 		
 		// 이미지 2번 업로드
 		if (!f_imgname_2.isEmpty()) {
-			imageNames += "_"+saveImages(f_imgname_2, model); //이미지 명 누적합			
+			String saveImgName = saveImages(f_imgname_2, model); //이미지 명 누적합 
+			imageNames += "_" + saveImgName;	
+			thumbnail_imageNames += "_thumbnail-" + saveImgName;
 		}
 		
 		
 		// 이미지 3번 업로드
 		if (!f_imgname_3.isEmpty()) {
-			imageNames += "_"+saveImages(f_imgname_3, model); //이미지 명 누적합
+			String saveImgName = saveImages(f_imgname_3, model); //이미지 명 누적합 
+			imageNames += "_"+ saveImgName;	
+			thumbnail_imageNames += "_thumbnail-" + saveImgName;
 		}
 		
 		
 		// 이미지 4번 업로드
 		if (!f_imgname_4.isEmpty()) {
-			imageNames += "_"+saveImages(f_imgname_4, model); //이미지 명 누적합
-			
+			String saveImgName = saveImages(f_imgname_4, model); //이미지 명 누적합 
+			imageNames += "_"+ saveImgName;	
+			thumbnail_imageNames += "_thumbnail-" + saveImgName;			
 		}
 		
 		
 		// 이미지 5번 업로드
 		if (!f_imgname_5.isEmpty()) {
-			imageNames += "_"+saveImages(f_imgname_5, model); //이미지 명 누적합
+			String saveImgName = saveImages(f_imgname_5, model); //이미지 명 누적합 
+			imageNames += "_"+ saveImgName;	
+			thumbnail_imageNames += "_thumbnail-" + saveImgName;
 		}
 		
 		// 여기에 썸네일 이미지도 적용 해야함
 		/*
 		 https://okky.kr/article/367729
-		  http://jsonobject.tistory.com/226
-		  http://jaesu.tistory.com/entry/image-thumbnail-%EB%A7%8C%EB%93%A4%EA%B8%B0
-		  
+		 http://jsonobject.tistory.com/226
+		 http://jaesu.tistory.com/entry/image-thumbnail-%EB%A7%8C%EB%93%A4%EA%B8%B0
 		 */
 		
 		//DB에 입력할 이미지 적용
 		adminFoodRegDTO.setF_imgname(imageNames);
+		adminFoodRegDTO.setF_thumname(thumbnail_imageNames);
 		System.out.println("getF_imgname : " + adminFoodRegDTO.getF_imgname());
+		System.out.println("getF_thumbnail_imageNames : " + adminFoodRegDTO.getF_thumname());
 		
 		return adminFoodRegDTO;
 	}
 	
 	
-	
+	/**
+	 * 음식 사진, 썸네일 사진을 저장
+	 * @param f_imgname
+	 * @param model
+	 * @return
+	 */
 	public String saveImages(MultipartFile f_imgname, Model model){
 		
 		String imageNames = "";
 		String path = "C:/images/";
 		
 		String originalFilename = f_imgname.getOriginalFilename();
-		String systemFilename = UUID.randomUUID() + "_" + originalFilename;
+		String systemFilename = UUID.randomUUID() + "-" + originalFilename;
 		
 		// 업로드파일객체를 지정한 파일에 복사
 		try {
-			f_imgname.transferTo(new File(path, systemFilename));
-			System.out.println(systemFilename + " 업로드완료.");
+
+			File imageFile = new File(path, systemFilename);
+			f_imgname.transferTo(imageFile);
+			logger.info(systemFilename + " 업로드완료.");
+			
+			//http://jsonobject.tistory.com/226
+			File thumbnail = new File(path, "thumbnail-" + systemFilename); 
+			thumbnail.getParentFile().mkdirs(); 
+			Thumbnails.of(imageFile).size(190, 150).outputFormat("jpg").toFile(thumbnail); 
+			logger.info("thumbnail-" + systemFilename + "썸네일 이미지 저장");
+			
 			UploadFileDTO fileDTO = new UploadFileDTO();
 			fileDTO.setOriginalFilename(originalFilename);
 			fileDTO.setSystemFilename(systemFilename);
@@ -269,4 +301,21 @@ public class AdminFoodMgrService {
 		return imageNames;
 	}
 	
+	
+	/**
+	 * DB에 음식데이터 저장
+	 * @param adminFoodRegDTO
+	 */
+	public void insertAdminFoodReg(AdminFoodRegDTO adminFoodRegDTO){
+		adminFoodMgrDAO.insertAdminFoodReg(adminFoodRegDTO);
+	}
+	
+	
+	/**
+	 * DB에 음식데이터 수정
+	 * @param adminFoodRegDTO
+	 */
+	public void updateAdminFoodReg(AdminFoodRegDTO adminFoodRegDTO){
+		adminFoodMgrDAO.updateAdminFoodReg(adminFoodRegDTO);
+	}
 }

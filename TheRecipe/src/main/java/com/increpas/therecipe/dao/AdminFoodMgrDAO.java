@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.increpas.therecipe.dto.AdminFoodListDTO;
+import com.increpas.therecipe.dto.AdminFoodRegDTO;
 import com.increpas.therecipe.vo.FoodMgrVO;
 import com.increpas.therecipe.vo.FoodcodeVO;
 
@@ -89,5 +90,21 @@ public class AdminFoodMgrDAO {
 	 */
 	public FoodMgrVO selFoodView(String f_fdcode){
 		return sqlSessionTemplate.selectOne("adminFoodMgr_ns.selFoodView", f_fdcode);
+	}
+	
+	
+	/**
+	 * DB에 음식데이터 저장
+	 * @param adminFoodRegDTO
+	 */
+	public int insertAdminFoodReg(AdminFoodRegDTO adminFoodRegDTO){
+		return sqlSessionTemplate.insert("adminFoodMgr_ns.insertFoodReg", adminFoodRegDTO);
+	}
+	
+	public int updateAdminFoodReg(AdminFoodRegDTO adminFoodRegDTO){
+		System.out.println("************************* "+adminFoodRegDTO.toString());
+		int result =sqlSessionTemplate.insert("adminFoodMgr_ns.updateFoodModify", adminFoodRegDTO);
+		System.out.println("**************** result:"+result);
+		return result;
 	}
 }
