@@ -68,8 +68,9 @@
 										<li><a href="mypageInfo.do" class="dropdown_select">내정보관리</a></li>
 									</ul></li>
 								<li><a href="BasketForm.do">장바구니</a></li>
-								<c:if test="${m_level==0}">
-									<li class="dropdown_wrap"><a href="adminIndex.jsp"
+						
+								<c:if test="${sessionScope.m_level==0}">
+									<li class="dropdown_wrap"><a href="adminIndex.do"
 										class="dropdown_select">관리자페이지</a>
 								</c:if>
 

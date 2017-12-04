@@ -76,19 +76,30 @@ public class LoginController {
 		String m_pw = vo.getM_pw();
 		int m_level = vo.getM_level();
 
-		vo = loginService.selectLogin(m_userid, m_pw);
-
+		//검색해온 고객 정보를 저장하는 MemberVO
+		MemberVO resultVO = loginService.selectLogin(m_userid, m_pw);
+		
+		if(resultVO != null)
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>> "+resultVO.toString());//로그인 결과값 확인 
+		
 		// 아이디 존재 여부 확인
-		if (vo == null) {
+		if (resultVO != null){
+			session.setAttribute("m_userid", resultVO.getM_userid());
+			
+			if(resultVO.getM_level() == 0){//관리자 일 경우만 세선에 권한 저장
+				session.setAttribute("m_level", resultVO.getM_level());
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>> " +" " + session + " 이다.");
+			}
+			
+		}else{
+			System.out.println("존재하지 않는  아이디!");
 			model.addAttribute("m_userid", m_userid);
 			model.addAttribute("message", "존재하지 않는 아이디 입니다.");
 			return "loginView";
-
-		} else {
-			session.setAttribute("m_userid", m_userid);
-			session.setAttribute("m_level", m_level);
 		}
+
 		return "home";
+		
 	}
 
 	/**
