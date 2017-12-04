@@ -50,7 +50,7 @@
 											<a href="#" class="down">-</a>
 										</span>
 									</div>
-									<button type="button" class="btn_change"">변경</button>
+									<button type="button" class="btn_change">변경</button>
 	                    		</td>
 	                    		<td>12,900원</td>
 								<td><a href="">X</a></td>

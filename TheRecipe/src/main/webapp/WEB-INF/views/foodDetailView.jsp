@@ -58,7 +58,7 @@
 					<h2>${foodList.f_foodname }</h2>
 					<p>${foodList.f_explan }</p>
 					<div class="price_one">
-						<b><input id="price" type="text" name="price" value="${foodList.f_price }"></b>원
+						<b><input class="price_asd" id="price" type="text" readonly name="price" value="${foodList.f_price }"></b>원
 					</div>
 					<div class="option_calc_wrap">
 						<dl class="quantity">
@@ -88,14 +88,14 @@
 					</dl>
 					
 					<div class="price_total">
-						<span>총 상품금액</span><b><input id="totalPrice" type="text" name="totalPrice" value="${foodList.f_price }"></b>원
+						<span>총 상품금액</span><b><input class="price_asd" id="totalPrice" type="text" readonly name="totalPrice" value="${foodList.f_price }"></b>원
 					</div>
 					<c:choose>
 						<c:when test="${not empty sessionScope.m_userid}">
 							<input type="submit" value="담기" class="btn_submit">
 						</c:when>
 						<c:otherwise>
-							<input type="submit" value="담기" class="btn_notsubmit">
+							<input type="button" value="담기" class="btn_notsubmit">
 						</c:otherwise>
 					</c:choose>
 				</div>
