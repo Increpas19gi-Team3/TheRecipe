@@ -128,9 +128,15 @@ public class AdminCategoryMgrService {
 	}
 	
 	
+	
 	/**
 	 * 선택한 2nd 음식 코드 가져오기
-	 * @return : List<FoodcodeVO>
+	 * @param String fc_1st
+	 * @param String fc_2nd
+	 * @param String fc_3rd
+	 * @param String fc_ctgname
+	 * @param String fc_isblock
+	 * @return List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selectSel2ndFoodcode(String fc_1st, String fc_2nd, String fc_3rd, String fc_ctgname, String fc_isblock){
 		// 개발용 Log
@@ -140,6 +146,13 @@ public class AdminCategoryMgrService {
 		
 		return adminCategoryMgrDAO.selectSel2ndFoodcode(setFoodcodeVO(fc_1st, fc_2nd, fc_3rd, fc_ctgname, fc_isblock));
 	}
+	
+	
+	/**
+	 * 선택한 2nd 음식 코드 가져오기
+	 * @param FoodcodeVO fcVO
+	 * @return List<FoodcodeVO>
+	 */
 	public List<FoodcodeVO> selectSel2ndFoodcode(FoodcodeVO fcVO){
 		// 개발용 Log
 		String logMsg_01 = "selectSel2ndFoodcode(FoodcodeVO fcVO) =";
@@ -151,15 +164,25 @@ public class AdminCategoryMgrService {
 	
 	
 	
-	
 	/**
 	 * 선택한 3rd 음식 코드 가져오기
-	 * @return : List<FoodcodeVO>
+	 * @param String fc_1st
+	 * @param String fc_2nd
+	 * @param String fc_3rd
+	 * @param String fc_ctgname
+	 * @param String fc_isblock
+	 * @return List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selectSel3rdFoodcode(String fc_1st, String fc_2nd, String fc_3rd, String fc_ctgname, String fc_isblock){
 		return adminCategoryMgrDAO.selectSel3rdFoodcode(setFoodcodeVO(fc_1st, fc_2nd, fc_3rd, fc_ctgname, fc_isblock));
 	}
 	
+	
+	/**
+	 * 선택한 3rd 음식 코드 가져오기
+	 * @param FoodcodeVO fcVO
+	 * @return List<FoodcodeVO>
+	 */
 	public List<FoodcodeVO> selectSel3rdFoodcode(FoodcodeVO fcVO){
 		return adminCategoryMgrDAO.selectSel3rdFoodcode(fcVO);
 	}
@@ -208,7 +231,7 @@ public class AdminCategoryMgrService {
 	
 	
 	/**
-	 * 음식코드 등록, dao에 쿼리 요청
+	 * 음식코드 등록, dao에 쿼리실행 요청
 	 * @param String fc_1st : 대분류코드값
 	 * @param String fc_2nd : 중분류코드값
 	 * @param String fc_3rd : 소분류코드값

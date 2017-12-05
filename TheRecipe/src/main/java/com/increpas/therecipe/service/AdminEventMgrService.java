@@ -33,7 +33,7 @@ public class AdminEventMgrService {
 	
 	/**
 	 * 전체 이벤트 가져오기
-	 * @return
+	 * @return List<EventInfoVO>
 	 */
 	public List<EventInfoVO> selectAllEvent() {
 		return adminEventMgrDAO.selectAllEvent();
@@ -43,7 +43,7 @@ public class AdminEventMgrService {
 
 	/**
 	 * 전체 이벤트 가져오기
-	 * @return
+	 * @return List<EventInfoVO> 
 	 */
 	public List<EventInfoVO> selectAllEventToday() {
 		return adminEventMgrDAO.selectAllEventToday();
@@ -52,8 +52,8 @@ public class AdminEventMgrService {
 	
 	/**
 	 * 선텍 이벤트 가져오기
-	 * @param e_evtcode
-	 * @return
+	 * @param String e_evtcode
+	 * @return List<EventInfoVO>
 	 */
 	public List<EventInfoVO> selectSelEvent(String e_evtcode) {
 		return adminEventMgrDAO.selectSelEvent(e_evtcode);
@@ -62,21 +62,34 @@ public class AdminEventMgrService {
 	
 	/**
 	 * 선택한 이벤트가 걸린 음식정보 가져오기
-	 * @param e_evtcode
-	 * @return
+	 * @param String e_evtcode
+	 * @return List<EventSetFoodVO>
 	 */
 	public List<EventSetFoodVO> selectSelEventFood(String e_evtcode) {
 		return adminEventMgrDAO.selectSelEventFood(e_evtcode);
 	}
 	
 	
+	/**
+	 * 음식 정보 + 이벤트 정보 가져오기 : 페이징O, 검색O 
+	 * @param int pageCutCount
+	 * @param int requestPageNumber
+	 * @param String whereColumn
+	 * @param String word
+	 * @param String sortColumn
+	 * @param String orderby
+	 * @param int fc_1st
+	 * @param int fc_2nd
+	 * @param int fc_3rd
+	 * @param String selEventCode
+	 * @return AdminEventSetFoodListDTO
+	 */
 	public AdminEventSetFoodListDTO getEventSetFoodList(int pageCutCount, int requestPageNumber, 
 			String whereColumn, String word, 
 			String sortColumn, String orderby,
 			int fc_1st, int fc_2nd, int fc_3rd,
 			String selEventCode){
 		
-		System.err.println("▶▶▶▶ ListService : getEventSetFoodList >> 조건 검색 들어옴");
 		
 		adminEventSetFoodListDTO.setWhereColumn(whereColumn);
 		adminEventSetFoodListDTO.setWord(word);
@@ -96,7 +109,7 @@ public class AdminEventMgrService {
 		
 		// DAO에게 DB의 전체 글 개수조회 요청
 		int totalBoardVOCount = getTotalBoardVOCount(adminEventSetFoodListDTO); //adminEventMgrDAO.listCount(adminEventSetFoodListDTO);
-		System.out.println("---------------------- 전체 글 갯수 " + totalBoardVOCount);
+		//System.out.println("---------------------- 전체 글 갯수 " + totalBoardVOCount);
 		
 		if (totalBoardVOCount == 0) {//글의 개수가 0이면
 			//모델 : BoardVOListModel : 게시글 목록화면 VO 
@@ -124,7 +137,7 @@ public class AdminEventMgrService {
 		
 		// DAO에게 DB Select 요청
 		List<EventSetFoodVO> boardDTOList = adminEventMgrDAO.selectSelEventFoodList(adminEventSetFoodListDTO);
-		System.out.println("---------------------- DB에서 값 가져오기 성공 ");
+		//System.out.println("---------------------- DB에서 값 가져오기 성공 ");
 		
 		//BoardVOListModel 결과 모델을 생성
 		AdminEventSetFoodListDTO eventSetFoodVOList = new AdminEventSetFoodListDTO(boardDTOList, 
@@ -148,9 +161,9 @@ public class AdminEventMgrService {
 	
 	/**
 	 * 전체 페이지 계산(게시글 보기 설정값으로 계산)
-	 * @param pageCutCount
-	 * @param totalBoardVOCount
-	 * @return
+	 * @param int pageCutCount
+	 * @param int totalBoardVOCount
+	 * @return int
 	 */
 	private int calculateTotalPageCount(int pageCutCount, int totalBoardVOCount) {
 		if (totalBoardVOCount == 0) {
@@ -171,8 +184,8 @@ public class AdminEventMgrService {
 	
 	/**
 	 * 이벤트 설정
-	 * @param String[] chk_fdcodeArr
-	 * @param String setEventCode
+	 * @param String[] chk_fdcodeArr : 이벤트를 설정할 음식 코드
+	 * @param String setEventCode : 이벤트 코드
 	 */
 	public void updateEventSetFood(String[] chk_fdcodeArr, String setEventCode){
 		adminEventMgrDAO.updateEventSetFood(chk_fdcodeArr, setEventCode);

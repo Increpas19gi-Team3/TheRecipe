@@ -68,7 +68,7 @@ public class AdminEventMgrController {
 	
 	
 	/**
-	 * 
+	 * 이벤트 관리 화면
 	 * @param model : Model
 	 * @return : String jsp파일명
 	 */
@@ -169,9 +169,9 @@ public class AdminEventMgrController {
 
 	/**
 	 * 이벤트 설정 
-	 * @param model
-	 * @param request
-	 * @return
+	 * @param model : Model
+	 * @param request : HttpServletRequest
+	 * @return String
 	 */
 	@RequestMapping(value="/adminEventsetFood.do")
 	public String adminEventsetFood_Do(Model model, HttpServletRequest request){

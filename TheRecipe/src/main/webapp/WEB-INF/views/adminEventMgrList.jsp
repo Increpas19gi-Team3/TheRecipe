@@ -386,7 +386,7 @@
 								</c:forEach>
 							 	
 								
-								<c:if test="${endPage < foodList.totalPageCount}">
+								<c:if test="${endPage < eventSelFoodList.totalPageCount}">
 									<li class="next"><a href='<c:url value="adminEventMgr.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&fc_1st=${fc_1st}&fc_2nd=${fc_2nd}&fc_3rd=${fc_3rd}&pageCutCount=${pageCutCount }&pn=${endPage + 1}"/>'> 다음 ▶ </a></li>
 								</c:if>
 							</ul>

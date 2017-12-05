@@ -78,7 +78,6 @@ public class AdminFoodMgrDAO {
 	 * @return
 	 */
 	public int listCount(AdminFoodListDTO listDTOListModel) {		
-		System.out.println("▶▶▶▶ listDTO : selectCount");
 		return sqlSessionTemplate.selectOne("adminFoodMgr_ns.selectCount", listDTOListModel);
 	}
 	
@@ -95,16 +94,19 @@ public class AdminFoodMgrDAO {
 	
 	/**
 	 * DB에 음식데이터 저장
-	 * @param adminFoodRegDTO
+	 * @param AdminFoodRegDTO adminFoodRegDTO
+	 * @return int
 	 */
 	public int insertAdminFoodReg(AdminFoodRegDTO adminFoodRegDTO){
 		return sqlSessionTemplate.insert("adminFoodMgr_ns.insertFoodReg", adminFoodRegDTO);
 	}
 	
+	/**
+	 * DB에 음식 데이터 수정
+	 * @param AdminFoodRegDTO adminFoodRegDTO
+	 * @return int
+	 */
 	public int updateAdminFoodReg(AdminFoodRegDTO adminFoodRegDTO){
-		System.out.println("************************* "+adminFoodRegDTO.toString());
-		int result =sqlSessionTemplate.insert("adminFoodMgr_ns.updateFoodModify", adminFoodRegDTO);
-		System.out.println("**************** result:"+result);
-		return result;
+		return sqlSessionTemplate.insert("adminFoodMgr_ns.updateFoodModify", adminFoodRegDTO);
 	}
 }

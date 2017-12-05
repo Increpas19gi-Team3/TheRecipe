@@ -45,7 +45,14 @@ public class AdminFoodMgrController {
 	AdminCategoryMgrService adminCategoryMgrService;
 	
 	
-	
+	/**
+	 * 음식 카테고리 정보 가져오는 메소드
+	 * @param model : Model
+	 * @param fc_1st : String
+	 * @param fc_2nd : String
+	 * @param fc_3rd : String
+	 * @return Model
+	 */
 	public Model getAdminFoodListAll(Model model, String fc_1st, String fc_2nd, String fc_3rd){
 		// 개발용 Log
 		String logMsg_01 = "getAdminFoodListAll()";
@@ -70,7 +77,12 @@ public class AdminFoodMgrController {
 	
 	
 	
-	
+	/**
+	 * 음식 목록 보여주는 메소드
+	 * @param model : Model 
+	 * @param request : HttpServletRequest
+	 * @return adminFoodList.jsp
+	 */
 	@RequestMapping(value="/adminFoodMgr.do")
 	public String adminFoodList(Model model, HttpServletRequest request){
 		// 개발용 Log
@@ -149,6 +161,12 @@ public class AdminFoodMgrController {
 
 
 	
+	/**
+	 * 음식 상세보기 메소드
+	 * @param model : Model
+	 * @param request : HttpServletRequest
+	 * @return adminFoodView.jsp
+	 */
 	@RequestMapping(value="/adminFoodView.do")
 	public String adminFoodView(Model model, HttpServletRequest request){
 				
@@ -162,6 +180,8 @@ public class AdminFoodMgrController {
 	
 	/**
 	 * 음식 등록 폼으로 이동
+	 * @param model : Model
+	 * @param request : HttpServletRequest
 	 * @return adminFoodReg.jsp
 	 */
 	@RequestMapping(value="/regFoodMgr.do", method = RequestMethod.GET)
@@ -186,6 +206,13 @@ public class AdminFoodMgrController {
 	}
 	
 	
+	/**
+	 * 음식 등록 처리 메소드
+	 * @param adminFoodRegDTO : AdminFoodRegDTO
+	 * @param errors : Errors
+	 * @param model : Model
+	 * @return redirect:/adminFoodMgr.do
+	 */
 	@RequestMapping(value="/regFoodMgr.do", method = RequestMethod.POST)
 	public String adminFoodReg_Do(@Valid @ModelAttribute("foodReg") AdminFoodRegDTO adminFoodRegDTO, Errors errors, 
 			Model model){
@@ -218,9 +245,9 @@ public class AdminFoodMgrController {
 	
 	/**
 	 * 수정 폼으로 이동
-	 * @param model
-	 * @param request
-	 * @return
+	 * @param model : Model
+	 * @param request : HttpServletRequest
+	 * @return adminFoodModify.jsp
 	 */
 	@RequestMapping(value="/modifyFoodMgr.do", method = RequestMethod.GET)
 	public String adminFoodModify(Model model, HttpServletRequest request){
@@ -252,29 +279,36 @@ public class AdminFoodMgrController {
 	}
 	
 	
+	/**
+	 * 음식 등록 수정 처리 메소드
+	 * @param adminFoodRegDTO : AdminFoodRegDTO
+	 * @param errors : Errors
+	 * @param model : Model
+	 * @param request : HttpServletRequest
+	 * @return adminFoodView.jsp
+	 */
 	@RequestMapping(value="/modifyFoodMgr.do", method = RequestMethod.POST)
 	public String adminFoodModify_Do(@Valid @ModelAttribute("foodModify") AdminFoodRegDTO adminFoodRegDTO, Errors errors, 
 			Model model, HttpServletRequest request){
 		String f_fdcode = BlankChange.doStringNumber(NullChange.doBlank(request.getParameter("no")), "0");//null → "" → "1"
-		System.out.println(">>>>>>>>>>>>>>>>>> f_fdcode="+f_fdcode);
+		//System.out.println(">>>>>>>>>>>>>>>>>> f_fdcode="+f_fdcode);
 		
 		
 		int fc_1st = adminFoodRegDTO.getFc_1st();	//BlankChange.doStringNumber(NullChange.doBlank(request.getParameter("fc_1st")), "1");//null → "" → "1" 
 		int fc_2nd = adminFoodRegDTO.getFc_2nd(); //BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_2nd")));
 		int fc_3rd = adminFoodRegDTO.getFc_3rd(); //BlankChange.doStringZero(NullChange.doBlank(request.getParameter("fc_3rd")));
-		System.out.println(">>>>>>>>>>>>> fc_1st ="+fc_1st+", fc_2nd="+fc_2nd+", fc_3rd="+fc_3rd);
+		//System.out.println(">>>>>>>>>>>>> fc_1st ="+fc_1st+", fc_2nd="+fc_2nd+", fc_3rd="+fc_3rd);
 		
 		String f_foodname = adminFoodRegDTO.getF_foodname(); //NullChange.doBlank(request.getParameter("f_foodname"));
 		int f_price = adminFoodRegDTO.getF_price(); //NullChange.doBlank(request.getParameter("f_price"));
 		String f_isblock = adminFoodRegDTO.getF_isblock(); //NullChange.doBlank(request.getParameter("f_isblock"));
 		String f_explan = adminFoodRegDTO.getF_explan(); //NullChange.doBlank(request.getParameter("f_explan"));
-		System.out.println(">>>>>>>>>> f_foodname="+f_foodname+", f_price="+f_price
-				+", f_isblock=" + f_isblock+", f_explan="+f_explan);
+		//System.out.println(">>>>>>>>>> f_foodname="+f_foodname+", f_price="+f_price	+", f_isblock=" + f_isblock+", f_explan="+f_explan);
 		
 		
 		// 이미지, 썸네일 이미지 저장
 		adminFoodMgrService.saveImagesSetting(adminFoodRegDTO, model);
-		System.out.println("DATA : " + adminFoodRegDTO.toString());
+		//System.out.println("DATA : " + adminFoodRegDTO.toString());
 		
 		// 설정한 모든 값들을 DB에 수정 저장
 		adminFoodMgrService.updateAdminFoodReg(adminFoodRegDTO);
@@ -283,7 +317,7 @@ public class AdminFoodMgrController {
 		// 수정 완료 후 상세보기 폼으로 이동
 		FoodMgrVO fmVO = adminFoodMgrService.selFoodView(f_fdcode);
 		model.addAttribute("foodView", fmVO);
-		System.out.println(">>>>>>>> f_fdcode="+f_fdcode+", "+ fmVO.toString());
+		//System.out.println(">>>>>>>> f_fdcode="+f_fdcode+", "+ fmVO.toString());
 		return "adminFoodView";
 	}
 	

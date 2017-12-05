@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.increpas.therecipe.vo.FoodMgrVO;
 
 /**
- *  게시판용 DTO
+ * 음식 리스트 DTO
  * @author 손가연
  *
  */

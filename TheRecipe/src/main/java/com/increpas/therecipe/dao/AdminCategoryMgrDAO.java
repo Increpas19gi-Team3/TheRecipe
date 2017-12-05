@@ -97,12 +97,11 @@ public class AdminCategoryMgrDAO {
 	} 
 	
 	
-	
 
-	
 	/**
 	 * 선택한 2nd 음식 코드 가져오기
-	 * @return : List<FoodcodeVO>
+	 * @param FoodcodeVO fcVO
+	 * @return List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selectSel2ndFoodcode(FoodcodeVO fcVO){
 		// 개발용 Log
@@ -122,6 +121,7 @@ public class AdminCategoryMgrDAO {
 	
 	/**
 	 * 선택한 3rd 음식 코드 가져오기
+	 * @param FoodcodeVO fcVO
 	 * @return : List<FoodcodeVO>
 	 */
 	public List<FoodcodeVO> selectSel3rdFoodcode(FoodcodeVO fcVO){
@@ -134,10 +134,6 @@ public class AdminCategoryMgrDAO {
 		
 		return list; 
 	} 
-	
-	
-	
-	
 	
 	
 	

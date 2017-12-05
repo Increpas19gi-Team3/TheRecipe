@@ -3,7 +3,7 @@ package com.increpas.therecipe.vo;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
- * 음식 분류코드(tr_foodcode)
+ * 음식 분류코드(tr_foodcode) + SubQuery(count() 함수 사용)
  * @author 손가연
  *
  */

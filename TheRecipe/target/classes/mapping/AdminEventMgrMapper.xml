@@ -12,6 +12,7 @@
 
 <mapper namespace="adminEventMgr_ns">
 
+	<!-- 이벤트 정보 -->
 	<resultMap id="EventInfoResult" type="EventInfo" >
 		<result property="e_evtcode" column="e_evtcode" />
 		<result property="e_nttilte" column="e_nttilte" />
@@ -23,7 +24,7 @@
 	</resultMap>
 	
 	
-	
+	<!-- 음식 정보 + 이벤트 정보  -->
 	<resultMap id="EventSetFoodResult" type="EventSetFood" >
 		<result property="f_fdcode" column="f_fdcode" />
 		<result property="e_evtcode" column="e_evtcode" />
@@ -64,7 +65,7 @@
 	
 	
 	
-	<!-- 오늘 기준 전체 이벤트 가져오기 -->
+	<!-- 오늘 기준(오늘 <= 이벤트 종료일) 전체 이벤트 가져오기 -->
 	<select id="selectAllEventToday" resultMap="EventInfoResult">
 		<![CDATA[SELECT E_EVTCODE, E_NTTILTE, E_STARTDATE, SYSDATE AS TODAY, E_ENDDATE,
 		    (

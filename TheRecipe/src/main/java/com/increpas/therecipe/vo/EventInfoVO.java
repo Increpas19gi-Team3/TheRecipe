@@ -3,7 +3,7 @@ package com.increpas.therecipe.vo;
 import java.sql.Date;
 
 /**
- * 이벤트 설정을 위한 이벤트 데이터를 가져오는 Event VO
+ * 이벤트 데이터를 가져오는 Event VO
  * @author 손가연
  * 
  */

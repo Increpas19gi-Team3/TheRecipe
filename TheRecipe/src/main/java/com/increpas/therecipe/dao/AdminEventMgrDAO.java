@@ -45,10 +45,11 @@ public class AdminEventMgrDAO {
 		return sqlSessionTemplate.selectList("adminEventMgr_ns.selectAllEventToday");
 	}
 	
+	
 	/**
 	 * 선택 이벤트 가져오기
-	 * @param e_evtcode
-	 * @return
+	 * @param String e_evtcode
+	 * @return List<EventInfoVO>
 	 */
 	public List<EventInfoVO> selectSelEvent(String e_evtcode) {
 		return sqlSessionTemplate.selectList("adminEventMgr_ns.selectSelEvent", e_evtcode);
@@ -58,7 +59,8 @@ public class AdminEventMgrDAO {
 	
 	/**
 	 * 전체 글 갯수 리턴
-	 * @return
+	 * @param AdminEventSetFoodListDTO listDTOListModel
+	 * @return int
 	 */
 	public int listCount(AdminEventSetFoodListDTO listDTOListModel) {		
 		System.out.println("▶▶▶▶ listDTO : selectCount");
@@ -70,13 +72,10 @@ public class AdminEventMgrDAO {
 	
 	/**
 	 * 선택한 이벤트가 걸린 음식정보 가져오기 : 페이징X, 검색X, 정렬X
-	 * @param e_evtcode
-	 * @return
+	 * @param String e_evtcode
+	 * @return List<EventSetFoodVO>
 	 */
 	public List<EventSetFoodVO> selectSelEventFood(String e_evtcode) {
-		System.out.println("******************************  e_evtcode="+e_evtcode);
-		//EventSetFoodVO
-		//System.out.println("esfVO.getE_evtcode()="+esfVO.getE_evtcode());
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("evtcode", e_evtcode);
 		return sqlSessionTemplate.selectList("adminEventMgr_ns.selectSelEventFood", map);
@@ -89,7 +88,6 @@ public class AdminEventMgrDAO {
 	 * @return List<EventSetFoodVO>
 	 */
 	public List<EventSetFoodVO> selectSelEventFoodList(AdminEventSetFoodListDTO adminEventSetFoodListDTO) {
-		System.out.println("******************************  adminEventSetFoodListDTO="+adminEventSetFoodListDTO.toString());
 		return sqlSessionTemplate.selectList("adminEventMgr_ns.selectSelEventFoodList", adminEventSetFoodListDTO);
 	}
 	

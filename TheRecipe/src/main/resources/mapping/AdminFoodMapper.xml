@@ -75,6 +75,7 @@
 	</select>
 
 
+	<!-- 선택한 카테고리의 음식 목록 -->
 	<select id="selectAdminFoodListSel" resultMap="FoodMgrResult" parameterType="Foodcode">
 		SELECT TF.F_FDCODE, 
 		    TF.E_EVTCODE, TE.E_NTTILTE, TE.E_STARTDATE, TE.E_ENDDATE, SYSDATE AS TODAY, 
@@ -101,6 +102,7 @@
 	</select>
 
 
+	<!-- 선택한 음식 정보 리스트 -->
 	<select id="selectSetAdminFoodList" resultMap="FoodMgrResult" parameterType="com.increpas.therecipe.dto.AdminFoodListDTO">
 		SELECT * 
 	    FROM (
@@ -167,59 +169,6 @@
 	
 	
 	
-	
-	<!-- 
-	<select id="selectSetAdminFoodList" resultMap="FoodMgrResult" parameterType="com.increpas.therecipe.dto.AdminFoodListDTO">
-				SELECT TF.F_FDCODE, 
-				    TF.E_EVTCODE, TE.E_NTTILTE, TE.E_STARTDATE, TE.E_ENDDATE, SYSDATE AS TODAY, 
-				    TF.FC_1ST, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TFC.FC_2ND = 0 AND TFC.FC_3RD = 0) AS FCNAME_1ST, 
-				    TF.FC_2ND, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TFC.FC_3RD = 0) AS FCNAME_2ND, 
-				    TF.FC_3RD, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD) AS FCNAME_3RD, 
-		            (SELECT TFC.FC_ISBLOCK FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD) AS FC_ISBLOCK, 
-				    TF.F_FOODNAME, 
-				    TF.F_PRICE, TF.F_EXPLAN, TF.F_IMGNAME, TF.F_THUMNAME, TF.F_ISBLOCK, TF.MS_CODE 
-				FROM TR_FOOD TF
-				LEFT OUTER JOIN TR_EVENT TE
-				    ON TF.E_EVTCODE = TE.E_EVTCODE
-				    
-				<where>
-					TF.FC_1ST = #{fc_1st} 
-					<if test="!fc_2nd.equals(0)"> - 중분류에 값이 있을때만 -
-						AND TF.FC_2ND = #{fc_2nd} 
-					</if>
-					<if test="!fc_3rd.equals(0)"> - 소분류에 값이 있을때만 -
-						AND TF.FC_3RD = #{fc_3rd} 
-					</if>
-					
-					- 음식명으로 검색 -
-					<if test="whereColumn.equals('FOODNAME')">
-		    			AND TF.F_FOODNAME LIKE '%' || #{word } || '%'
-		    		</if>
-				</where>
-				
-				
-				- ORDER BY -
-		   		<choose>
-		   			<when test="sortColumn.equals('FOODNAME')">   				
-		   				<if test="orderby.equals('ASC')">ORDER BY TE.E_NTTILTE ASC</if>
-		   				<if test="orderby.equals('DESC')">ORDER BY TE.E_NTTILTE DESC</if>   				
-		   			</when>
-		   			<when test="sortColumn.equals('PRICE')">
-		   				<if test="orderby.equals('ASC')">ORDER BY TF.F_PRICE ASC</if>
-		   				<if test="orderby.equals('DESC')">ORDER BY TF.F_PRICE DESC</if>
-		   			</when>
-		   			<otherwise>
-		   				ORDER BY TF.F_FDCODE DESC, TF.F_FDCODE DESC
-		   			</otherwise>
-		   		</choose>
-        
-	</select>
-	 -->
-	
-	
-	
-	
-	
 	<!-- 전체 글갯수 리턴 -->
 	<select id="selectCount" resultType="int" parameterType="com.increpas.therecipe.dto.AdminFoodListDTO">
 	    SELECT COUNT(*) 
@@ -244,6 +193,7 @@
 	</select>
 	
 	
+	<!-- 선택한 음식 상세정보 -->
 	<select id="selFoodView" parameterType="string" resultMap="FoodMgrResult">
 		SELECT TF.F_FDCODE, 
 		    TF.E_EVTCODE, TE.E_NTTILTE, TE.E_STARTDATE, TE.E_ENDDATE, SYSDATE AS TODAY, 
@@ -281,7 +231,6 @@
 		UPDATE TR_FOOD 
 		SET
 			F_FOODNAME = #{f_foodname},
-            
             F_PRICE = #{f_price}, F_EXPLAN = #{f_explan}, 
             F_IMGNAME = #{f_imgname}, F_THUMNAME = #{f_thumname}, 
             F_ISBLOCK = #{f_isblock}            

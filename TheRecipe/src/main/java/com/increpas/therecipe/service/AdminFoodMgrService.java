@@ -50,9 +50,11 @@ public class AdminFoodMgrService {
 	}
 	
 	
+	
 	/**
 	 * 전체 등록 데이터 가져오기
-	 * @return : List<FoodMgrVO>
+	 * @param FoodcodeVO fcVO
+	 * @return List<FoodMgrVO>
 	 */
 	public List<FoodMgrVO> selectAdminFoodListSel(FoodcodeVO fcVO){
 		return adminFoodMgrDAO.selectAdminFoodListSel(fcVO);
@@ -62,6 +64,7 @@ public class AdminFoodMgrService {
 
 	/**
 	 * 전체 등록 데이터 가져오기 - 페이징, 검색
+	 * @param FoodcodeVO fcVO
 	 * @return : List<AdminFoodListDTO>
 	 */
 	public List<AdminFoodListDTO> selectSetAdminFoodList(FoodcodeVO fcVO){
@@ -72,13 +75,24 @@ public class AdminFoodMgrService {
 	
 	
 	
-	
+	/**
+	 * 전체 등록 데이터 가져오기 - 페이징, 검색
+	 * @param int pageCutCount
+	 * @param int requestPageNumber
+	 * @param String whereColumn
+	 * @param String word
+	 * @param String sortColumn
+	 * @param String orderby
+	 * @param int fc_1st
+	 * @param int fc_2nd
+	 * @param int fc_3rd
+	 * @return AdminFoodListDTO
+	 */
 	public AdminFoodListDTO getFoodMgrVOList(int pageCutCount, int requestPageNumber, 
 			String whereColumn, String word, 
 			String sortColumn, String orderby,
 			int fc_1st, int fc_2nd, int fc_3rd){
 		
-		System.err.println("▶▶▶▶ ListService : getBoardVOList >> 조건 검색 들어옴");
 		
 		adminFoodListDTO.setWhereColumn(whereColumn);
 		adminFoodListDTO.setWord(word);
@@ -96,7 +110,7 @@ public class AdminFoodMgrService {
 		
 		// DAO에게 DB의 전체 글 개수조회 요청
 		int totalBoardVOCount = adminFoodMgrDAO.listCount(adminFoodListDTO);
-		System.out.println("---------------------- 전체 글 갯수 " + totalBoardVOCount);
+		//System.out.println("---------------------- 전체 글 갯수 " + totalBoardVOCount);
 		
 		if (totalBoardVOCount == 0) {//글의 개수가 0이면
 			//모델 : BoardVOListModel : 게시글 목록화면 VO 
@@ -124,7 +138,7 @@ public class AdminFoodMgrService {
 		
 		// DAO에게 DB Select 요청
 		List<FoodMgrVO> boardDTOList = adminFoodMgrDAO.selectSetAdminFoodList(adminFoodListDTO);
-		System.out.println("---------------------- DB에서 값 가져오기 성공 ");
+		//System.out.println("---------------------- DB에서 값 가져오기 성공 ");
 		
 		//BoardVOListModel 결과 모델을 생성
 		AdminFoodListDTO foodMgrVOList = new AdminFoodListDTO(boardDTOList, 
@@ -136,14 +150,13 @@ public class AdminFoodMgrService {
 		return foodMgrVOList;
 		
 	}
-	/**/
 	
 	
 	/**
 	 * 전체 페이지 계산(게시글 보기 설정값으로 계산)
-	 * @param pageCutCount
-	 * @param totalBoardVOCount
-	 * @return
+	 * @param int pageCutCount
+	 * @param int totalBoardVOCount
+	 * @return int
 	 */
 	private int calculateTotalPageCount(int pageCutCount, int totalBoardVOCount) {
 		if (totalBoardVOCount == 0) {
@@ -176,9 +189,9 @@ public class AdminFoodMgrService {
 	
 	/**
 	 * 음식 사진을 저장을 위한 세팅. 이미지 사진명 작업
-	 * @param adminFoodRegDTO
-	 * @param model
-	 * @return
+	 * @param AdminFoodRegDTO adminFoodRegDTO
+	 * @param Model model
+	 * @return AdminFoodRegDTO
 	 */
 	public AdminFoodRegDTO saveImagesSetting(AdminFoodRegDTO adminFoodRegDTO, Model model){
 		
@@ -188,11 +201,11 @@ public class AdminFoodMgrService {
 		MultipartFile f_imgname_4 = adminFoodRegDTO.getF_imgname_4();
 		MultipartFile f_imgname_5 = adminFoodRegDTO.getF_imgname_5();
 		
-		System.out.println(">>>>>>>>>>> f_imgname_1="+f_imgname_1.getOriginalFilename()+
+		/*System.out.println(">>>>>>>>>>> f_imgname_1="+f_imgname_1.getOriginalFilename()+
 				", f_imgname_2="+f_imgname_2.getOriginalFilename()+
 				", f_imgname_3="+f_imgname_3.getOriginalFilename()+
 				", f_imgname_4="+f_imgname_4.getOriginalFilename()+
-				", f_imgname_5="+f_imgname_5.getOriginalFilename());		
+				", f_imgname_5="+f_imgname_5.getOriginalFilename());*/		
 		
 		
 		
@@ -257,9 +270,9 @@ public class AdminFoodMgrService {
 	
 	/**
 	 * 음식 사진, 썸네일 사진을 저장
-	 * @param f_imgname
-	 * @param model
-	 * @return
+	 * @param MultipartFile f_imgname
+	 * @param Model model
+	 * @return String
 	 */
 	public String saveImages(MultipartFile f_imgname, Model model){
 		
@@ -304,7 +317,7 @@ public class AdminFoodMgrService {
 	
 	/**
 	 * DB에 음식데이터 저장
-	 * @param adminFoodRegDTO
+	 * @param AdminFoodRegDTO adminFoodRegDTO
 	 */
 	public void insertAdminFoodReg(AdminFoodRegDTO adminFoodRegDTO){
 		adminFoodMgrDAO.insertAdminFoodReg(adminFoodRegDTO);
@@ -313,7 +326,7 @@ public class AdminFoodMgrService {
 	
 	/**
 	 * DB에 음식데이터 수정
-	 * @param adminFoodRegDTO
+	 * @param AdminFoodRegDTO adminFoodRegDTO
 	 */
 	public void updateAdminFoodReg(AdminFoodRegDTO adminFoodRegDTO){
 		adminFoodMgrDAO.updateAdminFoodReg(adminFoodRegDTO);

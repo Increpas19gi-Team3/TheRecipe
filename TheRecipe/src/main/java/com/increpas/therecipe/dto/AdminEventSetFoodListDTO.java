@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.increpas.therecipe.vo.EventSetFoodVO;
 
 /**
- *  게시판용 DTO
+ * 음식 + 이벤트 설정관리용 DTO
  * @author 손가연
  *
  */
