@@ -45,6 +45,7 @@ hr{
 	float: left;
 	font-size: 16px;
 	color: #999;
+	border-bottom: 2px solid #fff;
 }
 .con_tabBox a.active{
 	color: #333;
