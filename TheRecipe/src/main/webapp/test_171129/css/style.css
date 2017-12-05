@@ -788,6 +788,12 @@ hr{
 	text-align: center;
 	color: #666;
 }
+.board .row .right_contnet table tbody tr.reply td{
+	height: 28px;
+	line-height: 28px;
+	background: #f5f5f5;
+	font-size: 12px;
+}
 .board .row .right_contnet table tbody tr td.text_left{
 	text-align: left;
 }

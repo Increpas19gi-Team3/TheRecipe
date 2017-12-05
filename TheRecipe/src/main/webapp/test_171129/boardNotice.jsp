@@ -67,6 +67,20 @@
 								2017.10.19
 							</td>
 						</tr>
+						<tr class="reply">
+							<td>
+								
+							</td>
+							<td class="text_left"> 
+								<span>└</span> 안녕하세요
+							</td>
+							<td>
+								관리자
+							</td>
+							<td>
+								2017.10.19
+							</td>
+						</tr>
 						<tr>
 							<td>
 								공지
