@@ -25,7 +25,6 @@ import com.increpas.therecipe.vo.EventVO;
 
 /**
  * 공지사항과 이벤트의 상세보기와 등록 Controller
- * 
  * @author 손대성
  *
  */
@@ -36,17 +35,16 @@ public class EventNoticeDetailViewController {
 	EventNoticeViewRegService ndvs;
 
 	/**
-	 * 공지사항 상세보기
-	 * 
+	 * 공지사항 상세보기	 
 	 * @param model
 	 * @param req
 	 * @param resp
-	 * @return
+	 * @return "NoticeDetailView"
 	 */
 	@RequestMapping(value = "/NoticeDetailView.do", method = RequestMethod.GET)
 	public String GET_NoticeDetailView(Model model, HttpServletRequest req, HttpServletResponse resp) {
 
-		System.out.println("1. '공시사항 상세페이지' 입니다.");
+		System.out.println("공시사항 상세페이지 입니다.");
 		int Ncode = Integer.parseInt(req.getParameter("e_evtcode"));
 		EventVO nVo = ndvs.getNoticeVODetail(Ncode);
 		model.addAttribute("nVo", nVo);
@@ -54,21 +52,27 @@ public class EventNoticeDetailViewController {
 	}
 
 	/**
-	 * 공지사항 등록
-	 * 
+	 * 공지사항 등록으로 들어감(GET)	  
 	 * @param model
-	 * @return
+	 * @return "noticeReg"
 	 */
 	@RequestMapping(value = "/NoticeReg.do", method = RequestMethod.GET)
 	public String GET_NoticeReg(Model model) {
-		System.out.println("1. 공시사항 리스트에서 등록버튼을 눌렀음 등록페이지로 넘어감");
+		System.out.println("공시사항 리스트에서 등록버튼을 눌렀음 등록페이지로 넘어감");
 		return "noticeReg";
 	}
 
+	/**
+	 * 공지사항 등록(POST)
+	 * @param erVo
+	 * @param errors
+	 * @param model
+	 * @return "redirect:NoticeList.do"
+	 */
 	@RequestMapping(value = "/NoticeReg.do", method = RequestMethod.POST)
 	public String POST_NoticeReg(@Valid @ModelAttribute("noticeCom") EventNoticeRegVO erVo, Errors errors, Model model) {
 
-		System.out.println("▶▶▶▶▶ EventNoticeDetailViewController ; NoticeReg.do ; POST ; ");
+		System.out.println("▶▶▶▶▶ EventNoticeDetailViewController ; NoticeReg.do ; POST");
 
 		MultipartFile file = erVo.getUpfile();
 
@@ -77,8 +81,7 @@ public class EventNoticeDetailViewController {
 		originalFilename = file.getOriginalFilename();
 		String systemFilename = UUID.randomUUID() + "_" + originalFilename;
 
-		if (!file.isEmpty()) {
-			// 업로드파일객체를 지정한 파일에 복사
+		if (!file.isEmpty()) {			
 			try {
 				file.transferTo(new File(path, systemFilename));
 				System.out.println("▶▶▶▶▶ "+ systemFilename + " 업로드완료.");
@@ -111,19 +114,18 @@ public class EventNoticeDetailViewController {
 		ndvs.insertWrtNoticeVO(erVo);
 
 		System.out.println("▶▶▶▶▶ 등록 마지막 단계");
-		// return "redirect:index.jsp";
+		
 		return "redirect:NoticeList.do";
 	}
 
 	// ===========================================이벤트===============================================================
-
+	
 	/**
-	 * 이벤트 상세보기
-	 * 
+	 * 이벤트 상세보기 페이지로 이동(GET)
 	 * @param model
 	 * @param req
 	 * @param resp
-	 * @return
+	 * @return "EventDetailView"
 	 */
 	@RequestMapping(value = "/EventDetailView.do", method = RequestMethod.GET)
 	public String GET_EventDetailView(Model model, HttpServletRequest req, HttpServletResponse resp) {
@@ -135,10 +137,9 @@ public class EventNoticeDetailViewController {
 		model.addAttribute("eVo", eVo);
 		return "EventDetailView";
 	}
-
+	
 	/**
-	 * 이벤트 등록
-	 * 
+	 * 이벤트 등록()
 	 * @param model
 	 * @return
 	 */
