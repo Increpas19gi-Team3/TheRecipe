@@ -102,176 +102,147 @@
 				<input type="hidden" name="GUBUN" value="${GUBUN }"> 
 				<input type="hidden" name="pageCutCount" value="${pageCutCount }">
 
-				<!-- 페이지 갯수 제한 -->
-				<table id="listGubun" style="border: none;">
-					<tr style="border: none;">
-						<td style="text-align: right; border: none;">
+				<div class="j_table">
+					<div class="top">
+						<!-- 페이지 갯수 제한 -->
+						<div class="pageLimitWrap">
 							<select name="pageCutCount" id="pageCutCount" onchange="change_pageCutCount();">
 								<c:choose>
 									<c:when test="${pageCutCount eq '5' }">
 										<option value="5" selected="selected">5개 보기</option>
 									</c:when>
-
 									<c:otherwise>
 										<option value="5">5개 보기</option>
 									</c:otherwise>
 								</c:choose>
-
 								<c:choose>
 									<c:when test="${pageCutCount eq '10' }">
 										<option value="10" selected="selected">10개 보기</option>
 									</c:when>
-
 									<c:otherwise>
 										<option value="10">10개 보기</option>
 									</c:otherwise>
 								</c:choose>
-
 								<c:choose>
 									<c:when test="${pageCutCount eq '20' }">
 										<option value="20" selected="selected">20개 보기</option>
 									</c:when>
-
 									<c:otherwise>
 										<option value="20">20개 보기</option>
 									</c:otherwise>
 								</c:choose>
 							</select>
-						</td>
-					</tr>
-				</table>
-
-				<table>
-					<thead>
-						<tr>
-							<th>이벤트 코드</th>
-							<th><c:choose>
-									<c:when test="${sortColumn eq 'e_nttilte'}">
-										<!-- 제목 정렬일때 -->
-										<c:choose>
-											<c:when test="${orderby eq 'ASC' }">
-												<a href="EventList.do?sortColumn=e_nttilte&orderby=DESC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제&nbsp;&nbsp;목 ▲</a>
-											</c:when>
-											<c:otherwise>
-												<a href="EventList.do?sortColumn=e_nttilte&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제&nbsp;&nbsp;목 ▼</a>
-											</c:otherwise>
-										</c:choose>
-									</c:when>
-
-									<c:otherwise>
-										<!-- 제목 정렬이 아닐 때 -->
-										<a href="EventList.do?sortColumn=e_nttilte&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제&nbsp;&nbsp;목 ▼</a>
-									</c:otherwise>
-								</c:choose>
-							</th>						
-
-							<th>								 
+						</div>
+						
+						<!-- 검색 처리 -->
+						<div class="searchWrap">
+							<select name="whereColumn" onchange="change_whereColumn()">
 								<c:choose>
-									<c:when test="${sortColumn eq 'e_ntdate'}">										
+									<c:when test="${not empty whereColumn }">
 										<c:choose>
-											<c:when test="${orderby eq 'ASC' }">
-												<a href="EventList.do?sortColumn=e_ntdate&orderby=DESC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▲</a>
+											<c:when test="${whereColumn eq 'ALL'}">
+												<option value="ALL" selected="selected">제목:내용</option>
+												<option value="TITLE">제목</option>
 											</c:when>
-											<c:otherwise>
-												<a href="EventList.do?sortColumn=e_ntdate&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▼</a>
-											</c:otherwise>
+											<c:when test="${whereColumn eq 'TITLE'}">
+												<option value="ALL">제목:내용</option>
+												<option value="TITLE" selected="selected">제목</option>
+											</c:when>
 										</c:choose>
 									</c:when>
-									
 									<c:otherwise>
-										<a href="EventList.do?sortColumn=e_ntdate&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▼</a>
+										<option value="ALL">전체검색</option>
+										<option value="TITLE">제목</option>
 									</c:otherwise>
 								</c:choose>
-							</th>
-							
-							<th>할인율</th>
-							<th>시작날짜</th>
-							<th>종료날짜</th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<c:forEach var="list" items="${eventList.listVO }">
+							</select>
+							<input type="text" name="word" value="${word }"> 
+							<input type="submit" value="검색">
+						</div>
+					</div>
+					<table>
+						<thead>
 							<tr>
-								<td>${list.e_evtcode }</td>
-								<td><a href="EventDetailView.do?e_evtcode=${list.e_evtcode}">${list.e_nttilte }</a></td>
-								<td><fmt:formatDate value="${list.e_ntdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>								
-								<td>${list.e_discount }</td>
-								<td><fmt:formatDate value="${list.e_startdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-								<td><fmt:formatDate value="${list.e_enddate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+								<th>이벤트 코드</th>
+								<th>
+									<c:choose>
+										<c:when test="${sortColumn eq 'e_nttilte'}">
+											<!-- 제목 정렬일때 -->
+											<c:choose>
+												<c:when test="${orderby eq 'ASC' }">
+													<a href="EventList.do?sortColumn=e_nttilte&orderby=DESC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제목 ▲</a>
+												</c:when>
+												<c:otherwise>
+													<a href="EventList.do?sortColumn=e_nttilte&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제목 ▼</a>
+												</c:otherwise>
+											</c:choose>
+										</c:when>
+	
+										<c:otherwise>
+											<!-- 제목 정렬이 아닐 때 -->
+											<a href="EventList.do?sortColumn=e_nttilte&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제목 ▼</a>
+										</c:otherwise>
+									</c:choose>
+								</th>
+								<th>								 
+									<c:choose>
+										<c:when test="${sortColumn eq 'e_ntdate'}">										
+											<c:choose>
+												<c:when test="${orderby eq 'ASC' }">
+													<a href="EventList.do?sortColumn=e_ntdate&orderby=DESC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▲</a>
+												</c:when>
+												<c:otherwise>
+													<a href="EventList.do?sortColumn=e_ntdate&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▼</a>
+												</c:otherwise>
+											</c:choose>
+										</c:when>
+										
+										<c:otherwise>
+											<a href="EventList.do?sortColumn=e_ntdate&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▼</a>
+										</c:otherwise>
+									</c:choose>
+								</th>
+								<th>할인율</th>
+								<th>시작날짜</th>
+								<th>종료날짜</th>
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-
-				<p /><p /><p />
-				
-				<c:if test="${beginPage > 10 }">
-					<div style="display: inline; color: black;">
-						<a href='<c:url value="EventList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${beginPage-1}"/>'>◀ 이전 </a>&nbsp;
+						</thead>
+						<tbody>
+							<c:forEach var="list" items="${eventList.listVO }">
+								<tr>
+									<td>${list.e_evtcode }</td>
+									<td><a href="EventDetailView.do?e_evtcode=${list.e_evtcode}">${list.e_nttilte }</a></td>
+									<td><fmt:formatDate value="${list.e_ntdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>								
+									<td>${list.e_discount }</td>
+									<td><fmt:formatDate value="${list.e_startdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+									<td><fmt:formatDate value="${list.e_enddate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					<div class="pagination_wrap">
+						<ul class="pagination">
+							<c:if test="${beginPage > 10 }">
+								<li><a href='<c:url value="EventList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${beginPage-1}"/>'><span>&laquo;</span></a>&nbsp;
+							</c:if>
+							<c:forEach var="pno" begin="${beginPage}" end="${endPage}">
+								<c:choose>
+									<c:when test="${pno == pn}">
+										<li><a href="#" class="active">${pno}</a></li>
+									</c:when>
+									<c:otherwise>
+										<li><a href='<c:url value="EventList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${pno}" />'>${pno}</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${endPage < listModel.totalPageCount}">
+								<li><a href='<c:url value="EventList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${endPage + 1}"/>'><span>&raquo;</span></a>
+							</c:if>
+						</ul>
+						<div class="btn_right">
+							<a href="boardReviewWrite.html">글쓰기</a>
+						</div>
 					</div>
-				</c:if>
-
-				<c:forEach var="pno" begin="${beginPage}" end="${endPage}">
-					<c:choose>
-						<c:when test="${pno == pn}">
-							<div style="display: inline; color: red;">
-								<strong>${pno}</strong>
-							</div>&nbsp;
-						</c:when>
-						<c:otherwise>
-							<div style="display: inline; color: black;">
-								<a href='<c:url value="EventList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${pno}" />'>${pno}</a>&nbsp;
-							</div>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-
-				<c:if test="${endPage < listModel.totalPageCount}">
-					<div style="display: inline; color: black;">
-						&nbsp; <a href='<c:url value="EventList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${endPage + 1}"/>'>다음 ▶ </a>
-					</div>
-				</c:if>
-
-				<p /><p />
-
-				<!-- 검색 처리 -->
-				<select name="whereColumn" onchange="change_whereColumn()">
-					<c:choose>
-						<c:when test="${not empty whereColumn }">
-							<c:choose>
-								<c:when test="${whereColumn eq 'ALL'}">
-									<option value="ALL" selected="selected">제목:내용</option>
-									<option value="TITLE">제목</option>
-								</c:when>
-								<c:when test="${whereColumn eq 'TITLE'}">
-									<option value="ALL">제목:내용</option>
-									<option value="TITLE" selected="selected">제목</option>
-								</c:when>
-							</c:choose>
-						</c:when>
-						<c:otherwise>
-							<option value="ALL">전체검색</option>
-							<option value="TITLE">제목</option>
-						</c:otherwise>
-					</c:choose>
-				</select> 
-				<input type="text" name="word" value="${word }"> 
-				<input type="submit" value="검색">
-
-				<div class="pagination_wrap">
-					<ul class="pagination">
-						<li><a href="#"> <span>&laquo;</span>
-						</a></li>
-						<li><a href="#" class="active">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#"> <span>&raquo;</span>
-						</a></li>
-					</ul>
-
 				</div>
 			</form>
 		</div>

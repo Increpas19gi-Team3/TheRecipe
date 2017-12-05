@@ -1319,3 +1319,40 @@ hr{
 	border: none;
 }
 
+
+
+
+
+.j_table .top{
+	margin-top: 20px;
+	overflow: hidden;
+}
+.j_table .top .pageLimitWrap{
+	float: left;
+}
+.j_table .top .pageLimitWrap select{
+	height: 28px;
+	padding: 0 5PX;
+	background: none;
+	border: none;
+	border: 1px solid #ccc;
+}
+.j_table .top .searchWrap{
+	float: right;
+	overflow: hidden;
+}
+.j_table .top .searchWrap select{
+	height: 28px;
+	margin-right: 10px;
+	padding: 0 5PX;
+	background: none;
+	border: none;
+	border: 1px solid #ccc;
+	float: left;
+}
+.j_table .top .searchWrap input{
+	height: 28px;
+	border: 1px solid #ccc;
+	background: none;
+	float: left;
+}
