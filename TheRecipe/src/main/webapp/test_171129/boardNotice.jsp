@@ -34,15 +34,17 @@
 						<span> > </span>
 						<a href="join.html" class="active">공지사항</a>
 					</div>
-				</h3>
+				</h3>	
+								
 				<div class="table_top">
 					<div class="searchBox">
 						<form action="">
 							<input type="text">
-							<button type="submit"></button>
+							<button type="submit">검색</button>
 						</form>
 					</div>
-				</div>
+				</div>				
+				
 				<table>
 					<thead>
 						<tr>

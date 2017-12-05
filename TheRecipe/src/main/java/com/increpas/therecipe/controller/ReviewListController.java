@@ -93,6 +93,6 @@ public class ReviewListController {
 			model.addAttribute("endPage", endPageNumber);
 		}
 		
-		return "/ReviewList";
+		return "/userReviewList";
 	}	
 }

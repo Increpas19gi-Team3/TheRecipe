@@ -84,8 +84,7 @@
 		</div>
 		
 		<div class="right_contnet">
-			<h3> 이벤트
-			
+			<h3> 이벤트			
 				<div class="page_locationBox">
 					<a href="http://localhost:8282/therecipe/test_171129/home.jsp">홈</a>
 					<span> > </span> 
@@ -97,10 +96,10 @@
 
 			<form action="NoticeList.do" method="post" name="listForm">
 
-				<input type="hidden" name="sortColumn" value="${sortColumn }">
-				<input type="hidden" name="orderby" value="${orderby }"> 
-				<input type="hidden" name="GUBUN" value="${GUBUN }"> 
-				<input type="hidden" name="pageCutCount" value="${pageCutCount }">
+			<input type="hidden" name="sortColumn" value="${sortColumn }">
+			<input type="hidden" name="orderby" value="${orderby }"> 
+			<input type="hidden" name="GUBUN" value="${GUBUN }"> 
+			<input type="hidden" name="pageCutCount" value="${pageCutCount }">
 
 				<div class="j_table">
 					<div class="top">
@@ -220,6 +219,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					
 					<div class="pagination_wrap">
 						<ul class="pagination">
 							<c:if test="${beginPage > 10 }">
