@@ -37,7 +37,7 @@
 		</where>
 	</select>
 	
-	<!-- 공지사항 리스트와 리스트 갯 수를 던져줌 -->
+	<!-- 후기(답변)와 리스트 갯 수를 던져 줌 -->
 	<select id="selectReviewSetList" parameterType="com.increpas.therecipe.dto.ReviewListDTO"
 		resultMap="ReviewResult">
 
@@ -57,11 +57,11 @@
 		<!-- WHERE -->
 		<where>			
 
-			<!-- 공지사항에 대한 제목과 내용만 검색 -->
+			<!-- 후기에 대한 제목과 내용만 검색 -->
 			<if test="whereColumn.equals('ALL')">
 				and (r_title LIKE '%' || #{word } || '%' or r_rvcontents LIKE '%' || #{word } || '%')
 			</if>
-			<!-- 공지사항에 대한 제목만 검색 -->
+			<!-- 후기에 대한 제목만 검색 -->
 			<if test="whereColumn.equals('TITLE')">
 				AND r_title LIKE '%' || #{word } || '%'
 			</if>
@@ -92,14 +92,26 @@
 	<update id="updateHitCount" parameterType="integer">
 		update TR_REVIEW set r_rvcount = r_rvcount+1
 		where r_rvcode=#{r_rvcode}
-	</update>
-	
+	</update>	
 	
 	<!-- 후기 상세보기 쿼리 -->
 	<select id="reviewWrtByNum" parameterType="map" resultMap="ReviewResult">
 		select * from tr_review where r_rvcode=#{r_rvcode}
 	</select>
 	
+	<!-- 후기 관리자 답변등록(하지만 수정임) -->
+	<update id="reviewAdminRegUp" parameterType="Review">
+		update tr_review set
+		r_admincmt=#{r_admincmt}, r_admindate=sysdate
+		where r_rvcode=#{r_rvcode}
+	</update>
+	
+	<!-- 후기 관리자 답변삭제(하지만 수정임) -->
+	<update id="reviewAdminDelete" parameterType="Review">		
+		update tr_review set
+		r_admincmt=null, r_admindate=null
+		where r_rvcode=#{r_rvcode}
+	</update>
 				
 	
 </mapper>

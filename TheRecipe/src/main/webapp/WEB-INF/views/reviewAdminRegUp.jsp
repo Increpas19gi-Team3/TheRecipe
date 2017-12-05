@@ -39,11 +39,16 @@
 				</div>
 			</h3>
 			
-			<form action="#" method="post">
+			<form action="reviewAdminRegUpdate.do" method="post">
 				<section>
 					<div id="#" align="center">
-						<h1>후기 상세보기</h1>
-						<br>
+						<h1>후기 관리자 답글 등록</h1>
+						<br>						
+							<fieldset>
+								<label for=""> 관리자댓글 </label> 
+								<input type="text" class="form-control" id="r_admincmt" name="r_admincmt">
+							</fieldset>	
+						
 							<fieldset>
 								<label for=""> 후기 코드 </label> 
 								<input type="text" class="form-control" id="r_rvcode" name="r_rvcode" readonly="readonly" value="${rVo.r_rvcode}">
@@ -89,26 +94,10 @@
 								<label for=""> 글등록시간 </label> 
 								<input type="text" class="form-control" id="r_rvdate" name="r_rvdate" readonly="readonly" 
 									value="<fmt:formatDate value="${rVo.r_rvdate}" pattern="yyyy-MM-dd HH:mm:ss" />">
-							</fieldset>							
-							
-							<c:if test="${not empty rVo.r_admincmt}">
-								<fieldset> 
-									<label for=""> 관리자댓글 </label> 
-									<input type="text" class="form-control" id="r_admincmt" name="r_admincmt" readonly="readonly" value="${rVo.r_admincmt}">
-								</fieldset>
-							
-								<fieldset>
-									<label for=""> 관리자댓글시간 </label> 
-									<input type="text" class="form-control" id="r_admindate" name="r_admindate" readonly="readonly" 
-										value="<fmt:formatDate value="${rVo.r_admindate}" pattern="yyyy-MM-dd HH:mm:ss" />">
-								</fieldset>													
-							</c:if>
-							
-						<div class="review_update">											
-							<input type="button" value="후기 답변 등록(수정)" onclick="location.href='reviewAdminRegUpdate.do?r_rvcode=${rVo.r_rvcode}'">							
-							<c:if test="${not empty rVo.r_admincmt}">
-								<input type="button" value="후기 답변 삭제" onclick="location.href='reviewAdminDelete.do?r_rvcode=${rVo.r_rvcode}'">
-							</c:if>								
+							</fieldset>												
+								
+						<div class="review_update">						
+							<input type="submit" value="등록">											
 						</div>						
 					</div>
 				</section>
