@@ -57,10 +57,10 @@
 										님</a></li>
 								<li class="nav-item"><a class="nav-link" href="logout.do">로그아웃</a>
 								</li>
-								<li class="dropdown_wrap"><a href=""
+								<li class="dropdown_wrap"><a href="mypageInfo.do"
 									class="dropdown_select">마이페이지</a>
 									<ul class="dropdown_itemWrap">
-										<li><a href="">주문현황</a></li>
+										<li><a href="myOrderList.do">주문현황</a></li>
 										<li><a href="">1:1 문의</a></li>
 										<li><a href="">교환/반품</a></li>
 										<li><a href="">쿠폰함</a></li>

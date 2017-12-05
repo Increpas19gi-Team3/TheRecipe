@@ -8,9 +8,9 @@
 			<div class="left_tab">
 				<h2>고객센터</h2>
 				<ul>
-					<li class="active"><a href="myPage.html">내정보관리</a></li>
-					<li><a href="myorder.html">주문 조회</a></li>
-					<li><a href="myWrite.html">내가 쓴 글</a></li>
+					<li class="active"><a href="">내정보관리</a></li>
+					<li><a href="myOrderList.do">주문 조회</a></li>
+					<li><a href="#">내가 쓴 글</a></li>
 				</ul>
 				<div class="service_info">
 					<h4>배민찬 고객센터</h4>
@@ -25,11 +25,11 @@
 				<h3>
 					내정보관리
 					<div class="page_locationBox">
-						<a href="home.html">홈</a>
+						<a href="home.do">홈</a>
 						<span> > </span>
-						<a href="join.html">마이페이지</a>
+						<a href="mypageInfo.do">마이페이지</a>
 						<span> > </span>
-						<a href="join.html" class="active">내정보관리</a>
+						<a href="mypageInfo.do" class="active">내정보관리</a>
 					</div>
 				</h3>
 				<form:form action="mypageupdate.do" method="post" commandName="memberup" >

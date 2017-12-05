@@ -3,6 +3,19 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 
+<script>
+
+function check() {
+	if(!confirm('주문하시겠습니까')){ 
+		
+		return false;
+	}else{
+		location.href='orderWrite.do';
+	}
+	
+}
+
+</script>
     
 <jsp:include page="header.jsp" />
 
@@ -12,7 +25,7 @@
 				<h3>
 					결제하기
 				</h3>
-				<form:form action="orderWrite.do." method="post" commandName="orderup" >
+				<form:form action="orderWrite.do" method="post" commandName="orderup" onsubmit="return check()">
 				<!-- 상품코드 -->
                 			<input type="hidden" name="f_fdcode" value="${f_fdcode}">
                 <!-- 제품명 -->			
@@ -41,7 +54,7 @@
 								</a>
 							</td>
 							<td>
-								<input id="buy_cnt" name="o_amount" type="text" class="result_input"  value="${o_amount}" readonly>
+								<input id="o_amount" name="o_amount" type="text" class="result_input"  value="${o_amount}" readonly>
 							</td>
 							<td>
 								<input class="text_center" id="price" type="text" name="o_buyprice"  value="${o_buyprice}" readonly><span class="asd">원</span>
@@ -56,14 +69,14 @@
 					<h3>배송지 정보</h3>
 					<ul>
 						<li class="recipient">
-							<p><span>수령인</span> <input type="text" value="" id="m_name" name="m_name" placeholder="" required="" ></p>
-							<p><span>우편번호</span> <input type="text" value="" id="m_post" name="m_post" placeholder="" required=""></p>
-							<p><span>주소</span> <input type="text" value="" id="m_addr" name="m_addr" placeholder="" required="" class="address_input"></p>
+							<p><span>수령인</span> <input type="text" value="" id="o_reciever" name="o_reciever" placeholder="" required="" ></p>
+							<p><span>우편번호</span> <input type="text" value="" id="o_dvypost" name="o_dvypost" placeholder="" required=""></p>
+							<p><span>주소</span> <input type="text" value="" id="o_dvyaddr" name="o_dvyaddr" placeholder="" required="" class="address_input"></p>
 						</li>
 					</ul>
 				</div>
 				<div class="btn_submit">
-					<input type="submit" value="결제하기" />
+					<input type="submit" value = "결제하기" />
 					<a href="#" onClick="history.back(); return false;" class="btn_back">취소</a>
 				</div>
 				

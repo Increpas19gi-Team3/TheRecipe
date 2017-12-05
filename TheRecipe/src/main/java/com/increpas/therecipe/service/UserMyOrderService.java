@@ -8,10 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.increpas.therecipe.dao.UserMyOrderDAO;
-import com.increpas.therecipe.vo.BasketVO;
+import com.increpas.therecipe.vo.MyOrderVO;
+import com.increpas.therecipe.vo.OrderVO;
 
 /**
- *주문조회 후기등록 서비스
+ *주문조회 서비스
  * 
  * @author 박호진
  *
@@ -22,11 +23,18 @@ public class UserMyOrderService {
 	
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
-/*	@Autowired
+	@Autowired
 	UserMyOrderDAO userMyOrderDAO;
-	public List<BasketVO> findTitle(String f_fdcode){
-		return userMyOrderDAO.findTitle(f_fdcode);
+	
+	public void insertOrder(OrderVO odVo) {
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>"+odVo.toString());
+		userMyOrderDAO.insertOrder(odVo);
 		
-	};*/
+	}
+
+	public List<MyOrderVO> selectMyOrder(String m_userid) {	
+		return userMyOrderDAO.selectMyOrder(m_userid); 
+	}
+
 
 }

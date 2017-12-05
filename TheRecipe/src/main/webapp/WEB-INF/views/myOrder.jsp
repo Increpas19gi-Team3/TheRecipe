@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
     
     
 <jsp:include page="header.jsp" />
@@ -10,9 +10,9 @@
 			<div class="left_tab">
 				<h2>고객센터</h2>
 				<ul>
-					<li><a href="http://localhost:8282/therecipe/test_171129/myPage.jsp">내정보관리</a></li>
-					<li class="active"><a href="http://localhost:8282/therecipe/test_171129/myOrder.jsp">주문 조회</a></li>
-					<li><a href="http://localhost:8282/therecipe/test_171129/myWrite.jsp">내가 쓴 글</a></li>
+					<li><a href="mypageInfo.do">내정보관리</a></li>
+					<li class="active"><a href="myOrderList.do">주문 조회</a></li>
+					<li><a href="#">내가 쓴 글</a></li>
 				</ul>
 				<div class="service_info">
 					<h4>배민찬 고객센터</h4>
@@ -27,11 +27,11 @@
 				<h3>
 					주문조회
 					<div class="page_locationBox">
-						<a href="http://localhost:8282/therecipe/test_171129/home.jsp">홈</a>
+						<a href="home.do">홈</a>
 						<span> > </span>
-						<a href="http://localhost:8282/therecipe/test_171129/myPage.jsp">마이페이지</a>
+						<a href="mypageInfo.do">마이페이지</a>
 						<span> > </span>
-						<a href="http://localhost:8282/therecipe/test_171129/myOrder.jsp" class="active">주문조회</a>
+						<a href="" class="active">주문조회</a>
 					</div>
 				</h3>
 				<table>
@@ -44,38 +44,24 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach var="list" items="${list}">
 						<tr>
 							<td>
-								AB12
-							</td>
-							<td class="text_left"> 
-								<a href="myorderDetail.html">
-									돼지고기 김치찌개 <span>외 1개</span>
+							<a href="myOrder_detail">
+								${list.o_orderid}
 								</a>
 							</td>
-							<td>
-								조혁래
-							</td>
-							<td>
-								2017.10.19
-							</td>
-						</tr>
-						<tr>
-							<td>
-								AB13
-							</td>
 							<td class="text_left"> 
-								<a href="#">
-									소고기 된장찌개
-								</a>
+									${list.f_foodname}
 							</td>
 							<td>
-								한범석
+								${list.o_reciever}
 							</td>
 							<td>
-								2017.10.19
+								${list.	o_orderdate}
 							</td>
 						</tr>
+					</c:forEach>
 					</tbody>
 				</table>
 				<div class="pagination_wrap">

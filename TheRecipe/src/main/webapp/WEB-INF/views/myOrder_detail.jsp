@@ -5,14 +5,14 @@
     
 <jsp:include page="header.jsp" />
 
-	<div class="container myPage board">
+	<div class="container myOrderDetail board">
 		<div class="row">
 			<div class="left_tab">
 				<h2>고객센터</h2>
 				<ul>
-					<li><a href="http://localhost:8282/therecipe/test_171129/myPage.jsp">내정보관리</a></li>
-					<li class="active"><a href="http://localhost:8282/therecipe/test_171129/myOrder.jsp">주문 조회</a></li>
-					<li><a href="http://localhost:8282/therecipe/test_171129/myWrite.jsp">내가 쓴 글</a></li>
+					<li><a href="mypageInfo.do">내정보관리</a></li>
+					<li class="active"><a href="">주문 조회</a></li>
+					<li><a href="#">내가 쓴 글</a></li>
 				</ul>
 				<div class="service_info">
 					<h4>배민찬 고객센터</h4>
@@ -25,77 +25,88 @@
 			</div>
 			<div class="right_contnet">
 				<h3>
-					주문상세조회
+					주문상세정보
 					<div class="page_locationBox">
-						<a href="http://localhost:8282/therecipe/test_171129/home.jsp">홈</a>
+						<a href="home.do">홈</a>
 						<span> > </span>
-						<a href="http://localhost:8282/therecipe/test_171129/myPage.jsp">마이페이지</a>
+						<a href="mypageInfo.do">마이페이지</a>
 						<span> > </span>
-						<a href="http://localhost:8282/therecipe/test_171129/myOrder.jsp">주문조회</a>
-						<span> > </span>
-						<a href="http://localhost:8282/therecipe/test_171129/myOrder_detail.jsp" class="active">주문상세조회</a>
+						<a href="" class="active">주문조회</a>
 					</div>
 				</h3>
 				<table>
 					<thead>
 						<tr>
-							<th>주문코드</th>
+							<th>NO</th>
 							<th>상품명</th>
-							<th>구매자</th>
-							<th>주문일</th>
+							<th>수량</th>
+							<th>금액</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td>
-								AB12
+								1
 							</td>
 							<td class="text_left"> 
-								<a href="myorderDetail.html">
-									돼지고기 김치찌개 <span>외 1개</span>
+								<a href="#">
+									<img src="images/con1_1.jpg" alt="">
+									돼지고기 김치찌개
 								</a>
 							</td>
 							<td>
-								조혁래
+								1
 							</td>
 							<td>
-								2017.10.19
+								15,800원
 							</td>
 						</tr>
 						<tr>
 							<td>
-								AB13
+								2
 							</td>
 							<td class="text_left"> 
 								<a href="#">
+									<img src="images/con1_2.jpg" alt="">
 									소고기 된장찌개
 								</a>
 							</td>
 							<td>
-								한범석
+								2
 							</td>
 							<td>
-								2017.10.19
+								32,200원
 							</td>
 						</tr>
 					</tbody>
 				</table>
-				<div class="pagination_wrap">
-					<ul class="pagination">
+				<div class="deliver_info">
+					<h3>결제 정보</h3>
+					<ul>
 						<li>
-							<a href="#">
-								<span>&laquo;</span>
-							</a>
+							<p><span>상품금액</span> 129,500원</p>
+							<p><span>배송비</span> 2,500원</p>
 						</li>
-						<li><a href="#" class="active">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
+						<li class="order_info">
+							<p class="order_name">결제 금액</p>
+							<p class="order_price">132,000원</p>
+						</li>
+					</ul>
+				</div>
+				<div class="deliver_info">
+					<h3>배송지 정보</h3>
+					<ul>
 						<li>
-							<a href="#">
-								<span>&raquo;</span>
-							</a>
+							<p><span>수령인</span> 조혁래</p>
+							<p><span>연락처</span> 010-7460-3737</p>
+							<p><span>배송지</span> <b>(85795)</b> 서울특별시 관악구 신림동 1665-6 스마트빌 303호</p>
+							<p><span>배송매모</span> 부재시 현관문앞에 놔주세요</p>
+						</li>
+						<li class="order_info">
+							<p class="order_name">주문자 정보</p>
+							<p>한범석</p>
+							<p>010-7460-3838</p>
+							<p>johr@gmail.com</p>
 						</li>
 					</ul>
 				</div>

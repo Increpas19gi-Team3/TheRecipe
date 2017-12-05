@@ -9,9 +9,9 @@
 			<h3>
 				회원가입
 				<div class="page_locationBox">
-					<a href="http://localhost:8282/therecipe/test_171129/home.jsp">홈</a>
+					<a href="home.do">홈</a>
 					<span> > </span>
-					<a href="join.html" class="active">회원가입</a>
+					<a href="" class="active">회원가입</a>
 				</div>
 			</h3>
 			<form:form action="joinReg.do " method="post" commandName="memberjoin">
