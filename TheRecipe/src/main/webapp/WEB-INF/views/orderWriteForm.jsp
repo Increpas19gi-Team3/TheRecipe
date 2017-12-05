@@ -37,14 +37,18 @@
 						<a href="http://localhost:8282/therecipe/test_171129/myOrder_detail.jsp" class="active">주문상세조회</a>
 					</div>
 				</h3>
-				<form:form action="mypageupdate.do" method="post" commandName="memberup" >
+				<form:form action="orderWrite.do." method="post" commandName="orderup" >
 				<!-- 상품코드 -->
                 			<input type="hidden" name="f_fdcode" value="${f_fdcode}">
+                <!-- 제품명 -->			
+                			<input type="hidden" name="title" value="${bask.f_foodname}">
+				<!-- 썸네일 -->			
+							<input type="hidden" name="thumname" value="${bask.f_thumname}">
 	                    		
 				<table>
 					<thead>
 						<tr>
-						<th>이미</th>
+							<th>이미지</th>
 							<th>상품명</th>
 							<th>수량</th>
 							<th>주문가격</th>

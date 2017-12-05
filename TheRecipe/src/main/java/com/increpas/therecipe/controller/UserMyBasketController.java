@@ -100,7 +100,7 @@ public class UserMyBasketController {
 		}
 		
 		@RequestMapping(value = "/orderWriteForm.do", method = { RequestMethod.GET, RequestMethod.POST })
-		public String orderWriteForm(HttpServletRequest request, UserMyBasketVO bVo, Model model) {
+		public String orderWriteForm(HttpServletRequest request,  Model model) {
 			
 			String f_fdcode =  request.getParameter("f_fdcode");
 			int o_buyprice = Integer.parseInt(request.getParameter("o_buyprice"));
