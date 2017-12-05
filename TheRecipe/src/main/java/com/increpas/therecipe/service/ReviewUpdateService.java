@@ -34,6 +34,11 @@ public class ReviewUpdateService {
 		System.out.println("2. ▶▶▶▶ ReviewUpdateService : ReviewDeleteS >> 삭제");		
 		ruDAO.ReviewDeleteDAO(Rcode);
 	}
+
+	public void reviewWrite(ReviewVO rVo) {
+		ruDAO.reviewWrite(rVo);
+		
+	}
 	
 	
 	

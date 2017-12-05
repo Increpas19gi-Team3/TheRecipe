@@ -112,6 +112,16 @@
 		r_admincmt=null, r_admindate=null
 		where r_rvcode=#{r_rvcode}
 	</update>
+	
+	<!-- 유저 후기 쓰기  -->
+	<insert id="reviewWrite" parameterType="Review">
+		insert into tr_review values(
+		 tr_review_seq.nextval,#{m_userid},#{f_fdcode},#{r_title},#{r_rvcontents},
+		 #{r_grade},#{r_rvimgname},0,sysdate,null,null
+		)
+	
+	</insert>
+	
 				
 	
 </mapper>

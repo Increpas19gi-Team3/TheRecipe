@@ -142,7 +142,7 @@
 									<td colspan="4" class="text_left">
 										<p class="user_tx">
 										<c:if test="${not empty review.r_rvimgname}">
-											<img src="images/${review.r_rvimgname}" alt="">
+											<img src="/images/${review.r_rvimgname}" alt="">
 										</c:if>
 										${review.r_rvcontents}</p>
 										<c:if test="${not empty review.r_admincmt}">

@@ -2,16 +2,20 @@ package com.increpas.therecipe.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.increpas.therecipe.service.ReviewListService;
 import com.increpas.therecipe.service.ReviewUpdateService;
 import com.increpas.therecipe.vo.EventNoticeVO;
+import com.increpas.therecipe.vo.OrderVO;
 import com.increpas.therecipe.vo.ReviewVO;
 
 /**
@@ -84,5 +88,21 @@ public class ReviewDetailViewController {
 		ruService.ReviewDeleteS(Rcode);		
 		return "redirect:ReviewList.do";
 	}	
+	
+	@RequestMapping(value = "/reviewWriteForm.do", method = RequestMethod.GET)
+	public String reviewWriteForm(@RequestParam("f_fdcode") String f_fdcode , Model model) {
+		model.addAttribute("f_fdcode", f_fdcode);
+		return "reviewWrite";
+	}
+	
+	@RequestMapping(value = "/reviewWrite.do", method = RequestMethod.POST )
+	public String reviewWrite(@ModelAttribute("reviewWr") ReviewVO rVo ,@RequestParam("f_fdcode") String f_fdcode ,HttpSession session) {
+		rVo.setM_userid((String)session.getAttribute("m_userid"));
+		rVo.setF_fdcode(f_fdcode);
+		System.out.println("KJH TEST >>>>>>>>>>>>>>> "+ rVo.getR_rvimgname());
+		ruService.reviewWrite(rVo);
+	   
+		return "redirect:home.do";
+	}
 	
 }

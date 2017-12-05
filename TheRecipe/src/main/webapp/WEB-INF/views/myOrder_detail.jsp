@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <jsp:include page="header.jsp" />
 
@@ -41,6 +41,7 @@
 							<th>상품명</th>
 							<th>수량</th>
 							<th>금액</th>
+							<th>후기등록</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -60,6 +61,9 @@
 							</td>
 							<td>
 								${moVo.o_buyprice}
+							</td>
+							<td>
+								<a href="reviewWriteForm.do?f_fdcode=${moVo.f_fdcode}" type="button">후기등록</a>
 							</td>
 						</tr>
 						
