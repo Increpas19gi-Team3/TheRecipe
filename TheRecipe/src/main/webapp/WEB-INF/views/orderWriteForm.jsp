@@ -6,36 +6,11 @@
     
 <jsp:include page="header.jsp" />
 
-	<div class="container myPage board">
+	<div class="container myOrderDetail order board">
 		<div class="row">
-			<div class="left_tab">
-				<h2>고객센터</h2>
-				<ul>
-					<li><a href="http://localhost:8282/therecipe/test_171129/myPage.jsp">내정보관리</a></li>
-					<li class="active"><a href="http://localhost:8282/therecipe/test_171129/myOrder.jsp">주문 조회</a></li>
-					<li><a href="http://localhost:8282/therecipe/test_171129/myWrite.jsp">내가 쓴 글</a></li>
-				</ul>
-				<div class="service_info">
-					<h4>배민찬 고객센터</h4>
-					<h3>1899-2468</h3>
-					<hr>
-					<p>평일 06:30 ~ 18:00</p>
-					<p>주말 06:30 ~ 15:00</p>
-					<p>공휴일 휴무</p>
-				</div>
-			</div>
 			<div class="right_contnet">
 				<h3>
-					주문상세조회
-					<div class="page_locationBox">
-						<a href="http://localhost:8282/therecipe/test_171129/home.jsp">홈</a>
-						<span> > </span>
-						<a href="http://localhost:8282/therecipe/test_171129/myPage.jsp">마이페이지</a>
-						<span> > </span>
-						<a href="http://localhost:8282/therecipe/test_171129/myOrder.jsp">주문조회</a>
-						<span> > </span>
-						<a href="http://localhost:8282/therecipe/test_171129/myOrder_detail.jsp" class="active">주문상세조회</a>
-					</div>
+					결제하기
 				</h3>
 				<form:form action="orderWrite.do." method="post" commandName="orderup" >
 				<!-- 상품코드 -->
@@ -48,72 +23,102 @@
 				<table>
 					<thead>
 						<tr>
-							<th>이미지</th>
+							<th>NO</th>
 							<th>상품명</th>
 							<th>수량</th>
-							<th>주문가격</th>
+							<th>결제금액</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+							<tr>
+							<td>
+								1
+							</td>
+							<td class="text_left"> 
+								<a href="#">
+									<img src="/images/${thumname}" alt="">
+									${title}
+								</a>
+							</td>
+							<td>
+								<input id="buy_cnt" name="o_amount" type="text" class="result_input"  value="${o_amount}" readonly>
+							</td>
+							<td>
+								<input class="text_center" id="price" type="text" name="o_buyprice"  value="${o_buyprice}" readonly><span class="asd">원</span>
+							</td>
+						</tr>
+							
 						
-                			
-	                    		<!-- 이미지경로 -->
-	                    		<td class="img_width"><img src="/images/${thumname}" alt=" 이미지"> </td>
-	                    		<!-- 상품명 -->
-	                    		<td class="text_left">${title}</td>
-	                    		<td class="quantity_wrap">
-									<div class="quantity">
-										<!-- 수량 -->
-										<input id="buy_cnt" name="o_amount" type="text" class="result_input"  value="${o_amount}" readonly>
-									
-									</div>
-	                    		</td>
-	                    		<!-- 주문가격 -->
-	                    		<td><input class="text_center" id="price" type="text" name="o_buyprice"  value="${o_buyprice}" readonly><span class="asd">원</span></td>
-	                    	</tr>
-	                   		</tbody>
-							</table>
+                 	</tbody>
+				</table>
 				
-					<fieldset>
-						<label for="">이름</label>
-						<input type="text" value="" id="m_name" name="m_name" placeholder="이름" required="" >
-					</fieldset>
-					<fieldset>
-						<label for="">우편번호</label>
-						<input type="text" value="" id="m_post" name="m_post" placeholder="우편번호" required="">
-					</fieldset>
-					<fieldset>
-						<label for="">주소</label>
-						<input type="text" value="" id="m_addr" name="m_addr" placeholder="주소" required="" class="address_input">
-					</fieldset>
-				
-					<fieldset class="btn_submitWrap">
-						<input type="submit" value="저장" class="btn_submit">
-						<a href="#" onClick="history.back(); return false;" class="btn_back">취소</a>
-					</fieldset>
-					
-				</form:form>
-		<div class="pagination_wrap">
-					<ul class="pagination">
-						<li>
-							<a href="#">
-								<span>&laquo;</span>
-							</a>
-						</li>
-						<li><a href="#" class="active">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li>
-							<a href="#">
-								<span>&raquo;</span>
-							</a>
+				<div class="deliver_info">
+					<h3>배송지 정보</h3>
+					<ul>
+						<li class="recipient">
+							<p><span>수령인</span> <input type="text" value="" id="m_name" name="m_name" placeholder="" required="" ></p>
+							<p><span>우편번호</span> <input type="text" value="" id="m_post" name="m_post" placeholder="" required=""></p>
+							<p><span>주소</span> <input type="text" value="" id="m_addr" name="m_addr" placeholder="" required="" class="address_input"></p>
 						</li>
 					</ul>
 				</div>
+				<div class="btn_submit">
+					<input type="submit" value="결제하기" />
+					<a href="#" onClick="history.back(); return false;" class="btn_back">취소</a>
+				</div>
+				
+				
+				</form:form>
 			</div>
 		</div>
 	</div>
+	
+	<style>
+		.order .row .right_contnet{
+			width: 100%;
+		}
+		.order .row .right_contnet .deliver_info ul li.recipient p:nth-child(3) input{
+			width: 600px;
+		}
+		.order .row .right_contnet .btn_submit{
+			margin-bottom: 50px;
+			text-align: center;
+		}
+		.order .row .right_contnet .btn_submit input{
+			width: 300px;
+			margin-bottom: 30px;
+			padding: 20px 0;
+			font-size: 20px;
+			color: #fff;
+			border: none;
+			background: #2ac1bc;
+		}
+		.order .row .right_contnet .btn_submit a{
+			width: 300px;
+			margin: 0 auto;
+			padding: 20px 0;
+			font-size: 20px;
+			border: 1px solid #ccc;
+		}
+		.order .row .right_contnet table tbody tr td input{
+			border: none;
+			text-align: center;
+		}
+		.order .right_contnet .deliver_info ul li:last-child{
+			float: left;
+		}
+		.order .right_contnet .deliver_info ul li p{
+			padding: 10px 0;
+		}
+		.order .right_contnet .deliver_info ul li p span{
+			background: none;
+		}
+		.order .right_contnet .deliver_info ul li p input{
+			line-height: 32px;
+			border: 1px solid #e1e1e1;
+		}
+		
+		
+		
+	</style>
 <jsp:include page="footer.jsp" />
