@@ -27,7 +27,7 @@
 		var word = '${word }';
 		var pageCutCount = '${pageCutCount }';
 
-		location.href = 'NoticeList.do?sortColumn=' + sortColumn + '&orderby='
+		location.href = 'userNoticeList.do?sortColumn=' + sortColumn + '&orderby='
 				+ orderby + '&whereColumn=' + whereColumn + '&word=' + word
 				+ '&GUBUN=' + GUBUN + '&pageCutCount=' + pageCutCount;
 	}
@@ -40,7 +40,7 @@
 		var word = '${word }';
 		var GUBUN = '${GUBUN }';
 
-		location.href = 'NoticeList.do?sortColumn=' + sortColumn + '&orderby='
+		location.href = 'userNoticeList.do?sortColumn=' + sortColumn + '&orderby='
 				+ orderby + '&whereColumn=' + whereColumn + '&word=' + word
 				+ '&GUBUN=' + GUBUN + '&pageCutCount=' + pageCutCount;
 	}
@@ -95,7 +95,7 @@
 				</div>
 			</h3>
 
-			<form action="NoticeList.do" method="post" name="listForm">
+			<form action="userNoticeList.do" method="post" name="listForm">
 				<div class="table_top">
 					<div class="searchBox">
 						<!-- 검색 처리 -->
@@ -181,17 +181,17 @@
 									<!-- 제목 정렬일때 -->
 									<c:choose>
 										<c:when test="${orderby eq 'ASC' }">
-											<a href="NoticeList.do?sortColumn=e_nttilte&orderby=DESC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제&nbsp;&nbsp;목 ▲</a>
+											<a href="userNoticeList.do?sortColumn=e_nttilte&orderby=DESC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제&nbsp;&nbsp;목 ▲</a>
 										</c:when>
 										<c:otherwise>
-											<a href="NoticeList.do?sortColumn=e_nttilte&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제&nbsp;&nbsp;목 ▼</a>
+											<a href="userNoticeList.do?sortColumn=e_nttilte&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제&nbsp;&nbsp;목 ▼</a>
 										</c:otherwise>
 									</c:choose>
 								</c:when>
 
 								<c:otherwise>
 									<!-- 제목 정렬이 아닐 때 -->
-									<a href="NoticeList.do?sortColumn=e_nttilte&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제&nbsp;&nbsp;목 ▼</a>
+									<a href="userNoticeList.do?sortColumn=e_nttilte&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제&nbsp;&nbsp;목 ▼</a>
 								</c:otherwise>
 							</c:choose>
 						</th>
@@ -202,16 +202,16 @@
 									<!-- 작성일 일때 -->
 									<c:choose>
 										<c:when test="${orderby eq 'ASC' }">
-											<a href="NoticeList.do?sortColumn=e_ntdate&orderby=DESC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▲</a>
+											<a href="userNoticeList.do?sortColumn=e_ntdate&orderby=DESC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▲</a>
 										</c:when>
 									<c:otherwise>
-										<a href="NoticeList.do?sortColumn=e_ntdate&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▼</a>
+										<a href="userNoticeList.do?sortColumn=e_ntdate&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▼</a>
 											</c:otherwise>
 										</c:choose>
 									</c:when>
 									<c:otherwise>
 										<!-- 작성일 정렬이 아닐 때 -->
-										<a href="NoticeList.do?sortColumn=e_ntdate&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▼</a>
+										<a href="userNoticeList.do?sortColumn=e_ntdate&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▼</a>
 									</c:otherwise>
 							</c:choose>
 						</th>
@@ -225,7 +225,7 @@
 							<tr>
 								<td>${list.e_evtcode }</td>
 								<td>
-									<a href="NoticeDetailView.do?e_evtcode=${list.e_evtcode}">${list.e_nttilte }</a>
+									<a href="userNoticeDetailView.do?e_evtcode=${list.e_evtcode}">${list.e_nttilte }</a>
 								</td>
 								<td>
 									<fmt:formatDate value="${list.e_ntdate }" pattern="yyyy-MM-dd HH:mm:ss" />
@@ -244,7 +244,7 @@
 				<div class="pagination_wrap">
 					<ul class="pagination">						
 						<c:if test="${beginPage > 10 }">
-							<li><a href='<c:url value="NoticeList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${beginPage-1}"/>'><span>&laquo;</span></a>&nbsp;
+							<li><a href='<c:url value="userNoticeList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${beginPage-1}"/>'><span>&laquo;</span></a>&nbsp;
 						</c:if>
 							
 						<c:forEach var="pno" begin="${beginPage}" end="${endPage}">
@@ -253,19 +253,19 @@
 									<li><a href="#" class="active">${pno}</a></li>
 								</c:when>
 								<c:otherwise>
-									<li><a href='<c:url value="NoticeList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${pno}" />'>${pno}</a></li>
+									<li><a href='<c:url value="userNoticeList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${pno}" />'>${pno}</a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 							
 						<c:if test="${endPage < listModel.totalPageCount}">
-							<li><a href='<c:url value="NoticeList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${endPage + 1}"/>'><span>&raquo;</span></a>
+							<li><a href='<c:url value="userNoticeList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${endPage + 1}"/>'><span>&raquo;</span></a>
 						</c:if>
 					</ul>
 						
-					<div class="btn_right">
+					<!-- <div class="btn_right">
 						<a href="boardReviewWrite.html">글쓰기</a>
-					</div>						
+					</div> -->						
 				</div>				
 			</form>
 		</div>

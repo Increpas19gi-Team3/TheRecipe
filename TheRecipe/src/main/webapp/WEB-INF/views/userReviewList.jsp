@@ -252,7 +252,7 @@
 					</c:if>
 				</ul>
 				<div class="btn_right">
-					<a href="boardReviewWrite.html">글쓰기</a>
+					<a href="boardReviewWrite.html">관리자 답변 등록</a>
 				</div>
 			</div>
 			</form>
