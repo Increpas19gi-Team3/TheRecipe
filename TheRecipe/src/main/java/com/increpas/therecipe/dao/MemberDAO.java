@@ -1,5 +1,8 @@
 package com.increpas.therecipe.dao;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -62,9 +65,20 @@ public class MemberDAO {
 	 * 회원탈퇴 동작 수행
 	 * @param m_userid 아이디
 	 */
-	  public  void deleteId(String m_userid) {
-	 logger.info(m_userid.toString());
-	 sqlSessionTemplate.delete("member_ns.deleteMember", m_userid);
+	  public void deleteId(String m_userid, String m_pw) {
+		  Map<String,String> map = new HashMap<String,String>();
+		  map.put("m_userid", m_userid);
+		  map.put("m_pw", m_pw);
+		  
+	 sqlSessionTemplate.delete("member_ns.deleteMember", map);
 	 }
-	
+	  /**
+	   * 회원탈퇴 비밀번호 확인 동작 수행
+	   * @param m_userid 아이디
+	   * @return m_userid
+	   */
+	  public String selectpw(String m_userid) {
+		return sqlSessionTemplate.selectOne("member_ns.selectpw", m_userid);
+	}
+	  
 }

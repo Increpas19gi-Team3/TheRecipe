@@ -194,7 +194,8 @@ public class MemberController {
 		}
 
 		String repw = request.getParameter("m_repw");
-		String m_pw = request.getParameter("m_pw");
+		String m_userid = (String) session.getAttribute("m_userid");
+		String m_pw = memberService.selectpw(m_userid);
 
 		if (!repw.equals(m_pw)) {
 
@@ -202,13 +203,11 @@ public class MemberController {
 
 		} else {
 
-			String m_userid = (String) session.getAttribute("m_userid");
-
-			memberService.deleteId(m_userid);
+			memberService.deleteId(m_userid, m_pw);
 			session.invalidate();
-			return "home";
-		}
 
+		}
+		return "redirect:home.do";
 	}
 
 }

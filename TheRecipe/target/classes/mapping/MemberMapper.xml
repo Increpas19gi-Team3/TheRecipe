@@ -32,7 +32,7 @@
 		insert into TR_MEMBER values(
 		#{m_userid}, #{m_pw}, #{m_name},
 		#{m_email}, #{m_post}, #{m_addr},
-		#{m_phone}, 1)
+		#{m_phone}, 1, 1)
 	</insert> 
 
 	<!-- 아이디 찾기(이메일로 찾기) -->
@@ -81,5 +81,11 @@
 	<select id="checkId" resultType="string" parameterType="string">
 		SELECT COUNT(*) FROM TR_MEMBER
 		WHERE M_Userid = #{m_userid}
+	</select>
+	
+	<!-- 삭제 비밀번호 확인 -->
+	<select id="selectpw" resultType="string" parameterType="string">
+	select m_pw from tr_member
+	where m_userid = #{m_userid}
 	</select>
 </mapper>

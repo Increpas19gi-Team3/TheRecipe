@@ -7,7 +7,7 @@
 	<h3>아이디 삭제 확인</h3>
 </div>
 <!--  commandName="deleteGo" -->
-<form:form action="delete_Id_Go.do" method="post">
+<form:form name="deleteform" action="delete_Id_Go.do" method="post">
 
 	<fieldset>
 		<label for="">비밀번호</label> <input type="password" placeholder="비밀번호"
@@ -19,7 +19,7 @@
 	</fieldset>
 
 	<fieldset class="btn_submitWrap">
-		<input type="submit" value="확인" class="btn_submit">
+		<input type="submit" value="확인" class="btn_submit" onclick="return checkValue()">
 	</fieldset>
 
 </form:form>
