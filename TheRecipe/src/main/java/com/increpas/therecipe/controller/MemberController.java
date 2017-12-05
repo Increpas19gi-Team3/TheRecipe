@@ -124,12 +124,26 @@ public class MemberController {
 
 	}
 
+	/**
+	 * 
+	 * 아이디 중복 체크로 이동
+	 * 
+	 * @return 아이디 중복 체크 페이지로 이동
+	 */
 	@RequestMapping(value = "/idcheck.do", method = RequestMethod.GET)
 	public String IdCheck() {
 
 		return "idcheck";
 	}
 
+	/**
+	 * 
+	 * @param model
+	 * 				Model model
+	 * @param request
+	 * 				HttpServletRequest request
+	 * @return 회원가입 페이지로 이동
+	 */
 	@RequestMapping(value = "/idchecksuccess.do", method = RequestMethod.POST)
 	public String IdCheck(Model model, HttpServletRequest request) {
 
@@ -149,17 +163,10 @@ public class MemberController {
 	}
 
 	/**
+	 * 
 	 * 회원탈퇴
 	 * 
-	 * @param vo
-	 *            MemberVO vo
-	 * @param errors
-	 *            Errors errors
-	 * @param request
-	 *            HttpServletRequest
-	 * @param session
-	 *            HttpSession session
-	 * @return 회원탈퇴 성공 시 홈 화면으로 이동
+	 * @return 회원탈퇴 페이지(비밀번호)로 이동
 	 */
 
 	@RequestMapping(value = "/delete_Id.do", method = RequestMethod.GET)
@@ -167,7 +174,19 @@ public class MemberController {
 		return "deleteRePw";
 	}
 
-	// @ModelAttribute("deleteGo") @Valid
+
+	/**
+	 * 
+	 * @param vo
+	 * 			  MemberVO vo
+	 * @param errors
+	 * 			  Errors errors
+	 * @param request
+	 * 			  HttpServletRequest
+	 * @param session
+	 * 		      HttpSession session
+	 * @return 회원탈퇴 성공 시 홈 화면으로 이동
+	 */
 	@RequestMapping(value = "/delete_Id_Go.do", method = RequestMethod.POST)
 	public String deleteIdViewPost(@Valid MemberVO vo, Errors errors, HttpServletRequest request, HttpSession session) {
 		if (errors.hasErrors()) {

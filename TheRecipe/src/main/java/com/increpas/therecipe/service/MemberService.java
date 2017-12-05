@@ -30,7 +30,11 @@ public class MemberService {
 		  memberDAO.insertMember(vo);
 		 }
 	
-   //아이디 중복 체크
+   /**
+    * 아이디 중복 체크
+    * @param m_userid 아이디
+    * @return memberDAO
+    */
 	public String checkId(String m_userid) {
 		logger.info(m_userid.toString());
 		return memberDAO.checkId(m_userid);
