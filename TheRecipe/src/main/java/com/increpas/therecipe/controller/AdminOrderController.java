@@ -31,7 +31,13 @@ public class AdminOrderController {
 	@Autowired
 	ADminOrderService adminodlService;
 	
-	
+
+	/**
+	 * 관리자 주문 관리 페이지의 주문 내역 조회 
+	 * @param odVo : AdminOrderVO
+	 * @param model : Model
+	 * @return : 뷰이름
+	 */
 	@RequestMapping(value = "/adminOrder.do", method = RequestMethod.GET)
 	public String orderlist(@Valid @ModelAttribute("icmd")AdminOrderVO odVo, Model model){
 
@@ -43,6 +49,13 @@ public class AdminOrderController {
 		
 	}
 		
+	/**
+	 * 관리자 주문 관리 페이지의 특정 주문코드로 상세조회 
+	 * @param odVo : AdminOrderVO
+	 * @param model : Model
+	 * @param request : HttpServletRequest
+	 * @return : 뷰이름
+	 */
 	@RequestMapping(value = "/adminOrderList.do", method = RequestMethod.GET)
 	public String orderStatusList(@Valid @ModelAttribute("icmd")AdminOrderVO odVo, Model model, HttpServletRequest request){
 		
@@ -55,6 +68,13 @@ public class AdminOrderController {
 		
 	}
 	
+	/**
+	 * 관리자 주문 관리 페이지의 배송상태 업데이트
+	 * @param odVo : AdminOrderVO
+	 * @param model : Model
+	 * @param request : HttpServletRequest
+	 * @return : 뷰이름
+	 */
 	@RequestMapping(value = "/adminOrderUpt.do", method = RequestMethod.POST)
 	public String orderStatusUpt(@Valid @ModelAttribute("icmd")AdminOrderVO odVo, Model model, HttpServletRequest request){
 		

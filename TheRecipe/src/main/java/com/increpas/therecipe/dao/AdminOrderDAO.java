@@ -23,12 +23,21 @@ public class AdminOrderDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
+	/**
+	 * 주문 내역 조회
+	 * @return List<AdminOrderVO>
+	 */
 	public List<AdminOrderVO> selectOrder(){
 
 		return sqlSessionTemplate.selectList("admin_order.selectOrder"); 
 		
 	}
 	
+	/**
+	 * 주문코드로 특정 주문 내역 조회
+	 * @param orderid : 주문코드
+	 * @return AdminOrderVO
+	 */
 	public AdminOrderVO selectOrderBycode(String orderid){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -38,6 +47,12 @@ public class AdminOrderDAO {
 		
 	}
 	
+	/**
+	 * 주문내역의 배송 상태 업데이트
+	 * @param orderid : 주문코드
+	 * @param dvystatus : 배송상태
+	 * @return int
+	 */
 	@Transactional
 	public int uptOrderStatus(String orderid, String dvystatus){
 		Map<String, Object> map = new HashMap<String, Object>();
