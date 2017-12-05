@@ -6,7 +6,7 @@ import java.util.List;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.stereotype.Repository;
 
-import com.increpas.therecipe.vo.EventInfoVO;
+import com.increpas.therecipe.vo.EventSetFoodVO;
 
 /**
  *  게시판용 DTO
@@ -14,11 +14,9 @@ import com.increpas.therecipe.vo.EventInfoVO;
  *
  */
 @Repository
-public class AdminEventListDTO {
+public class AdminEventSetFoodListDTO {
 
-	private List<EventInfoVO> listVO;	// 게시글의 목록
-
-	private String selEventCode; //선택한 이벤트 코드
+	private List<EventSetFoodVO> listVO;	// 게시글의 목록
 
 	private String whereColumn;	// 검색 컬럼명
 	private String word;		// 검색어
@@ -38,16 +36,20 @@ public class AdminEventListDTO {
 	private int fc_3rd; 		/* 구성				NUMBER NOT NULL */  
 	
 
+	private String selEventCode; // 요청 선택한 이벤트 코드
+
 	// DB의 저장된 전체글의 개수가 0일때 리턴할 게시글 모델
-	public AdminEventListDTO() {
-		this(new ArrayList<EventInfoVO>(), "", "", "", 
+	public AdminEventSetFoodListDTO() {
+		this(new ArrayList<EventSetFoodVO>(), "", "", "", 
 				"", 10, 0, 0, 0, 0,
-				0, 0, 0);
+				0, 0, 0,
+				"ALL");
 	}
 	
-	public AdminEventListDTO(List<EventInfoVO> listVO, String whereColumn, String word, String sortColumn,
+	public AdminEventSetFoodListDTO(List<EventSetFoodVO> listVO, String whereColumn, String word, String sortColumn,
 			String orderby, int pageCutCount, int requestPage, int totalPageCount, int startRow, int endRow,
-			int fc_1st, int fc_2nd, int fc_3rd) {
+			int fc_1st, int fc_2nd, int fc_3rd,
+			String selEventCode) {
 		super();
 		this.listVO = listVO;
 		this.whereColumn = whereColumn;
@@ -62,14 +64,11 @@ public class AdminEventListDTO {
 		
 		this.fc_1st = fc_1st;
 		this.fc_2nd = fc_2nd;
-		this.fc_3rd = fc_3rd;				
+		this.fc_3rd = fc_3rd;		
+		
+		this.selEventCode = selEventCode;
 	}
 
-		
-	public List<EventInfoVO> getEventVOList() {
-		return listVO;
-	}
-		
 	
 	//리스트 Empty 상태 : boolean 일때 get이 아닌 is로 메소드명 정의
 	/**
@@ -80,20 +79,12 @@ public class AdminEventListDTO {
 		return ! listVO.isEmpty();
 	}
 
-	public List<EventInfoVO> getListVO() {
+	public List<EventSetFoodVO> getListVO() {
 		return listVO;
 	}
 
-	public void setListVO(List<EventInfoVO> listVO) {
+	public void setListVO(List<EventSetFoodVO> listVO) {
 		this.listVO = listVO;
-	}
-
-	public String getSelEventCode() {
-		return selEventCode;
-	}
-
-	public void setSelEventCode(String selEventCode) {
-		this.selEventCode = selEventCode;
 	}
 
 	public String getWhereColumn() {
@@ -192,13 +183,21 @@ public class AdminEventListDTO {
 		this.fc_3rd = fc_3rd;
 	}
 
+	public String getSelEventCode() {
+		return selEventCode;
+	}
+
+	public void setSelEventCode(String selEventCode) {
+		this.selEventCode = selEventCode;
+	}
+
 	@Override
 	public String toString() {
-		return "AdminEventListDTO [listVO=" + listVO + ", selEventCode=" + selEventCode + ", whereColumn=" + whereColumn
-				+ ", word=" + word + ", sortColumn=" + sortColumn + ", orderby=" + orderby + ", pageCutCount="
-				+ pageCutCount + ", requestPage=" + requestPage + ", totalPageCount=" + totalPageCount + ", startRow="
-				+ startRow + ", endRow=" + endRow + ", fc_1st=" + fc_1st + ", fc_2nd=" + fc_2nd + ", fc_3rd=" + fc_3rd
-				+ "]";
+		return "AdminEventSetFoodListDTO [listVO=" + listVO + ", whereColumn=" + whereColumn + ", word=" + word
+				+ ", sortColumn=" + sortColumn + ", orderby=" + orderby + ", pageCutCount=" + pageCutCount
+				+ ", requestPage=" + requestPage + ", totalPageCount=" + totalPageCount + ", startRow=" + startRow
+				+ ", endRow=" + endRow + ", fc_1st=" + fc_1st + ", fc_2nd=" + fc_2nd + ", fc_3rd=" + fc_3rd
+				+ ", selEventCode=" + selEventCode + "]";
 	}
 
 }

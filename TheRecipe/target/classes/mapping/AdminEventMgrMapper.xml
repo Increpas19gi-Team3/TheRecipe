@@ -59,10 +59,25 @@
 		        WHERE TE.MS_CODE = MC.MS_CODE AND TE.E_DISCOUNT = SC.SUB_CODE
 		    ) AS DISCOUNT_VALUE
 		FROM TR_EVENT TE
-		<where>
-			E_GUBUN = 1
-		</where>
+		WHERE E_GUBUN = 1
 	</select>
+	
+	
+	
+	<!-- 오늘 기준 전체 이벤트 가져오기 -->
+	<select id="selectAllEventToday" resultMap="EventInfoResult">
+		<![CDATA[SELECT E_EVTCODE, E_NTTILTE, E_STARTDATE, SYSDATE AS TODAY, E_ENDDATE,
+		    (
+		        SELECT SC.SUB_NAME FROM TR_MASTERCODE MC 
+		        INNER JOIN TR_SUBCODE SC 
+		        ON MC.MS_CODE = SC.MS_CODE
+		        WHERE TE.MS_CODE = MC.MS_CODE AND TE.E_DISCOUNT = SC.SUB_CODE
+		    ) AS DISCOUNT_VALUE
+		FROM TR_EVENT TE
+		WHERE E_GUBUN = 1 AND SYSDATE <= E_ENDDATE ]]>
+	</select>
+	
+	
 	
 	<!-- 선택 이벤트 상세 정보 가져오기 -->
 	<select id="selectSelEvent" resultMap="EventInfoResult" parameterType="string">
@@ -83,8 +98,8 @@
 	
 	
 	
-	<!-- 선택한 이벤트가 걸린 음식정보 가져오기 -->
-	<select id="selectSelEventFood" resultMap="EventSetFoodResult" parameterType="string">
+	<!-- 선택한 이벤트가 걸린 음식정보 가져오기 : 페이징X, 검색X, 정렬X -->
+	<select id="selectSelEventFood" resultMap="EventSetFoodResult" parameterType="map">
 		SELECT TF.F_FDCODE, 
 		    TF.E_EVTCODE, TE.E_NTTILTE, TE.E_STARTDATE, SYSDATE AS TODAY, TE.E_ENDDATE, 
 		    TF.FC_1ST, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TFC.FC_2ND = 0 AND TFC.FC_3RD = 0) AS FCNAME_1ST, 
@@ -104,21 +119,144 @@
 		    ON TF.E_EVTCODE = TE.E_EVTCODE
 		
 		<where>
-			TE.E_GUBUN IS NULL OR TE.E_GUBUN = 1
-			
-			<if test="!e_evtcode.equals('ALL')">AND TE.E_EVTCODE= #{e_evtcode} </if>
+			<choose>
+				<when test="evtcode.equals('ALL')"> TE.E_GUBUN IS NULL OR TE.E_GUBUN = 1</when>
+				<otherwise>TE.E_EVTCODE= #{evtcode}</otherwise>
+			</choose>
 		</where> 
 	</select>
 	
 	
+	<!-- 전체 글갯수 리턴 -->
+	<select id="selectCount" resultType="int" parameterType="com.increpas.therecipe.dto.AdminEventSetFoodListDTO">
+	    SELECT COUNT(*) 				    
+		FROM TR_FOOD TF
+		LEFT OUTER JOIN TR_EVENT TE
+		    ON TF.E_EVTCODE = TE.E_EVTCODE
+		
+		<where>
+			<choose>
+				<when test="selEventCode.equals('ALL')"> TE.E_GUBUN IS NULL OR TE.E_GUBUN = 1</when>
+				<otherwise>TE.E_EVTCODE= #{selEventCode}</otherwise>
+			</choose>
+			
+			<if test="!fc_1st.equals(0)"><!-- 대분류에 값이 있을때만 -->
+				AND TF.FC_1ST = #{fc_1st} 
+			</if>
+			<if test="!fc_2nd.equals(0)"><!-- 중분류에 값이 있을때만 -->
+				AND TF.FC_2ND = #{fc_2nd} 
+			</if>
+			<if test="!fc_3rd.equals(0)"><!-- 소분류에 값이 있을때만 -->
+				AND TF.FC_3RD = #{fc_3rd} 
+			</if>
+			
+			<!-- 음식명으로 검색 -->
+			<if test="whereColumn.equals('FOODNAME')">
+    			AND TF.F_FOODNAME LIKE '%' || #{word } || '%'
+    		</if>
+		</where>
+	</select>
+	
+	
+	<!-- 선택한 이벤트가 걸린 음식정보 가져오기 : 페이징O, 검색O, 정렬O -->
+	<select id="selectSelEventFoodList" resultMap="EventSetFoodResult" parameterType="com.increpas.therecipe.dto.AdminEventSetFoodListDTO">
+		
+		SELECT * 
+		FROM (
+
+			SELECT F_FDCODE, 
+				E_EVTCODE, E_NTTILTE, E_STARTDATE, TODAY, E_ENDDATE, 
+				FC_1ST, FCNAME_1ST, 
+				FC_2ND, FCNAME_2ND, 
+				FC_3RD, FCNAME_3RD, 
+				FC_ISBLOCK, 
+				F_FOODNAME, 
+				F_PRICE, F_ISBLOCK, MS_CODE, E_DISCOUNT, DISCOUNT_VALUE, 
+				rownum rn 
+			FROM (
+				
+				SELECT TF.F_FDCODE, 
+				    TF.E_EVTCODE, TE.E_NTTILTE, TE.E_STARTDATE, SYSDATE AS TODAY, TE.E_ENDDATE, 
+				    TF.FC_1ST, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TFC.FC_2ND = 0 AND TFC.FC_3RD = 0) AS FCNAME_1ST, 
+				    TF.FC_2ND, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TFC.FC_3RD = 0) AS FCNAME_2ND, 
+				    TF.FC_3RD, (SELECT TFC.FC_CTGNAME FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD) AS FCNAME_3RD, 
+				    (SELECT TFC.FC_ISBLOCK FROM TR_FOODCODE TFC WHERE TF.FC_1ST = TFC.FC_1ST AND TF.FC_2ND = TFC.FC_2ND AND TF.FC_3RD = TFC.FC_3RD) AS FC_ISBLOCK, 
+				    TF.F_FOODNAME, 
+				    TF.F_PRICE, TF.F_ISBLOCK, TF.MS_CODE, TE.E_DISCOUNT,
+		            (
+				        SELECT SC.SUB_NAME FROM TR_MASTERCODE MC 
+				        INNER JOIN TR_SUBCODE SC 
+				        ON MC.MS_CODE = SC.MS_CODE
+				        WHERE TE.MS_CODE = MC.MS_CODE AND TE.E_DISCOUNT = SC.SUB_CODE
+				    ) AS DISCOUNT_VALUE
+				FROM TR_FOOD TF
+				LEFT OUTER JOIN TR_EVENT TE
+				    ON TF.E_EVTCODE = TE.E_EVTCODE
+				
+				<where>
+					<choose>
+						<when test="!selEventCode.equals('ALL')">TE.E_EVTCODE= #{selEventCode}</when>
+						<!-- <otherwise> TE.E_GUBUN IS NULL OR TE.E_GUBUN = 1</otherwise> -->
+					</choose>
+					
+					<if test="!fc_1st.equals(0)"><!-- 대분류에 값이 있을때만 -->
+						AND TF.FC_1ST = #{fc_1st} 
+					</if>
+					<if test="!fc_2nd.equals(0)"><!-- 중분류에 값이 있을때만 -->
+						AND TF.FC_2ND = #{fc_2nd} 
+					</if>
+					<if test="!fc_3rd.equals(0)"><!-- 소분류에 값이 있을때만 -->
+						AND TF.FC_3RD = #{fc_3rd} 
+					</if>
+					
+					<!-- 음식명으로 검색 -->
+					<if test="whereColumn.equals('FOODNAME')">
+		    			AND TF.F_FOODNAME LIKE '%' || #{word } || '%'
+		    		</if>
+				</where>
+				
+				<!-- ORDER BY -->
+		   		<choose>
+		   			<when test="sortColumn.equals('FOODNAME')">   				
+		   				<if test="orderby.equals('ASC')">ORDER BY TF.F_FOODNAME ASC, TF.FC_1ST ASC, TF.FC_2ND ASC, TF.FC_3RD ASC</if>
+		   				<if test="orderby.equals('DESC')">ORDER BY TF.F_FOODNAME DESC, TF.FC_1ST ASC, TF.FC_2ND ASC, TF.FC_3RD ASC</if>   				
+		   			</when>
+		   			<when test="sortColumn.equals('PRICE')">
+		   				<if test="orderby.equals('ASC')">ORDER BY TF.F_PRICE ASC, TF.FC_1ST ASC, TF.FC_2ND ASC, TF.FC_3RD ASC</if>
+		   				<if test="orderby.equals('DESC')">ORDER BY TF.F_PRICE DESC, TF.FC_1ST ASC, TF.FC_2ND ASC, TF.FC_3RD ASC</if>
+		   			</when>
+		   			<otherwise>
+		   				ORDER BY TE.E_EVTCODE DESC, TF.FC_1ST ASC, TF.FC_2ND ASC, TF.FC_3RD ASC
+		   			</otherwise>
+		   		</choose>
+			)
+		)
+		<where>
+			rn between #{startRow} and #{endRow}
+		</where>
+		
+	</select>
 	
 	
 	
-	
-	
-	
-	
-	
-	
+	<!-- 출처: http://fruitdev.tistory.com/187 [과일가게 개발자] -->
+	<!-- 이벤트 설정 -->
+	<update id="updateEventSetFood" parameterType="map">
+		UPDATE TR_FOOD
+		
+		<choose>
+			<when test="setEventCode.equals('CLEAR')">
+				SET E_EVTCODE = NULL
+			</when>
+			<otherwise>
+				SET E_EVTCODE = #{setEventCode}
+			</otherwise>
+		</choose>
+		
+		WHERE F_FDCODE IN 
+			<foreach collection="chk_fdcodeArr" item="fdcodeArr" open="(" close=")" separator=",">
+				#{fdcodeArr}
+			</foreach>
+	</update>
 	
 </mapper>

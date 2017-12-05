@@ -273,12 +273,15 @@
     	)
 	</insert>
 	
-	<!-- 음식 데이터 입력 -->
+	<!-- 음식 데이터 입력
+		** 리팩토링 : 음식 카테고리 변경은 다음에
+			FC_1ST = #{fc_1st}, FC_2ND = #{fc_2nd}, FC_3RD = #{fc_3rd},  
+	 -->
 	<update id="updateFoodModify" parameterType="com.increpas.therecipe.dto.AdminFoodRegDTO">
 		UPDATE TR_FOOD 
 		SET
 			F_FOODNAME = #{f_foodname},
-            FC_1ST = #{fc_1st}, FC_2ND = #{fc_2nd}, FC_3RD = #{fc_3rd},
+            
             F_PRICE = #{f_price}, F_EXPLAN = #{f_explan}, 
             F_IMGNAME = #{f_imgname}, F_THUMNAME = #{f_thumname}, 
             F_ISBLOCK = #{f_isblock}            
