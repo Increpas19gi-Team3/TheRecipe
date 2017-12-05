@@ -50,6 +50,10 @@
 	   	SELECT a.*, b.F_FOODNAME, b.F_THUMNAME FROM TR_ORDER a, tr_food b
 		WHERE a.m_userid = #{m_userid} and b.F_FDCODE=a.f_fdcode
 	</select>
+	<select id="selectMyOrderDetail"  resultMap="MyorderResult" parameterType="String">
+	   	select a.*,b.F_FOODNAME, b.F_THUMNAME FROM TR_ORDER a, tr_food b
+        where a.o_orderid =#{o_orderid} and b.F_FDCODE=a.f_fdcode
+	</select>
 	
 	
 	

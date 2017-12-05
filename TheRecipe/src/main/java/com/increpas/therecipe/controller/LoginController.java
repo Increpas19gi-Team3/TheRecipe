@@ -74,7 +74,6 @@ public class LoginController {
 
 		String m_userid = vo.getM_userid();
 		String m_pw = vo.getM_pw();
-		int m_level = vo.getM_level();
 
 		//검색해온 고객 정보를 저장하는 MemberVO
 		MemberVO resultVO = loginService.selectLogin(m_userid, m_pw);

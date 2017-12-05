@@ -35,4 +35,9 @@ public class UserMyOrderDAO {
 		return sqlSessionTemplate.selectList("order_ns.selectMyOrder", m_userid);
 	}
 
+
+	public MyOrderVO selectMyOrderDetail(String o_orderid) {
+		return sqlSessionTemplate.selectOne("order_ns.selectMyOrderDetail", o_orderid);
+	}
+
 }

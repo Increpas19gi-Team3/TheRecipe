@@ -47,7 +47,7 @@
 					<c:forEach var="list" items="${list}">
 						<tr>
 							<td>
-							<a href="myOrder_detail">
+							<a href="myOrderDetail.do?o_orderid=${list.o_orderid}">
 								${list.o_orderid}
 								</a>
 							</td>

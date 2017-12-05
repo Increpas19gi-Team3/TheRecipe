@@ -81,18 +81,29 @@ public class UserMyOrderController {
 				
 				String m_userid = (String) session.getAttribute("m_userid");
 				
-				
 				List<MyOrderVO> list = userMyOrderService.selectMyOrder(m_userid);
 				
 				arrySplitImgname(list);
 				
-				
 				model.addAttribute("list", list);
 
 				
-				
 				return "myOrder";
 			}
+			
+			@RequestMapping(value = "/myOrderDetail.do", method = RequestMethod.GET)
+			public String myOrderDetail(Model model,HttpServletRequest request) {
+				
+				String o_orderid = request.getParameter("o_orderid");
+				MyOrderVO moVo = userMyOrderService.selectMyOrderDetail(o_orderid);
+				String[] F_thumname = splitImgname(moVo.getF_thumname());
+				moVo.setF_thumname(F_thumname[0]);
+				model.addAttribute("moVo", moVo);
+				
+				return "myOrder_detail";
+			}
+			
+		
 			
 	
 

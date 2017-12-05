@@ -36,5 +36,9 @@ public class UserMyOrderService {
 		return userMyOrderDAO.selectMyOrder(m_userid); 
 	}
 
+	public MyOrderVO selectMyOrderDetail(String o_orderid) {
+		return userMyOrderDAO.selectMyOrderDetail(o_orderid); 
+	}
+
 
 }
