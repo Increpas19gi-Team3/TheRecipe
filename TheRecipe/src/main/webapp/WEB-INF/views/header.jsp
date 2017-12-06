@@ -71,7 +71,7 @@
 						
 								<c:if test="${sessionScope.m_level==0}">
 									<li class="dropdown_wrap"><a href="adminIndex.do"
-										class="dropdown_select">관리자페이지</a>
+										class="dropdown_select" target="_blank">관리자페이지</a>
 								</c:if>
 
 							</c:when>

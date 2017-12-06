@@ -118,7 +118,7 @@
 	                            <div class="col-md-12">
 	                                <label for="">썸네일 이미지</label>
 	                                <!-- <input class="form-control" id="" type="file" aria-describedby="nameHelp"> -->
-	                                <img src="/therecipe/resources/images/noimg.JPG" >
+	                                <img src="/therecipe/resources/images/noimg.JPG" style="width: 190; height: 143">
 	                            </div>
 	                        </div>
 						</c:when>
@@ -127,7 +127,7 @@
 								<div class="form-group">
 		                            <div class="col-md-12">
 		                            	<label for="">썸네일 이미지</label>
-										<img src="/images/${thumimgname}" >
+										<img src="/images/${thumimgname}" style="width: 190; height: 143">
 		                            </div>
 		                        </div>
 							</c:forEach>							

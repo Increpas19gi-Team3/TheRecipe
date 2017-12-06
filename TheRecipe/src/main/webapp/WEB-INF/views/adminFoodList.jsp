@@ -350,11 +350,11 @@
 								<tr style="border: none;">
 									<td style="text-align: left; border: none;">
 										<!-- <input type="button" value="글 쓰기" onclick="location.href=''" /> -->
-										<button type="button" class="btn btn-primary btn-sm" onclick="location.href='regFoodMgr.do'">음식 등록</button>
+										<button type="button" class="btn btn-primary btn-md" onclick="location.href='regFoodMgr.do'">음식 등록</button>
 									</td>
 									<td style="text-align: right; border: none;">
 										<!-- <input type="button" value="글 쓰기" onclick="location.href='regFoodMgr.do'" /> -->
-										<button type="button" class="btn btn-primary btn-sm" onclick="location.href='regFoodMgr.do'">음식 등록</button>	
+										<button type="button" class="btn btn-primary btn-md" onclick="location.href='regFoodMgr.do'">음식 등록</button>	
 									</td>
 								</tr>
 							</table>
