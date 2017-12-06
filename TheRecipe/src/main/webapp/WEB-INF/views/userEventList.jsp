@@ -27,7 +27,7 @@
 		var word = '${word }';
 		var pageCutCount = '${pageCutCount }';
 
-		location.href = 'EventList.do?sortColumn=' + sortColumn + '&orderby='
+		location.href = 'userEventList.do?sortColumn=' + sortColumn + '&orderby='
 				+ orderby + '&whereColumn=' + whereColumn + '&word=' + word
 				+ '&GUBUN=' + GUBUN + '&pageCutCount=' + pageCutCount;
 	}
@@ -41,7 +41,7 @@
 		var word = '${word }';
 		var GUBUN = '${GUBUN }';
 
-		location.href = 'EventList.do?sortColumn=' + sortColumn + '&orderby='
+		location.href = 'userEventList.do?sortColumn=' + sortColumn + '&orderby='
 				+ orderby + '&whereColumn=' + whereColumn + '&word=' + word
 				+ '&GUBUN=' + GUBUN + '&pageCutCount=' + pageCutCount;
 	}
@@ -94,7 +94,7 @@
 				</div>
 			</h3>
 
-			<form action="NoticeList.do" method="post" name="listForm">
+			<form action="userNoticeList.do" method="post" name="listForm">
 
 			<input type="hidden" name="sortColumn" value="${sortColumn }">
 			<input type="hidden" name="orderby" value="${orderby }"> 
@@ -169,17 +169,17 @@
 											<!-- 제목 정렬일때 -->
 											<c:choose>
 												<c:when test="${orderby eq 'ASC' }">
-													<a href="EventList.do?sortColumn=e_nttilte&orderby=DESC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제목 ▲</a>
+													<a href="userEventList.do?sortColumn=e_nttilte&orderby=DESC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제목 ▲</a>
 												</c:when>
 												<c:otherwise>
-													<a href="EventList.do?sortColumn=e_nttilte&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제목 ▼</a>
+													<a href="userEventList.do?sortColumn=e_nttilte&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제목 ▼</a>
 												</c:otherwise>
 											</c:choose>
 										</c:when>
 	
 										<c:otherwise>
 											<!-- 제목 정렬이 아닐 때 -->
-											<a href="EventList.do?sortColumn=e_nttilte&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제목 ▼</a>
+											<a href="userEventList.do?sortColumn=e_nttilte&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">제목 ▼</a>
 										</c:otherwise>
 									</c:choose>
 								</th>
@@ -188,16 +188,16 @@
 										<c:when test="${sortColumn eq 'e_ntdate'}">										
 											<c:choose>
 												<c:when test="${orderby eq 'ASC' }">
-													<a href="EventList.do?sortColumn=e_ntdate&orderby=DESC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▲</a>
+													<a href="userEventList.do?sortColumn=e_ntdate&orderby=DESC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▲</a>
 												</c:when>
 												<c:otherwise>
-													<a href="EventList.do?sortColumn=e_ntdate&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▼</a>
+													<a href="userEventList.do?sortColumn=e_ntdate&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▼</a>
 												</c:otherwise>
 											</c:choose>
 										</c:when>
 										
 										<c:otherwise>
-											<a href="EventList.do?sortColumn=e_ntdate&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▼</a>
+											<a href="userEventList.do?sortColumn=e_ntdate&orderby=ASC&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }">작성일 ▼</a>
 										</c:otherwise>
 									</c:choose>
 								</th>
@@ -210,7 +210,7 @@
 							<c:forEach var="list" items="${eventList.listVO }">
 								<tr>
 									<td>${list.e_evtcode }</td>
-									<td><a href="EventDetailView.do?e_evtcode=${list.e_evtcode}">${list.e_nttilte }</a></td>
+									<td><a href="userEventDetailView.do?e_evtcode=${list.e_evtcode}">${list.e_nttilte }</a></td>
 									<td><fmt:formatDate value="${list.e_ntdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>								
 									<td>${list.e_discount }</td>
 									<td><fmt:formatDate value="${list.e_startdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
@@ -223,7 +223,7 @@
 					<div class="pagination_wrap">
 						<ul class="pagination">
 							<c:if test="${beginPage > 10 }">
-								<li><a href='<c:url value="EventList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${beginPage-1}"/>'><span>&laquo;</span></a>&nbsp;
+								<li><a href='<c:url value="userEventList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${beginPage-1}"/>'><span>&laquo;</span></a>&nbsp;
 							</c:if>
 							<c:forEach var="pno" begin="${beginPage}" end="${endPage}">
 								<c:choose>
@@ -231,12 +231,12 @@
 										<li><a href="#" class="active">${pno}</a></li>
 									</c:when>
 									<c:otherwise>
-										<li><a href='<c:url value="EventList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${pno}" />'>${pno}</a></li>
+										<li><a href='<c:url value="userEventList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${pno}" />'>${pno}</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 							<c:if test="${endPage < listModel.totalPageCount}">
-								<li><a href='<c:url value="EventList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${endPage + 1}"/>'><span>&raquo;</span></a>
+								<li><a href='<c:url value="userEventList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${endPage + 1}"/>'><span>&raquo;</span></a>
 							</c:if>
 						</ul>
 						<div class="btn_right">

@@ -45,7 +45,7 @@
 								<li><a href="userNoticeList.do">공지사항</a></li>
 								<li><a href="ReviewList.do">후기 게시판</a></li>
 								<li><a href="boardRecommend.html">추천 레시피</a></li>
-								<li><a href="EventList.do">이벤트</a></li>
+								<li><a href="userEventList.do">이벤트</a></li>
 							</ul></li>
 					</ul>
 				</div>
