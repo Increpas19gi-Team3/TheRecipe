@@ -37,7 +37,7 @@
 	
 	</resultMap>
 	
-	
+	<!-- 내 주문 등록 -->
 	<insert id="insertOrder" parameterType="Order">
 		
 		INSERT INTO TR_ORDER VALUES(
@@ -45,11 +45,13 @@
 		#{f_fdcode},#{o_buyprice},#{o_amount},sysdate,#{o_reciever},
 		#{o_dvypost},#{o_dvyaddr},4)
 	</insert>
-	
+	<!-- 내 주문 보기 -->
 	<select id="selectMyOrder"  resultMap="MyorderResult" parameterType="String">
 	   	SELECT a.*, b.F_FOODNAME, b.F_THUMNAME FROM TR_ORDER a, tr_food b
 		WHERE a.m_userid = #{m_userid} and b.F_FDCODE=a.f_fdcode
 	</select>
+	
+	<!-- 내 주문 상세보기 -->
 	<select id="selectMyOrderDetail"  resultMap="MyorderResult" parameterType="String">
 	   	select a.*,b.F_FOODNAME, b.F_THUMNAME FROM TR_ORDER a, tr_food b
         where a.o_orderid =#{o_orderid} and b.F_FDCODE=a.f_fdcode

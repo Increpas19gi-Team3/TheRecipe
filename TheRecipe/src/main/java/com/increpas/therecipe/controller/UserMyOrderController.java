@@ -34,6 +34,11 @@ public class UserMyOrderController {
 			@Autowired
 			UserMyOrderService userMyOrderService;
 			
+			/**
+			 * 이미지명 데이터의 "_" 제거
+			 * @param allImgname : foodvo.getF_thumname() - 저장된 이미지명  
+			 * @return 구분자를 split한 배열
+			 */
 			public String[] splitImgname(String allImgname){
 				//String[] imgname = allImgname.split("\\|");
 				String[] imgname = null;
@@ -44,7 +49,11 @@ public class UserMyOrderController {
 				return imgname;
 			}
 
-			
+			/**
+			 * 썸네일 이미지 파싱
+			 * @param usermyvo List<MyOrderVO>
+			 * @return usermyvo
+			 */
 			public List<MyOrderVO> arrySplitImgname(List<MyOrderVO> mordervo){
 				
 				for(int i=0; i<mordervo.size(); i++){
@@ -57,6 +66,14 @@ public class UserMyOrderController {
 				return mordervo;
 			}
 			
+			/**
+			 * 내 주문 등록
+			 * @param odVo OrderVO odVo
+			 * @param request HttpServletRequest request
+			 * @param model Model model
+			 * @param session HttpSession session
+			 * @return 홈으로 이동
+			 */
 			@RequestMapping(value = "/orderWrite.do", method = RequestMethod.POST )
 			public String orderWriteForm(@ModelAttribute("orderup") OrderVO odVo, HttpServletRequest request, Model model, HttpSession session) {
 				
@@ -76,6 +93,13 @@ public class UserMyOrderController {
 				return "redirect:home.do";
 			}
 			
+			/**
+			 * 내 주문 보기
+			 * @param request HttpServletRequest request
+			 * @param model Model model
+			 * @param session HttpSession session
+			 * @return 내 주문 보기 페이지로 이동
+			 */
 			@RequestMapping(value = "myOrderList.do", method = RequestMethod.GET )
 			public String orderListForm( HttpServletRequest request, Model model, HttpSession session) {
 				
@@ -90,7 +114,12 @@ public class UserMyOrderController {
 				
 				return "myOrder";
 			}
-			
+			/**
+			 * 내 주문 상세보기
+			 * @param model Model model
+			 * @param request HttpServletRequest request
+			 * @return 내 주문 상세보기 페이지로 이동
+			 */
 			@RequestMapping(value = "/myOrderDetail.do", method = RequestMethod.GET)
 			public String myOrderDetail(Model model,HttpServletRequest request) {
 				

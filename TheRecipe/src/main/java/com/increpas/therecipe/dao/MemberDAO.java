@@ -64,6 +64,7 @@ public class MemberDAO {
 	/**
 	 * 회원탈퇴 동작 수행
 	 * @param m_userid 아이디
+	 * @param m_pw 비밀번호
 	 */
 	  public void deleteId(String m_userid, String m_pw) {
 		  Map<String,String> map = new HashMap<String,String>();

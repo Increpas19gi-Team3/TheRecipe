@@ -23,7 +23,7 @@
 		<result property="name3rd" column="name3rd" /><!--  -->
 		<result property="f_isblockname" column="f_isblockname" /><!--  -->
 	</resultMap>
-	
+	<!--장바구니 등록 상품 보가-->
 	<select id="selectBasket" resultMap="UserBasketResult" parameterType="String" >
 	SELECT TF.F_FDCODE, ET.E_NTTILTE
     , (SELECT SC.SUB_NAME
@@ -51,7 +51,7 @@
     ON TF.E_EVTCODE = ET.E_EVTCODE
 	WHERE M_USERID= #{m_userid}
 	</select>
-	
+	<!-- 장바구니삭제 -->
 	<delete id="deleteBasket" parameterType="map">
 		delete from tr_basket
 		where m_userid = #{m_userid} and f_fdcode = #{f_fdcode}

@@ -25,17 +25,29 @@ public class UserMyOrderService {
 	
 	@Autowired
 	UserMyOrderDAO userMyOrderDAO;
-	
+	/**
+	 * 내 주문 등록 동작 수행
+	 * @param odVo OrderVO
+	 */
 	public void insertOrder(OrderVO odVo) {
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>"+odVo.toString());
 		userMyOrderDAO.insertOrder(odVo);
 		
 	}
-
+	/**
+	 * 내 주문 보기
+	 * @param m_userid 아이디
+	 * @return m_userid
+	 */
 	public List<MyOrderVO> selectMyOrder(String m_userid) {	
 		return userMyOrderDAO.selectMyOrder(m_userid); 
 	}
 
+	/**
+	 * 내 주문 상세 보기 동작 수행
+	 * @param o_orderid 주문코드
+	 * @return o_orderid
+	 */
 	public MyOrderVO selectMyOrderDetail(String o_orderid) {
 		return userMyOrderDAO.selectMyOrderDetail(o_orderid); 
 	}

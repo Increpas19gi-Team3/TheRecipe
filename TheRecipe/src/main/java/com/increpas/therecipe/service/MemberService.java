@@ -61,6 +61,7 @@ public class MemberService {
 	/**
 	 * 회원탈퇴
 	 * @param m_userid 아이디
+	 * @param m_pw 비밀번호
 	 */
 	public void deleteId(String m_userid, String m_pw){
 		memberDAO.deleteId(m_userid, m_pw);

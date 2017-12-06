@@ -39,6 +39,10 @@ public class ReviewUpdateDAO {
 		sqlSessionTemplate.update("review_ns.reviewAdminDelete", r_rvcode);		
 	}
 
+	/**
+	 * 리뷰 작성 동작 수행
+	 * @param rVo
+	 */
 	public void reviewWrite(ReviewVO rVo) {
 		
 		 sqlSessionTemplate.insert("review_ns.reviewWrite", rVo);

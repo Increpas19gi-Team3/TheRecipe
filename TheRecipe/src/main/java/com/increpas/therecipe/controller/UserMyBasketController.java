@@ -48,6 +48,11 @@ public class UserMyBasketController {
 			return imgname;
 		}
 		
+		/**
+		 * 썸네일 이미지 파싱
+		 * @param usermyvo List<UserMyBasketVO>
+		 * @return usermyvo
+		 */
 		public List<UserMyBasketVO> arrySplitImgname(List<UserMyBasketVO> usermyvo){
 			
 			for(int i=0; i<usermyvo.size(); i++){
@@ -61,7 +66,12 @@ public class UserMyBasketController {
 		}
 
 		
-		
+		/**
+		 * 장바구니로 이동
+		 * @param session HttpSession session
+		 * @param model Model model
+		 * @return 장바구니(cart) 
+		 */
 		@RequestMapping(value = "/BasketForm.do", method = RequestMethod.GET)
 		public String BasketForm( HttpSession session , Model model) {
 			// 장바구니 리스트 조회(아이디)
@@ -84,6 +94,13 @@ public class UserMyBasketController {
 		}
 		
 	
+		/**
+		 * 장바구니 삭제
+		 * @param f_fdcode 상품코드
+		 * @param session HttpSession session
+		 * @param model Model model
+		 * @return 장바구니로 다시 이동
+		 */
 		@RequestMapping(value = "/DeleteBasket.do", method = RequestMethod.GET)
 		public String DeleteBasket(@RequestParam("f_fdcode") String f_fdcode , HttpSession session , Model model) {
 			// 장바구니  삭제(아이디)
@@ -97,6 +114,12 @@ public class UserMyBasketController {
 			return "redirect:BasketForm.do";
 		}
 		
+		/**
+		 * 주문 페이지로 이동
+		 * @param request HttpServletRequest request
+		 * @param model Model model
+		 * @return 주문페이지로 이동
+		 */
 		@RequestMapping(value = "/orderWriteForm.do", method = { RequestMethod.GET, RequestMethod.POST })
 		public String orderWriteForm(HttpServletRequest request,  Model model) {
 			

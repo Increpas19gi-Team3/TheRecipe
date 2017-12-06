@@ -88,18 +88,29 @@ public class ReviewDetailViewController {
 		ruService.ReviewDeleteS(Rcode);		
 		return "redirect:ReviewList.do";
 	}	
-	
+	/**
+	 * 유저 리뷰작성 폼으로 이동
+	 * @param f_fdcode String f_fdcode(음식코드)
+	 * @param model  Model
+	 * @return 리뷰작성폼
+	 */
 	@RequestMapping(value = "/reviewWriteForm.do", method = RequestMethod.GET)
 	public String reviewWriteForm(@RequestParam("f_fdcode") String f_fdcode , Model model) {
 		model.addAttribute("f_fdcode", f_fdcode);
 		return "reviewWrite";
 	}
-	
+	/**
+	 * 리뷰작성 동작 수행
+	 * @param rVo ReviewVO
+	 * @param f_fdcode String f_fdcode(음식코드)
+	 * @param session HttpSession session(세션사용)
+	 * @return 홈으로 이동
+	 */
 	@RequestMapping(value = "/reviewWrite.do", method = RequestMethod.POST )
 	public String reviewWrite(@ModelAttribute("reviewWr") ReviewVO rVo ,@RequestParam("f_fdcode") String f_fdcode ,HttpSession session) {
 		rVo.setM_userid((String)session.getAttribute("m_userid"));
 		rVo.setF_fdcode(f_fdcode);
-		System.out.println("KJH TEST >>>>>>>>>>>>>>> "+ rVo.getR_rvimgname());
+
 		ruService.reviewWrite(rVo);
 	   
 		return "redirect:home.do";

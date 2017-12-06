@@ -35,6 +35,10 @@ public class ReviewUpdateService {
 		ruDAO.ReviewDeleteDAO(Rcode);
 	}
 
+	/**
+	 * 리뷰 작성 동작 수행
+	 * @param rVo
+	 */
 	public void reviewWrite(ReviewVO rVo) {
 		ruDAO.reviewWrite(rVo);
 		
