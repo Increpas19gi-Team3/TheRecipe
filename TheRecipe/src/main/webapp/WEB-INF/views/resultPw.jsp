@@ -6,12 +6,8 @@
 		<div class="login_wrap">
 			<h3>비밀번호 찾기</h3>
 			<form method="post" action="login.do">
+				<p class="idpass_p">${vo.m_userid}님의 비밀번호는 ${vo.m_pw} 입니다.</p>
 				<fieldset>
-					<table class="">
-						<tr>
-							<td colspan="2" align="center">${vo.m_userid}님의 비밀번호는 ${vo.m_pw} 입니다.</td>
-						</tr>
-					</table>
 								
 					<input type="submit" value="로그인 화면으로" class="btn_submit" >
 				
