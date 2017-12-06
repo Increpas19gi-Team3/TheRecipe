@@ -81,14 +81,7 @@
 							<td>${eVo.ms_code}</td>
 						</tr>						
 					</tbody>
-				</table>
-				
-				<%-- <div class="pagination_wrap">
-					<div class="btn_right">
-						<input type="button" value="이벤트 수정" onclick="location.href='adminEventUpdate.do?e_evtcode=${eVo.e_evtcode}'">
-						<input type="button" value="이벤트 삭제" onclick="location.href='adminEventdelete.do?e_evtcode=${eVo.e_evtcode}'">
-					</div>
-				</div> --%>
+				</table>				
 			</div>
 		</div>
 	</div>

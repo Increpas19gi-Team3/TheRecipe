@@ -50,11 +50,11 @@
 						</tr>
 						
 						<tr>
-							<td>이미지</td>												
+							<td colspan="5">이미지</td>												
 						</tr>						
 						
 						<tr>
-							<td>
+							<td colspan="5">
 								${nVo.e_ntimgname}
 								<img src="/images/${nVo.e_ntimgname}" width="400" height="400">
 							</td>

@@ -147,7 +147,7 @@ public class EventNoticeDetailViewController {
 	public String GET_EventReg(Model model) {
 
 		System.out.println("1. '이벤트 등록'입니다.");
-		return "eventReg";
+		return "adminEventReg";
 	}
 	
 	@RequestMapping(value = "/adminEventReg.do", method = RequestMethod.POST)

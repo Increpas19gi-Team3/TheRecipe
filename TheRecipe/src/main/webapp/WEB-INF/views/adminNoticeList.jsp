@@ -57,8 +57,7 @@
 
 <jsp:include page="adminheader.jsp" />
 
-<form action="adminNoticeList.do" method="post" name="listForm">
-	
+<form action="adminNoticeList.do" method="post" name="listForm">	
 
 	<div class="content-wrapper">
 	<div class="table_top">

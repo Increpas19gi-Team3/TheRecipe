@@ -6,7 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>    
     
-<jsp:include page="header.jsp" />
+<jsp:include page="adminheader.jsp" />
 
 	<div class="container boardNotice board">
 		<div class="row">
@@ -38,6 +38,7 @@
 						<a href="join.html" class="active">공지사항</a>
 					</div>
 				</h3>
+				
 				<table>
 					<thead>
 						<tr>
@@ -46,74 +47,50 @@
 							<th>구&nbsp;&nbsp;분</th>
 							<th>작성일</th>
 							<th>내&nbsp;&nbsp;용</th>
-														
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>
-								${nVo.e_evtcode}
-							</td>
-							<td> 
-								${nVo.e_nttilte}
-							</td>
-							<td>
-								${nVo.e_gubun}
-							</td>
-							<td>
-								<fmt:formatDate value="${nVo.e_ntdate}" pattern="yyyy-MM-dd HH:mm:ss" />
-							</td>
-							<td>
-								${nVo.e_ntcontens}
-							</td>
+							<td>${eVo.e_evtcode}</td>
+							<td>${eVo.e_nttilte}</td>
+							<td>${eVo.e_gubun}</td>
+							<td><fmt:formatDate value="${eVo.e_ntdate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+							<td>${eVo.e_ntcontens}</td>
 						</tr>
-						
 						<tr>
-							<td colspan="5">이미지</td>												
-						</tr>						
-						
+							<td colspan="5">이미지</td>
+						</tr>
 						<tr>
 							<td colspan="5">
-								${nVo.e_ntimgname}
-								<img src="/images/${nVo.e_ntimgname}" width="400" height="400">
+								${eVo.e_ntimgname}
+								<img src="/images/${eVo.e_ntimgname}" width="400" height="400">
 							</td>
 						</tr>
-							
+						
 						<tr>
 							<td>할인율</td>
 							<td>시작날짜</td>
 							<td>종료날짜</td>
-							<td>마스터 코드</td>
-						</tr>
+							<td>마스터 코드</td>							
+						</tr>				
 						
-						<tr>	
-							<td>
-								${nVo.e_discount}
-							</td>
-							<td>
-								<fmt:formatDate value="${nVo.e_startdate}" pattern="yyyy-MM-dd HH:mm:ss" />
-							</td>
-							<td>
-								<fmt:formatDate value="${nVo.e_enddate}" pattern="yyyy-MM-dd HH:mm:ss" />
-							</td>
-							<td>
-								<fmt:formatDate value="${nVo.e_enddate}" pattern="yyyy-MM-dd HH:mm:ss" />
-							</td>
-							<td>
-								${nVo.ms_code}
-							</td>
-																					
+						<tr>
+							<td>${eVo.discount_value}%</td>
+							<td><fmt:formatDate value="${eVo.e_startdate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+							<td><fmt:formatDate value="${eVo.e_enddate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+							<td>${eVo.ms_code}</td>
 						</tr>						
 					</tbody>
 				</table>
 				
 				<div class="pagination_wrap">
 					<div class="btn_right">
-						<input type="button" value="공지사항 목록" onclick="location.href='userNoticeList.do'">												
+						<input type="button" value="이벤트 수정" onclick="location.href='adminEventUpdate.do?e_evtcode=${eVo.e_evtcode}'">
+						<input type="button" value="이벤트 삭제" onclick="location.href='adminEventdelete.do?e_evtcode=${eVo.e_evtcode}'">
 					</div>
-				</div>				
+				</div>
 			</div>
 		</div>
 	</div>
 
-<jsp:include page="footer.jsp" />
+
