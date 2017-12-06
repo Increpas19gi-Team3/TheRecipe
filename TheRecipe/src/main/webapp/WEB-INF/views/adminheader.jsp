@@ -149,7 +149,7 @@
                             <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti4">이벤트 관리</a>
                             <ul class="sidenav-third-level collapse" id="collapseMulti4">
                                 <li>
-                                    <a href="EventList.do">목록</a>
+                                    <a href="adminEventList.do">목록</a>
                                 </li>
                                 
                                 <!-- <li>

@@ -31,7 +31,7 @@
 						<span> > </span>
 						<a href="#">커뮤니티</a>
 						<span> > </span>
-						<a href="#">후기 게시판</a>
+						<a href="ReviewList.do">후기 게시판</a>
 						<span> > </span>
 						<a href="#" class="active">글쓰기</a>
 					</div>
@@ -79,7 +79,7 @@
 					</script>
 					<fieldset class="btn_bottom">
 						<input type="submit" value="확인">
-						<input type="button" onClick="history.back(); return false;" class="btn_back" value="취소">
+						<a href="#" onClick="history.back(); return false;" class="btn_back">취소</a>
 					</fieldset>
 				</form:form>
 			</div>
