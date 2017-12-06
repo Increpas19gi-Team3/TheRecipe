@@ -8,26 +8,7 @@
     
 <jsp:include page="adminheader.jsp" />
 
-	<div class="container boardNotice board">
-		<div class="row">
-			<div class="left_tab">
-				<h2>고객센터</h2>
-				<ul>
-					<li class="active"><a href="http://localhost:8282/therecipe/test_171129/boardNotice.jsp">공지사항</a></li>
-					<li><a href="http://localhost:8282/therecipe/test_171129/boardReview.jsp">후기 게시판</a></li>
-					<li><a href="http://localhost:8282/therecipe/test_171129/boardRecommend.jsp">추천 레시피</a></li>
-					<li><a href="http://localhost:8282/therecipe/test_171129/boardEvent.jsp">이벤트</a></li>
-				</ul>
-				<div class="service_info">
-					<h4>배민찬 고객센터</h4>
-					<h3>1899-2468</h3>
-					<hr>
-					<p>평일 06:30 ~ 18:00</p>
-					<p>주말 06:30 ~ 15:00</p>
-					<p>공휴일 휴무</p>
-				</div>
-			</div>
-			<div class="right_contnet">
+	<div class="content-wrapper write_form">
 				<h3>
 					공지사항
 					<div class="page_locationBox">
@@ -91,7 +72,6 @@
 				</fieldset>				
 				
 				</form:form>
-			</div>
-		</div>
+
 	</div>
 
