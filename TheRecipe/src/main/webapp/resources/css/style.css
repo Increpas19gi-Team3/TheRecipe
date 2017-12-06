@@ -114,6 +114,7 @@ hr{
 
 .pagination_wrap{
 	position: relative;
+	min-height: 75px;
 }
 .pagination_wrap .pagination{
 	width: 100%;
@@ -140,6 +141,11 @@ hr{
 .pagination_wrap .btn_right{
 	padding: 10px 15px;
 	background: #2ac1bc;
+}
+.pagination_wrap .btn_right input{
+	background: none;
+	border: none;
+	color: #fff;
 }
 .pagination_wrap .btn_right a{
 	color: #fff;

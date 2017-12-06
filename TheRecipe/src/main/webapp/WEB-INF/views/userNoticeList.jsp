@@ -96,80 +96,68 @@
 			</h3>
 
 			<form action="userNoticeList.do" method="post" name="listForm">
-				<div class="table_top">
-					<div class="searchBox">
-						<!-- 검색 처리 -->
-						<select name="whereColumn" onchange="change_whereColumn()">
-							<c:choose>
-								<c:when test="${not empty whereColumn }">
-									<c:choose>
-										<c:when test="${whereColumn eq 'ALL'}">
-											<option value="ALL" selected="selected">제목:내용</option>
-											<option value="TITLE">제목</option>
-										</c:when>
-										<c:when test="${whereColumn eq 'TITLE'}">
-											<option value="ALL">제목:내용</option>
-											<option value="TITLE" selected="selected">제목</option>
-										</c:when>
-									</c:choose>
-								</c:when>
-								
-								<c:otherwise>
-									<option value="ALL">전체검색</option>
-									<option value="TITLE">제목</option>
-								</c:otherwise>								
-							</c:choose>							
-						</select> 
+			<div class="j_table">
+				<div class="top">
+						<input type="hidden" name="sortColumn" value="${sortColumn }">
+						<input type="hidden" name="orderby" value="${orderby }"> 
+						<input type="hidden" name="GUBUN" value="${GUBUN }"> 
+						<input type="hidden" name="pageCutCount" value="${pageCutCount }">
+						<!-- 페이지 갯수 제한 -->
+						<div class="pageLimitWrap">
+							<select name="pageCutCount" id="pageCutCount" onchange="change_pageCutCount();">
+								<c:choose>
+									<c:when test="${pageCutCount eq '5' }">
+										<option value="5" selected="selected">5개 보기</option>
+									</c:when>
+									<c:otherwise>
+										<option value="5">5개 보기</option>
+									</c:otherwise>
+								</c:choose>
+								<c:choose>
+									<c:when test="${pageCutCount eq '10' }">
+										<option value="10" selected="selected">10개 보기</option>
+									</c:when>
+									<c:otherwise>
+										<option value="10">10개 보기</option>
+									</c:otherwise>
+								</c:choose>
+								<c:choose>
+									<c:when test="${pageCutCount eq '20' }">
+										<option value="20" selected="selected">20개 보기</option>
+									</c:when>
+									<c:otherwise>
+										<option value="20">20개 보기</option>
+									</c:otherwise>
+								</c:choose>
+							</select>
+						</div>
 						
-						<input type="text" name="word" value="${word }"> 
-						<input type="submit" value="검색">
-
+						<!-- 검색 처리 -->
+						<div class="searchWrap">
+							<select name="whereColumn" onchange="change_whereColumn()">
+								<c:choose>
+									<c:when test="${not empty whereColumn }">
+										<c:choose>
+											<c:when test="${whereColumn eq 'ALL'}">
+												<option value="ALL" selected="selected">제목:내용</option>
+												<option value="TITLE">제목</option>
+											</c:when>
+											<c:when test="${whereColumn eq 'TITLE'}">
+												<option value="ALL">제목:내용</option>
+												<option value="TITLE" selected="selected">제목</option>
+											</c:when>
+										</c:choose>
+									</c:when>
+									<c:otherwise>
+										<option value="ALL">전체검색</option>
+										<option value="TITLE">제목</option>
+									</c:otherwise>
+								</c:choose>
+							</select>
+							<input type="text" name="word" value="${word }"> 
+							<input type="submit" value="검색">
+						</div>
 					</div>
-				</div>
-
-				<input type="hidden" name="sortColumn" value="${sortColumn }">
-				<input type="hidden" name="orderby" value="${orderby }"> 
-				<input type="hidden" name="GUBUN" value="${GUBUN }"> 
-				<input type="hidden" name="pageCutCount" value="${pageCutCount }">
-
-				<!-- 페이지 갯수 제한 -->
-				<table id="listGubun" style="border: none;">
-					<tr style="border: none;">
-						<td style="text-align: right; border: none;">
-						<select name="pageCutCount" id="pageCutCount" onchange="change_pageCutCount();">
-							<c:choose>
-								<c:when test="${pageCutCount eq '5' }">
-									<option value="5" selected="selected">5개 보기</option>
-								</c:when>
-
-								<c:otherwise>
-									<option value="5">5개 보기</option>
-								</c:otherwise>
-							</c:choose>
-
-							<c:choose>
-								<c:when test="${pageCutCount eq '10' }">
-									<option value="10" selected="selected">10개 보기</option>
-								</c:when>
-
-								<c:otherwise>
-									<option value="10">10개 보기</option>
-								</c:otherwise>
-							</c:choose>
-
-							<c:choose>
-								<c:when test="${pageCutCount eq '20' }">
-									<option value="20" selected="selected">20개 보기</option>
-								</c:when>
-
-								<c:otherwise>
-									<option value="20">20개 보기</option>
-								</c:otherwise>
-							</c:choose>
-						</select>
-					</td>
-				</tr>
-			</table>
 
 			<table>
 				<thead>
@@ -266,7 +254,8 @@
 					<!-- <div class="btn_right">
 						<a href="NoticeReg.do">공지사항 등록</a>
 					</div> -->					
-				</div>				
+				</div>		
+				</div>		
 			</form>
 		</div>
 	</div>

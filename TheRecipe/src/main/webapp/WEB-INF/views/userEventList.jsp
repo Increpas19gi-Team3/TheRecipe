@@ -95,14 +95,12 @@
 			</h3>
 
 			<form action="userNoticeList.do" method="post" name="listForm">
-
-			<input type="hidden" name="sortColumn" value="${sortColumn }">
-			<input type="hidden" name="orderby" value="${orderby }"> 
-			<input type="hidden" name="GUBUN" value="${GUBUN }"> 
-			<input type="hidden" name="pageCutCount" value="${pageCutCount }">
-
 				<div class="j_table">
 					<div class="top">
+						<input type="hidden" name="sortColumn" value="${sortColumn }">
+						<input type="hidden" name="orderby" value="${orderby }"> 
+						<input type="hidden" name="GUBUN" value="${GUBUN }"> 
+						<input type="hidden" name="pageCutCount" value="${pageCutCount }">
 						<!-- 페이지 갯수 제한 -->
 						<div class="pageLimitWrap">
 							<select name="pageCutCount" id="pageCutCount" onchange="change_pageCutCount();">
