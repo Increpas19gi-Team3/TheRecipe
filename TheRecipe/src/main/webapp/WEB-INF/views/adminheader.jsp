@@ -71,11 +71,27 @@
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages3" data-parent="#exampleAccordion">
 						<i class="fa fa-fw fa-wrench"></i>
-						<span class="nav-link-text">이벤트 설정</span>
+						<span class="nav-link-text">이벤트 등록 관리</span>
 					</a>
                     <ul class="sidenav-second-level collapse" id="collapseExamplePages3">
                         <li>
-                            <a href="adminEventMgr.do">이벤트 설정</a>
+                            <a href="adminEventList.do">목록</a>
+                        </li>
+                        <li>
+                            <a href="adminEventMgr.do">설정</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages4" data-parent="#exampleAccordion">
+						<i class="fa fa-fw fa-wrench"></i>
+						<span class="nav-link-text">주문 관리</span>
+					</a>
+                    <ul class="sidenav-second-level collapse" id="collapseExamplePages4">
+                        <li>
+                            <a href="adminOrder.do">설정</a>
                         </li>
                     </ul>
                 </li>
@@ -105,14 +121,14 @@
                             <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">후기 게시판 관리</a>
                             <ul class="sidenav-third-level collapse" id="collapseMulti2">
                                 <li>
-                                    <a href="table.html">목록</a>
+                                    <a href="adminReviewList.do">목록</a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="write_1.html">등록</a>
                                 </li>
                                 <li>
                                     <a href="update_1.html">수정</a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
                         <!-- <li>
