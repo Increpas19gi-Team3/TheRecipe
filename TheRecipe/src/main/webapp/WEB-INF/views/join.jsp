@@ -18,8 +18,8 @@
 				<fieldset class="idBox">
 					<label for="">아이디</label>
 					<input type="text" placeholder="아이디" id="m_userid" name="m_userid" required="">
-					<a href="idcheck.do">아이디 중복 체크</a> 
-					<span class="msg">${msg }</span>
+					<a href="idcheck.do" target="_blank">아이디 중복 체크</a> 
+					<span class="msg">${msg}</span>
 				</fieldset>
 				<fieldset>
 					<label for="">비밀번호</label>

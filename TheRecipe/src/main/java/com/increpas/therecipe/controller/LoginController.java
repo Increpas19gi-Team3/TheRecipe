@@ -110,6 +110,7 @@ public class LoginController {
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.setAttribute("m_userid", null);
+		session.setAttribute("m_level", null);
 		return "redirect:home.do";
 	}
 
