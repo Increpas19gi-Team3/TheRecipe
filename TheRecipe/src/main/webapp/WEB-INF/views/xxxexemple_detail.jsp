@@ -47,7 +47,7 @@
 					<tbody>
 						<tr>
 							<td>
-								16
+								${eVo.e_evtcode}
 							</td>
 							<td> 
 								개인정보처리방침 개정 안내

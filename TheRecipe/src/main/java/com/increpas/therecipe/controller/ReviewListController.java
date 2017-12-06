@@ -34,11 +34,11 @@ public class ReviewListController {
 	 * @param resp 응답
 	 * @return ReviewList.jsp : 공지사항 페이지로 이동
 	 */	
-	@RequestMapping(value = "/ReviewList.do")
+	@RequestMapping(value = "/adminReviewList.do")
 	public String getNoticeList(Model model, HttpServletRequest req, HttpServletResponse resp) {
 
 		// 공지사항에 대한 검색, 정렬, 페이징 정보도 받아와야 함.
-		System.err.println("▶▶▶▶▶▶  1. ReviewList.do");
+		System.err.println("▶▶▶▶▶▶  1. adminReviewList.do");
 
 		// 정렬
 		String sortColumn = NullToBlank.doChange(req.getParameter("sortColumn"));
@@ -93,6 +93,6 @@ public class ReviewListController {
 			model.addAttribute("endPage", endPageNumber);
 		}
 		
-		return "/userReviewList";
+		return "/adminReviewList";
 	}	
 }
