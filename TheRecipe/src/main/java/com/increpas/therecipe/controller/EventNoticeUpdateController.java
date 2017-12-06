@@ -22,8 +22,7 @@ import com.increpas.therecipe.service.EventNoticeUpdateService;
 import com.increpas.therecipe.vo.EventNoticeRegVO;
 
 /**
- * 공지사항과 이벤트의 수정 Controller
- * 
+ * (관리자)공지사항과 이벤트의 수정 Controller 
  * @author 손대성
  *
  */
@@ -34,9 +33,9 @@ public class EventNoticeUpdateController {
 	EventNoticeUpdateService enuService;
 	
 	/**
-	 * 공지사항 수정	 
+	 * (관리자)공지사항 수정	 
 	 * @param model
-	 * @return
+	 * @return "adminNoticeUpdate"
 	 */
 	@RequestMapping(value = "/adminNoticeUpdate.do", method = RequestMethod.GET)
 	public String GET_NoticeUpdate(Model model, HttpServletRequest req) {
@@ -47,11 +46,11 @@ public class EventNoticeUpdateController {
 	}
 	
 	/**
-	 * 공지사항 수정
+	 * (관리자)공지사항 수정
 	 * @param erVo
 	 * @param errors
 	 * @param model
-	 * @return
+	 * @return "redirect:adminNoticeList.do"
 	 */
 	@RequestMapping(value = "/adminNoticeUpdate.do", method = RequestMethod.POST)
 	public String POST_NoticeUpdate(@Valid @ModelAttribute("noticeUpdateCom") EventNoticeRegVO enrVo, Errors errors, HttpServletRequest req, HttpServletResponse resp, Model model) {
@@ -126,10 +125,10 @@ public class EventNoticeUpdateController {
 	}
 	
 	/**
-	 * 공지사항 삭제 
+	 * (관리자)공지사항 삭제 
 	 * @param request
 	 * @param model
-	 * @return
+	 * @return "redirect:adminNoticeList.do"
 	 */
 	@RequestMapping(value = "/adminNoticeDelete.do", method = RequestMethod.GET)
 	public String NoticeDelete(HttpServletRequest request, Model model) {
@@ -148,9 +147,9 @@ public class EventNoticeUpdateController {
 	
 	
 	/**
-	 * 이벤트 수정	 
+	 * (관리자)이벤트 수정(GET)	 
 	 * @param model
-	 * @return
+	 * @return "adminEventUpdate"
 	 */
 	@RequestMapping(value = "/adminEventUpdate.do", method = RequestMethod.GET)
 	public String GET_EventUpdate(Model model, HttpServletRequest req) {
@@ -161,11 +160,11 @@ public class EventNoticeUpdateController {
 	}
 	
 	/**
-	 * 이벤트 수정
+	 * (관리자)이벤트 수정(POST)
 	 * @param erVo
 	 * @param errors
 	 * @param model
-	 * @return
+	 * @return "redirect:adminEventList.do"
 	 */
 	@RequestMapping(value = "/adminEventUpdate.do", method = RequestMethod.POST)
 	public String POST_EventUpdate(@Valid @ModelAttribute("noticeUpdateCom") EventNoticeRegVO enrVo, Errors errors, HttpServletRequest req, HttpServletResponse resp, Model model) {
@@ -241,10 +240,10 @@ public class EventNoticeUpdateController {
 	
 	
 	/**
-	 * 이벤트 삭제
+	 * (관리자)이벤트 삭제
 	 * @param request
 	 * @param model
-	 * @return
+	 * @return "redirect:adminEventList.do"
 	 */
 	@RequestMapping(value = "/adminEventdelete.do", method = RequestMethod.GET)
 	public String EventDelete(HttpServletRequest request, Model model) {

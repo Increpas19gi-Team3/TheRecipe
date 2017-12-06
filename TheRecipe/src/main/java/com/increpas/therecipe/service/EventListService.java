@@ -10,8 +10,7 @@ import com.increpas.therecipe.dto.EventListDTO;
 import com.increpas.therecipe.vo.EventVO;
 
 /**
- * 이벤트 리스트를 관리하기 위한 Service
- * 
+ * (관리자, 일반인)이벤트 리스트를 관리하기 위한 Service
  * @author 손대성
  *
  */
@@ -25,7 +24,7 @@ public class EventListService {
 	EventListDTO eventListDTO;
 		
 	/**
-	 * 
+	 * (관리자, 일반인)이벤트 리스트
 	 * @param pageCutCount ; 게시글 보기 수
 	 * @param requestPageNumber ; 요청 페이지 번호
 	 * @param whereColumn ; 검색 컬럼명
@@ -92,15 +91,15 @@ public class EventListService {
 
 	/**
 	 * 전체 페이지 갯수 계산
-	 * @param pageCutCount;
-	 * @param totalBoardVOCount;
-	 * @return pageCount;
+	 * @param pageCutCount
+	 * @param totalBoardVOCount
+	 * @return pageCount
 	 */
 	private int calculateTotalPageCount(int pageCutCount, int totalBoardVOCount) {
+		
 		if (totalBoardVOCount == 0) {
 			return 0;
 		}
-
 		// 글 갯수 ÷ 페이지당 글 갯수 : 예) 2/10 = 0
 		int pageCount = totalBoardVOCount / pageCutCount;
 

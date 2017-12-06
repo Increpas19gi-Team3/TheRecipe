@@ -9,7 +9,6 @@ import com.increpas.therecipe.vo.ReviewVO;
 /**
  * 관리자의 답변(등록, 수정, 삭제)을 관리하기 위한 Service  
  * @author 손대성
- *
  */
 @Service
 public class ReviewUpdateService {
@@ -34,6 +33,8 @@ public class ReviewUpdateService {
 		System.out.println("2. ▶▶▶▶ ReviewUpdateService : ReviewDeleteS >> 삭제");		
 		ruDAO.ReviewDeleteDAO(Rcode);
 	}
+	
+	//=======================================호진 작업==================================================
 
 	/**
 	 * 리뷰 작성 동작 수행

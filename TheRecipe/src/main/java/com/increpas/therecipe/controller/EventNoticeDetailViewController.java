@@ -24,7 +24,7 @@ import com.increpas.therecipe.vo.EventNoticeVO;
 import com.increpas.therecipe.vo.EventVO;
 
 /**
- * 공지사항과 이벤트의 상세보기와 등록 Controller
+ * (관리자)공지사항과 이벤트의 상세보기와 등록 Controller
  * @author 손대성
  *
  */
@@ -35,16 +35,16 @@ public class EventNoticeDetailViewController {
 	EventNoticeViewRegService ndvs;
 
 	/**
-	 * 공지사항 상세보기	 
+	 * (관리자)공지사항 상세보기	 
 	 * @param model
 	 * @param req
 	 * @param resp
-	 * @return "NoticeDetailView"
+	 * @return "adminNoticeDetailView"
 	 */
 	@RequestMapping(value = "/adminNoticeDetailView.do", method = RequestMethod.GET)
 	public String GET_NoticeDetailView(Model model, HttpServletRequest req, HttpServletResponse resp) {
 
-		System.out.println("공시사항 상세페이지 입니다.");
+		System.out.println("(관리자)공시사항 상세페이지 입니다.");
 		int Ncode = Integer.parseInt(req.getParameter("e_evtcode"));
 		EventVO nVo = ndvs.getNoticeVODetail(Ncode);
 		model.addAttribute("nVo", nVo);
@@ -52,22 +52,22 @@ public class EventNoticeDetailViewController {
 	}
 
 	/**
-	 * 공지사항 등록으로 들어감(GET)	  
+	 * (관리자)공지사항 등록으로 들어감(GET)	  
 	 * @param model
-	 * @return "noticeReg"
+	 * @return "adminNoticeReg"
 	 */
 	@RequestMapping(value = "/adminNoticeReg.do", method = RequestMethod.GET)
 	public String GET_NoticeReg(Model model) {
-		System.out.println("공시사항 리스트에서 등록버튼을 눌렀음 등록페이지로 넘어감");
+		System.out.println("(관리자)공시사항 리스트에서 등록버튼을 눌렀음 등록페이지로 넘어감");
 		return "adminNoticeReg";
 	}
 
 	/**
-	 * 공지사항 등록(POST)
+	 * (관리자)공지사항 등록(POST)
 	 * @param erVo
 	 * @param errors
 	 * @param model
-	 * @return "redirect:NoticeList.do"
+	 * @return "redirect:adminNoticeList.do"
 	 */
 	@RequestMapping(value = "/adminNoticeReg.do", method = RequestMethod.POST)
 	public String POST_NoticeReg(@Valid @ModelAttribute("noticeCom") EventNoticeRegVO erVo, Errors errors, Model model) {
@@ -121,11 +121,11 @@ public class EventNoticeDetailViewController {
 	// ===========================================이벤트===============================================================
 	
 	/**
-	 * 이벤트 상세보기 페이지로 이동(GET)
+	 * (관리자)이벤트 상세보기 페이지로 이동(GET)
 	 * @param model
 	 * @param req
 	 * @param resp
-	 * @return "EventDetailView"
+	 * @return "adminEventDetailView"
 	 */
 	@RequestMapping(value = "/adminEventDetailView.do", method = RequestMethod.GET)
 	public String GET_EventDetailView(Model model, HttpServletRequest req, HttpServletResponse resp) {
@@ -139,9 +139,9 @@ public class EventNoticeDetailViewController {
 	}
 	
 	/**
-	 * 이벤트 등록()
+	 * (관리자)이벤트 등록(GET)
 	 * @param model
-	 * @return
+	 * @return "adminEventReg"
 	 */
 	@RequestMapping(value = "/adminEventReg.do", method = RequestMethod.GET)
 	public String GET_EventReg(Model model) {
@@ -150,6 +150,13 @@ public class EventNoticeDetailViewController {
 		return "adminEventReg";
 	}
 	
+	/**
+	 * (관리자)이벤트 등록(POST)
+	 * @param erVo
+	 * @param errors
+	 * @param model
+	 * @return "redirect:adminEventList.do"
+	 */
 	@RequestMapping(value = "/adminEventReg.do", method = RequestMethod.POST)
 	public String POST_EventReg(@Valid @ModelAttribute("eventCom") EventNoticeRegVO erVo, Errors errors, Model model) {
 

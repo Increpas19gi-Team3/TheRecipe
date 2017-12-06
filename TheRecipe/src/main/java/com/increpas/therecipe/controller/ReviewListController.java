@@ -13,7 +13,7 @@ import com.increpas.therecipe.service.ReviewListService;
 import com.increpas.therecipe.util.NullToBlank;
 
 /**
- * 후기 게시판 리스트 컨트롤러 기능 : 
+ * (관리자)후기 게시판 리스트 컨트롤러 기능 : 
  * 검색(제목), 페이징, 정렬(기간) 
  * 1. 단순 리스트 출력 
  * 2. 상세보기로 들어가기 위한 연결 링크
@@ -28,11 +28,11 @@ public class ReviewListController {
 	ReviewListService reviewListService;	
 	
 	/**
-	 * "ReviewList.do"로 요청 받음	
+	 * "/adminReviewList.do"로 요청 받음	
 	 * @param model
 	 * @param req 요청
 	 * @param resp 응답
-	 * @return ReviewList.jsp : 공지사항 페이지로 이동
+	 * @return "/adminReviewList" : 공지사항 페이지로 이동
 	 */	
 	@RequestMapping(value = "/adminReviewList.do")
 	public String getNoticeList(Model model, HttpServletRequest req, HttpServletResponse resp) {

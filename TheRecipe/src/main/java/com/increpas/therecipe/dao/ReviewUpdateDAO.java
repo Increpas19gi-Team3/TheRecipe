@@ -12,8 +12,8 @@ import com.increpas.therecipe.vo.ReviewVO;
 
 /**
  * 관리자 답글(등록, 수정, 삭제)에 대한 DAO
+ * 일반인 상품후기 등록 DAO
  * @author 손대성
- *
  */
 @Repository
 public class ReviewUpdateDAO {
@@ -32,19 +32,20 @@ public class ReviewUpdateDAO {
 	
 	/**
 	 * 관리자의 답변 삭제(사실은 수정)
-	 * @param rVo
+	 * @param r_rvcode
 	 */
 	public void ReviewDeleteDAO(String r_rvcode) {
 		System.out.println("3. 관리자 답변 삭제(수정)  : r_rvcode : " + r_rvcode);			
 		sqlSessionTemplate.update("review_ns.reviewAdminDelete", r_rvcode);		
 	}
 
+	//=====================================호진 작업=======================================
+	
 	/**
 	 * 리뷰 작성 동작 수행
 	 * @param rVo
 	 */
-	public void reviewWrite(ReviewVO rVo) {
-		
+	public void reviewWrite(ReviewVO rVo) {		
 		 sqlSessionTemplate.insert("review_ns.reviewWrite", rVo);
 	}
 

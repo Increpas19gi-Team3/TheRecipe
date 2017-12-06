@@ -14,7 +14,7 @@ import com.increpas.therecipe.service.NoticeListService;
 import com.increpas.therecipe.util.NullToBlank;
 
 /**
- * 공지사항, 이벤트 게시판 리스트 컨트롤러 기능 : 
+ * (관리자)공지사항, 이벤트 게시판 리스트 컨트롤러 기능 : 
  * 검색(제목), 페이징, 정렬(기간) 
  * 1. 단순 리스트 출력 
  * 2. 상세보기로 들어가기 위한 연결 링크
@@ -33,11 +33,11 @@ public class EventNoticeListController {
 	EventListService eventListService;
 	
 	/**
-	 * "NoticeList.do"로 요청 받음
+	 * "/adminNoticeList.do"로 요청 받음
 	 * @param model
 	 * @param req 요청
 	 * @param resp 응답
-	 * @return noticeList.jsp : 공지사항 페이지로 이동
+	 * @return "/adminNoticeList" : 공지사항 페이지로 이동
 	 */	
 	@RequestMapping(value = "/adminNoticeList.do")
 	public String getNoticeList(Model model, HttpServletRequest req, HttpServletResponse resp) {
@@ -110,12 +110,12 @@ public class EventNoticeListController {
 	
 	
 	/**
-	 * 이벤트 리스트를 출력하기 위한 컨트롤러
+	 * (관리자)이벤트 리스트를 출력하기 위한 컨트롤러
 	 * "EventList.do"로 요청 받음
 	 * @param model
 	 * @param req 요청
 	 * @param resp 응답
-	 * @return noticeList.jsp : 이벤트 페이지로 이동
+	 * @return "/adminEventList" : 이벤트 페이지로 이동
 	 */	
 	@RequestMapping(value = "/adminEventList.do")
 	public String getEventist(Model model, HttpServletRequest req, HttpServletResponse resp) {

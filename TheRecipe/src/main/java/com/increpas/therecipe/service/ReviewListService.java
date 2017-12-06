@@ -13,10 +13,8 @@ import com.increpas.therecipe.vo.EventVO;
 import com.increpas.therecipe.vo.ReviewVO;
 
 /**
- * 공지사항을 관리하기 위한 Service
- * 
+ * (관리자, 일반인)후기 리스트, 상세보기, 조회수 관리하기 위한 Service
  * @author 손대성
- *
  */
 @Service
 public class ReviewListService {
@@ -28,17 +26,13 @@ public class ReviewListService {
 	ReviewListDTO reviewListDTO;
 		
 	/**
-	 * 
+	 * (관리자, 일반인)후기 리스트
 	 * @param pageCutCount ; 게시글 보기 수
 	 * @param requestPageNumber ; 요청 페이지 번호
 	 * @param whereColumn ; 검색 컬럼명
 	 * @param word ; 검색어
 	 * @param sortColumn ; 정렬 컬럼
-	 * @param orderby ; 정렬방식 ASC, DESC
-	 * 후기게시판에 필요없는 기능 'GUBUN'
-	 * 'GUBUN'을 지울려면 'EventListDTO'에서도 'GUBUN'을 지워야하는데
-	 * 그렇게 만들려면 ReviewListDTO 전용으로 하나를 만들어야 하는데 
-	 * 따로 만들기에는 똑같은 기능이 너무 많기 때문에 그대로 씀
+	 * @param orderby ; 정렬방식 ASC, DESC	 
 	 * @param GUBUN ;  공지사항:0, 이벤트:1 ; 
 	 * @return
 	 */
@@ -95,7 +89,7 @@ public class ReviewListService {
 	}
 
 	/**
-	 * 전체 페이지 갯수 계산
+	 * 후기 리스트 전체 페이지 갯수 계산
 	 * @param pageCutCount;
 	 * @param totalBoardVOCount;
 	 * @return pageCount;
@@ -115,7 +109,11 @@ public class ReviewListService {
 		return pageCount;
 	}
 	
-	// 후기 상세보기, 조회수 증가
+	/**
+	 * 후기 상세보기, 조회수 증가
+	 * @param Ncode
+	 * @return reviewDAO.ReviewDetailView(Ncode)
+	 */
 	public ReviewVO getReviewVODetail(int Ncode) {
 		System.out.println("2. ▶▶▶▶ NoticeDetailViewService : getNoticeVOList >> 들어옴");
 		reviewDAO.updateHitCount(Ncode); // 글 조회수 증가

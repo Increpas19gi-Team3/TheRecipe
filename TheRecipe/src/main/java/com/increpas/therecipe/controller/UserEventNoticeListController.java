@@ -18,7 +18,7 @@ import com.increpas.therecipe.vo.EventNoticeVO;
 import com.increpas.therecipe.vo.EventVO;
 
 /**
- * 유저를 위한 공지사항, 이벤트 게시판 리스트, 상세보기 컨트롤러 기능 : 
+ * 일반인을 위한 공지사항, 이벤트 게시판 리스트, 상세보기 Controller : 
  * 검색(제목), 페이징, 정렬(기간) 
  * 1. 단순 리스트 출력 
  * 2. 상세보기로 들어가기 위한 연결 링크
@@ -41,11 +41,11 @@ public class UserEventNoticeListController {
 	EventNoticeViewRegService ndvs;
 	
 	/**
-	 * "userNoticeList.do"로 요청 받음
+	 * (일반인)공지사항 리스트
 	 * @param model
 	 * @param req 요청
 	 * @param resp 응답
-	 * @return userNoticeList : 공지사항 페이지로 이동
+	 * @return "/userNoticeList"
 	 */	
 	@RequestMapping(value = "/userNoticeList.do")
 	public String getNoticeList(Model model, HttpServletRequest req, HttpServletResponse resp) {
@@ -117,7 +117,7 @@ public class UserEventNoticeListController {
 	}
 	
 	/**
-	 * 공지사항 상세보기	 
+	 * (일반인)공지사항 상세보기	 
 	 * @param model
 	 * @param req
 	 * @param resp
@@ -137,12 +137,12 @@ public class UserEventNoticeListController {
 	//=============================================이벤트=======================================================
 	
 	/**
-	 * 이벤트 리스트를 출력하기 위한 컨트롤러
-	 * "EventList.do"로 요청 받음
+	 * (일반인)이벤트 리스트를 출력하기 위한 컨트롤러
+	 * "/userEventList.do"로 요청 받음
 	 * @param model
 	 * @param req 요청
 	 * @param resp 응답
-	 * @return userEventList : 이벤트 페이지로 이동
+	 * @return "/userEventList" : 이벤트 페이지로 이동
 	 */	
 	@RequestMapping(value = "/userEventList.do")
 	public String getEventist(Model model, HttpServletRequest req, HttpServletResponse resp) {
@@ -213,7 +213,7 @@ public class UserEventNoticeListController {
 	}
 	
 	/**
-	 * 이벤트 상세보기 페이지로 이동(GET)
+	 * (일반인)이벤트 상세보기 페이지로 이동(GET)
 	 * @param model
 	 * @param req
 	 * @param resp

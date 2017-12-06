@@ -19,9 +19,9 @@ import com.increpas.therecipe.vo.OrderVO;
 import com.increpas.therecipe.vo.ReviewVO;
 
 /**
- * 후기에 관한 Controller
- * 
- * @author 손대성
+ * (관리자)후기답변 상세보기, 등록, 삭제 Controller
+ * (일반인)상품후기 등록 Controller
+ * @author 손대성, 박호진
  *
  */
 @Controller
@@ -34,11 +34,11 @@ public class ReviewDetailViewController {
 	ReviewUpdateService ruService;
 	
 	/**
-	 * 후기 상세보기(get)
+	 * (관리자)후기 상세보기(GET)
 	 * @param model
 	 * @param req
 	 * @param resp
-	 * @return
+	 * @return "adminReviewDetailView"
 	 */
 	@RequestMapping(value = "/adminReviewDetailView.do", method = RequestMethod.GET)
 	public String GET_ReviewDetailView(Model model, HttpServletRequest req, HttpServletResponse resp) {
@@ -49,8 +49,11 @@ public class ReviewDetailViewController {
 		return "adminReviewDetailView";
 	}	
 	
+	
+	
 	/**
-	 * 후기 관리자 답변 등록을 위한 글 찾기
+	 * (관리자)후기 관리자 답변 등록을 위한 글 찾기(GET)
+	 * @return "adminReviewRegUpdate"
 	 */
 	@RequestMapping(value = "/adminReviewRegUpdate.do", method = RequestMethod.GET)
 	public String GET_ReviewAdminRegUP(Model model, HttpServletRequest req, HttpServletResponse resp) {		
@@ -62,9 +65,9 @@ public class ReviewDetailViewController {
 	}	
 	
 	/**
-	 * 후기 관리자 답변 등록(수정)
+	 * (관리자)후기 관리자 답변 등록(수정)
 	 * @param rVo	
-	 * @return
+	 * @return "redirect:adminReviewList.do"
 	 */
 	@RequestMapping(value = "/adminReviewRegUpdate.do", method = RequestMethod.POST)
 	public String POST_ReviewAdminRegUP(ReviewVO rVo) {
@@ -74,11 +77,11 @@ public class ReviewDetailViewController {
 	}	
 	
 	/**
-	 * 관리자의 답글 삭제
+	 * (관리자)관리자의 답글 삭제
 	 * @param model
 	 * @param req
 	 * @param resp
-	 * @return
+	 * @return "redirect:adminReviewList.do"
 	 */
 	@RequestMapping(value = "/adminReviewDelete.do", method = RequestMethod.GET)
 	public String GET_ReviewAdminDelete(HttpServletRequest req, HttpServletResponse resp) {

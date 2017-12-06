@@ -10,10 +10,8 @@ import com.increpas.therecipe.dto.EventListDTO;
 import com.increpas.therecipe.vo.EventVO;
 
 /**
- * 공지사항을 관리하기 위한 Service
- * 
+ * (관리자, 일반인)공지사항 리스트을 관리하기 위한 Service
  * @author 손대성
- *
  */
 @Service
 public class NoticeListService {
@@ -25,7 +23,7 @@ public class NoticeListService {
 	EventListDTO eventListDTO;
 		
 	/**
-	 * 
+	 * (관리자, 일반인)공지사항 리스트
 	 * @param pageCutCount ; 게시글 보기 수
 	 * @param requestPageNumber ; 요청 페이지 번호
 	 * @param whereColumn ; 검색 컬럼명
@@ -33,7 +31,7 @@ public class NoticeListService {
 	 * @param sortColumn ; 정렬 컬럼
 	 * @param orderby ; 정렬방식 ASC, DESC
 	 * @param GUBUN ;  공지사항:0, 이벤트:1
-	 * @return
+	 * @return boardVOListView
 	 */
 	public EventListDTO getBoardVOList(int pageCutCount, int requestPageNumber, String whereColumn, String word,
 			String sortColumn, String orderby, String GUBUN) {
@@ -91,12 +89,13 @@ public class NoticeListService {
 	}
 
 	/**
-	 * 전체 페이지 갯수 계산
+	 * 공지사항 리스트 전체 페이지 갯수 계산
 	 * @param pageCutCount;
 	 * @param totalBoardVOCount;
 	 * @return pageCount;
 	 */
 	private int calculateTotalPageCount(int pageCutCount, int totalBoardVOCount) {
+		
 		if (totalBoardVOCount == 0) {
 			return 0;
 		}

@@ -10,9 +10,8 @@ import org.springframework.stereotype.Repository;
 import com.increpas.therecipe.vo.EventNoticeRegVO;
 
 /**
- * 이벤트와 공지사항에 대한 DAO
+ * (관리자, 일반인)이벤트와 공지사항에 대한 DAO
  * @author 손대성
- *
  */
 @Repository
 public class EventNoticeUpdateDAO {
@@ -21,9 +20,9 @@ public class EventNoticeUpdateDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	/**
-	 * 공지사항 이벤트 수정을 위한 값 가져오기
-	 * @param Ncode 화면에서 입력받은 공시사항, 이벤트 코드값
-	 * @return
+	 * (관리자, 일반인)공지사항 이벤트 수정을 위한 값 가져오기
+	 * @param E_evtcode 화면에서 입력받은 공시사항, 이벤트 코드값
+	 * @return sqlSessionTemplate.selectOne("event_ns.selectWrtByNum", map)
 	 */
 	public EventNoticeRegVO getSelectEvnetNotice(String E_evtcode) {
 		System.out.println("5. E_evtcode : " +E_evtcode);
@@ -33,8 +32,8 @@ public class EventNoticeUpdateDAO {
 	}
 	
 	/**
-	 * 공지사항 수정
-	 * @param eVo
+	 * (관리자, 일반인)공지사항 수정
+	 * @param erVo
 	 */
 	public void updatetWrtNotice(EventNoticeRegVO erVo) {
 		System.out.println("7. erVo.toString() : "+erVo.toString());
@@ -42,8 +41,8 @@ public class EventNoticeUpdateDAO {
 	}
 	
 	/**
-	 * 공지사항 삭제
-	 * @param eVo
+	 * (관리자, 일반인)공지사항 삭제
+	 * @param e_evtcode
 	 */
 	public void deleteNotice(String e_evtcode) {
 		System.out.println("4. 공지사항 삭제 e_evtcode : "+ e_evtcode);
@@ -51,8 +50,8 @@ public class EventNoticeUpdateDAO {
 	}
 	
 	/**
-	 * 이벤트 수정
-	 * @param eVo
+	 * (관리자, 일반인)이벤트 수정
+	 * @param erVo
 	 */
 	public void updatetWrtEvent(EventNoticeRegVO erVo) {
 		System.out.println("7. erVo.toString() : "+erVo.toString());
@@ -61,8 +60,8 @@ public class EventNoticeUpdateDAO {
 	}
 	
 	/**
-	 * 이벤트 삭제
-	 * @param eVo
+	 * (관리자, 일반인)이벤트 삭제
+	 * @param e_evtcode
 	 */
 	public void deleteEvent(String e_evtcode) {
 		System.out.println("4. 이벤트 삭제 e_evtcode : "+ e_evtcode);

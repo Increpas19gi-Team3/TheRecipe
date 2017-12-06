@@ -11,8 +11,7 @@ import com.increpas.therecipe.dto.EventListDTO;
 import com.increpas.therecipe.vo.EventVO;
 
 /**
- * 이벤트와 공지사항에 대한 DAO
- * 
+ * (관리자, 일반인)이벤트와 공지사항에 대한 DAO
  * @author 손대성
  *
  */
@@ -23,9 +22,9 @@ public class EventNoticeDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	/**
-	 * 전체 공지사항 글 갯수 리턴
+	 * (관리자, 일반인)전체 공지사항 글 갯수 리턴
 	 * @param eventListDTO
-	 * @return sqlSessionTemplate.selectOne("event_ns.selectNoticeCount", eventListDTO);
+	 * @return sqlSessionTemplate.selectOne("event_ns.selectNoticeCount", eventListDTO)
 	 */	
 	@Transactional
 	public int selectNoticeCount(EventListDTO eventListDTO) {
@@ -35,14 +34,9 @@ public class EventNoticeDAO {
 	}
 	
 	/**
-	 * 공지사항에 대한 조건 검색
-	 * 
-	 * @param whereColumn : 검색 컬럼명
-	 * @param word : 검색어
-	 * @param sortColumn : 정렬 컬럼
-	 * @param orderby : 정렬방식 ASC, DESC
-	 * @param isBlock : 전체 or 제목 글 검색
-	 * @return sqlSessionTemplate.selectList("event_ns.selectNoticeSetList", eventListDTO);
+	 * (관리자, 일반인)공지사항에 대한 조건 검색
+	 * @param eventListDTO	 
+	 * @return sqlSessionTemplate.selectList("event_ns.selectNoticeSetList", eventListDTO)
 	 */
 	@Transactional
 	public List<EventVO> selectNoticeSetList(EventListDTO eventListDTO) {
@@ -53,9 +47,9 @@ public class EventNoticeDAO {
 	/*===============================이벤트 속성에 관한===============================================*/
 		
 	/**
-	 * 전체 이벤트 글 갯수 리턴
+	 * (관리자, 일반인)전체 이벤트 글 갯수 리턴
 	 * @param eventListDTO
-	 * @return sqlSessionTemplate.selectOne("event_ns.selectNoticeCount", eventListDTO);
+	 * @return sqlSessionTemplate.selectOne("event_ns.selectEventCount", eventListDTO)
 	 */	
 	@Transactional
 	public int selectEventCount(EventListDTO eventListDTO) {
@@ -65,14 +59,8 @@ public class EventNoticeDAO {
 	}
 	
 	/**
-	 * 전체 이벤트에 대한 조건 검색
-	 * 
-	 * @param whereColumn : 검색 컬럼명
-	 * @param word : 검색어
-	 * @param sortColumn : 정렬 컬럼
-	 * @param orderby : 정렬방식 ASC, DESC
-	 * @param isBlock : 전체 or 제목 글 검색
-	 * @return sqlSessionTemplate.selectList("event_ns.selectEventSetList", eventListDTO);
+	 * (관리자, 일반인)전체 이벤트에 대한 조건 검색 	
+	 * @return sqlSessionTemplate.selectList("event_ns.selectEventSetList", eventListDTO)
 	 */
 	@Transactional
 	public List<EventVO> selectEventSetList(EventListDTO eventListDTO) {

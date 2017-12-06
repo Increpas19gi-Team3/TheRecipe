@@ -14,10 +14,8 @@ import com.increpas.therecipe.dto.ReviewListDTO;
 import com.increpas.therecipe.vo.ReviewVO;
 
 /**
- * 후기리스트에 대한 DAO
- * 
+ * (관리자, 일반인)후기리스트에 대한 DAO
  * @author 손대성
- *
  */
 @Repository
 public class ReviewDAO {
@@ -26,9 +24,9 @@ public class ReviewDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	/**
-	 * 전체 후기 리스트 글 갯수 리턴
-	 * @param eventListDTO
-	 * @return sqlSessionTemplate.selectOne("review_ns.selectReviewCount", eventListDTO);
+	 * (관리자, 일반인)전체 후기 리스트 글 갯수 리턴
+	 * @param reviewListDTO
+	 * @return sqlSessionTemplate.selectOne("review_ns.selectReviewCount", reviewListDTO)
 	 */	
 	@Transactional
 	public int selectReviewCount(ReviewListDTO reviewListDTO) {
@@ -38,13 +36,9 @@ public class ReviewDAO {
 	}
 	
 	/**
-	 * 후기리스트에 대한 조건 검색
-	 * 
-	 * @param whereColumn : 검색 컬럼명
-	 * @param word : 검색어
-	 * @param sortColumn : 정렬 컬럼
-	 * @param orderby : 정렬방식 ASC, DESC	 
-	 * @return 
+	 * (관리자, 일반인)후기리스트에 대한 조건 검색 
+	 * @param reviewListDTO		 
+	 * @return sqlSessionTemplate.selectList("review_ns.selectReviewSetList", reviewListDTO)
 	 */
 	@Transactional
 	public List<ReviewVO> selectReviewSetList(ReviewListDTO reviewListDTO) {
@@ -53,17 +47,17 @@ public class ReviewDAO {
 	}
 	
 	/**
-	 * 조회수 증가
-	 * @param num
+	 * (관리자, 일반인)조회수 증가
+	 * @param r_rvcode
 	 */
 	public void updateHitCount(int r_rvcode) {
 		sqlSessionTemplate.update("review_ns.updateHitCount", r_rvcode);
 	}
 	
 	/**
-	 * 후기 상세보기
+	 * (관리자, 일반인)후기 상세보기
 	 * @param Ncode
-	 * @return
+	 * @return sqlSessionTemplate.selectOne("review_ns.reviewWrtByNum", map)
 	 */
 	@Transactional
 	public ReviewVO ReviewDetailView(int Ncode) {

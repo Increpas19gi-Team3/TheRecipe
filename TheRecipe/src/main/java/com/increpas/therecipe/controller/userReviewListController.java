@@ -15,7 +15,7 @@ import com.increpas.therecipe.util.NullToBlank;
 import com.increpas.therecipe.vo.ReviewVO;
 
 /**
- * 후기 게시판 리스트 컨트롤러 기능 : 
+ * (일반인)후기 게시판 리스트 컨트롤러 기능 : 
  * 검색(제목), 페이징, 정렬(기간) 
  * 1. 단순 리스트 출력 
  * 2. 상세보기로 들어가기 위한 연결 링크
@@ -33,11 +33,12 @@ public class userReviewListController {
 	ReviewListService rlService;
 	
 	/**
-	 * "userReviewList.do"로 요청 받음	
+	 * (일반인) 후기 리스트
+	 * "/userReviewList.do"로 요청 받음	
 	 * @param model
 	 * @param req 요청
 	 * @param resp 응답
-	 * @return userReviewList.jsp : 공지사항 페이지로 이동
+	 * @return "/userReviewList" : 공지사항 페이지로 이동
 	 */	
 	@RequestMapping(value = "/userReviewList.do")
 	public String getNoticeList(Model model, HttpServletRequest req, HttpServletResponse resp) {
@@ -102,11 +103,11 @@ public class userReviewListController {
 	}
 	
 	/**
-	 * 후기 상세보기(get)
+	 * (일반인)후기 상세보기(get)
 	 * @param model
 	 * @param req
 	 * @param resp
-	 * @return
+	 * @return "userReviewDetailView"
 	 */
 	@RequestMapping(value = "/userReviewDetailView.do", method = RequestMethod.GET)
 	public String GET_ReviewDetailView(Model model, HttpServletRequest req, HttpServletResponse resp) {
