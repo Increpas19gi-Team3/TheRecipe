@@ -40,7 +40,7 @@
 							<li><a href="totalFoodList.do?level=2&large=2&medium=5">오늘 뭐먹지</a></li>  
 
 							</ul></li>
-						<li class="dropdown_wrap"><a href="" class="dropdown_select">커뮤니티</a>
+						<li class="dropdown_wrap"><a href="userNoticeList.do" class="dropdown_select">커뮤니티</a>
 							<ul class="dropdown_itemWrap">
 								<li><a href="userNoticeList.do">공지사항</a></li>
 								<li><a href="userReviewList.do">후기 게시판</a></li>
