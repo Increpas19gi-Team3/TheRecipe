@@ -58,6 +58,9 @@
 <jsp:include page="adminheader.jsp" />
 
 <form action="adminNoticeList.do" method="post" name="listForm">
+	
+
+	<div class="content-wrapper">
 	<div class="table_top">
 		<div class="searchBox">
 			<!-- 검색 처리 -->
@@ -81,8 +84,9 @@
 						<option value="TITLE">제목</option>
 					</c:otherwise>
 				</c:choose>
-			</select> <input type="text" name="word" value="${word }"> <input
-				type="submit" value="검색">
+			</select>
+			<input type="text" name="word" value="${word }"> 
+			<input type="submit" value="검색">
 
 		</div>
 	</div>
@@ -130,8 +134,6 @@
 			</select></td>
 		</tr>
 	</table>
-
-	<div class="content-wrapper">
 		<div class="table_defalt">
 			<table>
 				<thead>
