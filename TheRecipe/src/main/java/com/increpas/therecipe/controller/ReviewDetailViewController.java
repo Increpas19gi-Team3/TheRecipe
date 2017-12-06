@@ -40,25 +40,25 @@ public class ReviewDetailViewController {
 	 * @param resp
 	 * @return
 	 */
-	@RequestMapping(value = "/ReviewDetailView.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminReviewDetailView.do", method = RequestMethod.GET)
 	public String GET_ReviewDetailView(Model model, HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("1. 후기 상세페이지와 조회수 작업중 입니다.");
 		int Rcode = Integer.parseInt(req.getParameter("r_rvcode"));	
 		ReviewVO rVo = rlService.getReviewVODetail(Rcode);
 		model.addAttribute("rVo", rVo);
-		return "reviewDetailView";
+		return "adminReviewDetailView";
 	}	
 	
 	/**
 	 * 후기 관리자 답변 등록을 위한 글 찾기
 	 */
-	@RequestMapping(value = "/reviewAdminRegUpdate.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminReviewRegUpdate.do", method = RequestMethod.GET)
 	public String GET_ReviewAdminRegUP(Model model, HttpServletRequest req, HttpServletResponse resp) {		
 		System.out.println("1. GET_후기 관리자 답변 등록(수정)을 위한 r_rvcode 값을 찾는 작업중입니다.");		
 		int Rcode = Integer.parseInt(req.getParameter("r_rvcode"));
 		ReviewVO rVo = rlService.getReviewVODetail(Rcode);
 		model.addAttribute("rVo", rVo);
-		return "reviewAdminRegUp";
+		return "adminReviewRegUpdate";
 	}	
 	
 	/**
@@ -66,11 +66,11 @@ public class ReviewDetailViewController {
 	 * @param rVo	
 	 * @return
 	 */
-	@RequestMapping(value = "/reviewAdminRegUpdate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/adminReviewRegUpdate.do", method = RequestMethod.POST)
 	public String POST_ReviewAdminRegUP(ReviewVO rVo) {
 		System.out.println("1. POST_후기 관리자 답변 등록(수정) 작업중입니다.");
 		ruService.ReviewRegUpS(rVo);		
-		return "redirect:ReviewList.do";
+		return "redirect:adminReviewList.do";
 	}	
 	
 	/**
@@ -80,14 +80,19 @@ public class ReviewDetailViewController {
 	 * @param resp
 	 * @return
 	 */
-	@RequestMapping(value = "/reviewAdminDelete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminReviewDelete.do", method = RequestMethod.GET)
 	public String GET_ReviewAdminDelete(HttpServletRequest req, HttpServletResponse resp) {
 
 		System.out.println("1. 후기 관리자 답글 삭제 입니다.");
 		String Rcode = req.getParameter("r_rvcode");	
 		ruService.ReviewDeleteS(Rcode);		
-		return "redirect:ReviewList.do";
-	}	
+		return "redirect:adminReviewList.do";
+	}
+	
+	
+	//=======================================호진이 작업 구간=============================================
+	
+	
 	/**
 	 * 유저 리뷰작성 폼으로 이동
 	 * @param f_fdcode String f_fdcode(음식코드)
