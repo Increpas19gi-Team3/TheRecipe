@@ -65,7 +65,11 @@
 	<input type="hidden" name="GUBUN" value="${GUBUN }"> 
 	<input type="hidden" name="pageCutCount" value="${pageCutCount }">
 
-	<div class="j_table">
+
+		
+
+		<div class="content-wrapper">
+			<div class="j_table">
 		<div class="top">
 			<!-- 페이지 갯수 제한 -->
 			<div class="pageLimitWrap">
@@ -123,8 +127,7 @@
 				<input type="submit" value="검색">
 			</div>
 		</div>
-
-		<div class="content-wrapper">
+		
 			<div class="table_defalt">
 				<table>
 					<thead>

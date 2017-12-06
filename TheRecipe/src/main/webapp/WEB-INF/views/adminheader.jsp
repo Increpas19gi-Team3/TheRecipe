@@ -100,7 +100,7 @@
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
             			<i class="fa fa-fw fa-sitemap"></i>
-            			<span class="nav-link-text"></span>
+            			<span class="nav-link-text">커뮤니티 관리</span>
          			</a>
                     <ul class="sidenav-second-level collapse" id="collapseMulti">
                         <li>

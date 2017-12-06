@@ -62,6 +62,30 @@ label{
 
 
 
+.page_locationBox{
+	overflow: hidden;
+}
+.page_locationBox a{
+	float: left;
+	line-height: 20px;
+}
+.page_locationBox span{
+	float: left;
+	line-height: 20px;
+}
+
+
+.pagination_wrap{
+	overflow: hidden;
+}
+.pagination_wrap .btn_right{
+	float: right;
+}
+.pagination_wrap .btn_right input{
+	padding: 10px 15px;
+	background: none;
+	border: 1px solid #ccc;
+}
 
 
 
@@ -80,11 +104,12 @@ label{
 .board table thead tr{
 	border-bottom: 1px solid #ccc;
 }
-.board table thead tr th{
+.board table tr th{
 	height: 38px;
 	line-height: 38px;
 	color: #666;
 	font-weight: bold;
+	text-align: center;
 }
 .board table tbody{
 	
@@ -112,6 +137,93 @@ label{
 .board table tbody tr td.text_left span{
 	font-size: 11px;
 	color: #2ac1bc;
+}
+
+
+.j_table .top{
+	margin-top: 20px;
+	overflow: hidden;
+}
+.j_table .top .pageLimitWrap{
+	float: left;
+}
+.j_table .top .pageLimitWrap select{
+	height: 28px;
+	padding: 0 5PX;
+	background: none;
+	border: none;
+	border: 1px solid #ccc;
+}
+.j_table .top .searchWrap{
+	float: right;
+	overflow: hidden;
+}
+.j_table .top .searchWrap select{
+	height: 28px;
+	margin-right: 10px;
+	padding: 0 5PX;
+	background: none;
+	border: none;
+	border: 1px solid #ccc;
+	float: left;
+}
+.j_table .top .searchWrap input{
+	height: 28px;
+	border: 1px solid #ccc;
+	background: none;
+	float: left;
+}
+
+
+
+
+.pagination_wrap{
+	position: relative;
+	min-height: 75px;
+}
+.pagination_wrap .pagination{
+	width: 100%;
+	padding: 20px 0;
+	text-align: center;
+	display: block;
+}
+.pagination_wrap .pagination li{
+	display: inline-block;
+	border: 1px solid #eee;
+}
+/*
+.pagination_wrap .pagination li:first-child,
+.pagination_wrap .pagination li:last-child{
+	border: none;
+}
+*/
+.pagination_wrap .pagination li a{
+	padding: 10px;
+	color: #999;
+}
+.pagination li a.active{
+	color: #2ac1bc;
+}
+.pagination_wrap .btn_right{
+	padding: 10px 15px;
+	background: #2ac1bc;
+}
+.pagination_wrap .btn_right input{
+	background: none;
+	border: none;
+	color: #fff;
+}
+.pagination_wrap .btn_right a{
+	color: #fff;
+}
+.pagination_wrap .btn_right{
+	position: absolute;
+	top: 50%;
+	right: 0;
+	-webkit-transform: translate(0, -50%);
+	-ms-transform: translate(0, -50%);
+	-o-transform: translate(0, -50%);
+	transform: translate(0, -50%);
 }
 
 
