@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.increpas.therecipe.dto.AdminEventSetFoodListDTO;
-import com.increpas.therecipe.dto.AdminFoodListDTO;
 import com.increpas.therecipe.vo.EventInfoVO;
 import com.increpas.therecipe.vo.EventSetFoodVO;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 /**
  * 이벤트 설정 관리를 위한 DAO
