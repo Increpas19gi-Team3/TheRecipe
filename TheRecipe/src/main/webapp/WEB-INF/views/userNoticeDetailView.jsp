@@ -13,10 +13,9 @@
 			<div class="left_tab">
 				<h2>고객센터</h2>
 				<ul>
-					<li class="active"><a href="http://localhost:8282/therecipe/test_171129/boardNotice.jsp">공지사항</a></li>
-					<li><a href="http://localhost:8282/therecipe/test_171129/boardReview.jsp">후기 게시판</a></li>
-					<li><a href="http://localhost:8282/therecipe/test_171129/boardRecommend.jsp">추천 레시피</a></li>
-					<li><a href="http://localhost:8282/therecipe/test_171129/boardEvent.jsp">이벤트</a></li>
+					<li class="active"><a href="userNoticeList.do">공지사항</a></li>
+					<li><a href="userReviewList.do">후기 게시판</a></li>
+					<li><a href="userEventList.do">이벤트</a></li>
 				</ul>
 				<div class="service_info">
 					<h4>배민찬 고객센터</h4>
@@ -31,11 +30,11 @@
 				<h3>
 					공지사항
 					<div class="page_locationBox">
-						<a href="http://localhost:8282/therecipe/test_171129/home.jsp">홈</a>
+						<a href="home.do">홈</a>
 						<span> > </span>
-						<a href="join.html">커뮤니티</a>
+						<a href="userNoticeList.do">커뮤니티</a>
 						<span> > </span>
-						<a href="join.html" class="active">공지사항</a>
+						<a href="userNoticeList.do" class="active">공지사항</a>
 					</div>
 				</h3>
 				<table>

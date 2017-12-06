@@ -86,11 +86,11 @@
 		<div class="right_contnet">
 			<h3> 이벤트			
 				<div class="page_locationBox">
-					<a href="http://localhost:8282/therecipe/test_171129/home.jsp">홈</a>
+					<a href="home.do">홈</a>
 					<span> > </span> 
-					<a href="http://localhost:8282/therecipe/test_171129/join.jsp">커뮤니티</a>
+					<a href="userNoticeList.do">커뮤니티</a>
 					<span> > </span> 
-					<a href="http://localhost:8282/therecipe/test_171129/boardEvent.jsp" class="active">이벤트</a>
+					<a href="userEventList.do" class="active">이벤트</a>
 				</div>
 			</h3>
 
@@ -237,9 +237,9 @@
 								<li><a href='<c:url value="userEventList.do?sortColumn=${sortColumn }&orderby=${orderby }&whereColumn=${whereColumn }&word=${word }&GUBUN=${GUBUN }&pageCutCount=${pageCutCount }&pn=${endPage + 1}"/>'><span>&raquo;</span></a>
 							</c:if>
 						</ul>
-						<div class="btn_right">
+						<!-- <div class="btn_right">
 							<a href="boardReviewWrite.html">글쓰기</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</form>

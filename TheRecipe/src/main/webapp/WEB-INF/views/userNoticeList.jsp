@@ -87,11 +87,11 @@
 		<div class="right_contnet">
 			<h3> 공지사항
 				<div class="page_locationBox">
-					<a href="http://localhost:8282/therecipe/test_171129/home.jsp">홈</a>
+					<a href="home.do">홈</a>
 					<span> > </span> 
-					<a href="join.html">커뮤니티</a> 
+					<a href="userNoticeList.do">커뮤니티</a>
 					<span> > </span> 
-					<a href="join.html" class="active">공지사항</a>
+					<a href="userNoticeList.do" class="active">공지사항</a>
 				</div>
 			</h3>
 
