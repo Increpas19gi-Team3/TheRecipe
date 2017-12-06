@@ -81,7 +81,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <!-- <a href="index.do">The Recipe</a> -->
-                    상품 카테고리 관리
+                    음식 카테고리 관리
                 </li>
                 <li class="breadcrumb-item active"> 수정 </li>
             </ol>

@@ -42,7 +42,7 @@
 	<div class="container-fluid">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
-				<!-- <a href="index.do">The Recipe</a> --> 상품 카테고리 관리
+				<!-- <a href="index.do">The Recipe</a> --> 음식 카테고리 관리
 			</li>
 			<li class="breadcrumb-item active">등록</li>
 		</ol>
