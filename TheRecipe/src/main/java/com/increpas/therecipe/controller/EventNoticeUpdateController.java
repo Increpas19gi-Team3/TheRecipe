@@ -38,12 +38,12 @@ public class EventNoticeUpdateController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/NoticeUpdate.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminNoticeUpdate.do", method = RequestMethod.GET)
 	public String GET_NoticeUpdate(Model model, HttpServletRequest req) {
 		String e_evtcode = req.getParameter("e_evtcode");
 		model.addAttribute("e_evtcode", e_evtcode);
 		System.out.println("1. 공시사항_상세보기에서 수정버튼을 눌렀음 수정페이지로 넘어감 e_evtcode:"+e_evtcode);
-		return "noticeUpdate";
+		return "adminNoticeUpdate";
 	}
 	
 	/**
@@ -53,7 +53,7 @@ public class EventNoticeUpdateController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/NoticeUpdate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/adminNoticeUpdate.do", method = RequestMethod.POST)
 	public String POST_NoticeUpdate(@Valid @ModelAttribute("noticeUpdateCom") EventNoticeRegVO enrVo, Errors errors, HttpServletRequest req, HttpServletResponse resp, Model model) {
 		
 		System.out.println("2. POST : NoticeUpdate.do : 공지사항 수정중입니다.");
@@ -110,7 +110,7 @@ public class EventNoticeUpdateController {
 		}
 
 		if (errors.hasErrors()) {
-			return "noticeUpdate";
+			return "adminNoticeUpdate";
 		}
 		
 		System.out.println("enrVo.getE_nttilte() >>> " + enrVo.getE_nttilte());
@@ -122,7 +122,7 @@ public class EventNoticeUpdateController {
 
 		enuService.updatetWrtNoticeVO(enrVo);
 
-		return "redirect:NoticeList.do";
+		return "redirect:adminNoticeList.do";
 	}
 	
 	/**
@@ -131,7 +131,7 @@ public class EventNoticeUpdateController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/NoticeDelete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminNoticeDelete.do", method = RequestMethod.GET)
 	public String NoticeDelete(HttpServletRequest request, Model model) {
 
 		System.out.println("1. 공지사항 삭제입니다. NoticeDelete : e_evtcode : " + request.getParameter("e_evtcode"));
@@ -139,7 +139,7 @@ public class EventNoticeUpdateController {
 		enuService.DeleteNotice(e_Num);
 		System.out.println("5. 공시사항 삭제 완료 ");
 
-		return "redirect:NoticeList.do";
+		return "redirect:adminNoticeList.do";
 	}
 	
 	
@@ -152,12 +152,12 @@ public class EventNoticeUpdateController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/EventUpdate.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminEventUpdate.do", method = RequestMethod.GET)
 	public String GET_EventUpdate(Model model, HttpServletRequest req) {
 		String e_evtcode = req.getParameter("e_evtcode");
 		model.addAttribute("e_evtcode", e_evtcode);
 		System.out.println("1. 이벤트_상세보기에서 수정버튼을 눌렀음 수정페이지로 넘어감 e_evtcode:"+e_evtcode);
-		return "eventUpdate";
+		return "adminEventUpdate";
 	}
 	
 	/**
@@ -167,7 +167,7 @@ public class EventNoticeUpdateController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/EventUpdate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/adminEventUpdate.do", method = RequestMethod.POST)
 	public String POST_EventUpdate(@Valid @ModelAttribute("noticeUpdateCom") EventNoticeRegVO enrVo, Errors errors, HttpServletRequest req, HttpServletResponse resp, Model model) {
 		
 		System.out.println("2. POST : EventUpdate.do : 이벤트 수정중입니다.");
@@ -224,7 +224,7 @@ public class EventNoticeUpdateController {
 		}
 
 		if (errors.hasErrors()) {
-			return "eventUpdate";
+			return "adminEventUpdate";
 		}
 		
 		System.out.println("enrVo.getE_nttilte() >>> " + enrVo.getE_nttilte());
@@ -236,7 +236,7 @@ public class EventNoticeUpdateController {
 
 		enuService.updatetWrtEventVO(enrVo);
 
-		return "redirect:EventList.do";
+		return "redirect:adminEventList.do";
 	}
 	
 	
@@ -246,7 +246,7 @@ public class EventNoticeUpdateController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/Eventdelete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminEventdelete.do", method = RequestMethod.GET)
 	public String EventDelete(HttpServletRequest request, Model model) {
 
 		System.out.println("1. 이벤트 삭제입니다. Eventdelete : e_evtcode : " + request.getParameter("e_evtcode"));
@@ -254,6 +254,6 @@ public class EventNoticeUpdateController {
 		enuService.DeleteEvent(e_Num);
 		System.out.println("5. 이벤트 삭제 완료 ");
 
-		return "redirect:EventList.do";
+		return "redirect:adminEventList.do";
 	}
 }

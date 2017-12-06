@@ -39,7 +39,7 @@ public class EventNoticeListController {
 	 * @param resp 응답
 	 * @return noticeList.jsp : 공지사항 페이지로 이동
 	 */	
-	@RequestMapping(value = "/NoticeList.do")
+	@RequestMapping(value = "/adminNoticeList.do")
 	public String getNoticeList(Model model, HttpServletRequest req, HttpServletResponse resp) {
 
 		// 공지사항에 대한 검색, 정렬, 페이징 정보도 받아와야 함.
@@ -105,7 +105,7 @@ public class EventNoticeListController {
 			model.addAttribute("endPage", endPageNumber);
 		}
 		
-		return "/userNoticeList";
+		return "/adminNoticeList";
 	}
 	
 	
@@ -117,7 +117,7 @@ public class EventNoticeListController {
 	 * @param resp 응답
 	 * @return noticeList.jsp : 이벤트 페이지로 이동
 	 */	
-	@RequestMapping(value = "/EventList.do")
+	@RequestMapping(value = "/adminEventList.do")
 	public String getEventist(Model model, HttpServletRequest req, HttpServletResponse resp) {
 
 		// 공지사항에 대한 검색, 정렬, 페이징 정보도 받아와야 함.
@@ -182,6 +182,6 @@ public class EventNoticeListController {
 			model.addAttribute("endPage", endPageNumber);
 		}
 		
-		return "/userEventList";
+		return "/adminEventList";
 	}
 }

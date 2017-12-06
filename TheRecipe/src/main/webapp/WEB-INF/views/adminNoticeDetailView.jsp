@@ -6,11 +6,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>    
     
-<jsp:include page="header.jsp" />
+<jsp:include page="adminheader.jsp" />
 
 	<div class="container boardNotice board">
 		<div class="row">
-			<div class="left_tab">
+			<!-- <div class="left_tab">
 				<h2>고객센터</h2>
 				<ul>
 					<li class="active"><a href="http://localhost:8282/therecipe/test_171129/boardNotice.jsp">공지사항</a></li>
@@ -26,7 +26,7 @@
 					<p>주말 06:30 ~ 15:00</p>
 					<p>공휴일 휴무</p>
 				</div>
-			</div>
+			</div> -->
 			<div class="right_contnet">
 				<h3>
 					공지사항
@@ -109,11 +109,12 @@
 				
 				<div class="pagination_wrap">
 					<div class="btn_right">
-						<input type="button" value="공지사항 목록" onclick="location.href='userNoticeList.do'">												
+						<input type="button" value="공지사항 목록" onclick="location.href='adminNoticeList.do'">
+						<input type="button" value="공지사항 수정" onclick="location.href='adminNoticeUpdate.do?e_evtcode=${nVo.e_evtcode}'">
+						<input type="button" value="공지사항 삭제" onclick="location.href='adminNoticeDelete.do?e_evtcode=${nVo.e_evtcode}'">						
 					</div>
 				</div>				
 			</div>
 		</div>
 	</div>
 
-<jsp:include page="footer.jsp" />

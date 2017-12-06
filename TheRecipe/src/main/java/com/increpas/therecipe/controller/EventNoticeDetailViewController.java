@@ -41,14 +41,14 @@ public class EventNoticeDetailViewController {
 	 * @param resp
 	 * @return "NoticeDetailView"
 	 */
-	@RequestMapping(value = "/NoticeDetailView.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminNoticeDetailView.do", method = RequestMethod.GET)
 	public String GET_NoticeDetailView(Model model, HttpServletRequest req, HttpServletResponse resp) {
 
 		System.out.println("공시사항 상세페이지 입니다.");
 		int Ncode = Integer.parseInt(req.getParameter("e_evtcode"));
 		EventVO nVo = ndvs.getNoticeVODetail(Ncode);
 		model.addAttribute("nVo", nVo);
-		return "NoticeDetailView";
+		return "adminNoticeDetailView";
 	}
 
 	/**
@@ -56,10 +56,10 @@ public class EventNoticeDetailViewController {
 	 * @param model
 	 * @return "noticeReg"
 	 */
-	@RequestMapping(value = "/NoticeReg.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminNoticeReg.do", method = RequestMethod.GET)
 	public String GET_NoticeReg(Model model) {
 		System.out.println("공시사항 리스트에서 등록버튼을 눌렀음 등록페이지로 넘어감");
-		return "noticeReg";
+		return "adminNoticeReg";
 	}
 
 	/**
@@ -69,10 +69,10 @@ public class EventNoticeDetailViewController {
 	 * @param model
 	 * @return "redirect:NoticeList.do"
 	 */
-	@RequestMapping(value = "/NoticeReg.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/adminNoticeReg.do", method = RequestMethod.POST)
 	public String POST_NoticeReg(@Valid @ModelAttribute("noticeCom") EventNoticeRegVO erVo, Errors errors, Model model) {
 
-		System.out.println("▶▶▶▶▶ EventNoticeDetailViewController ; NoticeReg.do ; POST");
+		System.out.println("▶▶▶▶▶ EventNoticeDetailViewController ; adminNoticeReg.do ; POST");
 
 		MultipartFile file = erVo.getUpfile();
 
@@ -107,7 +107,7 @@ public class EventNoticeDetailViewController {
 		if (errors.hasErrors()) {
 			System.out.println("errors.getAllErrors()"+errors.getAllErrors());
 			System.out.println("▶▶▶▶▶ 에러 입니다.");
-			return "noticeReg";
+			return "adminNoticeReg";
 		}
 
 		System.out.println("▶▶▶▶▶ 이미지 저장후 'NoticeDetailViewService' 이동");
@@ -115,7 +115,7 @@ public class EventNoticeDetailViewController {
 
 		System.out.println("▶▶▶▶▶ 등록 마지막 단계");
 		
-		return "redirect:NoticeList.do";
+		return "redirect:adminNoticeList.do";
 	}
 
 	// ===========================================이벤트===============================================================
@@ -127,7 +127,7 @@ public class EventNoticeDetailViewController {
 	 * @param resp
 	 * @return "EventDetailView"
 	 */
-	@RequestMapping(value = "/EventDetailView.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminEventDetailView.do", method = RequestMethod.GET)
 	public String GET_EventDetailView(Model model, HttpServletRequest req, HttpServletResponse resp) {
 
 		System.out.println("1. '이벤트 상세페이지'입니다.");
@@ -135,7 +135,7 @@ public class EventNoticeDetailViewController {
 		EventNoticeVO eVo = ndvs.getEventVODetail(Ecode);
 		System.out.println(">>>>>>>>>>> eVo = " + eVo.toString());
 		model.addAttribute("eVo", eVo);
-		return "EventDetailView";
+		return "adminEventDetailView";
 	}
 	
 	/**
@@ -143,17 +143,17 @@ public class EventNoticeDetailViewController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/EventReg.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminEventReg.do", method = RequestMethod.GET)
 	public String GET_EventReg(Model model) {
 
 		System.out.println("1. '이벤트 등록'입니다.");
 		return "eventReg";
 	}
 	
-	@RequestMapping(value = "/EventReg.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/adminEventReg.do", method = RequestMethod.POST)
 	public String POST_EventReg(@Valid @ModelAttribute("eventCom") EventNoticeRegVO erVo, Errors errors, Model model) {
 
-		System.out.println("▶▶▶▶▶ EventNoticeDetailViewController ; EventReg.do ; POST ; ");
+		System.out.println("▶▶▶▶▶ EventNoticeDetailViewController ; adminEventReg.do ; POST ; ");
 
 		MultipartFile file = erVo.getUpfile();
 
@@ -189,7 +189,7 @@ public class EventNoticeDetailViewController {
 		if (errors.hasErrors()) {
 			System.out.println("errors.getAllErrors()"+errors.getAllErrors());
 			System.out.println("▶▶▶▶▶ 에러 입니다.");
-			return "noticeReg";
+			return "adminNoticeReg";
 		}
 
 		System.out.println("▶▶▶▶▶ 이미지 저장후 'NoticeDetailViewService' 이동");
@@ -197,6 +197,6 @@ public class EventNoticeDetailViewController {
 
 		System.out.println("▶▶▶▶▶ 이벤트 등록 마지막 단계");
 	
-		return "redirect:EventList.do";
+		return "redirect:adminEventList.do";
 	}
 }

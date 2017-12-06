@@ -25,9 +25,9 @@
 			
 				손대성 개발부분:
 				<ul>
-					<li><a href="NoticeList.do">공지사항 목록</a></li>
-					<li><a href="EventList.do"> 이벤트 목록 </a></li>
-					<li><a href="ReviewList.do">후기목록</a></li>
+					<li><a href="adminNoticeList.do">공지사항 목록</a></li>
+					<li><a href="adminEventList.do"> 이벤트 목록 </a></li>
+					<li><a href="adminReviewList.do">후기목록</a></li>
 					<li><a href=""> </a></li>
 					<li><a href=""> </a></li>
 					<li><a href=""> </a></li>

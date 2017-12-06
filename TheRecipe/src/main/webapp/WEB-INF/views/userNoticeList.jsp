@@ -264,8 +264,8 @@
 					</ul>
 						
 					<!-- <div class="btn_right">
-						<a href="boardReviewWrite.html">글쓰기</a>
-					</div> -->						
+						<a href="NoticeReg.do">공지사항 등록</a>
+					</div> -->					
 				</div>				
 			</form>
 		</div>
