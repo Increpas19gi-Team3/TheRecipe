@@ -79,7 +79,7 @@
 					</script>
 					<fieldset class="btn_bottom">
 						<input type="submit" value="확인">
-						<a href="#" onClick="history.back(); return false;" class="btn_back">취소</a>
+						<input type="button" onClick="history.back(); return false;" class="btn_back" value="취소">
 					</fieldset>
 				</form:form>
 			</div>
