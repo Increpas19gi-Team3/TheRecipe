@@ -8,9 +8,8 @@ package com.increpas.therecipe.vo;
 public class BasketVO {
 	private String m_userid; /* 아이디	VARCHAR2(20) NOT NULL */
 	private String f_fdcode; /* 상품코드	VARCHAR2(20) NOT NULL  */
-	private int b_buyprice;  /* 구입가격	NUMBER NOT NULL */
 	private int b_amount; 	 /* 구매수량	NUMBER NOT NULL */
-	
+
 	
 	public String getM_userid() {
 		return m_userid;
@@ -24,12 +23,6 @@ public class BasketVO {
 	public void setF_fdcode(String f_fdcode) {
 		this.f_fdcode = f_fdcode;
 	}
-	public int getB_buyprice() {
-		return b_buyprice;
-	}
-	public void setB_buyprice(int b_buyprice) {
-		this.b_buyprice = b_buyprice;
-	}
 	public int getB_amount() {
 		return b_amount;
 	}
@@ -37,13 +30,9 @@ public class BasketVO {
 		this.b_amount = b_amount;
 	}
 	
-	
 	@Override
 	public String toString() {
-		return "BasketVO [m_userid=" + m_userid + ", f_fdcode=" + f_fdcode + ", b_buyprice=" + b_buyprice
-				+ ", b_amount=" + b_amount + "]";
+		return "BasketVO [m_userid=" + m_userid + ", f_fdcode=" + f_fdcode + ", b_amount=" + b_amount + "]";
 	}
-	
-	
 	
 }
