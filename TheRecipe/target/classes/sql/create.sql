@@ -118,62 +118,28 @@ COMMENT ON COLUMN tr_foodcode.fc_ctgname IS '카테고리명';
 
 COMMENT ON COLUMN tr_foodcode.fc_isblock IS '0:정상, 1:블락';
 
-/* 주문테이블 */
-CREATE TABLE tr_order (
+/* 주문상세테이블 */
+CREATE TABLE tr_orderdetail (
 	o_orderid VARCHAR2(20) NOT NULL, /* 주문코드 */
-	d_status CHAR(1) NOT NULL, /* 배송코드 */
-	m_userid VARCHAR2(20) NOT NULL, /* 아이디 */
 	f_fdcode VARCHAR2(20) NOT NULL, /* 상품코드 */
 	o_buyprice NUMBER NOT NULL, /* 구입가격 */
-	o_amount NUMBER NOT NULL, /* 구매수량 */
-	o_orderdate DATE NOT NULL, /* 주문날짜 */
-	o_reciever VARCHAR2(20) NOT NULL, /* 수취인 */
-	o_dvypost VARCHAR2(20) NOT NULL, /* 배송지우편번호 */
-	o_dvyaddr VARCHAR2(100) NOT NULL, /* 배송지주소 */
-	ms_code CHAR(1) NOT NULL /* 마스터코드값 */
+	o_amount NUMBER NOT NULL /* 구매수량 */
 );
 
-COMMENT ON TABLE tr_order IS '주문테이블';
+COMMENT ON TABLE tr_orderdetail IS '주문상세테이블';
 
-COMMENT ON COLUMN tr_order.o_orderid IS '주문코드';
+COMMENT ON COLUMN tr_orderdetail.o_orderid IS '주문코드';
 
-COMMENT ON COLUMN tr_order.d_status IS '서브코드';
+COMMENT ON COLUMN tr_orderdetail.f_fdcode IS '상품코드';
 
-COMMENT ON COLUMN tr_order.m_userid IS '아이디';
+COMMENT ON COLUMN tr_orderdetail.o_buyprice IS '할인적용된구입가';
 
-COMMENT ON COLUMN tr_order.f_fdcode IS '상품코드';
-
-COMMENT ON COLUMN tr_order.o_buyprice IS '할인적용된구입가';
-
-COMMENT ON COLUMN tr_order.o_amount IS '구매수량';
-
-COMMENT ON COLUMN tr_order.o_orderdate IS '주문날짜';
-
-COMMENT ON COLUMN tr_order.o_reciever IS '수취인';
-
-COMMENT ON COLUMN tr_order.o_dvypost IS '배송지우편번호';
-
-COMMENT ON COLUMN tr_order.o_dvyaddr IS '배송지주소';
-
-COMMENT ON COLUMN tr_order.ms_code IS '마스터코드값 4';
-
-CREATE UNIQUE INDEX PK_tr_order
-	ON tr_order (
-		o_orderid ASC
-	);
-
-ALTER TABLE tr_order
-	ADD
-		CONSTRAINT PK_tr_order
-		PRIMARY KEY (
-			o_orderid
-		);
+COMMENT ON COLUMN tr_orderdetail.o_amount IS '구매수량';
 
 /* 장바구니 */
 CREATE TABLE tr_basket (
 	m_userid VARCHAR2(20) NOT NULL, /* 아이디 */
 	f_fdcode VARCHAR2(20) NOT NULL, /* 상품코드 */
-	b_buyprice NUMBER NOT NULL, /* 구입가격 */
 	b_amount NUMBER NOT NULL /* 구매수량 */
 );
 
@@ -182,8 +148,6 @@ COMMENT ON TABLE tr_basket IS '장바구니';
 COMMENT ON COLUMN tr_basket.m_userid IS '아이디';
 
 COMMENT ON COLUMN tr_basket.f_fdcode IS '상품코드';
-
-COMMENT ON COLUMN tr_basket.b_buyprice IS '할인적용된구입가';
 
 COMMENT ON COLUMN tr_basket.b_amount IS '구매수량';
 
@@ -329,6 +293,63 @@ COMMENT ON COLUMN tr_subcode.sub_code IS '서브코드';
 
 COMMENT ON COLUMN tr_subcode.sub_name IS '코드명';
 
+/* 주문테이블 */
+CREATE TABLE tr_order (
+	o_orderid VARCHAR2(20) NOT NULL, /* 주문코드 */
+	m_userid VARCHAR2(20) NOT NULL, /* 아이디 */
+	o_orderdate DATE NOT NULL, /* 주문날짜 */
+	o_depositdate DATE, /* 입금확인시간 */
+	o_readydate DATE, /* 상품준비시간 */
+	o_dvyrddate DATE, /* 배송준비시간 */
+	o_dvydate DATE, /* 배송중시간 */
+	o_dvyenddate DATE, /* 배송완료시간 */
+	d_status CHAR(1) NOT NULL, /* 상태코드 */
+	o_reciever VARCHAR2(20) NOT NULL, /* 수취인 */
+	o_dvypost VARCHAR2(20) NOT NULL, /* 배송지우편번호 */
+	o_dvyaddr VARCHAR2(100) NOT NULL, /* 배송지주소 */
+	ms_code CHAR(1) NOT NULL /* 마스터코드값 */
+);
+
+COMMENT ON TABLE tr_order IS '주문테이블';
+
+COMMENT ON COLUMN tr_order.o_orderid IS '주문코드';
+
+COMMENT ON COLUMN tr_order.m_userid IS '아이디';
+
+COMMENT ON COLUMN tr_order.o_orderdate IS '주문날짜';
+
+COMMENT ON COLUMN tr_order.o_depositdate IS '입금확인날짜';
+
+COMMENT ON COLUMN tr_order.o_readydate IS '상품준비날짜';
+
+COMMENT ON COLUMN tr_order.o_dvyrddate IS '배송준비날짜';
+
+COMMENT ON COLUMN tr_order.o_dvydate IS '배송중날짜';
+
+COMMENT ON COLUMN tr_order.o_dvyenddate IS '배송완료날짜';
+
+COMMENT ON COLUMN tr_order.d_status IS '서브코드';
+
+COMMENT ON COLUMN tr_order.o_reciever IS '수취인';
+
+COMMENT ON COLUMN tr_order.o_dvypost IS '배송지우편번호';
+
+COMMENT ON COLUMN tr_order.o_dvyaddr IS '배송지주소';
+
+COMMENT ON COLUMN tr_order.ms_code IS '마스터코드값 4';
+
+CREATE UNIQUE INDEX PK_tr_order
+	ON tr_order (
+		o_orderid ASC
+	);
+
+ALTER TABLE tr_order
+	ADD
+		CONSTRAINT PK_tr_order
+		PRIMARY KEY (
+			o_orderid
+		);
+
 ALTER TABLE tr_food
 	ADD
 		CONSTRAINT FK_tr_event_TO_tr_food
@@ -337,6 +358,16 @@ ALTER TABLE tr_food
 		)
 		REFERENCES tr_event (
 			e_evtcode
+		);
+
+ALTER TABLE tr_orderdetail
+	ADD
+		CONSTRAINT FK_tr_order_TO_tr_orderdetail
+		FOREIGN KEY (
+			o_orderid
+		)
+		REFERENCES tr_order (
+			o_orderid
 		);
 
 ALTER TABLE tr_basket

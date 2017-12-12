@@ -1,7 +1,7 @@
 /*회원 등록*/
-INSERT INTO TR_MEMBER VALUES('admin','1234','관리자','admin@naver.com','12345','서울시 강동구','010-1234-5678','0','1'); /*최고관리자계정*/
-INSERT INTO TR_MEMBER VALUES('han','1234','한범석','han@naver.com','12345','서울시 강남구','010-1234-1234','1','1');
-INSERT INTO TR_MEMBER VALUES('son','1234','손가연','son@naver.com','12345','서울시 강동구','010-1234-5678','0','1');
+INSERT INTO TR_MEMBER VALUES('admin','1234','관리자','admin@naver.com','12345','서울시 강동구','010-1234-5678','1','1'); 
+INSERT INTO TR_MEMBER VALUES('han','1234','한범석','han@naver.com','12345','서울시 강남구','010-1234-1234','0','1');
+INSERT INTO TR_MEMBER VALUES('son','1234','손가연','son@naver.com','12345','서울시 강동구','010-1234-5678','2','1');
 
 /* 분류코드 등록*/
 INSERT INTO tr_foodcode VALUES(1,0,0,'지역','0');
@@ -82,13 +82,18 @@ INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '스테이크',1,4,1,10000
 INSERT INTO tr_food VALUES(tr_food_seq.nextval, null, '파스타',1,4,2,10000,'파스타','pasta01.JPG_pasta02.JPG','pasta01.JPG_pasta02.JPG','0','2');
 
 /* 장바구니 */ 
-INSERT INTO tr_basket VALUES('han','1',5000,1);
-INSERT INTO tr_basket VALUES('han','3',5000,1);
+INSERT INTO tr_basket VALUES('han','1',1);
+INSERT INTO tr_basket VALUES('han','3',1);
+
 
 /* 주문테이블 
 	TO_CHAR(SYSTIMESTAMP, 'YYYYMMDDHH24MISSFF3') : 20171124024614598 = 2017-11-24 02:46:14.598
 */
-INSERT INTO tr_order VALUES(TO_CHAR(SYSTIMESTAMP, 'YYYYMMDDHH24MISSFF3'),'3','han','3','5000','1',sysdate,'한범석','12345','서울시 강남구','4');
+INSERT INTO tr_order VALUES(TO_CHAR(SYSTIMESTAMP, 'YYYYMMDDHH24MISSFF3'),'han', sysdate,null,null,null,null,null,'0','한범석','12345','서울시 강남구','4');
+
+/*주문 상세 데이블*/
+INSERT INTO tr_orderdetail VALUES((select max(O_ORDERID) from tr_order where M_USERID='han'), '3', '5000', '3');
+INSERT INTO tr_orderdetail VALUES((select max(O_ORDERID) from tr_order where M_USERID='han'), '2', '5000', '1');
 
 /*후기 테이블*/
 INSERT INTO tr_review VALUES(tr_review_seq.nextval, 'han', '0', '맛잇음','a맛있네요. 정말좋아요',3, null, 0, sysdate, null, null);

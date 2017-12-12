@@ -10,4 +10,3 @@ drop table tr_food;
 drop table tr_event;
 drop table tr_subcode;
 drop table tr_mastercode;
-drop table tr_dvycode;
