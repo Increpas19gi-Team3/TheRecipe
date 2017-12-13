@@ -32,7 +32,7 @@
 					<textarea name="e_ntcontens" id="e_ntcontens" required="내용을 입력하세요"></textarea>
 				</fieldset>				
 				
-				<fieldset>
+				<!-- <fieldset>
 					<label for="">시작 날짜</label>
 					<input type="date" id="e_startdate" name="e_startdate">
 				</fieldset>
@@ -40,7 +40,7 @@
 				<fieldset>
 					<label for="">종료 날짜</label>
 					<input type="date" id="e_enddate" name="e_enddate">
-				</fieldset>				
+				</fieldset> -->				
 				
 				<fieldset class="fileWrap">
 					<label for="" id="fileName">이미지</label>
