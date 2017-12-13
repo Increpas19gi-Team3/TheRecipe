@@ -52,6 +52,7 @@
 						<td>${rVo.r_rvdate}</td>
 					</tr>
 					
+					<c:if test="${not empty rVo.r_rvimgname}">
 					<tr>
 						<th colspan="4">이미지</th>
 					</tr>
@@ -62,6 +63,7 @@
 						<img src="/images/${rVo.r_rvimgname}" width="400" height="400">
 						</td>
 					</tr>
+					</c:if>
 					
 					<c:if test="${not empty rVo.r_admincmt}">
 					<tr>

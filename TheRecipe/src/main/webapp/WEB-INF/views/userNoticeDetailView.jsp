@@ -44,8 +44,7 @@
 							<th>제&nbsp;&nbsp;목</th>
 							<th>구&nbsp;&nbsp;분</th>
 							<th>작성일</th>
-							<th>내&nbsp;&nbsp;용</th>
-														
+							<th>내&nbsp;&nbsp;용</th>														
 						</tr>
 					</thead>
 					<tbody>
@@ -67,6 +66,7 @@
 							</td>
 						</tr>
 						
+						<c:if test="${not empty nVo.e_ntimgname}">
 						<tr>
 							<td colspan="5">이미지</td>												
 						</tr>						
@@ -77,28 +77,26 @@
 								<img src="/images/${nVo.e_ntimgname}" width="400" height="400">
 							</td>
 						</tr>
+						</c:if>
 							
 						<tr>
-							<td>할인율</td>
-							<td>시작날짜</td>
-							<td>종료날짜</td>
-							<td>마스터 코드</td>
+							<td colspan="2">할인율</td>
+							<!-- <td>시작날짜</td>
+							<td>종료날짜</td> -->
+							<td colspan="2">마스터 코드</td>
 						</tr>
 						
 						<tr>	
-							<td>
+							<td colspan="2">
 								${nVo.e_discount}
 							</td>
-							<td>
+							<%-- <td>
 								<fmt:formatDate value="${nVo.e_startdate}" pattern="yyyy-MM-dd HH:mm:ss" />
 							</td>
 							<td>
 								<fmt:formatDate value="${nVo.e_enddate}" pattern="yyyy-MM-dd HH:mm:ss" />
-							</td>
-							<td>
-								<fmt:formatDate value="${nVo.e_enddate}" pattern="yyyy-MM-dd HH:mm:ss" />
-							</td>
-							<td>
+							</td> --%>							
+							<td colspan="2">
 								${nVo.ms_code}
 							</td>
 																					

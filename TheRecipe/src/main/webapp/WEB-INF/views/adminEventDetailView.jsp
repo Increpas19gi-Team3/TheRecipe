@@ -38,6 +38,8 @@
 							<td><fmt:formatDate value="${eVo.e_ntdate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 							<td>${eVo.e_ntcontens}</td>
 						</tr>
+						
+						<c:if test="${not empty eVo.e_ntimgname}">
 						<tr>
 							<td colspan="5">이미지</td>
 						</tr>
@@ -47,6 +49,7 @@
 								<img src="/images/${eVo.e_ntimgname}" width="400" height="400">
 							</td>
 						</tr>
+						</c:if>
 						
 						<tr>
 							<td>할인율</td>

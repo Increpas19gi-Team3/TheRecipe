@@ -203,8 +203,8 @@
 									</c:otherwise>
 							</c:choose>
 						</th>
-						<th>시작날짜</th>
-						<th>종료날짜</th>
+						<!-- <th>시작날짜</th>
+						<th>종료날짜</th> -->
 						</tr>
 					</thead>
 					
@@ -218,12 +218,12 @@
 								<td>
 									<fmt:formatDate value="${list.e_ntdate }" pattern="yyyy-MM-dd HH:mm:ss" />
 								</td>
-								<td>
+								<%-- <td>
 									<fmt:formatDate value="${list.e_startdate }" pattern="yyyy-MM-dd HH:mm:ss" />
 								</td>
 								<td>
 									<fmt:formatDate value="${list.e_enddate }" pattern="yyyy-MM-dd HH:mm:ss" />
-								</td>
+								</td> --%>
 							</tr>
 						</c:forEach>
 					</tbody>

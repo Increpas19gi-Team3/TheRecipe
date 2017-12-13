@@ -67,33 +67,35 @@
 							<th>${rVo.r_grade}</th>
 						</tr>
 						
+						<c:if test="${not empty rVo.r_rvimgname}">
 						<tr> 
 							<td colspan="3">이미지명</td>
 						</tr>					
 						
 						<tr>
 							<td colspan="3"><img src="/images/${rVo.r_rvimgname}" width="400" height="400"></td>							
-						</tr>					
+						</tr>
+						</c:if>					
 						
 						<tr>
-							<td>조회수</td>
-							<td>글등록시간</td>
+							<td colspan="2">조회수</td>
+							<td colspan="2">글등록시간</td>
 						</tr>
 						
 						<tr>
-							<th>${rVo.r_rvcount}</th>
-							<th><fmt:formatDate value="${rVo.r_rvdate}" pattern="yyyy-MM-dd HH:mm:ss" /></th>							
+							<th colspan="2">${rVo.r_rvcount}</th>
+							<th colspan="2"><fmt:formatDate value="${rVo.r_rvdate}" pattern="yyyy-MM-dd HH:mm:ss" /></th>							
 						</tr>
 												
 						<c:if test="${not empty rVo.r_admincmt}">	
 							<tr>
-								<td>관리자댓글</td>
-								<td>관리자댓글시간</td>
+								<td colspan="2">관리자댓글</td>
+								<td colspan="1">관리자댓글시간</td>
 							</tr>				
 						
 							<tr>
-								<td>${rVo.r_admincmt}</td>
-								<td><fmt:formatDate value="${rVo.r_admindate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+								<td colspan="2">${rVo.r_admincmt}</td>
+								<td colspan="1"><fmt:formatDate value="${rVo.r_admindate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 							</tr>
 						</c:if>						
 					</tbody>
