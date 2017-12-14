@@ -28,7 +28,7 @@
 			</div>
 			<div class="right_contnet">
 				<h3>
-					공지사항
+					후기 게시판
 					<div class="page_locationBox">
 						<a href="home.do">홈</a>
 						<span> > </span>
