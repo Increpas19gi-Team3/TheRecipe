@@ -20,7 +20,7 @@ import com.increpas.therecipe.vo.MemberVO;
  * 로그인 로그아웃 아이디찾기 비밀번호찾기 컨트롤러
  * 
  * @author 한범석, 박호진
- *
+ * 2017.12.15 : tr_member 값 변경 부분 추가 - 손가연 
  */
 
 @Controller
@@ -78,16 +78,17 @@ public class LoginController {
 		//검색해온 고객 정보를 저장하는 MemberVO
 		MemberVO resultVO = loginService.selectLogin(m_userid, m_pw);
 		
-		if(resultVO != null)
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>> "+resultVO.toString());//로그인 결과값 확인 
+//		if(resultVO != null)
+			//System.out.println(">>>>>>>>>>>>>>>>>>>>>> "+resultVO.toString());//로그인 결과값 확인 
 		
 		// 아이디 존재 여부 확인
 		if (resultVO != null){
 			session.setAttribute("m_userid", resultVO.getM_userid());
 			
-			if(resultVO.getM_level() == 0){//관리자 일 경우만 세선에 권한 저장
+			if(resultVO.getM_level() != 0){//관리자 일 경우만 세선에 권한 저장
+				//System.out.println("세션에 관리자 정보 저장완료. resultVO.getM_level()="+resultVO.getM_level());
 				session.setAttribute("m_level", resultVO.getM_level());
-				System.out.println(">>>>>>>>>>>>>>>>>>>>>> " +" " + session + " 이다.");
+				
 			}
 			
 		}else{
@@ -179,20 +180,21 @@ public class LoginController {
 			return "forgetPw";
 		}
 		String m_userid = vo.getM_userid();
-		vo = loginService.selectFindPw(m_userid);
-
+		String m_phone = vo.getM_phone();
+		vo = loginService.selectFindPw(vo);
+		
+		
 		// 이메일 존재 여부 확인
 		if (vo == null) {
 			model.addAttribute("m_userid", m_userid);
 			model.addAttribute("message", "존재하지 않는 아이디 입니다.");
 			return "forgetPw";
-
-		} else {
 			
+		} else { //성공하면 보여줄 결과창
+			System.out.println(">>>>>>   VO = "+ vo.toString());
 			model.addAttribute("vo", vo);
+			return "resultPw";
 		}
-		//성공하면 보여줄 결과창
-		return "resultPw";
 	}
 
 }

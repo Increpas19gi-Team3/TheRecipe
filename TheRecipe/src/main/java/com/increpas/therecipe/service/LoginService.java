@@ -40,8 +40,8 @@ public class LoginService {
 	 * @param m_userid 아이디
 	 * @return MemberVO
 	 */
-	public MemberVO selectFindPw(String m_userid){
-		return loginDAO.selectFindPw(m_userid);
+	public MemberVO selectFindPw(MemberVO mVO){
+		return loginDAO.selectFindPw(mVO);
 	}
 
 }

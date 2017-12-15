@@ -156,8 +156,9 @@ public class MemberController {
 			msg = "사용중인 아이디 입니다.";
 		} else {
 			msg = "사용하실 수 있는 아이디 입니다.";
+			model.addAttribute("checkId", checkId); // 중복확인된 id를 보냄
 		}
-		model.addAttribute("msg", msg);
+		model.addAttribute("msg", msg);		
 
 		return "join";
 	}

@@ -42,9 +42,9 @@
 	</select>
 
 	<!-- 비밀번호 찾기(아이디로 찾기) -->
-	<select id="selectPw" parameterType="Map" resultMap="MemberResult">
+	<select id="findPw" parameterType="Member" resultMap="MemberResult">
 		select * from TR_MEMBER
-		where m_userid = #{m_userid}
+		where m_userid = #{m_userid} and m_phone = #{m_phone}
 	</select>
 
 	<!-- 회원 아이디 중복 체크 -->

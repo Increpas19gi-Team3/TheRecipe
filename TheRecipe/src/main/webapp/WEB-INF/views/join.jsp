@@ -17,7 +17,7 @@
 			<form:form action="joinReg.do " method="post" commandName="memberjoin">
 				<fieldset class="idBox">
 					<label for="">아이디</label>
-					<input type="text" placeholder="아이디" id="m_userid" name="m_userid" required="">
+					<input type="text" placeholder="아이디" id="m_userid" name="m_userid" required="" value="${checkId }">
 					<a href="idcheck.do">아이디 중복 체크</a> 
 					<span class="msg">${msg}</span>
 				</fieldset>

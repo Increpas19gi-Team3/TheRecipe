@@ -46,14 +46,12 @@ public class LoginDAO {
 	}
 	/**
 	 * 비밀번호 찾기
-	 * @param m_userid 아이디
+	 * @param m_userid 아이디, 전화번호 로 검색
 	 * @return MemberVO
 	 */
-	public MemberVO selectFindPw(String m_userid) {
+	public MemberVO selectFindPw(MemberVO mVO) {
 		
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("m_userid", m_userid);
-		return sqlSessionTemplate.selectOne("member_ns.selectPw", map);
+		return sqlSessionTemplate.selectOne("member_ns.findPw", mVO);
 	}
 
 }

@@ -81,9 +81,9 @@ public class UserMyOrderController {
 				String title= request.getParameter("title");
 				String thumname= request.getParameter("thumname");
 				odVo.setM_userid(m_userid);
-				odVo.setF_fdcode(request.getParameter("f_fdcode"));
-				odVo.setO_buyprice(Integer.parseInt(request.getParameter("o_buyprice")));
-				odVo.setO_amount(Integer.parseInt(request.getParameter("o_amount")));
+//				odVo.setF_fdcode(request.getParameter("f_fdcode"));
+//				odVo.setO_buyprice(Integer.parseInt(request.getParameter("o_buyprice")));
+//				odVo.setO_amount(Integer.parseInt(request.getParameter("o_amount")));
 				
 			    userMyOrderService.insertOrder(odVo);
 			    model.addAttribute("title", title);

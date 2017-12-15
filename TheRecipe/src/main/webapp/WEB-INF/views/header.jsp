@@ -69,10 +69,14 @@
 									</ul></li>
 								<li><a href="BasketForm.do">장바구니</a></li>
 						
-								<c:if test="${sessionScope.m_level==0}">
-									<li class="dropdown_wrap">
-										<!-- <a href="adminIndex.do"	class="dropdown_select" target="_blank">관리자페이지</a> -->
-										<a href="adminOrder.do"	class="dropdown_select" target="_blank">관리자페이지</a>
+								
+								<c:if test="${not empty sessionScope.m_level }">
+									<c:if test="${sessionScope.m_level != 0}">
+										<li class="dropdown_wrap">
+											<!-- <a href="adminIndex.do"	class="dropdown_select" target="_blank">관리자페이지</a> -->
+											<a href="adminOrder.do"	class="dropdown_select" target="_blank">관리자페이지</a>
+										</li>
+									</c:if>
 								</c:if>
 
 							</c:when>
