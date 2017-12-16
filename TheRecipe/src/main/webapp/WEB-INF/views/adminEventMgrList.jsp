@@ -188,7 +188,103 @@
                 <div class="card-body" style="text-align: center;">
                 <form action="adminEventsetFood.do" method="post" name="listForm">
                 
-	                <table id="listGubun" style="border: none;" width="100%" cellspacing="0">
+                
+                	<table>
+                		<tr>
+		                	<td style="text-align: right; border: none;">
+		                		<span class="glyphicon glyphicon-search"></span> 검색 설정 (음식 카테고리) &nbsp;&nbsp;
+		                	</td>
+		                	<td>
+		                		<!-- 카테고리 설정 --> 		                		
+		                		<!-- 분류 코드 시작 -->
+			                	<!-- https://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp -->
+			                	<select id="fc_1st" name="fc_1st" onchange="click_1st(); filter();">
+									<c:if test="${not empty foodcode1stList }">
+										<c:forEach var="foodcode1st" items="${foodcode1stList }">											
+											<c:choose>
+											<c:when test="${fc_1st eq foodcode1st.fc_1st }"><option value= "${foodcode1st.fc_1st }" selected="selected">${foodcode1st.fc_ctgname } 요리</option></c:when>
+											<c:otherwise><option value= "${foodcode1st.fc_1st }">${foodcode1st.fc_ctgname } 요리</option></c:otherwise>
+											</c:choose>											
+										</c:forEach>
+									</c:if>
+								</select>									
+								<strong> > </strong>				
+								<!-- onclick="getSel2nd();" -->				
+								<select id="fc_2nd" name="fc_2nd" onchange="click_2nd(); filter();">
+									<!-- <option value="">-- 중분류 --</option> -->
+									<option value="0">-- 중분류 --</option>
+									<c:if test="${not empty foodcode2ndList }">
+										<c:forEach var="foodcode2nd" items="${foodcode2ndList }">
+									  		\${fc_2nd eq foodcode2nd.fc_2nd } : ${fc_2nd eq foodcode2nd.fc_2nd } <Br/>
+									  		\${foodcode2nd.fc_2nd } : ${foodcode2nd.fc_2nd }
+									  		<c:choose>
+									  		<c:when test="${fc_2nd eq foodcode2nd.fc_2nd }"><option class="${foodcode2nd.fc_1st }" value="${foodcode2nd.fc_1st }_${foodcode2nd.fc_2nd }" selected="selected">${foodcode2nd.fc_ctgname }</option></c:when>
+									  		<c:otherwise><option class="${foodcode2nd.fc_1st }" value="${foodcode2nd.fc_1st }_${foodcode2nd.fc_2nd }">${foodcode2nd.fc_ctgname }</option></c:otherwise>
+									  		</c:choose>
+										</c:forEach>
+									</c:if>
+								</select>									
+								<strong> > </strong>				
+								<!-- onclick="getSel3rd();" -->					
+								<select id="fc_3rd" name="fc_3rd" onchange="filter();">
+									<option value="0">-- 소분류 --</option>
+									<c:if test="${not empty foodcode3rdList }">
+										<c:forEach var="foodcode3rd" items="${foodcode3rdList }">
+											\${fc_3rd eq foodcode3rd.fc_3rd } : ${fc_3rd eq foodcode3rd.fc_3rd } <Br/>
+									  		\${foodcode3rd.fc_3rd } : ${foodcode3rd.fc_3rd }
+									  		
+									  		<c:choose>
+									  		<c:when test="${fc_3rd eq foodcode3rd.fc_3rd }"><option class='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }' value='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }_${foodcode3rd.fc_3rd }' selected="selected">${foodcode3rd.fc_ctgname }</option></c:when>
+									  		<c:otherwise><option class='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }' value='${foodcode3rd.fc_1st }_${foodcode3rd.fc_2nd }_${foodcode3rd.fc_3rd }'>${foodcode3rd.fc_ctgname }</option></c:otherwise>
+									  		</c:choose>
+										</c:forEach>
+									</c:if>
+								</select>
+								<!-- 분류 코드 끝 -->
+							</td>
+						</tr>
+						<tr>
+		                	<td style="text-align: right; border: none;">
+		                		<span class="glyphicon glyphicon-search"></span> 검색 설정 (음식 이름) &nbsp;&nbsp;
+		                	</td>
+							<td>
+								<!-- 검색 처리 시작 -->
+								<select name="whereColumn" id="whereColumn" onchange="change_whereColumn()">
+									<c:choose>
+										<c:when test="${not empty whereColumn }">
+											
+											<c:choose>
+												<c:when test="${whereColumn eq 'ALL'}">
+													<option value="ALL" selected="selected">전체검색</option>
+													<option value="FOODNAME" >음식이름</option>
+												</c:when>
+												<c:when test="${whereColumn eq 'FOODNAME'}">
+													<option value="ALL">전체검색</option>
+													<option value="FOODNAME" selected="selected">음식이름</option>
+												</c:when>
+											</c:choose>
+										
+										</c:when>
+										<c:otherwise>
+											<option value="ALL">전체검색</option>
+											<option value="FOODNAME" >음식이름</option>
+										</c:otherwise>
+									</c:choose>
+								</select>
+								
+								<input type="text" name="word" id="word" value="${word }">
+								<input type="button" value="검색"  onclick="doSearch();">
+								
+								<!-- 검색 처리 끝 -->
+							</td>
+						</tr>          	
+                	</table>
+                
+                	<br/>
+                
+                
+                	<!-- 이벤트 설정여부 + 음식목록 리스트 출력 cellspacing="0" -->
+	                <table id="listGubun" style="border:none; width:100%;">
 						<tr style="border: none;">
 							<td style="text-align: left; border: none;">
 	                		
@@ -208,6 +304,7 @@
 			                    </select>    	
 		                	</td>
 		                	
+		                	<%--
 		                	<!-- 카테고리 설정 -->
 		                	<td style="text-align: left; border: none;">
 		                		<!-- 분류 코드 시작 -->
@@ -256,6 +353,7 @@
 								</select>
 								<!-- 분류 코드 끝 -->
 		                	</td>
+		                	--%>
 		                	
 		                	<!-- 게시글 수 설정 -->
 		                	<td style="text-align: right; border: none;">
@@ -394,38 +492,9 @@
 		                
 		                <p />
 		                
-		                <!-- 검색 처리 -->
+		               
 		                <div>		
-							<select name="whereColumn" id="whereColumn" onchange="change_whereColumn()">
-								<c:choose>
-									<c:when test="${not empty whereColumn }">
-										
-										<c:choose>
-											<c:when test="${whereColumn eq 'ALL'}">
-												<option value="ALL" selected="selected">전체검색</option>
-												<option value="FOODNAME" >음식이름</option>
-											</c:when>
-											<c:when test="${whereColumn eq 'FOODNAME'}">
-												<option value="ALL">전체검색</option>
-												<option value="FOODNAME" selected="selected">음식이름</option>
-											</c:when>
-										</c:choose>
-									
-									</c:when>
-									<c:otherwise>
-										<option value="ALL">전체검색</option>
-										<option value="FOODNAME" >음식이름</option>
-									</c:otherwise>
-								</c:choose>
-							</select>
-							
-							<input type="text" name="word" id="word" value="${word }">
-							<input type="button" value="검색"  onclick="doSearch();">
-							
-							<br/>
-							
-							
-                    		<label>이벤트 설정: </label>
+		                 	<label>이벤트 설정: </label>
 		            		<select id="setEventCode" name="setEventCode" >
 		            			<option value="CLEAR">설정 해제</option>
 		                    	<c:forEach var="eventAllListToday" items="${eventAllListToday }">
