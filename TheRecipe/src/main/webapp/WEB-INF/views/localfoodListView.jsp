@@ -114,7 +114,7 @@
 								<h3>${food.f_foodname }</h3>
 								<c:choose>
 									<c:when test="${not empty food.e_evtcode}">	
-										<span><b>${food.f_price }</b>${food.f_price }<small>원</small></span>
+										<span><b>${food.f_price }</b>${food.e_discount }<small>원</small></span>
 									</c:when>
 									<c:otherwise>
 										<span>${food.f_price }<small>원</small></span>

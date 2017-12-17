@@ -3,11 +3,9 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
-
 	<jsp:include page="header.jsp" />
 
-	<form action="shoppingBasket.do" method="post" >
+	<form action="shoppingBasket.do" method="post" onsubmit="msg()">
 		<input type="hidden" name="userID" value="<%=session.getAttribute("m_userid")%>">
 		<input type="hidden" name="fdcode" value="${foodList.f_fdcode }">
 		<input type="hidden" name="buyPrice" value="${foodList.f_price }">
@@ -58,7 +56,14 @@
 					<h2>${foodList.f_foodname }</h2>
 					<p>${foodList.f_explan }</p>
 					<div class="price_one">
-						<b><input class="price_asd" id="price" type="text" readonly name="price" value="${foodList.f_price }"></b>원
+						<c:choose>
+							<c:when test="${not empty foodList.e_evtcode}">	
+								<span>${foodList.f_price }<input class="price_asd" id="price" type="text" readonly name="price" value="${foodList.e_discount }"><small>원</small></span>
+							</c:when>
+							<c:otherwise>
+								<b><input class="price_asd" id="price" type="text" readonly name="price" value="${foodList.f_price }"></b>원
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<div class="option_calc_wrap">
 						<dl class="quantity">
@@ -205,12 +210,22 @@
 	}
 	function Dec() {
 		Counter.value--;
+		if(Counter.value<1){
+			alert("1보다 작을수없습니다.");
+			Counter.value=1;
+		}
 		total = Counter.value * document.getElementById("price").value;
 		TotalPrice.value = total;
 	}
 
 	Increase.addEventListener("click", Inc);
 	Decrease.addEventListener("click", Dec);
+	
+	function msg() {
+	
+		 alert("장바구니에 등록됐습니다.");
+	}
+	
 </script>
 
 
