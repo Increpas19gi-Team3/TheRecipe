@@ -44,6 +44,9 @@
 		<!-- 2017.12.04 음식에 이벤트를 설정 관리 하기 위한 tr_food + tr_event VO : 손가연  -->
 		<typeAlias alias="EventSetFood" type="com.increpas.therecipe.vo.EventSetFoodVO" />
 		
+		<!-- 2017.12.17 회원 관리를 위한 tr_Member + SubQuery(tr_subcode) VO : 손가연  -->
+		<typeAlias alias="MemberInfo" type="com.increpas.therecipe.vo.MemberInfoVO" />
+		
 	</typeAliases>
 	
 	

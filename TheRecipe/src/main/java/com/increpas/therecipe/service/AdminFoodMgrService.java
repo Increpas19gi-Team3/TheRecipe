@@ -319,6 +319,7 @@ public class AdminFoodMgrService {
 	 * DB에 음식데이터 저장
 	 * @param AdminFoodRegDTO adminFoodRegDTO
 	 */
+	@Transactional
 	public void insertAdminFoodReg(AdminFoodRegDTO adminFoodRegDTO){
 		adminFoodMgrDAO.insertAdminFoodReg(adminFoodRegDTO);
 	}
@@ -328,6 +329,7 @@ public class AdminFoodMgrService {
 	 * DB에 음식데이터 수정
 	 * @param AdminFoodRegDTO adminFoodRegDTO
 	 */
+	@Transactional
 	public void updateAdminFoodReg(AdminFoodRegDTO adminFoodRegDTO){
 		adminFoodMgrDAO.updateAdminFoodReg(adminFoodRegDTO);
 	}

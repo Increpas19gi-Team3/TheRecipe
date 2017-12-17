@@ -97,6 +97,19 @@
                 </li>
                 
                 
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages5" data-parent="#exampleAccordion">
+						<i class="fa fa-fw fa-wrench"></i>
+						<span class="nav-link-text">회원 관리</span>
+					</a>
+                    <ul class="sidenav-second-level collapse" id="collapseExamplePages5">
+                        <li>
+                            <a href="adminMember.do">설정</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
             			<i class="fa fa-fw fa-sitemap"></i>

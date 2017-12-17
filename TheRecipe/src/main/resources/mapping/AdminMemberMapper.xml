@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="MemberInfo_ns">
+	        
+	<resultMap id="MemberInfoResult" type="MemberInfo"> 
+		<result property="m_userid" column="m_userid" />
+		<result property="m_pw" column="m_pw" />
+		<result property="m_name" column="m_name" />
+		<result property="m_email" column="m_email" />
+		<result property="m_post" column="m_post" />		
+		<result property="m_addr" column="m_addr" />
+		<result property="m_phone" column="m_phone" />
+		<result property="m_level" column="m_level" />
+		<result property="ms_code" column="ms_code" />
+		<result property="gubun" column="gubun" />
+	</resultMap>
+	
+	
+	
+	<select id="selectAllMemberInfoAdmin" resultMap="MemberInfoResult"> 
+		SELECT (SELECT SUB_NAME FROM TR_SUBCODE WHERE TR_SUBCODE.MS_CODE = TR_MEMBER.MS_CODE AND TR_SUBCODE.SUB_CODE = TR_MEMBER.M_LEVEL) AS GUBUN,
+		    M_USERID, M_NAME, M_EMAIL, M_PHONE, M_LEVEL
+		FROM TR_MEMBER
+	</select>
+	
+	
+	<select id="selectAllMemberInfo" resultMap="MemberInfoResult"> 
+		SELECT (SELECT SUB_NAME FROM TR_SUBCODE WHERE TR_SUBCODE.MS_CODE = TR_MEMBER.MS_CODE AND TR_SUBCODE.SUB_CODE = TR_MEMBER.M_LEVEL) AS GUBUN,
+		    M_USERID, M_NAME, M_EMAIL, M_PHONE, M_LEVEL
+		FROM TR_MEMBER
+		WHERE M_LEVEL != 0
+	</select>
+	
+	
+	<update id="modifyMemberLevel" parameterType="map">
+		UPDATE TR_MEMBER SET M_LEVEL = #{targetCode}
+		WHERE M_USERID = #{targetId}
+	</update>
+	
+	
+	
+</mapper>

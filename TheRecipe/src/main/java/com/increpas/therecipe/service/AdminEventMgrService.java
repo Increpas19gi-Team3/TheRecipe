@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.increpas.therecipe.dao.AdminEventMgrDAO;
 import com.increpas.therecipe.dto.AdminEventSetFoodListDTO;
@@ -187,6 +188,7 @@ public class AdminEventMgrService {
 	 * @param String[] chk_fdcodeArr : 이벤트를 설정할 음식 코드
 	 * @param String setEventCode : 이벤트 코드
 	 */
+	@Transactional
 	public void updateEventSetFood(String[] chk_fdcodeArr, String setEventCode){
 		adminEventMgrDAO.updateEventSetFood(chk_fdcodeArr, setEventCode);
 	}
