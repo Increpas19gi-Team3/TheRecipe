@@ -27,7 +27,7 @@
 							<th>제&nbsp;&nbsp;목</th>
 							<th>구&nbsp;&nbsp;분</th>
 							<th>작성일</th>
-							<th>내&nbsp;&nbsp;용</th>
+							
 						</tr>
 					</thead>
 					<tbody>
@@ -36,15 +36,23 @@
 							<td>${eVo.e_nttilte}</td>
 							<td>${eVo.e_gubun}</td>
 							<td><fmt:formatDate value="${eVo.e_ntdate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-							<td>${eVo.e_ntcontens}</td>
+							
+						</tr>
+						
+						<tr>
+							<th colspan="4">내&nbsp;&nbsp;용</th>
+						</tr>
+						
+						<tr>
+							<td colspan="4">${eVo.e_ntcontens}</td>
 						</tr>
 						
 						<c:if test="${not empty eVo.e_ntimgname}">
 						<tr>
-							<td colspan="5">이미지</td>
+							<td colspan="4">이미지</td>
 						</tr>
 						<tr>
-							<td colspan="5">
+							<td colspan="4">
 								${eVo.e_ntimgname}
 								<img src="/images/${eVo.e_ntimgname}" width="400" height="400">
 							</td>

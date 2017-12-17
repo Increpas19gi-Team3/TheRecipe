@@ -44,26 +44,25 @@
 							<th>제&nbsp;&nbsp;목</th>
 							<th>구&nbsp;&nbsp;분</th>
 							<th>작성일</th>
-							<th>내&nbsp;&nbsp;용</th>														
+																				
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>
-								${nVo.e_evtcode}
-							</td>
-							<td> 
-								${nVo.e_nttilte}
-							</td>
-							<td>
-								${nVo.e_gubun}
-							</td>
+							<td>${nVo.e_evtcode}</td>
+							<td>${nVo.e_nttilte}</td>
+							<td>${nVo.e_gubun}</td>
 							<td>
 								<fmt:formatDate value="${nVo.e_ntdate}" pattern="yyyy-MM-dd HH:mm:ss" />
-							</td>
-							<td>
-								${nVo.e_ntcontens}
-							</td>
+							</td>							
+						</tr>
+						
+						<tr>
+							<th colspan="4">내&nbsp;&nbsp;용</th>	
+						</tr>
+						
+						<tr>
+							<td colspan="4">${nVo.e_ntcontens}</td>
 						</tr>
 						
 						<c:if test="${not empty nVo.e_ntimgname}">
@@ -72,8 +71,7 @@
 						</tr>						
 						
 						<tr>
-							<td colspan="5">
-								${nVo.e_ntimgname}
+							<td colspan="5"> ${nVo.e_ntimgname}
 								<img src="/images/${nVo.e_ntimgname}" width="400" height="400">
 							</td>
 						</tr>
