@@ -93,7 +93,7 @@
 					</dl>
 					
 					<div class="price_total">
-						<span>총 상품금액</span><b><input class="price_asd" id="totalPrice" type="text" readonly name="totalPrice" value="${foodList.f_price }"></b>원
+						<span>총 상품금액</span><b><input class="price_asd" id="totalPrice" type="text" readonly name="totalPrice" value="${foodList.e_discount }"></b>원
 					</div>
 					<c:choose>
 						<c:when test="${not empty sessionScope.m_userid}">
