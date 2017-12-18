@@ -12,12 +12,12 @@
 				<table>
 					<thead>
 						<tr>
-							<th><input type="checkbox" name="checkAll" id="th_checkAll"
-								onclick="checkAll();" /></th>
-							<!--체크박스 회의 해보자  -->
+						<!-- 	<th><input type="checkbox" name="checkAll" id="th_checkAll"
+								onclick="checkAll();" /></th> -->
 							<th colspan="2">상품</th>
 							<th>수량</th>
 							<th>가격</th>
+							<th>할인가</th>
 							<th>주문금액</th>
 							<th></th>
 						</tr>
@@ -34,15 +34,14 @@
 								<c:forEach var="bask" items="${basket}">
 									<!-- 상품코드 -->
 									<input type="hidden" name="f_fdcode" value="${bask.f_fdcode}">
+									<input type="hidden" name="price" value="${bask.f_price }">
 									<input type="hidden" name="discount_value" value="${bask.discount_value}">
-
 									<input type="hidden" name="title" value="${bask.f_foodname}">
 									<input type="hidden" name="thumname" value="${bask.f_thumname}">
 
 									<tr>
-										<td><input type="checkbox" name="checkRow"
-											value="${bask.f_fdcode}" /></td>
-										<!--체크박스 회의 해보자  -->
+									<%-- 	<td><input type="checkbox" name="checkRow"
+											value="${bask.f_fdcode}" /></td> --%>
 										<!-- 이미지경로 -->
 										<td class="img_width"><img
 											src="/images/${bask.f_thumname}" alt="${bask.f_thumname} 이미지">
@@ -62,8 +61,14 @@
 										</td>
 										<!-- 가격 -->
 										<td><input class="text_center" id="price" type="text"
-											name="price" readonly value="${bask.f_price }"><span
+											name="priceReal" readonly value="${bask.f_price }"><span
 											class="asd">원</span></td>
+										
+										<!-- 할인가 -->
+										<td><input class="text_center" id="discountPrice" type="text"
+											name="discountPrice" readonly value="${bask.f_price }"><span
+											class="asd">원</span></td>
+											
 										<!-- 주문금액 -->
 										<td><input class="text_center" id="totalPrice"
 											type="text" name="totalPrice" value="${bask.f_price}"
@@ -108,6 +113,8 @@
 	var Increase = document.getElementsByName("up");
 	var Decrease = document.getElementsByName("down");
 	var Price = document.getElementsByName("price");
+	var DiscountPrice = document.getElementsByName("discountPrice");
+	var priceReal = document.getElementsByName("priceReal");
 	var TotalPrice = document.getElementsByName("totalPrice");
 	var TotalPriceSum = document.getElementById("totalPriceSum");
 	var total = 0;
@@ -135,6 +142,8 @@
 		for (var i=0; i<Counter.length; i++) {
 			(function(i) {
 				//inputNumberFormat(Price[i]); // 콤마찍기
+				
+				discountPrice[i].value = Counter[i].value * Price[i].value * (discount_value[i].value / 100);
 				total = Counter[i].value * Price[i].value * (100 - discount_value[i].value)/ 100;
 				TotalPrice[i].value = total;
 				total_sum += total;
@@ -182,6 +191,8 @@
 
 			function Inc() {
 				Counter[i].value++;
+				priceReal[i].value = Counter[i].value * Price[i].value;
+				discountPrice[i].value = Counter[i].value * Price[i].value * (discount_value[i].value / 100);
 				total = Counter[i].value * Price[i].value * (100 - discount_value[i].value)/ 100;
 				TotalPrice[i].value = total;
 			}
@@ -199,7 +210,8 @@
 					alert("1보다 작을수없습니다.");
 					Counter[i].value=1;
 				}
-				
+				priceReal[i].value = Counter[i].value * Price[i].value;
+				discountPrice[i].value = Counter[i].value * Price[i].value * (discount_value[i].value / 100);
 				total = Counter[i].value * Price[i].value * (100 - discount_value[i].value)/ 100;
 				TotalPrice[i].value = total;
 			}
