@@ -1,5 +1,6 @@
 package com.increpas.therecipe.vo;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -18,12 +19,15 @@ public class EventNoticeVO {
 	private String e_ntcontens; /* 내용			VARCHAR2(2000) */
 	private String e_ntimgname; /* 이미지		VARCHAR2(2000) */
 	private int e_discount; 	/* 할인율 		NUMBER */
-	private Timestamp e_startdate;	/* 시작날짜 DATE */
-	private Timestamp e_enddate;	/* 종료날짜	DATE */
+	private Date e_startdate;	/* 시작날짜 DATE */
+	private Date e_enddate;	/* 종료날짜	DATE */
 	private String ms_code;		/* 마스터코드: 3	CHAR(1) */
 	
-	private String discount_value; // SubQuery : 할인율 
-
+	private String e_evtcode_value; // SubQuery : 이벤트 코드
+	private String e_gubun_value; // SubQuery : 구분	
+	private String e_discount_value; // SubQuery : 할인율
+	private String ms_code_value; // SubQuery : 마스터 코드
+	
 	public String getE_evtcode() {
 		return e_evtcode;
 	}
@@ -78,21 +82,21 @@ public class EventNoticeVO {
 
 	public void setE_discount(int e_discount) {
 		this.e_discount = e_discount;
-	}
+	}	
 
-	public Timestamp getE_startdate() {
+	public Date getE_startdate() {
 		return e_startdate;
 	}
 
-	public void setE_startdate(Timestamp e_startdate) {
+	public void setE_startdate(Date e_startdate) {
 		this.e_startdate = e_startdate;
 	}
 
-	public Timestamp getE_enddate() {
+	public Date getE_enddate() {
 		return e_enddate;
 	}
 
-	public void setE_enddate(Timestamp e_enddate) {
+	public void setE_enddate(Date e_enddate) {
 		this.e_enddate = e_enddate;
 	}
 
@@ -104,12 +108,36 @@ public class EventNoticeVO {
 		this.ms_code = ms_code;
 	}
 
-	public String getDiscount_value() {
-		return discount_value;
+	public String getE_evtcode_value() {
+		return e_evtcode_value;
 	}
 
-	public void setDiscount_value(String discount_value) {
-		this.discount_value = discount_value;
+	public void setE_evtcode_value(String e_evtcode_value) {
+		this.e_evtcode_value = e_evtcode_value;
+	}
+
+	public String getE_gubun_value() {
+		return e_gubun_value;
+	}
+
+	public void setE_gubun_value(String e_gubun_value) {
+		this.e_gubun_value = e_gubun_value;
+	}
+
+	public String getMs_code_value() {
+		return ms_code_value;
+	}
+
+	public void setMs_code_value(String ms_code_value) {
+		this.ms_code_value = ms_code_value;
+	}
+
+	public String getE_discount_value() {
+		return e_discount_value;
+	}
+
+	public void setE_discount_value(String e_ediscount_value) {
+		this.e_discount_value = e_ediscount_value;
 	}
 
 	@Override
@@ -117,7 +145,11 @@ public class EventNoticeVO {
 		return "EventNoticeVO [e_evtcode=" + e_evtcode + ", e_nttilte=" + e_nttilte + ", e_gubun=" + e_gubun
 				+ ", e_ntdate=" + e_ntdate + ", e_ntcontens=" + e_ntcontens + ", e_ntimgname=" + e_ntimgname
 				+ ", e_discount=" + e_discount + ", e_startdate=" + e_startdate + ", e_enddate=" + e_enddate
-				+ ", ms_code=" + ms_code + ", discount_value=" + discount_value + "]";
+				+ ", ms_code=" + ms_code + ", e_evtcode_value=" + e_evtcode_value + ", e_gubun_value=" + e_gubun_value
+				+ ", e_discount_value=" + e_discount_value + ", ms_code_value=" + ms_code_value + "]";
 	}
+	
+	
+
 	
 }

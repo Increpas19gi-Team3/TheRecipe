@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.increpas.therecipe.dto.EventListDTO;
+import com.increpas.therecipe.vo.EventNoticeVO;
 import com.increpas.therecipe.vo.EventVO;
 
 /**
@@ -39,7 +40,7 @@ public class EventNoticeDAO {
 	 * @return sqlSessionTemplate.selectList("event_ns.selectNoticeSetList", eventListDTO)
 	 */
 	@Transactional
-	public List<EventVO> selectNoticeSetList(EventListDTO eventListDTO) {
+	public List<EventNoticeVO> selectNoticeSetList(EventListDTO eventListDTO) {
 		System.err.println("6. ▶▶▶▶ EventNoticeDAO=" + eventListDTO.toString());
 		return sqlSessionTemplate.selectList("event_ns.selectNoticeSetList", eventListDTO);
 	}	
@@ -63,7 +64,7 @@ public class EventNoticeDAO {
 	 * @return sqlSessionTemplate.selectList("event_ns.selectEventSetList", eventListDTO)
 	 */
 	@Transactional
-	public List<EventVO> selectEventSetList(EventListDTO eventListDTO) {
+	public List<EventNoticeVO> selectEventSetList(EventListDTO eventListDTO) {
 		System.err.println("6. ▶▶▶▶ EventNoticeDAO=" + eventListDTO.toString());
 		return sqlSessionTemplate.selectList("event_ns.selectEventSetList", eventListDTO);
 	}	

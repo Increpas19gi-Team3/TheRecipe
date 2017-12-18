@@ -40,65 +40,43 @@
 				<table>
 					<thead>
 						<tr>
-							<th>이벤트 코드</th>
-							<th>제&nbsp;&nbsp;목</th>
-							<th>구&nbsp;&nbsp;분</th>
-							<th>작성일</th>
-																				
+							<th colspan="1">이벤트 코드</th>
+							<th colspan="5">제&nbsp;&nbsp;목</th>
+							<th colspan="1">구&nbsp;&nbsp;분</th>																				
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>${nVo.e_evtcode}</td>
-							<td>${nVo.e_nttilte}</td>
-							<td>${nVo.e_gubun}</td>
-							<td>
+							<td colspan="1">${nVo.e_evtcode_value}</td>
+							<td colspan="5">${nVo.e_nttilte}</td>
+							<td colspan="1">${nVo.e_gubun_value}</td>														
+						</tr>
+						
+						<tr>
+							<th colspan="1">작성일</th>
+							<th colspan="5">내&nbsp;&nbsp;용</th>
+							<td colspan="1">마스터 코드</td>	
+						</tr>
+						
+						<tr>
+							<td colspan="1">
 								<fmt:formatDate value="${nVo.e_ntdate}" pattern="yyyy-MM-dd HH:mm:ss" />
-							</td>							
-						</tr>
-						
-						<tr>
-							<th colspan="4">내&nbsp;&nbsp;용</th>	
-						</tr>
-						
-						<tr>
-							<td colspan="4">${nVo.e_ntcontens}</td>
+							</td>
+							<td colspan="5">${nVo.e_ntcontens}</td>
+							<td colspan="1">${nVo.ms_code_value}</td>
 						</tr>
 						
 						<c:if test="${not empty nVo.e_ntimgname}">
 						<tr>
-							<td colspan="5">이미지</td>												
+							<td colspan="7">이미지</td>												
 						</tr>						
 						
 						<tr>
-							<td colspan="5"> ${nVo.e_ntimgname}
+							<td colspan="7"> ${nVo.e_ntimgname}
 								<img src="/images/${nVo.e_ntimgname}" width="400" height="400">
 							</td>
 						</tr>
-						</c:if>
-							
-						<tr>
-							<td colspan="2">할인율</td>
-							<!-- <td>시작날짜</td>
-							<td>종료날짜</td> -->
-							<td colspan="2">마스터 코드</td>
-						</tr>
-						
-						<tr>	
-							<td colspan="2">
-								${nVo.e_discount}
-							</td>
-							<%-- <td>
-								<fmt:formatDate value="${nVo.e_startdate}" pattern="yyyy-MM-dd HH:mm:ss" />
-							</td>
-							<td>
-								<fmt:formatDate value="${nVo.e_enddate}" pattern="yyyy-MM-dd HH:mm:ss" />
-							</td> --%>							
-							<td colspan="2">
-								${nVo.ms_code}
-							</td>
-																					
-						</tr>						
+						</c:if>											
 					</tbody>
 				</table>
 				

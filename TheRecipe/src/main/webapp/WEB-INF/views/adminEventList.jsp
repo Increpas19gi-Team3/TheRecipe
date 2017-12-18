@@ -180,10 +180,10 @@
 							<tr>
 								<td>${list.e_evtcode }</td>
 								<td><a href="adminEventDetailView.do?e_evtcode=${list.e_evtcode}">${list.e_nttilte }</a></td>
-								<td><fmt:formatDate value="${list.e_ntdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-								<td>${list.e_discount }</td>
-								<td><fmt:formatDate value="${list.e_startdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-								<td><fmt:formatDate value="${list.e_enddate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+								<td><fmt:formatDate value="${list.e_ntdate }" pattern="yyyy-MM-dd" /></td>
+								<td>${list.e_discount_value }%</td>
+								<td><fmt:formatDate value="${list.e_startdate }" pattern="yyyy-MM-dd" /></td>
+								<td><fmt:formatDate value="${list.e_enddate }" pattern="yyyy-MM-dd" /></td>
 							</tr>
 						</c:forEach>
 					</tbody>

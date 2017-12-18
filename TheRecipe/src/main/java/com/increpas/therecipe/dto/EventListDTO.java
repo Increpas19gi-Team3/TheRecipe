@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.increpas.therecipe.vo.EventVO;
+import com.increpas.therecipe.vo.EventNoticeVO;
+
+
 
 /**
  * 공지사항 & 이벤트 게시판용 DTO
@@ -15,7 +17,7 @@ import com.increpas.therecipe.vo.EventVO;
 @Repository
 public class EventListDTO {
 
-private List<EventVO> listVO;	// 게시글의 목록
+private List<EventNoticeVO> listVO;	// 게시글의 목록
 	
 	private String whereColumn;	// 검색 컬럼명
 	private String word;		// 검색어
@@ -34,10 +36,10 @@ private List<EventVO> listVO;	// 게시글의 목록
 
 	// DB의 저장된 전체글의 개수가 0일때 리턴할 게시글 모델
 	public EventListDTO() {
-		this(new ArrayList<EventVO>(), "", "", "", "", "", 10, 0, 0, 0, 0);
+		this(new ArrayList<EventNoticeVO>(), "", "", "", "", "", 10, 0, 0, 0, 0);
 	}
 	
-	public EventListDTO(List<EventVO> listVO, String whereColumn, String word, String sortColumn,
+	public EventListDTO(List<EventNoticeVO> listVO, String whereColumn, String word, String sortColumn,
 			String orderby, String GUBUN, int pageCutCount, int requestPage, int totalPageCount, int startRow,
 			int endRow) {
 		super();
@@ -54,7 +56,7 @@ private List<EventVO> listVO;	// 게시글의 목록
 		this.endRow = endRow;
 	}
 		
-	public List<EventVO> getEventVOList() {
+	public List<EventNoticeVO> getEventVOList() {
 		return listVO;
 	}
 	
@@ -67,11 +69,11 @@ private List<EventVO> listVO;	// 게시글의 목록
 		return ! listVO.isEmpty();
 	}
 
-	public List<EventVO> getListVO() {
+	public List<EventNoticeVO> getListVO() {
 		return listVO;
 	}
 
-	public void setListVO(List<EventVO> listVO) {
+	public void setListVO(List<EventNoticeVO> listVO) {
 		this.listVO = listVO;
 	}
 

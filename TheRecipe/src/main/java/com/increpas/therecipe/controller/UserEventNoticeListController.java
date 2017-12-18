@@ -126,9 +126,9 @@ public class UserEventNoticeListController {
 	@RequestMapping(value = "/userNoticeDetailView.do", method = RequestMethod.GET)
 	public String GET_NoticeDetailView(Model model, HttpServletRequest req, HttpServletResponse resp) {
 
-		System.out.println("user 공시사항 상세페이지 입니다.");
+		System.out.println("user 공지사항 상세페이지 입니다.");
 		int Ncode = Integer.parseInt(req.getParameter("e_evtcode"));
-		EventVO nVo = ndvs.getNoticeVODetail(Ncode);
+		EventNoticeVO nVo = ndvs.getNoticeVODetail(Ncode);
 		model.addAttribute("nVo", nVo);
 		return "userNoticeDetailView";
 	}

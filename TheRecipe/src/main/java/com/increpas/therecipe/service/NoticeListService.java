@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.increpas.therecipe.dao.EventNoticeDAO;
 import com.increpas.therecipe.dto.EventListDTO;
+import com.increpas.therecipe.vo.EventNoticeVO;
 import com.increpas.therecipe.vo.EventVO;
 
 /**
@@ -77,7 +78,7 @@ public class NoticeListService {
 		System.err.println("5. before ▶▶▶▶ List<EventVO> boardDTOList = eventNoticeDAO.selectSetList(eventListDTO);");
 		// 'DAO'에게 "DB Select" 요청
 		// 6..
-		List<EventVO> boardDTOList = eventNoticeDAO.selectNoticeSetList(eventListDTO);
+		List<EventNoticeVO> boardDTOList = eventNoticeDAO.selectNoticeSetList(eventListDTO);
 
 		// BoardVOListModel 결과 모델을 생성
 		EventListDTO boardVOListView = new EventListDTO(boardDTOList, whereColumn, word, sortColumn, orderby, GUBUN,

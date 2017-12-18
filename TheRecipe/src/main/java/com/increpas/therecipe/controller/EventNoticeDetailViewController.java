@@ -46,7 +46,7 @@ public class EventNoticeDetailViewController {
 
 		System.out.println("(관리자)공시사항 상세페이지 입니다.");
 		int Ncode = Integer.parseInt(req.getParameter("e_evtcode"));
-		EventVO nVo = ndvs.getNoticeVODetail(Ncode);
+		EventNoticeVO nVo = ndvs.getNoticeVODetail(Ncode);
 		model.addAttribute("nVo", nVo);
 		return "adminNoticeDetailView";
 	}

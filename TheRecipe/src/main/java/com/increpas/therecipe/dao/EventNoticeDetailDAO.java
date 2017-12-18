@@ -29,7 +29,7 @@ public class EventNoticeDetailDAO {
 	 * @param Ncode 화면에서 입력받은 공지사항 코드값
 	 * @return sqlSessionTemplate.selectOne("event_ns.selectNoticeDetail", map)
 	 */
-	public EventVO NoticeDetailView(int Ncode) {
+	public EventNoticeVO NoticeDetailView(int Ncode) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("Ncode", Ncode);// 글번호 맵에 저장

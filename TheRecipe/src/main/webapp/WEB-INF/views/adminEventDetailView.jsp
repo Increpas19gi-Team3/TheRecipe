@@ -32,27 +32,26 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>${eVo.e_evtcode}</td>
+							<td>${eVo.e_evtcode_value}</td>
 							<td>${eVo.e_nttilte}</td>
-							<td>${eVo.e_gubun}</td>
-							<td><fmt:formatDate value="${eVo.e_ntdate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-							
+							<td>${eVo.e_gubun_value}</td>
+							<td><fmt:formatDate value="${eVo.e_ntdate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>							
 						</tr>
 						
 						<tr>
-							<th colspan="4">내&nbsp;&nbsp;용</th>
+							<th colspan="5">내&nbsp;&nbsp;용</th>
 						</tr>
 						
 						<tr>
-							<td colspan="4">${eVo.e_ntcontens}</td>
+							<td colspan="5">${eVo.e_ntcontens}</td>
 						</tr>
 						
 						<c:if test="${not empty eVo.e_ntimgname}">
 						<tr>
-							<td colspan="4">이미지</td>
+							<td colspan="5">이미지</td>
 						</tr>
 						<tr>
-							<td colspan="4">
+							<td colspan="5">
 								${eVo.e_ntimgname}
 								<img src="/images/${eVo.e_ntimgname}" width="400" height="400">
 							</td>
@@ -67,10 +66,10 @@
 						</tr>				
 						
 						<tr>
-							<td>${eVo.discount_value}%</td>
-							<td><fmt:formatDate value="${eVo.e_startdate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-							<td><fmt:formatDate value="${eVo.e_enddate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-							<td>${eVo.ms_code}</td>
+							<td>${eVo.e_discount_value}%</td>
+							<td><fmt:formatDate value="${eVo.e_startdate}" pattern="yyyy-MM-dd" /></td>
+							<td><fmt:formatDate value="${eVo.e_enddate}" pattern="yyyy-MM-dd" /></td>
+							<td>${eVo.ms_code_value}</td>
 						</tr>						
 					</tbody>
 				</table>

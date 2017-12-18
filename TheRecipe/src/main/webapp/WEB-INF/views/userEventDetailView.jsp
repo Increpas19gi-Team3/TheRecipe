@@ -49,9 +49,9 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>${eVo.e_evtcode}</td>
+							<td>${eVo.e_evtcode_value}</td>
 							<td>${eVo.e_nttilte}</td>
-							<td>${eVo.e_gubun}</td>
+							<td>${eVo.e_gubun_value}</td>
 							<td><fmt:formatDate value="${eVo.e_ntdate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>							
 						</tr>
 						
@@ -83,10 +83,10 @@
 						</tr>				
 						
 						<tr>
-							<td>${eVo.discount_value}%</td>
+							<td>${eVo.e_discount_value}%</td>
 							<td><fmt:formatDate value="${eVo.e_startdate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 							<td><fmt:formatDate value="${eVo.e_enddate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-							<td>${eVo.ms_code}</td>
+							<td>${eVo.ms_code_value}</td>
 						</tr>						
 					</tbody>
 				</table>				

@@ -23,7 +23,7 @@ public class EventNoticeViewRegService {
 
 	// 공지사항 상세보기
 	@Transactional
-	public EventVO getNoticeVODetail(int Ncode) {
+	public EventNoticeVO getNoticeVODetail(int Ncode) {
 		System.out.println("▶▶▶▶ NoticeDetailViewService : getNoticeVOList >> 들어옴");
 		return endDAO.NoticeDetailView(Ncode);
 	}

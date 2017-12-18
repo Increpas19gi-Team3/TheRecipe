@@ -216,7 +216,7 @@
 									<a href="userNoticeDetailView.do?e_evtcode=${list.e_evtcode}">${list.e_nttilte }</a>
 								</td>
 								<td>
-									<fmt:formatDate value="${list.e_ntdate }" pattern="yyyy-MM-dd HH:mm:ss" />
+									<fmt:formatDate value="${list.e_ntdate }" pattern="yyyy-MM-dd" />
 								</td>
 								<%-- <td>
 									<fmt:formatDate value="${list.e_startdate }" pattern="yyyy-MM-dd HH:mm:ss" />
