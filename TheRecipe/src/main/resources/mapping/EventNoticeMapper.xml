@@ -29,7 +29,10 @@
 		<result property="e_discount" column="e_discount" /><!-- 할인율 -->
 		<result property="e_startdate" column="e_startdate" /><!-- 시작날짜 -->
 		<result property="e_enddate" column="e_enddate" /><!-- 종료날짜 -->
-		<result property="discount_value" column="discount_value" /><!-- SubQuery : 할인율  -->
+		<result property="e_evtcode_value" column="e_evtcode_value" />
+		<result property="e_gubun_value" column="e_gubun_value" />
+		<result property="ms_code_value" column="ms_code_value" />
+		<result property="e_ediscount_value" column="e_ediscount_value" /><!-- SubQuery : 할인율  -->
 	</resultMap>
 	
 	<resultMap id="EventNoticeRegResult" type="EventNoticeReg">
@@ -125,9 +128,33 @@
 	</select>
 	
 	<!-- 공지사항 상세보기 쿼리문 -->
-	<select id="selectNoticeDetail" parameterType="map" resultMap="eventResult" useCache="false"  >
+	<!-- <select id="selectNoticeDetail" parameterType="map" resultMap="eventResult" useCache="false"  >
 		select * from tr_event where e_gubun = '0' and e_evtcode=#{Ncode}
+	</select> -->
+	<!-- 수정(2017.12.17) -->
+	<select id="selectNoticeDetail" parameterType="map" resultMap="eventNoticeResult" useCache="false"  >
+		SELECT
+		(SELECT SC.SUB_NAME 
+		FROM TR_MASTERCODE MC
+		INNER JOIN TR_SUBCODE SC
+		ON SC.MS_CODE = MC.MS_CODE
+		WHERE MC.MS_CODE = ET.MS_CODE AND SC.SUB_CODE = ET.E_EVTCODE) AS E_EVTCODE_VALUE,		
+		ET.E_NTTILTE,		
+		(SELECT SC.SUB_NAME 
+		FROM TR_MASTERCODE MC
+		INNER JOIN TR_SUBCODE SC
+		ON SC.MS_CODE = MC.MS_CODE
+		WHERE MC.MS_CODE = ET.MS_CODE AND SC.SUB_CODE = ET.E_GUBUN) AS E_GUBUN_VALUE,		
+		ET.E_NTDATE, ET.E_NTCONTENS, ET.E_NTIMGNAME,	
+		(SELECT MC.MS_NAME
+		FROM TR_MASTERCODE MC
+		INNER JOIN TR_SUBCODE SC
+		ON SC.MS_CODE = MC.MS_CODE
+		WHERE MC.MS_CODE = ET.MS_CODE AND SC.SUB_CODE = ET.E_EVTCODE) AS MS_CODE_VALUE
+		FROM TR_EVENT ET
+		where e_evtcode=#{Ncode}
 	</select>
+	
 	
 	<!-- 공지사항 등록(이미지도 들어감) 수정 전(2017-12-13)-->
 	<!-- <insert id="NoticeInsertWrite" parameterType="EventNoticeReg">
@@ -206,23 +233,69 @@
 	
 	
 	<!-- 이벤트 리스트와 리스트 갯 수를 던져줌 -->
-	<select id="selectEventSetList" parameterType="com.increpas.therecipe.dto.EventListDTO"
+	<!-- <select id="selectEventSetList" parameterType="com.increpas.therecipe.dto.EventListDTO"
 		resultMap="eventResult">
-
 		SELECT *
 		FROM (
-
 		SELECT e_evtcode, e_nttilte, e_gubun, e_ntdate,
 		e_ntcontens, e_ntimgname,
 		e_discount, e_startdate, e_enddate, rownum rn
 		FROM (
-
 		SELECT e_evtcode, e_nttilte, e_gubun, e_ntdate, e_ntcontens,
 		e_ntimgname,
 		e_discount, e_startdate, e_enddate
-		FROM tr_event
-
-		<!-- WHERE -->
+		FROM tr_event		
+		<where>
+			e_gubun = '1'
+			공지사항에 대한 제목과 내용만 검색
+			<if test="whereColumn.equals('ALL')">
+				and (E_NTTILTE LIKE '%' || #{word } || '%' or E_NTCONTENS LIKE '%' || #{word } || '%')
+			</if>			
+			공지사항에 대한 제목만 검색
+			<if test="whereColumn.equals('TITLE')">
+				AND e_nttilte LIKE '%' || #{word } || '%'
+			</if>
+		</where>
+		ORDER BY
+		<choose>
+			<when test="sortColumn.equals('e_nttilte')">
+				<if test="orderby.equals('ASC')">ORDER BY e_nttilte ASC</if>
+				<if test="orderby.equals('DESC')">ORDER BY e_nttilte DESC</if>
+			</when>
+			<when test="sortColumn.equals('e_ntdate')">
+				<if test="orderby.equals('ASC')">ORDER BY e_ntdate ASC</if>
+				<if test="orderby.equals('DESC')">ORDER BY e_ntdate DESC</if>
+			</when>
+			<otherwise>
+				ORDER BY e_evtcode DESC
+			</otherwise>
+		</choose>
+		))
+		<where>
+			rn between #{startRow} and #{endRow}
+		</where>
+	</select>  -->
+	
+	<!-- 수정(2017.12.17) -->
+	<select id="selectEventSetList" parameterType="com.increpas.therecipe.dto.EventListDTO"
+		resultMap="eventNoticeResult">
+		
+		SELECT *
+		FROM (
+			SELECT e_evtcode, e_nttilte, e_gubun, e_ntdate, e_ntcontens, e_ntimgname,
+			e_discount_value, e_startdate, e_enddate, rownum rn
+			FROM (
+				SELECT e_evtcode, e_nttilte, e_gubun, e_ntdate, e_ntcontens, e_ntimgname,
+				
+				(SELECT SC.SUB_NAME
+				FROM TR_MASTERCODE MC 
+				INNER JOIN TR_SUBCODE SC
+				ON SC.MS_CODE = MC.MS_CODE
+				WHERE MC.MS_CODE = ET.MS_CODE AND SC.SUB_CODE = ET.E_DISCOUNT) AS e_discount_value,
+					
+				e_startdate, e_enddate
+				FROM tr_event ET
+						
 		<where>
 			e_gubun = '1'
 
@@ -257,13 +330,14 @@
 			rn between #{startRow} and #{endRow}
 		</where>
 	</select>	
+		
 	
 	<!-- 이벤트 상세보기 쿼리문 -->
 	<!-- <select id="selectEventDetail" parameterType="map" resultMap="eventResult" useCache="false"  >
 		select * from tr_event where e_gubun = '1' and e_evtcode=#{Ecode}
 	</select> -->
-	<select id="selectEventDetail" parameterType="map" resultMap="eventNoticeResult" useCache="false"  >
-		SELECT  ET.E_EVTCODE, ET.E_NTTILTE, ET.E_GUBUN, ET.E_NTDATE, ET.E_NTCONTENS, ET.E_NTIMGNAME, ET.E_DISCOUNT, ET.E_STARTDATE, ET.E_ENDDATE, ET.MS_CODE, 
+	<!-- <select id="selectEventDetail" parameterType="map" resultMap="eventNoticeResult" useCache="false"  >
+		SELECT  ET.E_EVTCODE, ET.E_NTTILTE, ET.E_GUBUN, ET.E_NTDATE, ET.E_NTCONTENS, ET.E_NTIMGNAME, ET.E_STARTDATE, ET.E_ENDDATE, ET.MS_CODE, 
 		        (SELECT SC.SUB_NAME 
 		        FROM TR_MASTERCODE MC 
 		        INNER JOIN TR_SUBCODE SC
@@ -271,7 +345,35 @@
 		        WHERE MC.MS_CODE = ET.MS_CODE AND SC.SUB_CODE = ET.E_DISCOUNT) AS DISCOUNT_VALUE
 		FROM TR_EVENT ET
 		WHERE ET.E_EVTCODE = #{Ecode}
-	</select>
+	</select> -->
+	<!-- 수정(2017.12.17) -->
+	<select id="selectEventDetail" parameterType="map" resultMap="eventNoticeResult" useCache="false"  >
+		SELECT
+		(SELECT SC.SUB_NAME 
+		FROM TR_MASTERCODE MC
+		INNER JOIN TR_SUBCODE SC
+		ON SC.MS_CODE = MC.MS_CODE
+		WHERE MC.MS_CODE = ET.MS_CODE AND SC.SUB_CODE = ET.E_EVTCODE) AS E_EVTCODE_VALUE,		
+		ET.E_NTTILTE,		
+		(SELECT SC.SUB_NAME 
+		FROM TR_MASTERCODE MC
+		INNER JOIN TR_SUBCODE SC
+		ON SC.MS_CODE = MC.MS_CODE
+		WHERE MC.MS_CODE = ET.MS_CODE AND SC.SUB_CODE = ET.E_GUBUN) AS E_GUBUN_VALUE,		
+		ET.E_NTDATE, ET.E_NTCONTENS, ET.E_NTIMGNAME, ET.E_STARTDATE, ET.E_ENDDATE,		
+		(SELECT MC.MS_NAME
+		FROM TR_MASTERCODE MC
+		INNER JOIN TR_SUBCODE SC
+		ON SC.MS_CODE = MC.MS_CODE
+		WHERE MC.MS_CODE = ET.MS_CODE AND SC.SUB_CODE = ET.E_EVTCODE) AS MS_CODE_VALUE,		
+		(SELECT SC.SUB_NAME 
+		FROM TR_MASTERCODE MC
+		INNER JOIN TR_SUBCODE SC
+		ON SC.MS_CODE = MC.MS_CODE
+		WHERE MC.MS_CODE = ET.MS_CODE AND SC.SUB_CODE = ET.E_DISCOUNT) AS E_DISCOUNT_VALUE		
+		FROM TR_EVENT ET
+		WHERE ET.E_EVTCODE = #{Ecode}
+	</select>	
 	
 	<!-- 이벤트 등록(이미지도 들어감) -->
 	<insert id="EventInsertWrite" parameterType="EventNoticeReg">
